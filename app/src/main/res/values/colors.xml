@@ -11,7 +11,9 @@
     <color name="colorAccentLight2">#4285f4</color>
     <color name="colorTextOnSecondary">#ffffff</color>
     <color name="ic_background">#ffffff</color>
-    
+    <color name="statusBarColor">#00000000</color>
+    <color name="windowBackground">#EEEEEE</color>
+
     <!-- red -->
     <color name="md_red_50_color_code">#fde0dc</color>
     <color name="md_red_100_color_code">#f9bdbb</color>

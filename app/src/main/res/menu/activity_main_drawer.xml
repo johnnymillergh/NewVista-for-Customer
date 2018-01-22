@@ -23,15 +23,15 @@
         android:title="My NewVista">
         <menu>
             <item
-                android:id="@+id/myOrderItem"
+                android:id="@+id/orderItem"
                 android:icon="@drawable/ic_person_white_24dp"
                 android:title="Order"/>
             <item
-                android:id="@+id/myCommentItem"
+                android:id="@+id/commentItem"
                 android:icon="@drawable/ic_comment_white_24dp"
                 android:title="Comment"/>
             <item
-                android:id="@+id/myFavoriteItem"
+                android:id="@+id/watchlistItem"
                 android:icon="@drawable/ic_movie_white_24dp"
                 android:title="Watchlist"/>
         </menu>

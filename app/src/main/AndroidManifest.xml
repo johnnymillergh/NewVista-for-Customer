@@ -15,6 +15,15 @@
         android:theme="@style/AppTheme">
 
         <activity
+            android:name=".ui.activity.MainActivity"
+            android:theme="@style/AppThemeMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".ui.activity.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
@@ -23,13 +32,6 @@
             android:name=".ui.activity.SignUpActivity"
             android:theme="@style/AppThemeReversed"
             android:windowSoftInputMode="stateHidden|adjustResize">
-        </activity>
-
-        <activity android:name=".ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 </manifest>
