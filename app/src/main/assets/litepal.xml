@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="new_vista"></dbname>
+
+    <version value="1"></version>
+
+    <list>
+        <mapping class="com.jm.newvista.bean.AuditoriumEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.MovieEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.MovieScheduleEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.NetworkConfigurationEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.OrderEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.PosterEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.SeatEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.TheaterEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.TopMovieEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.UserEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.UserReviewEntity"></mapping>
+    </list>
+</litepal>
