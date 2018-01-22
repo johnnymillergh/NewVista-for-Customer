@@ -21,7 +21,7 @@
 
         <activity
             android:name=".ui.activity.SignUpActivity"
-            android:theme="@style/AppThemeBlue"
+            android:theme="@style/AppThemeReversed"
             android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
 
