@@ -7,4 +7,10 @@
     android:layout_height="match_parent"
     tools:context="com.jm.newvista.ui.activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/testString"/>
 </android.support.v4.widget.NestedScrollView>

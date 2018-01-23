@@ -15,15 +15,19 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         MaterialSearchBar.OnSearchActionListener {
-    MaterialSearchBar searchBar;
+    private MaterialSearchBar searchBar;
     private DrawerLayout drawer;
     private RelativeLayout splashScreen;
+    private ArrayList<String> searchBarSuggestions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
         searchBar.setOnSearchActionListener(this);
 //        searchBar.inflateMenu(R.menu.main);
-        searchBar.setText("Hello World!");
-        Log.d("LOG_TAG", getClass().getSimpleName() + ": text " + searchBar.getText());
-        searchBar.setCardViewElevation(10);
         searchBar.addTextChangeListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
 
         });
@@ -109,13 +109,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
     @Override
     public void onSearchStateChanged(boolean enabled) {
     }
 
     @Override
     public void onSearchConfirmed(CharSequence text) {
-
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        searchBarSuggestions.add(text.toString());
+        searchBar.disableSearch();
     }
 
     @Override

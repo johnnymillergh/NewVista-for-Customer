@@ -1,83 +1,14 @@
 <resources>
     <string name="app_name">New Vista</string>
-    <string name="testString">the three musketeersalexandre dumasauthors preface
-in which it is proved that, notwithstanding their namesending
-in os and is, the heroes of the story which we are about to have
-the honor to relate to our readers have nothing mythological
-about them.a short time ago, while making researches in the royal library
-for my history of louis xiv, i stumbled by chance upon the
-memoirs of m. dartagnan, printed--as were most of the works of
-that period, in which authors could not tell the truth without
-the risk of a residence, more or less long, in the bastille--at
-amsterdam, by pierre rouge.  the title attracted me; i took them
-home with me, with the permission of the guardian, and devoured
-them.
-
-it is not my intention here to enter into an analysis of this
-curious work; and i shall satisfy myself with referring such of
-my readers as appreciate the pictures of the period to its pages.
-they will therein find portraits penciled by the hand of a
-master; and although these squibs may be, for the most part,
-traced upon the doors of barracks and the walls of cabarets, they
-will not find the likenesses of louis xiii, anne of austria,
-richelieu, mazarin, and the courtiers of the period, less
-faithful than in the history of m. anquetil.
-
-but, it is well known, what strikes the capricious mind of the
-poet is not always what affects the mass of readers.  now, while
-admiring, as others doubtless will admire, the details we have to
-relate, our main preoccupation concerned a matter to which no one
-before ourselves had given a thought.in which it is proved that, notwithstanding their namesending
-in os and is, the heroes of the story which we are about to have
-the honor to relate to our readers have nothing mythological
-about them.a short time ago, while making researches in the royal library
-for my history of louis xiv, i stumbled by chance upon the
-memoirs of m. dartagnan, printed--as were most of the works of
-that period, in which authors could not tell the truth without
-the risk of a residence, more or less long, in the bastille--at
-amsterdam, by pierre rouge.  the title attracted me; i took them
-home with me, with the permission of the guardian, and devoured
-them.
-
-it is not my intention here to enter into an analysis of this
-curious work; and i shall satisfy myself with referring such of
-my readers as appreciate the pictures of the period to its pages.
-they will therein find portraits penciled by the hand of a
-master; and although these squibs may be, for the most part,
-traced upon the doors of barracks and the walls of cabarets, they
-will not find the likenesses of louis xiii, anne of austria,
-richelieu, mazarin, and the courtiers of the period, less
-faithful than in the history of m. anquetil.
-
-but, it is well known, what strikes the capricious mind of the
-poet is not always what affects the mass of readers.  now, while
-admiring, as others doubtless will admire, the details we have to
-relate, our main preoccupation concerned a matter to which no one
-before ourselves had given a thought.in which it is proved that, notwithstanding their namesending
-in os and is, the heroes of the story which we are about to have
-the honor to relate to our readers have nothing mythological
-about them.a short time ago, while making researches in the royal library
-for my history of louis xiv, i stumbled by chance upon the
-memoirs of m. dartagnan, printed--as were most of the works of
-that period, in which authors could not tell the truth without
-the risk of a residence, more or less long, in the bastille--at
-amsterdam, by pierre rouge.  the title attracted me; i took them
-home with me, with the permission of the guardian, and devoured
-them.
-
-it is not my intention here to enter into an analysis of this
-curious work; and i shall satisfy myself with referring such of
-my readers as appreciate the pictures of the period to its pages.
-they will therein find portraits penciled by the hand of a
-master; and although these squibs may be, for the most part,
-traced upon the doors of barracks and the walls of cabarets, they
-will not find the likenesses of louis xiii, anne of austria,
-richelieu, mazarin, and the courtiers of the period, less
-faithful than in the history of m. anquetil.
-
-but, it is well known, what strikes the capricious mind of the
-poet is not always what affects the mass of readers.  now, while
-admiring, as others doubtless will admire, the details we have to
-relate, our main preoccupation concerned a matter to which no one
-before ourselves had given a thought.</string>
+    <string name="testString">The Three Musketeers (French: Les Trois Mousquetaires [le tʁwa muskətɛʁ]) is an historical novel written in 1844 by French author Alexandre Dumas.
+\n
+Set in 1625–1628, it recounts the adventures of a young man named d\'Artagnan (based on Charles de Batz-Castelmore d\'Artagnan) after he leaves home to travel to Paris, to join the Musketeers of the Guard. Although d\'Artagnan is not able to join this elite corps immediately, he befriends the three most formidable musketeers of the age—Athos, Porthos and Aramis—and gets involved in affairs of the state and court.
+\n
+In genre, The Three Musketeers is primarily a historical and adventure novel. However, Dumas also frequently works into the plot various injustices, abuses, and absurdities of the old regime, giving the novel an additional political aspect at a time when the debate in France between republicans and monarchists was still fierce. The story was first serialised from March to July 1844, during the July Monarchy, four years before the French Revolution of 1848 violently established the Second Republic. The author\'s father, Thomas-Alexandre Dumas, had been a well-known General in France\'s Republican army during the French Revolutionary Wars.
+\n
+The story of d\'Artagnan is continued in Twenty Years After and The Vicomte of Bragelonne: Ten Years Later.
+\n
+In 1625 France, d\'Artagnan (a poor young nobleman) leaves his family in Gascony and travels to Paris to join the Musketeers of the Guard. At an inn in Meung-sur-Loire, an older man derides d\'Artagnan\'s horse. Insulted, d\'Artagnan demands a duel. The older man\'s companions beat d\'Artagnan unconscious with a cooking pot and a metal tong that breaks his sword. His letter of introduction to Monsieur de Tréville, the commander of the Musketeers, is also stolen. D\'Artagnan resolves to avenge himself upon the man (who is later revealed to be the Comte de Rochefort, an agent of Cardinal Richelieu, who is passing orders from the Cardinal to his spy Lady de Winter, usually called Milady de Winter or simply Milady).
+\n
+In Paris, d\'Artagnan visits M. de Tréville at the headquarters of the Musketeers, but without the letter, Tréville politely refuses his application. He does, however, write a letter of introduction to an academy for young gentlemen which may prepare him for recruitment at a later time. From Tréville\'s window, d\'Artagnan sees Rochefort passing in the street below and rushes out of the building to confront him, but in doing so he offends three Musketeers, Athos, Porthos, and Aramis, who each demand satisfaction; d\'Artagnan must fight a duel with all of them that afternoon. As d\'Artagnan prepares himself for the first duel, he realizes that Athos\' seconds are Porthos and Aramis, who are astonished that the young Gascon intends to duel them all. As d\'Artagnan and Athos begin, Cardinal Richelieu\'s guards appear and try to arrest d\'Artagnan and the three Musketeers for illegal dueling. Although outnumbered, the four men win the battle. D\'Artagnan seriously wounds Jussac, one of the Cardinal\'s officers and a renowned fighter. After learning of this, King Louis XIII appoints d\'Artagnan to Des Essart\'s company of the King\'s Guards and gives him forty pistoles.</string>
 </resources>
