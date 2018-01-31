@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +19,13 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.ui.fragment.TopMovieFragment;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        MaterialSearchBar.OnSearchActionListener {
+        MaterialSearchBar.OnSearchActionListener, TopMovieFragment.OnFragmentInteractionListener {
     private MaterialSearchBar searchBar;
     private DrawerLayout drawer;
     private RelativeLayout splashScreen;
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         });
+        TopMovieFragment topMovieFragment = new TopMovieFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.genreChipsContainer, new TopMovieFragment()).commit();
     }
 
     @Override
@@ -173,5 +178,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
             }
         }.start();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
     }
 }

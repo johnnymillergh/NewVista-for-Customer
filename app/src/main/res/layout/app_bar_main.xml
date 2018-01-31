@@ -28,12 +28,25 @@
             app:mt_placeholder="NewVista"/>
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        layout="@layout/content_main"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-    </include>
+
+        <LinearLayout
+            android:id="@+id/topMovieContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genreChipsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/topMovieContainer"/>
+    </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>

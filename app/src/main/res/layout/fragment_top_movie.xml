@@ -1,0 +1,23 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.jm.newvista.ui.fragment.TopMovieFragment">
+
+    <com.jm.newvista.ui.myclass.MyViewPager
+        android:id="@+id/topMovieViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.jm.newvista.ui.myclass.MyViewPager>
+
+    <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+        android:id="@+id/topMovieIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:dotColor="@color/colorPrimary"
+        app:selectedDotColor="@color/colorAccent"/>
+</LinearLayout>
