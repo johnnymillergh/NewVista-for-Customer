@@ -49,4 +49,6 @@ dependencies {
     compile 'com.songhang:smart-headerfooter-recyclerview:1.0.1'
     // A lightweight, plug-and-play indefinite pager indicator for RecyclerViews & ViewPagers.
     compile 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.5'
+    // An page indicator for Android ViewPager
+    compile 'com.romandanylyk:pageindicatorview:1.0.0@aar'
 }
