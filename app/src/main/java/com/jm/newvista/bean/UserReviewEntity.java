@@ -4,13 +4,14 @@ import org.litepal.crud.DataSupport;
 
 import java.sql.Timestamp;
 
-public class UserReviewEntity extends DataSupport {
+public class UserReviewEntity  extends DataSupport {
     private int id;
     private int userId;
     private int movieId;
     private int score;
     private String title;
     private String text;
+    private boolean isSpoilers;
     private Timestamp dateTime;
 
     public int getId() {
@@ -59,6 +60,14 @@ public class UserReviewEntity extends DataSupport {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean getIsSpoilers() {
+        return isSpoilers;
+    }
+
+    public void setIsSpoilers(boolean isSpoilers) {
+        this.isSpoilers = isSpoilers;
     }
 
     public Timestamp getDateTime() {

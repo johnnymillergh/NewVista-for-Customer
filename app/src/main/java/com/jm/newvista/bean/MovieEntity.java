@@ -2,7 +2,7 @@ package com.jm.newvista.bean;
 
 import org.litepal.crud.DataSupport;
 
-public class MovieEntity extends DataSupport {
+public class MovieEntity  extends DataSupport {
     private int id;
     private String title;
     private String duration;
@@ -16,6 +16,8 @@ public class MovieEntity extends DataSupport {
     private String runtime;
     private String aspectRatio;
     private String description;
+    private byte[] poster;
+    private String posterStr;
 
     public int getId() {
         return id;
@@ -119,6 +121,22 @@ public class MovieEntity extends DataSupport {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public byte[] getPoster() {
+        return poster;
+    }
+
+    public void setPoster(byte[] poster) {
+        this.poster = poster;
+    }
+
+    public String getPosterStr() {
+        return posterStr;
+    }
+
+    public void setPosterStr(String posterStr) {
+        this.posterStr = posterStr;
     }
 
     @Override

@@ -2,15 +2,15 @@ package com.jm.newvista.bean;
 
 import org.litepal.crud.DataSupport;
 
-/**
- * Created by Johnny on 1/19/2018.
- */
-
-public class UserEntity extends DataSupport {
+public class UserEntity  extends DataSupport {
     private int id;
     private String email;
     private String password;
     private String username;
+    private byte[] avatar;
+    private String avatarStr;
+    private String gender;
+    private String homeLocation;
 
     public int getId() {
         return id;
@@ -42,5 +42,42 @@ public class UserEntity extends DataSupport {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getAvatarStr() {
+        return avatarStr;
+    }
+
+    public void setAvatarStr(String avatarStr) {
+        this.avatarStr = avatarStr;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHomeLocation() {
+        return homeLocation;
+    }
+
+    public void setHomeLocation(String homeLocation) {
+        this.homeLocation = homeLocation;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity: " + id + ", " + email + ", " + password + ", " + username;
     }
 }
