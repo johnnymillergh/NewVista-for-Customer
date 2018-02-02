@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         TopMovieFragment topMovieFragment = new TopMovieFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.genreChipsContainer, new TopMovieFragment()).commit();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.jm.newvista.ui.myclass;
+package com.jm.newvista.ui.myview;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

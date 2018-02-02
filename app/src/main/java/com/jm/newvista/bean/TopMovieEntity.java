@@ -2,7 +2,7 @@ package com.jm.newvista.bean;
 
 import org.litepal.crud.DataSupport;
 
-public class TopMovieEntity  extends DataSupport {
+public class TopMovieEntity extends DataSupport {
     private int id;
     private int movieId;
     private String movieTitle;
@@ -47,5 +47,10 @@ public class TopMovieEntity  extends DataSupport {
 
     public void setPosterStr(String posterStr) {
         this.posterStr = posterStr;
+    }
+
+    @Override
+    public String toString() {
+        return getClassName() + " id: " + id + ", movieId: " + movieId + ", movieTitle: " + movieTitle;
     }
 }
