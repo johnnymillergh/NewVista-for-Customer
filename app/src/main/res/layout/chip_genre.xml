@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.robertlevonyan.views.chip.Chip
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/genreChip"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    app:mcv_backgroundColor="@color/colorAccent"
+    app:mcv_textColor="@color/colorTextOnSecondary">
+
+</com.robertlevonyan.views.chip.Chip>
