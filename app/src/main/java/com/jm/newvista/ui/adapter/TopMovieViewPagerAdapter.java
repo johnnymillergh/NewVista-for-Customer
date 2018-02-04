@@ -51,12 +51,6 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
             Glide.with(view).load(ImageUtil.decode(bytesStr)).into(topMovieImageView);
         }
         container.addView(view);
-        // set image view size
-//        DisplayMetrics metrics = topMovieImageView.getResources().getDisplayMetrics();
-//        ViewGroup.LayoutParams params = topMovieImageView.getLayoutParams();
-//        params.height = topMovieImageView.getMeasuredHeight();
-//        params.height = params.width * 9 / 16;
-//        topMovieImageView.setLayoutParams(params);
         return view;
     }
 

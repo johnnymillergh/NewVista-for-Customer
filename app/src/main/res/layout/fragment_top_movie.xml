@@ -11,8 +11,7 @@
         android:id="@+id/topMovieViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
-    </com.jm.newvista.ui.myview.MyViewPager>
+        android:layout_gravity="center"/>
 
     <com.rd.PageIndicatorView
         android:id="@+id/pageIndicatorView"
