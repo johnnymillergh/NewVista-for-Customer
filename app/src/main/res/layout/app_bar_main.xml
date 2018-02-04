@@ -10,22 +10,29 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-        <com.mancj.materialsearchbar.MaterialSearchBar
-            android:id="@+id/searchBar"
-            style="@style/MaterialSearchBarLight"
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:mt_hint="Custom hint"
-            app:mt_maxSuggestionsCount="5"
-            app:mt_navIconEnabled="true"
-            app:mt_placeholder="NewVista"/>
+            app:contentScrim="@color/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/searchBar"
+                style="@style/MaterialSearchBarLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                app:mt_hint="Custom hint"
+                app:mt_maxSuggestionsCount="5"
+                app:mt_navIconEnabled="true"
+                app:mt_placeholder="NewVista"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
