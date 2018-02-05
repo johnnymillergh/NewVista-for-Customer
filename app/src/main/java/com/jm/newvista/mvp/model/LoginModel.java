@@ -44,7 +44,7 @@ public class LoginModel extends BaseModel {
         params.put("email", userEntity.getEmail());
         params.put("password", userEntity.getPassword());
 
-        final String url = "http://" + serverIp + NetworkUtil.LOG_IN_URL;
+        final String url = "http://39.106.218.175" + NetworkUtil.LOG_IN_URL;
 
         new Thread(new Runnable() {
             @Override
