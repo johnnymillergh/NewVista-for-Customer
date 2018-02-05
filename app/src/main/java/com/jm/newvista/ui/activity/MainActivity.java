@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
         showSplashScreen();
         initView();
         initFragment();
+        getPresenter().getMovie();
     }
 
     private void initView() {
@@ -214,5 +215,10 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+    }
+
+    @Override
+    public void onNotifyMovieSaved() {
+        Log.v("onNotifyMovieSaved", "Movie saved");
     }
 }

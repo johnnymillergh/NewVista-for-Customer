@@ -38,7 +38,7 @@ public class TopMoviePresenter extends BasePresenter<TopMovieModel, TopMovieView
             public void onFinishLoadingPoster(TopMovieEntity entity) {
                 HashMap<Integer, String> topMoviePoster = getView().getViewPagerAdapter().getTopMoviePoster();
                 topMoviePoster.put(entity.getId(), entity.getPosterStr());
-                Log.d("getTopMovieAndSave", "entity " + entity.getPosterStr());
+                Log.d("onFinishLoadingPoster", "entity " + entity.getPosterStr().substring(10));
                 getView().getViewPagerAdapter().notifyDataSetChanged();
             }
         });

@@ -7,4 +7,5 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface MovieView extends BaseView {
+    void onNotifyMovieSaved();
 }
