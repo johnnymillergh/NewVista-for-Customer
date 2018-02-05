@@ -51,4 +51,6 @@ dependencies {
     compile 'com.romandanylyk:pageindicatorview:1.0.0@aar'
     // Material Chip view. Can be used as tags for categories, contacts or creating text clouds
     implementation 'com.robertlevonyan.view:MaterialChipView:1.1.3'
+    // A circular ImageView for Android
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
