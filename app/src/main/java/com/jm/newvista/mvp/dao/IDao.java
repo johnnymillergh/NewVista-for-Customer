@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public interface IDao<EntityType> {
-     boolean save(EntityType entity);
+    boolean save(EntityType entity);
 
     int update(EntityType entity);
 
@@ -18,4 +18,6 @@ public interface IDao<EntityType> {
     int deleteAll();
 
     List<EntityType> getAll();
+
+    boolean isEmpty();
 }

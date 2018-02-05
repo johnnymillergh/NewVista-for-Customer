@@ -54,6 +54,7 @@ public class MovieDao implements IDao<MovieEntity> {
         return DataSupport.findAll(MovieEntity.class);
     }
 
+    @Override
     public boolean isEmpty() {
         if (DataSupport.count("movieentity") > 0) {
             return false;

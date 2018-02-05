@@ -40,4 +40,9 @@ public class TopMovieDao implements IDao<TopMovieEntity> {
     public List<TopMovieEntity> getAll() {
         return DataSupport.findAll(TopMovieEntity.class);
     }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
 }
