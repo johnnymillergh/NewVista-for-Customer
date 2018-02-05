@@ -6,9 +6,9 @@
 
     <list>
         <mapping class="com.jm.newvista.bean.AuditoriumEntity"></mapping>
+        <mapping class="com.jm.newvista.bean.CustomerOrderEntity"></mapping>
         <mapping class="com.jm.newvista.bean.MovieEntity"></mapping>
         <mapping class="com.jm.newvista.bean.MovieScheduleEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.NetworkConfigurationEntity"></mapping>
         <mapping class="com.jm.newvista.bean.OrderEntity"></mapping>
         <mapping class="com.jm.newvista.bean.PosterEntity"></mapping>
         <mapping class="com.jm.newvista.bean.SeatEntity"></mapping>
