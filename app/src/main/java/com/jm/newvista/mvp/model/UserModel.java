@@ -11,6 +11,7 @@ import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Johnny on 2/6/2018.
@@ -52,6 +53,12 @@ public class UserModel extends BaseModel {
             userEntity.save();
         }
         userModelCallbackListener.onFinishSavingUser();
+    }
+
+    public UserEntity getFromDB() {
+        UserDao userDao = new UserDao();
+        List<UserEntity> entities = userDao.getAll();
+        return entities.size() == 1 ? entities.get(0) : null;
     }
 
     @Override

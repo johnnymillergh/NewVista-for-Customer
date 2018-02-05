@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,19 +15,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
+import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.model.MovieModel;
+import com.jm.newvista.mvp.model.UserModel;
 import com.jm.newvista.mvp.presenter.MoviePresenter;
 import com.jm.newvista.mvp.view.MovieView;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
+import com.jm.newvista.util.ImageUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePresenter>
         implements
@@ -38,7 +45,8 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
         TopMovieFragment.TopMovieCallbackListener,
         GenreFragment.GenreFragmentCallbackListener {
     private MaterialSearchBar searchBar;
-    private DrawerLayout drawer;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     private RelativeLayout splashScreen;
     private ArrayList<String> searchBarSuggestions = new ArrayList<>();
 
@@ -53,8 +61,9 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
     }
 
     private void initView() {
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
         searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
         searchBar.setOnSearchActionListener(this);
@@ -72,8 +81,18 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
             @Override
             public void afterTextChanged(Editable editable) {
             }
-
         });
+        View headerView = navigationView.getHeaderView(0);
+        CircleImageView avatarNavigation = (CircleImageView) headerView.findViewById(R.id.avatarNavigation);
+        TextView usernameNavigation = (TextView) headerView.findViewById(R.id.usernameNavigation);
+        TextView emailNavigation = (TextView) headerView.findViewById(R.id.emailNavigation);
+        UserModel userModel = new UserModel();
+        UserEntity userEntity = userModel.getFromDB();
+        if (userEntity != null) {
+            Glide.with(this).load(ImageUtil.decode(userEntity.getAvatarStr())).into(avatarNavigation);
+            usernameNavigation.setText(userEntity.getUsername());
+            emailNavigation.setText(userEntity.getEmail());
+        }
     }
 
     private void initFragment() {
@@ -98,7 +117,7 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -140,7 +159,7 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -161,7 +180,7 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
     public void onButtonClicked(int buttonCode) {
         switch (buttonCode) {
             case MaterialSearchBar.BUTTON_NAVIGATION:
-                drawer.openDrawer(Gravity.LEFT);
+                drawerLayout.openDrawer(Gravity.LEFT);
                 break;
             case MaterialSearchBar.BUTTON_SPEECH:
                 break;
