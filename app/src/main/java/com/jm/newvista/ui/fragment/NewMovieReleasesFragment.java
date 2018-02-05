@@ -4,18 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jm.newvista.R;
-import com.jm.newvista.ui.adapter.GenreRecyclerViewAdapter;
 
-
-public class GenreFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link NewMovieReleasesFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link NewMovieReleasesFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class NewMovieReleasesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,9 +28,9 @@ public class GenreFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private GenreFragmentCallbackListener genreFragmentCallbackListener;
+    private OnFragmentInteractionListener mListener;
 
-    public GenreFragment() {
+    public NewMovieReleasesFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +40,11 @@ public class GenreFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GenreFragment.
+     * @return A new instance of fragment NewMovieReleasesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GenreFragment newInstance(String param1, String param2) {
-        GenreFragment fragment = new GenreFragment();
+    public static NewMovieReleasesFragment newInstance(String param1, String param2) {
+        NewMovieReleasesFragment fragment = new NewMovieReleasesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,44 +62,34 @@ public class GenreFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_genre, container, false);
-        RecyclerView genreRecyclerView = (RecyclerView) view.findViewById(R.id.genreRecyclerView);
-        GenreRecyclerViewAdapter genreRecyclerViewAdapter = new GenreRecyclerViewAdapter();
-        genreRecyclerView.setAdapter(genreRecyclerViewAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(OrientationHelper.HORIZONTAL);
-        genreRecyclerView.setLayoutManager(new RecyclerView.LayoutManager() {
-            @Override
-            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            }
-        });
-        genreRecyclerView.setLayoutManager(linearLayoutManager);
-        return view;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_new_movie_releases, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
-        if (genreFragmentCallbackListener != null) {
-            genreFragmentCallbackListener.onFragmentInteraction(uri);
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof GenreFragmentCallbackListener) {
-            genreFragmentCallbackListener = (GenreFragmentCallbackListener) context;
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement GenreFragmentCallbackListener");
+            throw new RuntimeException(context.toString()
+                    + " must implement GenreFragmentCallbackListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        genreFragmentCallbackListener = null;
+        mListener = null;
     }
 
     /**
@@ -109,7 +102,7 @@ public class GenreFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface GenreFragmentCallbackListener {
+    public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

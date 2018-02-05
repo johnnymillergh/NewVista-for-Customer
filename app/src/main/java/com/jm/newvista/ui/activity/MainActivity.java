@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,23 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.mvp.model.MovieModel;
+import com.jm.newvista.mvp.presenter.MoviePresenter;
+import com.jm.newvista.mvp.view.MovieView;
+import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        MaterialSearchBar.OnSearchActionListener, TopMovieFragment.OnFragmentInteractionListener {
+public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePresenter>
+        implements
+        NavigationView.OnNavigationItemSelectedListener,
+        MaterialSearchBar.OnSearchActionListener,
+        MovieView,
+        TopMovieFragment.TopMovieCallbackListener,
+        GenreFragment.GenreFragmentCallbackListener {
     private MaterialSearchBar searchBar;
     private DrawerLayout drawer;
     private RelativeLayout splashScreen;
@@ -35,10 +46,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        showSplashScreen();
+        initView();
+        initFragment();
+    }
 
-        splashScreen = (RelativeLayout) findViewById(R.id.splashScreen);
-        splashScreen.setVisibility(View.VISIBLE);
-        showStartPage();
+    private void initView() {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -60,8 +73,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
         });
+    }
+
+    private void initFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
         TopMovieFragment topMovieFragment = new TopMovieFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
+
+        GenreFragment genreFragment = new GenreFragment();
+        fragmentManager.beginTransaction().add(R.id.genreChipsContainer, genreFragment).commit();
+    }
+
+    @Override
+    public MovieView createView() {
+        return this;
+    }
+
+    @Override
+    public MoviePresenter createPresenter() {
+        return new MoviePresenter();
     }
 
     @Override
@@ -120,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onSearchConfirmed(CharSequence text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Search: " + text, Toast.LENGTH_SHORT).show();
         searchBarSuggestions.add(text.toString());
         searchBar.disableSearch();
     }
@@ -139,7 +170,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void showStartPage() {
+    private void showSplashScreen() {
+        splashScreen = (RelativeLayout) findViewById(R.id.splashScreen);
+        splashScreen.setVisibility(View.VISIBLE);
         new Thread() {
             @Override
             public void run() {

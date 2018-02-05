@@ -15,5 +15,5 @@ public interface TopMovieView extends BaseView {
 
     TopMovieViewPagerAdapter getViewPagerAdapter();
 
-    MyViewPager getMyViewPager();
+    MyViewPager getTopMovieViewPager();
 }
