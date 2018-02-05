@@ -33,7 +33,7 @@ public class TopMovieModel extends BaseModel {
     public void getTopMovieAndSave(final TopMovieModelCallback topMovieModelCallback) {
         HashMap<String, String> params = new HashMap();
         params.put("topMovieOperation", "getAll");
-        String url = "http://39.106.218.175" + NetworkUtil.GET_TOP_MOVIE_URL;
+        String url = NetworkUtil.GET_TOP_MOVIE_URL;
         Log.d("getTopMovieAndSave", "myOkHttp==null: " + (myOkHttp == null));
         myOkHttp.post().url(url).params(params).tag(this).enqueue(new RawResponseHandler() {
             @Override

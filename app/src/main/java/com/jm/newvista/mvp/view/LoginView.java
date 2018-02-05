@@ -20,7 +20,7 @@ public interface LoginView extends BaseView {
 
     void onLoginFailure();
 
-    boolean onSaveUserChecked();
+    boolean onRememberMeChecked();
 
     void onNotifyPresenterToAutofill();
 

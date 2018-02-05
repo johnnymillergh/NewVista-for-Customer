@@ -1,8 +1,12 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.LoginModel;
+import com.jm.newvista.mvp.model.UserModel;
 import com.jm.newvista.mvp.view.LoginView;
 
 /**
@@ -12,6 +16,7 @@ import com.jm.newvista.mvp.view.LoginView;
 public class LoginPresenter extends BasePresenter<LoginModel, LoginView> {
     private LoginModel loginModel;
     private LoginView loginView;
+    private UserModel userModel;
     private UserEntity userEntity;
 
     public LoginPresenter() {
@@ -24,18 +29,20 @@ public class LoginPresenter extends BasePresenter<LoginModel, LoginView> {
         loginView = getView();
         userEntity.setEmail(loginView.getEmail());
         userEntity.setPassword(loginView.getPassword());
-        final boolean isSaveUser = loginView.onSaveUserChecked();
+        final boolean rememberMe = loginView.onRememberMeChecked();
 
         this.loginModel.login(userEntity, loginView.getServerIp(), new LoginModel.LoginCallbackListener() {
             @Override
             public void onFinish(String responseMessage) {
                 if (responseMessage.contains("success")) {
+                    userModel = new UserModel();
+                    userModel.getAndSave(userEntity, new UserModel.UserModelCallbackListener() {
+                        @Override
+                        public void onFinishSavingUser() {
+                            Log.v("onFinishSavingUser", getClass().toString());
+                        }
+                    });
                     loginView.onLoginSuccess();
-                    if (isSaveUser == true) {
-                        loginModel.saveUser(userEntity);
-                    } else {
-                        loginModel.deleteAllUser();
-                    }
                 } else {
                     loginView.onLoginFailure();
                 }
@@ -67,5 +74,4 @@ public class LoginPresenter extends BasePresenter<LoginModel, LoginView> {
             loginView.onAutofillUserInfo(userEntity.getEmail(), userEntity.getPassword());
         }
     }
-
 }

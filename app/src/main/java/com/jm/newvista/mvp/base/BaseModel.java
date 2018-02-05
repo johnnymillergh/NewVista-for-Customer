@@ -6,5 +6,4 @@ package com.jm.newvista.mvp.base;
 
 public abstract class BaseModel {
     public abstract void cancel();
-
 }

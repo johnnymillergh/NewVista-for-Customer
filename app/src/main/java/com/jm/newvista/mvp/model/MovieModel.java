@@ -32,7 +32,7 @@ public class MovieModel extends BaseModel {
         // Prepare parameter
         HashMap<String, String> params = new HashMap();
         params.put("movieOperation", "getAll");
-        String url = "http://39.106.218.175/" + NetworkUtil.GET_MOVIE_URL;
+        String url = NetworkUtil.GET_MOVIE_URL;
         // About to post
         Log.d("getAndSaveMovie", "myOkHttp==null: " + (myOkHttp == null));
         myOkHttp.post().url(url).params(params).tag(this).enqueue(new RawResponseHandler() {
@@ -69,7 +69,8 @@ public class MovieModel extends BaseModel {
 
     @Override
     public void cancel() {
-
+        Log.v("cancel()", getClass().toString());
+        myOkHttp.cancel(this);
     }
 
     public interface MovieModelCallback {

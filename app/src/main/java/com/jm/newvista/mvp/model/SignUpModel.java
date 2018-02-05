@@ -28,7 +28,7 @@ public class SignUpModel extends BaseModel {
         params.put("email", userEntity.getEmail());
         params.put("password", userEntity.getPassword());
         params.put("username", userEntity.getUsername());
-        final String url = "http://" + serverIp + NetworkUtil.SIGN_UP_URL;
+        final String url = NetworkUtil.SIGN_UP_URL;
 
         new Thread(new Runnable() {
             @Override

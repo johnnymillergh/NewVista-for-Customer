@@ -20,7 +20,7 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
     private EditText email;
     private EditText password;
     private EditText serverIp;
-    private CheckBox saveUser;
+    private CheckBox rememberMe;
     private TextView loginStatus;
 
     @Override
@@ -36,7 +36,7 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         serverIp = (EditText) findViewById(R.id.serverIp);
-        saveUser = (CheckBox) findViewById(R.id.saveUser);
+        rememberMe = (CheckBox) findViewById(R.id.rememberMe);
         loginStatus = (TextView) findViewById(R.id.signUpStatus);
     }
 
@@ -100,8 +100,8 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
     }
 
     @Override
-    public boolean onSaveUserChecked() {
-        return saveUser.isChecked();
+    public boolean onRememberMeChecked() {
+        return rememberMe.isChecked();
     }
 
     @Override
@@ -113,6 +113,6 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
     public void onAutofillUserInfo(String email, String password) {
         this.email.setText(email);
         this.password.setText(password);
-        saveUser.setChecked(true);
+        rememberMe.setChecked(true);
     }
 }
