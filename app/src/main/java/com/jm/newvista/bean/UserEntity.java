@@ -7,7 +7,6 @@ public class UserEntity  extends DataSupport {
     private String email;
     private String password;
     private String username;
-    private byte[] avatar;
     private String avatarStr;
     private String gender;
     private String homeLocation;
@@ -42,14 +41,6 @@ public class UserEntity  extends DataSupport {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public byte[] getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
     }
 
     public String getAvatarStr() {

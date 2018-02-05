@@ -16,7 +16,6 @@ public class MovieEntity  extends DataSupport {
     private String runtime;
     private String aspectRatio;
     private String description;
-    private byte[] poster;
     private String posterStr;
 
     public int getId() {
@@ -121,14 +120,6 @@ public class MovieEntity  extends DataSupport {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public byte[] getPoster() {
-        return poster;
-    }
-
-    public void setPoster(byte[] poster) {
-        this.poster = poster;
     }
 
     public String getPosterStr() {
