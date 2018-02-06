@@ -1,10 +1,7 @@
 package com.jm.newvista.ui.adapter;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +11,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
-import com.jm.newvista.bean.TopMovieEntity;
-import com.jm.newvista.util.ApplicationUtil;
-import com.jm.newvista.util.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Johnny on 1/29/2018.
@@ -42,7 +34,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        final View view = LayoutInflater.from(context).inflate(R.layout.card_top_movie, container, false);
+        final View view = LayoutInflater.from(context).inflate(R.layout.item_top_movie, container, false);
         topMovieImageView = (ImageView) view.findViewById(R.id.topMovieImageView);
         topMovieTextView = (TextView) view.findViewById(R.id.topMovieTitle);
         if (topMovieTitles.size() == 5) {
