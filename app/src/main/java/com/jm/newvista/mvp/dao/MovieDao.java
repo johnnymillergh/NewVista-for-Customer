@@ -62,4 +62,8 @@ public class MovieDao implements IDao<MovieEntity> {
             return true;
         }
     }
+
+    public int recordCount() {
+        return DataSupport.count("movieentity");
+    }
 }
