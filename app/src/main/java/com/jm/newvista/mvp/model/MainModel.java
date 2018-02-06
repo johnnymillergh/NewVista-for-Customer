@@ -58,15 +58,11 @@ public class MainModel extends BaseModel {
             // Delete all movie records
             dao.deleteAll();
             // Save
-            for (MovieEntity entity : entities) {
-                dao.save(entity);
-            }
+            dao.saveAll(entities);
             mainModelCallbackListener.onSaveMovieFinish();
         } else {
             // Database didn't have any movie records before, save directly
-            for (MovieEntity entity : entities) {
-                dao.save(entity);
-            }
+            dao.saveAll(entities);
             mainModelCallbackListener.onSaveMovieFinish();
         }
     }
