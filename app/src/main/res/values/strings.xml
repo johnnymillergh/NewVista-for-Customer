@@ -14,4 +14,5 @@ In Paris, d\'Artagnan visits M. de Tréville at the headquarters of the Musketee
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="genres">Action,Adventure,Animation,Biography,Comedy,Crime,Documentary,Drama,Family,Fantasy,History,Horror,Music,Musical,Mystery,Romance,Sci-Fi,Short,Sport,Superhero,Thriller,War,Western</string>
 </resources>
