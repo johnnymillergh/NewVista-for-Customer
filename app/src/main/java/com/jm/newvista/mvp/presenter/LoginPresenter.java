@@ -31,7 +31,7 @@ public class LoginPresenter extends BasePresenter<LoginModel, LoginView> {
         userEntity.setPassword(loginView.getPassword());
         final boolean rememberMe = loginView.onRememberMeChecked();
 
-        this.loginModel.login(userEntity, loginView.getServerIp(), new LoginModel.LoginCallbackListener() {
+        this.loginModel.login(userEntity, new LoginModel.LoginCallbackListener() {
             @Override
             public void onFinish(String responseMessage) {
                 if (responseMessage.contains("success")) {

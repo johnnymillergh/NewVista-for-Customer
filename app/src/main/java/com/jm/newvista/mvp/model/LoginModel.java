@@ -39,7 +39,7 @@ public class LoginModel extends BaseModel {
         return false;
     }
 
-    public void login(UserEntity userEntity, String serverIp, final LoginCallbackListener loginCallbackListener) {
+    public void login(UserEntity userEntity, final LoginCallbackListener loginCallbackListener) {
         final HashMap params = new HashMap();
         params.put("email", userEntity.getEmail());
         params.put("password", userEntity.getPassword());
