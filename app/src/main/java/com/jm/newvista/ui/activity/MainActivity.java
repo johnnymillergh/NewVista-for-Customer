@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +22,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.UserEntity;
-import com.jm.newvista.mvp.model.MovieModel;
-import com.jm.newvista.mvp.model.UserModel;
-import com.jm.newvista.mvp.presenter.MoviePresenter;
-import com.jm.newvista.mvp.view.MovieView;
+import com.jm.newvista.mvp.model.MainModel;
+import com.jm.newvista.mvp.presenter.MainPresenter;
+import com.jm.newvista.mvp.view.MainView;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
@@ -37,11 +35,11 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePresenter>
+public class MainActivity extends BaseActivity<MainModel, MainView, MainPresenter>
         implements
         NavigationView.OnNavigationItemSelectedListener,
         MaterialSearchBar.OnSearchActionListener,
-        MovieView,
+        MainView,
         TopMovieFragment.TopMovieCallbackListener,
         GenreFragment.GenreFragmentCallbackListener {
     private MaterialSearchBar searchBar;
@@ -56,14 +54,14 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
         setContentView(R.layout.activity_main);
         showSplashScreen();
         initView();
-        initFragment();
-        getPresenter().getMovie();
+        initTopMovieFragment();
+        getPresenter().getMovieFromServer();
+        getPresenter().initNavigationView();
     }
 
     private void initView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navigationView);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
         searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
         searchBar.setOnSearchActionListener(this);
@@ -82,37 +80,28 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
             public void afterTextChanged(Editable editable) {
             }
         });
-        View headerView = navigationView.getHeaderView(0);
-        CircleImageView avatarNavigation = (CircleImageView) headerView.findViewById(R.id.avatarNavigation);
-        TextView usernameNavigation = (TextView) headerView.findViewById(R.id.usernameNavigation);
-        TextView emailNavigation = (TextView) headerView.findViewById(R.id.emailNavigation);
-        UserModel userModel = new UserModel();
-        UserEntity userEntity = userModel.getFromDB();
-        if (userEntity != null) {
-            Glide.with(this).load(ImageUtil.decode(userEntity.getAvatarStr())).into(avatarNavigation);
-            usernameNavigation.setText(userEntity.getUsername());
-            emailNavigation.setText(userEntity.getEmail());
-        }
     }
 
-    private void initFragment() {
+    private void initTopMovieFragment() {
+        // Get support fragment manager
         FragmentManager fragmentManager = getSupportFragmentManager();
-
+        // Add top movie fragment
         TopMovieFragment topMovieFragment = new TopMovieFragment();
         fragmentManager.beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
 
+        // Add genre fragment
         GenreFragment genreFragment = new GenreFragment();
         fragmentManager.beginTransaction().add(R.id.genreChipsContainer, genreFragment).commit();
     }
 
     @Override
-    public MovieView createView() {
+    public MainView createView() {
         return this;
     }
 
     @Override
-    public MoviePresenter createPresenter() {
-        return new MoviePresenter();
+    public MainPresenter createPresenter() {
+        return new MainPresenter();
     }
 
     @Override
@@ -131,7 +120,18 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
         int id = item.getItemId();
 
         if (id == R.id.accountItem) {
-
+            final Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(320);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(intent);
+                }
+            }).start();
         } else if (id == R.id.signInItem) {
             final Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             new Thread(new Runnable() {
@@ -158,9 +158,8 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
         } else if (id == R.id.aboutItem) {
 
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
-        drawer.closeDrawer(GravityCompat.START);
+        // Close drawer
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -239,5 +238,20 @@ public class MainActivity extends BaseActivity<MovieModel, MovieView, MoviePrese
     @Override
     public void onNotifyMovieSaved() {
         Log.v("onNotifyMovieSaved", "Movie saved");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+    }
+
+    @Override
+    public void onUpdateNavigationView(UserEntity userEntity) {
+        // Find subview of navigation view
+        View headerView = navigationView.getHeaderView(0);
+        CircleImageView avatarNavigation = (CircleImageView) headerView.findViewById(R.id.avatarNavigation);
+        TextView usernameNavigation = (TextView) headerView.findViewById(R.id.usernameNavigation);
+        TextView emailNavigation = (TextView) headerView.findViewById(R.id.emailNavigation);
+        // Update view
+        Glide.with(this).load(ImageUtil.decode(userEntity.getAvatarStr())).into(avatarNavigation);
+        usernameNavigation.setText(userEntity.getUsername());
+        emailNavigation.setText(userEntity.getEmail());
     }
 }

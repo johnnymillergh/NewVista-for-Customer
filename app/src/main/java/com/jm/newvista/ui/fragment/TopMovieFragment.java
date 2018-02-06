@@ -62,9 +62,9 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
         topMovieViewPager = (MyViewPager) view.findViewById(R.id.topMovieViewPager);
         topMovieViewPagerAdapter = new TopMovieViewPagerAdapter(getContext());
         topMovieViewPager.setAdapter(topMovieViewPagerAdapter);
+        topMovieViewPager.setOffscreenPageLimit(4);
         PageIndicatorView pageIndicatorView = (PageIndicatorView) view.findViewById(R.id.pageIndicatorView);
         pageIndicatorView.setViewPager(topMovieViewPager);
-        topMovieViewPager.setOffscreenPageLimit(4);
         pageIndicatorView.setAnimationType(AnimationType.WORM);
 
         // RecyclerView
