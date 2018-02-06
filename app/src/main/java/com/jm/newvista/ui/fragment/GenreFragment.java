@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import com.jm.newvista.R;
 import com.jm.newvista.ui.adapter.GenreRecyclerViewAdapter;
 
+import java.util.List;
+
 
 public class GenreFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -61,15 +63,23 @@ public class GenreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_genre, container, false);
+
         RecyclerView genreRecyclerView = (RecyclerView) view.findViewById(R.id.genreRecyclerView);
         GenreRecyclerViewAdapter genreRecyclerViewAdapter = new GenreRecyclerViewAdapter();
+        List<String> genres = genreRecyclerViewAdapter.getGenres();
+        String genresString = getResources().getString(R.string.genres);
+        String[] genresArray = genresString.split(",");
+        for (String genre : genresArray) {
+            genres.add(genre);
+        }
         genreRecyclerView.setAdapter(genreRecyclerViewAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(OrientationHelper.HORIZONTAL);
         genreRecyclerView.setLayoutManager(new RecyclerView.LayoutManager() {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams
+                        .WRAP_CONTENT);
             }
         });
         genreRecyclerView.setLayoutManager(linearLayoutManager);

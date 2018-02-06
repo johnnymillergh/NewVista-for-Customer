@@ -10,11 +10,16 @@ import android.widget.TextView;
 import com.jm.newvista.R;
 import com.robertlevonyan.views.chip.Chip;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Johnny on 2/4/2018.
  */
 
 public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecyclerViewAdapter.MyViewHolder> {
+    List<String> genres = new ArrayList<>();
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chip_genre, parent, false);
@@ -24,12 +29,17 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.genreChip.setChipText("Genre here");
+        holder.genreChip.setChipText(genres.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return genres.size() == 0 ? 1 : genres.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -39,5 +49,9 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
             super(itemView);
             genreChip = (Chip) itemView.findViewById(R.id.genreChip);
         }
+    }
+
+    public List<String> getGenres() {
+        return genres;
     }
 }
