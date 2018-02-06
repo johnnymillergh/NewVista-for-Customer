@@ -1,11 +1,14 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.jm.newvista.bean.TopMovieEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.TopMovieModel;
 import com.jm.newvista.mvp.view.TopMovieView;
+import com.jm.newvista.util.ImageUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,12 +37,22 @@ public class TopMoviePresenter extends BasePresenter<TopMovieModel, TopMovieView
                 getView().getViewPagerAdapter().notifyDataSetChanged();
             }
 
+            @SuppressLint("StaticFieldLeak")
             @Override
-            public void onFinishLoadingPoster(TopMovieEntity entity) {
-                HashMap<Integer, String> topMoviePoster = getView().getViewPagerAdapter().getTopMoviePoster();
-                topMoviePoster.put(entity.getId(), entity.getPosterStr());
-                Log.d("onFinishLoadingPoster", "entity " + entity.getPosterStr().substring(10));
-                getView().getViewPagerAdapter().notifyDataSetChanged();
+            public void onFinishLoadingPoster(final TopMovieEntity entity) {
+                final HashMap<Integer, byte[]> topMoviePoster = getView().getViewPagerAdapter().getTopMoviePoster();
+                new AsyncTask<Void, Void, byte[]>() {
+                    @Override
+                    protected byte[] doInBackground(Void... voids) {
+                        return ImageUtil.decode(entity.getPosterStr());
+                    }
+
+                    @Override
+                    protected void onPostExecute(byte[] bytes) {
+                        topMoviePoster.put(entity.getId(), bytes);
+                        getView().getViewPagerAdapter().notifyDataSetChanged();
+                    }
+                }.execute();
             }
         });
     }

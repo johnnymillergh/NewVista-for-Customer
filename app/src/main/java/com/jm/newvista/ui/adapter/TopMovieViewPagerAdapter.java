@@ -2,6 +2,7 @@ package com.jm.newvista.ui.adapter;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -13,10 +14,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
+import com.jm.newvista.bean.TopMovieEntity;
+import com.jm.newvista.util.ApplicationUtil;
 import com.jm.newvista.util.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +33,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
     private ImageView topMovieImageView;
     private TextView topMovieTextView;
     private List<String> topMovieTitles = new ArrayList<>();
-    private HashMap<Integer, String> topMoviePoster = new HashMap<>();
+    private HashMap<Integer, byte[]> topMoviePoster = new HashMap<>();
     private final int topMovieCount = 5;
 
     public TopMovieViewPagerAdapter(Context context) {
@@ -38,7 +42,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_top_movie, container, false);
+        final View view = LayoutInflater.from(context).inflate(R.layout.card_top_movie, container, false);
         topMovieImageView = (ImageView) view.findViewById(R.id.topMovieImageView);
         topMovieTextView = (TextView) view.findViewById(R.id.topMovieTitle);
         if (topMovieTitles.size() == 5) {
@@ -46,9 +50,9 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
         }
         if (topMoviePoster.size() == 5) {
             Log.v("instantiateItem", position + "");
-            String bytesStr = topMoviePoster.get(position + 1);
-            Log.v("instantiateItem", bytesStr);
-            Glide.with(view).load(ImageUtil.decode(bytesStr)).into(topMovieImageView);
+            byte[] bytes = topMoviePoster.get(position + 1);
+            Log.v("instantiateItem", bytes.length + "");
+            Glide.with(view).load(bytes).into(topMovieImageView);
         }
         container.addView(view);
         return view;
@@ -61,7 +65,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return topMovieCount;
+        return topMovieTitles.size() == 0 ? 1 : topMovieTitles.size();
     }
 
     @Override
@@ -82,11 +86,11 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
         this.topMovieTitles = topMovieTitles;
     }
 
-    public HashMap<Integer, String> getTopMoviePoster() {
+    public HashMap<Integer, byte[]> getTopMoviePoster() {
         return topMoviePoster;
     }
 
-    public void setTopMoviePoster(HashMap<Integer, String> topMoviePoster) {
+    public void setTopMoviePoster(HashMap<Integer, byte[]> topMoviePoster) {
         this.topMoviePoster = topMoviePoster;
     }
 }
