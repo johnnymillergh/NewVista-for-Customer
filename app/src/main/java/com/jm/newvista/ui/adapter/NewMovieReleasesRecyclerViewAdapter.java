@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +16,8 @@ import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 
 import java.util.List;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * Created by Johnny on 2/7/2018.
@@ -47,7 +50,7 @@ public class NewMovieReleasesRecyclerViewAdapter
                             .show();
                 }
             });
-            Glide.with(myContext).load(newMovie.getPoster()).into(holder.poster);
+            Glide.with(myContext).load(newMovie.getPoster()).transition(withCrossFade()).into(holder.poster);
         }
     }
 

@@ -83,6 +83,7 @@ public class GenreFragment extends Fragment {
             }
         });
         genreRecyclerView.setLayoutManager(linearLayoutManager);
+        genreRecyclerView.setNestedScrollingEnabled(false);
         return view;
     }
 

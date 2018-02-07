@@ -27,7 +27,7 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.genreChip.setChipText(genres.get(position));
+        holder.genreChip.setChipText(genres.get(position).toUpperCase());
     }
 
     @Override

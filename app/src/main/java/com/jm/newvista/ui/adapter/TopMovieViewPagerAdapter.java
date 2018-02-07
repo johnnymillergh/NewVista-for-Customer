@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ import com.jm.newvista.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * Created by Johnny on 1/29/2018.
@@ -44,7 +47,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
             Log.v("instantiateItem", position + "");
             byte[] bytes = topMoviePoster.get(position + 1);
             Log.v("instantiateItem", bytes.length + "");
-            Glide.with(view).load(bytes).into(topMovieImageView);
+            Glide.with(view).load(bytes).transition(withCrossFade()).into(topMovieImageView);
         }
         container.addView(view);
         return view;

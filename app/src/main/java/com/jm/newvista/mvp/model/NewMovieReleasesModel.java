@@ -21,6 +21,7 @@ import java.util.List;
 public class NewMovieReleasesModel extends BaseModel {
     MyOkHttp myOkHttp;
     List<MovieEntity> newMovieList = new ArrayList<>();
+    int flag = 0;
 
     public NewMovieReleasesModel() {
         this.myOkHttp = NetworkUtil.myOkHttp;
@@ -41,7 +42,8 @@ public class NewMovieReleasesModel extends BaseModel {
         return newMovieList;
     }
 
-    public void getAndSaveNewMoviePoster() {
+    public void getAndSaveNewMoviePoster(final NewMovieReleasesCallbackListener newMovieReleasesCallbackListener) {
+        int flag = 0;
         for (MovieEntity entity : newMovieList) {
             if (entity.getPosterStr() == null) {
                 HashMap<String, String> params = new HashMap<>();
@@ -51,7 +53,7 @@ public class NewMovieReleasesModel extends BaseModel {
                     @Override
                     public void onSuccess(int statusCode, String response) {
                         MovieEntity movieEntity = new Gson().fromJson(response, MovieEntity.class);
-                        updateNewMoviePoster(movieEntity);
+                        updateNewMoviePoster(movieEntity, newMovieReleasesCallbackListener);
                     }
 
                     @Override
@@ -59,14 +61,24 @@ public class NewMovieReleasesModel extends BaseModel {
 
                     }
                 });
+            } else {
+                flag++;
             }
+        }
+        if (flag == newMovieList.size()) {
+            newMovieReleasesCallbackListener.onFinishSavingPoster();
         }
     }
 
-    private void updateNewMoviePoster(MovieEntity entity) {
+    private void updateNewMoviePoster(MovieEntity entity, NewMovieReleasesCallbackListener
+            newMovieReleasesCallbackListener) {
         Log.v("updateNewMoviePoster", getClass() + ", movie poster saved");
         MovieDao dao = new MovieDao();
         dao.updatePosterStrByTitle(entity);
+        flag++;
+        if (flag == newMovieList.size()) {
+            newMovieReleasesCallbackListener.onFinishSavingPoster();
+        }
     }
 
     @Override

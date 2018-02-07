@@ -1,5 +1,8 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
+
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.NewMovieReleasesModel;
@@ -21,19 +24,30 @@ public class NewMovieReleasesPresenter extends BasePresenter<NewMovieReleasesMod
         super.BasePresenter(newMovieReleasesModel);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public void getNewMovie() {
         newMovieReleasesView = getView();
-        new Thread(new Runnable() {
+        newMovieReleasesModel.getAndSaveNewMoviePoster(new NewMovieReleasesModel
+                .NewMovieReleasesCallbackListener() {
             @Override
-            public void run() {
-                newMovieReleasesModel.getAndSaveNewMoviePoster();
-                List<MovieEntity> newMovies = newMovieReleasesModel.getNewMovie();
-                for (int i = 0; i < newMovies.size(); i++) {
-                    String encodedPosterStr = newMovies.get(i).getPosterStr();
-                    newMovies.get(i).setPoster(ImageUtil.decode(encodedPosterStr));
-                }
-                newMovieReleasesView.onFinishPreparingNewMovie(newMovies);
+            public void onFinishSavingPoster() {
+                new AsyncTask<Void, Void, List>() {
+                    @Override
+                    protected List doInBackground(Void... voids) {
+                        List<MovieEntity> newMovies = newMovieReleasesModel.getNewMovie();
+                        for (int i = 0; i < newMovies.size(); i++) {
+                            String encodedPosterStr = newMovies.get(i).getPosterStr();
+                            newMovies.get(i).setPoster(ImageUtil.decode(encodedPosterStr));
+                        }
+                        return newMovies;
+                    }
+
+                    @Override
+                    protected void onPostExecute(List list) {
+                        newMovieReleasesView.onFinishPreparingNewMovie(list);
+                    }
+                }.execute();
             }
-        }).start();
+        });
     }
 }
