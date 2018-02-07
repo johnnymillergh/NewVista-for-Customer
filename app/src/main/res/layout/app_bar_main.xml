@@ -62,17 +62,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/genreChipsContainer2"
+                android:id="@+id/newMovieReleasesContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/genreChipsContainer">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/test_string"/>
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
