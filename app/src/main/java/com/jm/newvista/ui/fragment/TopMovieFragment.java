@@ -18,20 +18,13 @@ import com.jm.newvista.ui.myview.MyViewPager;
 import com.rd.PageIndicatorView;
 import com.rd.animation.type.AnimationType;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TopMovieCallbackListener} interface
- * to handle interaction events.
- * Use the {@link TopMovieFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, TopMoviePresenter> implements
         TopMovieView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     private MyViewPager topMovieViewPager;
     private TopMovieViewPagerAdapter topMovieViewPagerAdapter;
 
@@ -108,9 +101,12 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
 
     @Override
     public TopMoviePresenter createPresenter() {
-        TopMoviePresenter topMoviePresenter = new TopMoviePresenter();
-        topMoviePresenter.getTopMovieAndDisplay();
-        return topMoviePresenter;
+        return new TopMoviePresenter();
+    }
+
+    @Override
+    public void notifyFinishAttaching() {
+        getPresenter().getTopMovieAndDisplay();
     }
 
     @Override

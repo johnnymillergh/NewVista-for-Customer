@@ -20,7 +20,7 @@ import java.util.List;
 
 public class NewMovieReleasesModel extends BaseModel {
     MyOkHttp myOkHttp;
-    List<MovieEntity> newMovieList;
+    List<MovieEntity> newMovieList = new ArrayList<>();
 
     public NewMovieReleasesModel() {
         this.myOkHttp = NetworkUtil.myOkHttp;

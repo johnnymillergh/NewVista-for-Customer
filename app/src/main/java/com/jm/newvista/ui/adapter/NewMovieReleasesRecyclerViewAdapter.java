@@ -36,22 +36,25 @@ public class NewMovieReleasesRecyclerViewAdapter
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final MovieEntity newMovie = newMovies.get(position);
-        holder.title.setText(newMovie.getTitle());
-        holder.genre.setText(newMovie.getGenre());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(myContext, "New movie card onClick " + newMovie.getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        Glide.with(myContext).load(newMovie.getPoster()).into(holder.poster);
+        if (newMovies != null) {
+            final MovieEntity newMovie = newMovies.get(position);
+            holder.title.setText(newMovie.getTitle());
+            holder.genre.setText(newMovie.getGenre());
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(myContext, "New movie card onClick " + newMovie.getTitle(), Toast.LENGTH_SHORT)
+                            .show();
+                }
+            });
+            Glide.with(myContext).load(newMovie.getPoster()).into(holder.poster);
+        }
     }
 
     @Override
     public int getItemCount() {
         if (newMovies == null) {
-            return 1;
+            return 5;
         } else {
             return newMovies.size();
         }

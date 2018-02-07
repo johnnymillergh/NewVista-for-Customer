@@ -109,12 +109,17 @@ public class NewMovieReleasesFragment
 
     @Override
     public NewMovieReleasesView createView() {
-        return null;
+        return this;
     }
 
     @Override
     public NewMovieReleasesPresenter createPresenter() {
-        return null;
+        return new NewMovieReleasesPresenter();
+    }
+
+    @Override
+    public void notifyFinishAttaching() {
+
     }
 
     @Override

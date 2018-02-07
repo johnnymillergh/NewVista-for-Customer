@@ -27,6 +27,7 @@ import com.jm.newvista.mvp.presenter.MainPresenter;
 import com.jm.newvista.mvp.view.MainView;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
+import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
 import com.jm.newvista.util.ImageUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
@@ -41,7 +42,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         MaterialSearchBar.OnSearchActionListener,
         MainView,
         TopMovieFragment.TopMovieCallbackListener,
-        GenreFragment.GenreFragmentCallbackListener {
+        GenreFragment.GenreFragmentCallbackListener,
+        NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener {
     private MaterialSearchBar searchBar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -237,9 +239,11 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
 
     @Override
     public void onNotifyMovieSaved() {
+        // TODO: Add module fragment here which is about movie!!!
         Log.v("onNotifyMovieSaved", "Movie saved");
         FragmentManager fragmentManager = getSupportFragmentManager();
-
+        // Add new movie releases fragment
+        fragmentManager.beginTransaction().add(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment()).commit();
     }
 
     @Override

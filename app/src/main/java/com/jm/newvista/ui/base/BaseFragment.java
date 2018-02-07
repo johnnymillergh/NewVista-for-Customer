@@ -29,6 +29,7 @@ public abstract class BaseFragment<M extends BaseModel, V extends BaseView, P ex
         if (presenter != null && view != null) {
             presenter.attachView(view);
         }
+        notifyFinishAttaching();
     }
 
     @Override
@@ -42,6 +43,8 @@ public abstract class BaseFragment<M extends BaseModel, V extends BaseView, P ex
     public abstract V createView();
 
     public abstract P createPresenter();
+
+    public abstract void notifyFinishAttaching();
 
     public P getPresenter() {
         return presenter;
