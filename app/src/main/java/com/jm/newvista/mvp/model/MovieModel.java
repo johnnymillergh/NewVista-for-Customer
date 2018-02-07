@@ -54,13 +54,24 @@ public class MovieModel extends BaseModel {
 
     private void saveMovie(List<MovieEntity> entities, MovieModelCallback movieModelCallback) {
         MovieDao dao = new MovieDao();
-        if (!dao.isEmpty()) {
+        if (dao.recordCount() == entities.size()) {
+            // No need to save movie records
+            movieModelCallback.onSaveMovieFinish();
+        } else if (!dao.isEmpty()) {
+            // Delete all movie records
             dao.deleteAll();
+            // Save
+            for (MovieEntity entity : entities) {
+                dao.save(entity);
+            }
+            movieModelCallback.onSaveMovieFinish();
+        } else {
+            // Database didn't have any movie records before, save directly
+            for (MovieEntity entity : entities) {
+                dao.save(entity);
+            }
+            movieModelCallback.onSaveMovieFinish();
         }
-        for (MovieEntity entity : entities) {
-            dao.save(entity);
-        }
-        movieModelCallback.onSaveMovieFinish();
     }
 
     public List<MovieEntity> getMovieFromDB() {

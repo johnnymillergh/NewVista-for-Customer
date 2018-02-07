@@ -1,5 +1,7 @@
 package com.jm.newvista.mvp.dao;
 
+import android.content.ContentValues;
+
 import com.jm.newvista.bean.MovieEntity;
 
 import org.litepal.crud.DataSupport;
@@ -16,6 +18,10 @@ public class MovieDao implements IDao<MovieEntity> {
         return entity.save();
     }
 
+    public void saveAll(List<MovieEntity> entities) {
+        DataSupport.saveAll(entities);
+    }
+
     @Override
     public int update(MovieEntity entity) {
         return updateById(entity);
@@ -24,6 +30,15 @@ public class MovieDao implements IDao<MovieEntity> {
     private int updateById(MovieEntity entity) {
         int id = entity.getId();
         return entity.update(id);
+    }
+
+    public int updatePosterStrByTitle(MovieEntity entity) {
+        ContentValues values = new ContentValues();
+        values.put("posterstr", entity.getPosterStr());
+        List<MovieEntity> movieEntities = DataSupport.where("title=?", entity.getTitle()).find(MovieEntity.class);
+        MovieEntity movieEntity = movieEntities.get(0);
+        DataSupport.update(MovieEntity.class, values, movieEntity.getId());
+        return 0;
     }
 
     public List<MovieEntity> queryByGenre(MovieEntity entity) {

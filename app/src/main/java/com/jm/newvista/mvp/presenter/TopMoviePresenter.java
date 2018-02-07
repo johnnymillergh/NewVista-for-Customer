@@ -27,20 +27,21 @@ public class TopMoviePresenter extends BasePresenter<TopMovieModel, TopMovieView
     }
 
     public void getTopMovieAndDisplay() {
+        topMovieView = getView();
         topMovieModel.getTopMovieAndSave(new TopMovieModel.TopMovieModelCallback() {
             @Override
             public void onFinishLoadingTitle(List<TopMovieEntity> entities) {
-                List<String> topMovieTitles = getView().getViewPagerAdapter().getTopMovieTitles();
+                List<String> topMovieTitles = topMovieView.getViewPagerAdapter().getTopMovieTitles();
                 for (TopMovieEntity entity : entities) {
                     topMovieTitles.add(entity.getMovieTitle());
                 }
-                getView().getViewPagerAdapter().notifyDataSetChanged();
+                topMovieView.getViewPagerAdapter().notifyDataSetChanged();
             }
 
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onFinishLoadingPoster(final TopMovieEntity entity) {
-                final HashMap<Integer, byte[]> topMoviePoster = getView().getViewPagerAdapter().getTopMoviePoster();
+                final HashMap<Integer, byte[]> topMoviePoster = topMovieView.getViewPagerAdapter().getTopMoviePoster();
                 new AsyncTask<Void, Void, byte[]>() {
                     @Override
                     protected byte[] doInBackground(Void... voids) {
@@ -50,7 +51,7 @@ public class TopMoviePresenter extends BasePresenter<TopMovieModel, TopMovieView
                     @Override
                     protected void onPostExecute(byte[] bytes) {
                         topMoviePoster.put(entity.getId(), bytes);
-                        getView().getViewPagerAdapter().notifyDataSetChanged();
+                        topMovieView.getViewPagerAdapter().notifyDataSetChanged();
                     }
                 }.execute();
             }

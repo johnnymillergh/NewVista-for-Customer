@@ -33,9 +33,8 @@ public class TopMovieModel extends BaseModel {
     public void getTopMovieAndSave(final TopMovieModelCallback topMovieModelCallback) {
         HashMap<String, String> params = new HashMap();
         params.put("topMovieOperation", "getAll");
-        String url = NetworkUtil.GET_TOP_MOVIE_URL;
         Log.d("getTopMovieAndSave", "myOkHttp==null: " + (myOkHttp == null));
-        myOkHttp.post().url(url).params(params).tag(this).enqueue(new RawResponseHandler() {
+        myOkHttp.post().url(NetworkUtil.GET_TOP_MOVIE_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
                 Log.d("getTopMovieAndSave", "onSuccess");
@@ -54,7 +53,7 @@ public class TopMovieModel extends BaseModel {
             HashMap<String, String> params1 = new HashMap();
             params1.put("topMovieOperation", "getPoster");
             params1.put("id", i + "");
-            myOkHttp.post().url("http://39.106.218.175/servlet.customer.GetTopMovie").params(params1).tag(this).enqueue
+            myOkHttp.post().url(NetworkUtil.GET_TOP_MOVIE_URL).params(params1).tag(this).enqueue
                     (new RawResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, String response) {
