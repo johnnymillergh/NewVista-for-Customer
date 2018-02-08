@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +28,6 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
     private TextView topMovieTextView;
     private List<String> topMovieTitles = new ArrayList<>();
     private HashMap<Integer, byte[]> topMoviePoster = new HashMap<>();
-    private final int topMovieCount = 5;
 
     public TopMovieViewPagerAdapter(Context context) {
         this.context = context;
