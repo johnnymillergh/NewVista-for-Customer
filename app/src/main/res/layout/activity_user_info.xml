@@ -34,7 +34,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:title="Account"
-                app:titleTextColor="#e71e1e"/>
+                app:titleTextColor="@color/colorPrimary"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/colorAccent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_account_circle_black_48px"/>
@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/colorAccent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView1"
                     app:srcCompat="@drawable/ic_email_black_48px"/>
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/colorAccent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView2"
                     app:srcCompat="@drawable/ic_tag_faces_black_48px"/>
@@ -183,7 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/colorAccent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView3"
                     app:srcCompat="@drawable/ic_location_on_black_48px"/>
