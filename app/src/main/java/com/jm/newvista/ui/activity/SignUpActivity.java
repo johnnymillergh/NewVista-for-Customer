@@ -33,7 +33,7 @@ public class SignUpActivity extends BaseActivity<SignUpModel, SignUpView, SignUp
     }
 
     private void initialView() {
-        username = (EditText) findViewById(R.id.usernameUserInfo);
+        username = (EditText) findViewById(R.id.username);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         password2 = (EditText) findViewById(R.id.password2);
