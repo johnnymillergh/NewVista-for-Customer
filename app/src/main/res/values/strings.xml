@@ -1,18 +1,22 @@
 <resources>
     <string name="app_name">New Vista</string>
-    <string name="test_string">The Three Musketeers (French: Les Trois Mousquetaires [le tʁwa muskətɛʁ]) is an historical novel written in 1844 by French author Alexandre Dumas.
-\n
-Set in 1625–1628, it recounts the adventures of a young man named d\'Artagnan (based on Charles de Batz-Castelmore d\'Artagnan) after he leaves home to travel to Paris, to join the Musketeers of the Guard. Although d\'Artagnan is not able to join this elite corps immediately, he befriends the three most formidable musketeers of the age—Athos, Porthos and Aramis—and gets involved in affairs of the state and court.
-\n
-In genre, The Three Musketeers is primarily a historical and adventure novel. However, Dumas also frequently works into the plot various injustices, abuses, and absurdities of the old regime, giving the novel an additional political aspect at a time when the debate in France between republicans and monarchists was still fierce. The story was first serialised from March to July 1844, during the July Monarchy, four years before the French Revolution of 1848 violently established the Second Republic. The author\'s father, Thomas-Alexandre Dumas, had been a well-known General in France\'s Republican army during the French Revolutionary Wars.
-\n
-The story of d\'Artagnan is continued in Twenty Years After and The Vicomte of Bragelonne: Ten Years Later.
-\n
-In 1625 France, d\'Artagnan (a poor young nobleman) leaves his family in Gascony and travels to Paris to join the Musketeers of the Guard. At an inn in Meung-sur-Loire, an older man derides d\'Artagnan\'s horse. Insulted, d\'Artagnan demands a duel. The older man\'s companions beat d\'Artagnan unconscious with a cooking pot and a metal tong that breaks his sword. His letter of introduction to Monsieur de Tréville, the commander of the Musketeers, is also stolen. D\'Artagnan resolves to avenge himself upon the man (who is later revealed to be the Comte de Rochefort, an agent of Cardinal Richelieu, who is passing orders from the Cardinal to his spy Lady de Winter, usually called Milady de Winter or simply Milady).
-\n
-In Paris, d\'Artagnan visits M. de Tréville at the headquarters of the Musketeers, but without the letter, Tréville politely refuses his application. He does, however, write a letter of introduction to an academy for young gentlemen which may prepare him for recruitment at a later time. From Tréville\'s window, d\'Artagnan sees Rochefort passing in the street below and rushes out of the building to confront him, but in doing so he offends three Musketeers, Athos, Porthos, and Aramis, who each demand satisfaction; d\'Artagnan must fight a duel with all of them that afternoon. As d\'Artagnan prepares himself for the first duel, he realizes that Athos\' seconds are Porthos and Aramis, who are astonished that the young Gascon intends to duel them all. As d\'Artagnan and Athos begin, Cardinal Richelieu\'s guards appear and try to arrest d\'Artagnan and the three Musketeers for illegal dueling. Although outnumbered, the four men win the battle. D\'Artagnan seriously wounds Jussac, one of the Cardinal\'s officers and a renowned fighter. After learning of this, King Louis XIII appoints d\'Artagnan to Des Essart\'s company of the King\'s Guards and gives him forty pistoles.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="genres">Action,Adventure,Animation,Biography,Comedy,Crime,Documentary,Drama,Family,Fantasy,History,Horror,Music,Musical,Mystery,Romance,Sci-Fi,Short,Thriller,War,Western</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="home_location">Home Location</string>
+    <string name="log_in">Log in</string>
+    <string name="log_in_description">and you can discover best movies around the world</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="log_in_status_1">Wait…</string>
+    <string name="sign_up">Sign up</string>
+    <string name="forgot">Forgot your password?</string>
+    <string name="new_movie_releases">New Movie Releases</string>
+    <string name="new_movie_subtitle">Watch all the big hits</string>
+    <string name="more">More</string>
+    <string name="movie_title_sample">Transformers: The Last Knight (2017)</string>
+    <string name="genre_sample">Sci-Fi, Fantasy, Action</string>
+    <string name="duration_sample">1h 50min</string>
+    <string name="description_sample">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
 </resources>

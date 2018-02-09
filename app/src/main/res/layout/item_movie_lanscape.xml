@@ -29,7 +29,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:lines="2"
-            android:text="Transformers: The Last Knight (2017)"
+            android:text="@string/movie_title_sample"
             android:textColor="@color/md_grey_800_color_code"
             android:textSize="18sp"
             android:visibility="visible"
@@ -46,7 +46,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Sci-Fi, Fantasy, Action"
+            android:text="@string/genre_sample"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/title"/>
@@ -58,7 +58,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="1h 50min"
+            android:text="@string/duration_sample"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/genre"/>
@@ -72,7 +72,7 @@
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth."
+            android:text="@string/description_sample"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/duration"/>

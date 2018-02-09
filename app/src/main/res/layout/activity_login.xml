@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Log in"
+                android:text="@string/log_in"
                 android:textColor="@color/colorTextOnPrimary"
                 android:textSize="30sp"
                 android:textStyle="bold"/>
@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="and you can discover best movies around the world"
+                android:text="@string/log_in_description"
                 android:textColor="@color/colorTextOnPrimary"
                 android:textSize="18sp"/>
         </LinearLayout>
@@ -62,7 +62,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/CL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/emailTIL"
@@ -80,7 +80,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -99,7 +99,7 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:inputType="textPassword"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -127,18 +127,18 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:text="Remember me"
+                android:text="@string/remember_me"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/serverIpTIL"/>
 
             <TextView
-                android:id="@+id/signUpStatus"
+                android:id="@+id/logInStatus"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:text="Wait..."
+                android:text="@string/log_in_status_1"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,10 +152,10 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="32dp"
                 android:onClick="clickLogin"
-                android:text="Log in"
+                android:text="@string/log_in"
                 app:layout_constraintEnd_toStartOf="@+id/signUp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/signUpStatus"/>
+                app:layout_constraintTop_toBottomOf="@+id/logInStatus"/>
 
             <Button
                 android:id="@+id/signUp"
@@ -164,10 +164,10 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="8dp"
                 android:onClick="clickSignUp"
-                android:text="Sign up"
+                android:text="@string/sign_up"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/logIn"
-                app:layout_constraintTop_toBottomOf="@+id/signUpStatus"/>
+                app:layout_constraintTop_toBottomOf="@+id/logInStatus"/>
 
             <TextView
                 android:id="@+id/findPassword"
@@ -178,7 +178,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:onClick="clickFindPassword"
-                android:text="Forgot your password?"
+                android:text="@string/forgot"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
