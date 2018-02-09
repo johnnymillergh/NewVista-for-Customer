@@ -33,14 +33,14 @@ public class SignUpActivity extends BaseActivity<SignUpModel, SignUpView, SignUp
     }
 
     private void initialView() {
-        username = (EditText) findViewById(R.id.username);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        password2 = (EditText) findViewById(R.id.password2);
-        serverIp = (EditText) findViewById(R.id.serverIp);
-        loginNow = (CheckBox) findViewById(R.id.rememberMe);
-        signUpStatus = (TextView) findViewById(R.id.signUpStatus);
-        signUp = (Button) findViewById(R.id.signUp);
+        username = findViewById(R.id.username);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        password2 = findViewById(R.id.password2);
+        serverIp = findViewById(R.id.serverIp);
+        loginNow = findViewById(R.id.rememberMe);
+        signUpStatus = findViewById(R.id.logInStatus);
+        signUp = findViewById(R.id.signUp);
     }
 
     public void clickSignUp(View view) {

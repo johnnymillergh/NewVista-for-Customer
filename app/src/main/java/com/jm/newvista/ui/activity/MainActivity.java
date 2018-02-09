@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,10 +63,10 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     }
 
     private void initView() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
-        searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
+        searchBar = findViewById(R.id.searchBar);
         searchBar.setOnSearchActionListener(this);
 //        searchBar.inflateMenu(R.menu.main);
         searchBar.addTextChangeListener(new TextWatcher() {
@@ -108,7 +109,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout drawer = findViewById(R.id.drawerLayout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -148,17 +149,17 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 }
             }).start();
         } else if (id == R.id.signOutItem) {
-
+            //TODO
         } else if (id == R.id.orderItem) {
-
+            //TODO
         } else if (id == R.id.commentItem) {
-
+            //TODO
         } else if (id == R.id.watchlistItem) {
-
+            //TODO
         } else if (id == R.id.settingsItem) {
-
+            //TODO
         } else if (id == R.id.aboutItem) {
-
+            //TODO
         }
         // Close drawer
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -177,6 +178,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         searchBar.disableSearch();
     }
 
+    @SuppressLint("RtlHardcoded")
     @Override
     public void onButtonClicked(int buttonCode) {
         switch (buttonCode) {
@@ -192,7 +194,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     }
 
     private void showSplashScreen() {
-        splashScreen = (RelativeLayout) findViewById(R.id.splashScreen);
+        splashScreen = findViewById(R.id.splashScreen);
         splashScreen.setVisibility(View.VISIBLE);
         new Thread() {
             @Override
@@ -250,9 +252,9 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     public void onUpdateNavigationView(UserEntity userEntity) {
         // Find subview of navigation view
         View headerView = navigationView.getHeaderView(0);
-        CircleImageView avatarNavigation = (CircleImageView) headerView.findViewById(R.id.avatarNavigation);
-        TextView usernameNavigation = (TextView) headerView.findViewById(R.id.usernameNavigation);
-        TextView emailNavigation = (TextView) headerView.findViewById(R.id.emailNavigation);
+        CircleImageView avatarNavigation = headerView.findViewById(R.id.avatarNavigation);
+        TextView usernameNavigation = headerView.findViewById(R.id.usernameNavigation);
+        TextView emailNavigation = headerView.findViewById(R.id.emailNavigation);
         // Update view
         Glide.with(this).load(ImageUtil.decode(userEntity.getAvatarStr())).into(avatarNavigation);
         usernameNavigation.setText(userEntity.getUsername());

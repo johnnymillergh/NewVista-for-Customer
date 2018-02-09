@@ -33,11 +33,11 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
     }
 
     private void initialView() {
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        serverIp = (EditText) findViewById(R.id.serverIp);
-        rememberMe = (CheckBox) findViewById(R.id.rememberMe);
-        loginStatus = (TextView) findViewById(R.id.signUpStatus);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        serverIp = findViewById(R.id.serverIp);
+        rememberMe = findViewById(R.id.rememberMe);
+        loginStatus = findViewById(R.id.logInStatus);
     }
 
     public void clickLogin(View view) {
@@ -90,13 +90,13 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
 
     @Override
     public void onLoginSuccess() {
-        loginStatus.setText("Login success.");
+        loginStatus.setText(R.string.log_in_success);
         finish();
     }
 
     @Override
     public void onLoginFailure() {
-        loginStatus.setText("Login fail.");
+        loginStatus.setText(R.string.log_in_failure);
     }
 
     @Override
