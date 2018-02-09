@@ -41,6 +41,10 @@ public class UserDao implements IDao<UserEntity> {
         return DataSupport.findAll(UserEntity.class);
     }
 
+    public UserEntity getFirst() {
+        return DataSupport.findFirst(UserEntity.class);
+    }
+
     @Override
     public boolean isEmpty() {
         if (DataSupport.count("userentity") > 0) {

@@ -199,8 +199,6 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         new Thread() {
             @Override
             public void run() {
-                super.run();
-
                 try {
                     sleep(1500);
                 } catch (InterruptedException e) {

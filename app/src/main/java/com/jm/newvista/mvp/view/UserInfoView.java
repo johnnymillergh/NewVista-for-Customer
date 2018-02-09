@@ -8,5 +8,5 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface UserInfoView extends BaseView {
-    void displayUserInfo(UserEntity userEntity);
+    void onDisplayUserInfo(UserEntity userEntity);
 }
