@@ -65,9 +65,9 @@ public class NewMovieReleasesFragment
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         if (enter) {
-            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_from_right_to_left);
+            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_from_bottom_to_top);
         } else {
-            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_from_right_to_left);
+            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_from_bottom_to_top);
         }
     }
 
