@@ -25,23 +25,34 @@ public class MainPresenter extends BasePresenter<MainModel, MainView> {
 
     @SuppressLint("StaticFieldLeak")
     public void updateNavigationView() {
-        new AsyncTask<Void, Void, UserEntity>() {
+        new Thread(new Runnable() {
             @Override
-            protected UserEntity doInBackground(Void... voids) {
-                UserEntity userEntity = mainModel.getCurrentUser();
-                if (userEntity != null) {
-                    userEntity.setAvatar(ImageUtil.decode(userEntity.getAvatarStr()));
-                    return userEntity;
-                } else {
-                    return null;
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            }
+                new AsyncTask<Void, Void, UserEntity>() {
+                    @Override
+                    protected UserEntity doInBackground(Void... voids) {
+                        UserEntity userEntity = mainModel.getCurrentUser();
+                        if (userEntity != null) {
+                            Log.v("onUpdateNavigationView", getClass() + userEntity.getEmail());
+                            userEntity.setAvatar(ImageUtil.decode(userEntity.getAvatarStr()));
+                            return userEntity;
+                        } else {
+                            return null;
+                        }
+                    }
 
-            @Override
-            protected void onPostExecute(UserEntity userEntity) {
-                getView().onUpdateNavigationView(userEntity);
+                    @Override
+                    protected void onPostExecute(UserEntity userEntity) {
+                        getView().onUpdateNavigationView(userEntity);
+                    }
+                }.execute();
             }
-        }.execute();
+        }).start();
     }
 
     public void getMovieFromServer() {

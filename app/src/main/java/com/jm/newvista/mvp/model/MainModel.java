@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BaseModel;
 import com.jm.newvista.mvp.dao.MovieDao;
 import com.jm.newvista.mvp.dao.UserDao;
@@ -24,6 +25,11 @@ public class MainModel extends BaseModel {
 
     public MainModel() {
         this.myOkHttp = NetworkUtil.myOkHttp;
+    }
+
+    public UserEntity getCurrentUser() {
+        UserDao userDao = new UserDao();
+        return userDao.getFirst();
     }
 
     public void getAndSaveMovie(final MainModelCallbackListener mainModelCallbackListener) {

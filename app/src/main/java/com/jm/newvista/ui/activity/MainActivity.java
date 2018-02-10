@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     private NavigationView navigationView;
     private RelativeLayout splashScreen;
     private ArrayList<String> searchBarSuggestions = new ArrayList<>();
+    CircleImageView avatarNavigation;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -62,7 +63,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         switch (requestCode) {
             case LOGIN_ACTIVITY_CODE:
                 boolean loginFlag = data.getBooleanExtra("data_returned", false);
-                if (loginFlag == true) {
+                if (loginFlag) {
+                    Log.v("onUpdateNavigationView", loginFlag + "");
                     getPresenter().updateNavigationView();
                 }
                 break;
@@ -102,6 +104,13 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             public void afterTextChanged(Editable editable) {
             }
         });
+        avatarNavigation = navigationView.getHeaderView(0).findViewById(R.id.avatarNavigation);
+        avatarNavigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickAvatar(v);
+            }
+        });
     }
 
     private void initTopMovieFragment() {
@@ -124,6 +133,10 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     @Override
     public MainPresenter createPresenter() {
         return new MainPresenter();
+    }
+
+    public void onClickAvatar(View view) {
+        getPresenter().updateNavigationView();
     }
 
     @Override
@@ -295,19 +308,21 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         if (userEntity == null) {
             return;
         }
+        Log.v("onUpdateNavigationView", userEntity.getEmail());
         View headerView = navigationView.getHeaderView(0);
-        CircleImageView avatarNavigation = headerView.findViewById(R.id.avatarNavigation);
         TextView usernameNavigation = headerView.findViewById(R.id.usernameNavigation);
         TextView emailNavigation = headerView.findViewById(R.id.emailNavigation);
         // Update view
         Glide.with(this).load(userEntity.getAvatar()).into(avatarNavigation);
         usernameNavigation.setText(userEntity.getUsername());
         emailNavigation.setText(userEntity.getEmail());
+        navigationView.getMenu().findItem(R.id.signInItem).setEnabled(false);
     }
 
     @Override
     public void onSignOutSuccess() {
         Toast.makeText(this, R.string.sign_out_success, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
