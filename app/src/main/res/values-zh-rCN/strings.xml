@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">新万视</string>
+    <string name="genres">动作,冒险,动画,传记,喜剧,犯罪,记录,剧情,家庭,奇幻,历史,恐怖,音乐,音乐剧,神秘,浪漫,科幻,短片,惊悚,战争,西方</string>
+    <string name="username">用户名</string>
+    <string name="email">邮箱</string>
+    <string name="gender">性别</string>
+    <string name="home_location">我的位置</string>
+    <string name="log_in">登录</string>
+    <string name="log_in_description">开启优质电影的发现之旅</string>
+    <string name="password">密码</string>
+    <string name="remember_me">记住我</string>
+    <string name="log_in_status_1">等待中…</string>
+    <string name="sign_up">注册</string>
+    <string name="forgot">忘记密码？</string>
+    <string name="new_movie_releases">New Movie Releases</string>
+    <string name="new_movie_subtitle">Watch all the big hits</string>
+    <string name="more">更多</string>
+    <string name="movie_title_sample">Transformers: The Last Knight (2017)</string>
+    <string name="genre_sample">Sci-Fi, Fantasy, Action</string>
+    <string name="duration_sample">1h 50min</string>
+    <string name="description_sample">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
+    <string name="log_in_success">登录成功</string>
+    <string name="log_in_failure">登录失败</string>
+    <string name="quick_access">Quick Access</string>
+    <string name="profile">个人档案</string>
+    <string name="sign_in">登录</string>
+    <string name="sign_out">登出</string>
+    <string name="my_newvista">My NewVista</string>
+    <string name="order">订单</string>
+    <string name="comment">评论</string>
+    <string name="watchlist">心愿单</string>
+    <string name="other">Other</string>
+    <string name="settings">设置</string>
+    <string name="about">关于本应用</string>
+</resources>
