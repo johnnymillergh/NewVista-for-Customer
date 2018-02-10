@@ -136,7 +136,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     }
 
     public void onClickAvatar(View view) {
-        getPresenter().updateNavigationView();
+        Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+        startActivity(intent);
     }
 
     @Override
