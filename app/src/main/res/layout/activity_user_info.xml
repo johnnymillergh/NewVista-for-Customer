@@ -18,8 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            tools:layout_editor_absoluteX="16dp">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/avatar"
@@ -34,7 +33,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:title="Account"
-                app:titleTextColor="@color/colorPrimary"/>
+                app:titleTextColor="@color/colorTextOnPrimary"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -93,7 +92,7 @@
                 <View
                     android:id="@+id/view"
                     android:layout_width="0dp"
-                    android:layout_height="0.1dp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/md_grey_500_color_code"
                     app:layout_constraintStart_toStartOf="@+id/username"
@@ -134,7 +133,7 @@
                 <View
                     android:id="@+id/view2"
                     android:layout_width="0dp"
-                    android:layout_height="0.1dp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/md_grey_500_color_code"
                     app:layout_constraintStart_toStartOf="@+id/email"
@@ -175,7 +174,7 @@
                 <View
                     android:id="@+id/view3"
                     android:layout_width="0dp"
-                    android:layout_height="0.1dp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/md_grey_500_color_code"
                     app:layout_constraintStart_toStartOf="@+id/gender"

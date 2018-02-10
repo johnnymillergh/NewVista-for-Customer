@@ -12,8 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.util.GlideBlurTransformation;
 
 import java.util.List;
 
@@ -51,6 +53,9 @@ public class NewMovieReleasesRecyclerViewAdapter
                 }
             });
             Glide.with(myContext).load(newMovie.getPoster()).transition(withCrossFade()).into(holder.poster);
+//            GlideBlurTransformation glideBlurTransformation = new GlideBlurTransformation(myContext);
+//            Glide.with(myContext).load(newMovie.getPoster()).apply(RequestOptions.bitmapTransform
+//            (glideBlurTransformation)).into(holder.poster);
         }
     }
 

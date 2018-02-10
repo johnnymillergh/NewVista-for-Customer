@@ -13,6 +13,8 @@
     <color name="ic_background">#ffffff</color>
     <color name="statusBarColor">#00000000</color>
     <color name="windowBackground">#EEEEEE</color>
+    <color name="darkFontColor">#000000</color>
+    <color name="lightFontColor">#FFFFFF</color>
 
     <!-- red -->
     <color name="md_red_50_color_code">#fde0dc</color>

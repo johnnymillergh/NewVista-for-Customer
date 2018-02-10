@@ -35,4 +35,23 @@
         <item name="android:minHeight">48dip</item>
         <item name="android:minWidth">48dip</item>
     </style>
+
+    <style name="TextAppearance.Title" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/darkFontColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">?android:textColorHint</item>
+        <item name="android:textColorHighlight">?android:textColorHighlight</item>
+        <item name="android:textColorLink">?android:textColorLink</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.Body" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/darkFontColor</item>
+        <item name="android:textColorHint">?android:textColorHint</item>
+        <item name="android:textColorHighlight">?android:textColorHighlight</item>
+        <item name="android:textColorLink">?android:textColorLink</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

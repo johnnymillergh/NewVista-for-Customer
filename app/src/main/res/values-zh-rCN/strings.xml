@@ -18,7 +18,7 @@
     <string name="more">更多</string>
     <string name="movie_title_sample">Transformers: The Last Knight (2017)</string>
     <string name="genre_sample">Sci-Fi, Fantasy, Action</string>
-    <string name="duration_sample">1h 50min</string>
+    <string name="duration_sample">2h 34min</string>
     <string name="description_sample">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
     <string name="log_in_success">登录成功</string>
     <string name="log_in_failure">登录失败</string>
@@ -43,4 +43,15 @@
     <string name="sign_out_failure">等出失败</string>
     <string name="app_editor">钟俊</string>
     <string name="email_sample">android@google.com</string>
+    <string name="release_date_sample">June 21, 2017</string>
+    <string name="order_ticket">最低订购价：￥</string>
+    <string name="director_sample">Micheal Bay</string>
+    <string name="stars_sample">Mark Wahlberg, Anthony Hopkins, Josh Duhamel</string>
+    <string name="currency">￥</string>
+    <string name="storyline">故事线</string>
+    <string name="read_more">阅读更多</string>
+    <string name="cast_amp_credits">演职员表</string>
+    <string name="directors">导演</string>
+    <string name="stars">领衔主演</string>
+    <string name="all_details">查看电影详情</string>
 </resources>
