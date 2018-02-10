@@ -17,11 +17,9 @@ import com.jm.newvista.util.ImageUtil;
 
 public class MainPresenter extends BasePresenter<MainModel, MainView> {
     MainModel mainModel;
-    UserModel userModel;
 
     public MainPresenter() {
         mainModel = new MainModel();
-        userModel = new UserModel();
         super.BasePresenter(mainModel);
     }
 
@@ -30,7 +28,7 @@ public class MainPresenter extends BasePresenter<MainModel, MainView> {
         new AsyncTask<Void, Void, UserEntity>() {
             @Override
             protected UserEntity doInBackground(Void... voids) {
-                UserEntity userEntity = userModel.getFromDB();
+                UserEntity userEntity = mainModel.getCurrentUser();
                 if (userEntity != null) {
                     userEntity.setAvatar(ImageUtil.decode(userEntity.getAvatarStr()));
                     return userEntity;
