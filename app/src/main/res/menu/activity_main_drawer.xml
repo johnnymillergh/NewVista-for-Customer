@@ -2,52 +2,52 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:checkableBehavior="single"
-        android:title="Quick Access">
+        android:title="@string/quick_access">
         <menu>
             <item
                 android:id="@+id/accountItem"
                 android:icon="@drawable/ic_person_white_24dp"
-                android:title="Account"/>
+                android:title="@string/profile"/>
             <item
                 android:id="@+id/signInItem"
                 android:icon="@drawable/ic_sign_in_white_24dp"
-                android:title="Sign in"/>
+                android:title="@string/sign_in"/>
             <item
                 android:id="@+id/signOutItem"
                 android:icon="@drawable/ic_sign_out_white_24dp"
-                android:title="Sign out"/>
+                android:title="@string/sign_out"/>
         </menu>
     </item>
 
     <item
-        android:title="My NewVista">
+        android:title="@string/my_newvista">
         <menu>
             <item
                 android:id="@+id/orderItem"
                 android:icon="@drawable/ic_person_white_24dp"
-                android:title="Order"/>
+                android:title="@string/order"/>
             <item
                 android:id="@+id/commentItem"
                 android:icon="@drawable/ic_comment_white_24dp"
-                android:title="Comment"/>
+                android:title="@string/comment"/>
             <item
                 android:id="@+id/watchlistItem"
                 android:icon="@drawable/ic_movie_white_24dp"
-                android:title="Watchlist"/>
+                android:title="@string/watchlist"/>
         </menu>
     </item>
 
     <item
-        android:title="Other">
+        android:title="@string/other">
         <menu>
             <item
                 android:id="@+id/settingsItem"
                 android:icon="@drawable/ic_settings_white_24dp"
-                android:title="Settings"/>
+                android:title="@string/settings"/>
             <item
                 android:id="@+id/aboutItem"
                 android:icon="@drawable/ic_info_white_24dp"
-                android:title="About this app"/>
+                android:title="@string/about"/>
         </menu>
     </item>
 </menu>
