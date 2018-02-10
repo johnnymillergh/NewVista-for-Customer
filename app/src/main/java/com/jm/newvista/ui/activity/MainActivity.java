@@ -47,11 +47,28 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         TopMovieFragment.TopMovieCallbackListener,
         GenreFragment.GenreFragmentCallbackListener,
         NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener {
+    public static final int LOGIN_ACTIVITY_CODE = 1;
     private MaterialSearchBar searchBar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private RelativeLayout splashScreen;
     private ArrayList<String> searchBarSuggestions = new ArrayList<>();
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) {
+            return;
+        }
+        switch (requestCode) {
+            case LOGIN_ACTIVITY_CODE:
+                boolean loginFlag = data.getBooleanExtra("data_returned", false);
+                if (loginFlag == true) {
+                    getPresenter().updateNavigationView();
+                }
+                break;
+            default:
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +78,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         initView();
         initTopMovieFragment();
         getPresenter().getMovieFromServer();
-        getPresenter().initNavigationView();
+        getPresenter().updateNavigationView();
     }
 
     private void initView() {
@@ -147,7 +164,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startActivity(intent);
+                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
                 }
             }).start();
         } else if (id == R.id.signOutItem) {
@@ -275,12 +292,15 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     @Override
     public void onUpdateNavigationView(UserEntity userEntity) {
         // Find subview of navigation view
+        if (userEntity == null) {
+            return;
+        }
         View headerView = navigationView.getHeaderView(0);
         CircleImageView avatarNavigation = headerView.findViewById(R.id.avatarNavigation);
         TextView usernameNavigation = headerView.findViewById(R.id.usernameNavigation);
         TextView emailNavigation = headerView.findViewById(R.id.emailNavigation);
         // Update view
-        Glide.with(this).load(ImageUtil.decode(userEntity.getAvatarStr())).into(avatarNavigation);
+        Glide.with(this).load(userEntity.getAvatar()).into(avatarNavigation);
         usernameNavigation.setText(userEntity.getUsername());
         emailNavigation.setText(userEntity.getEmail());
     }

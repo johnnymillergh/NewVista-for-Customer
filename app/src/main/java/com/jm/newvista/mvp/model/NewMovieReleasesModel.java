@@ -21,7 +21,7 @@ import java.util.List;
 public class NewMovieReleasesModel extends BaseModel {
     MyOkHttp myOkHttp;
     List<MovieEntity> newMovieList = new ArrayList<>();
-    int flag = 0;
+    int savedMovieCount = 0;
 
     public NewMovieReleasesModel() {
         this.myOkHttp = NetworkUtil.myOkHttp;
@@ -62,6 +62,7 @@ public class NewMovieReleasesModel extends BaseModel {
                     }
                 });
             } else {
+                savedMovieCount++;
                 flag++;
             }
         }
@@ -75,8 +76,8 @@ public class NewMovieReleasesModel extends BaseModel {
         Log.v("updateNewMoviePoster", getClass() + ", movie poster saved");
         MovieDao dao = new MovieDao();
         dao.updatePosterStrByTitle(entity);
-        flag++;
-        if (flag == newMovieList.size()) {
+        savedMovieCount++;
+        if (savedMovieCount == newMovieList.size()) {
             newMovieReleasesCallbackListener.onFinishSavingPoster();
         }
     }

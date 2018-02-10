@@ -19,8 +19,8 @@
     <string name="genre_sample">Sci-Fi, Fantasy, Action</string>
     <string name="duration_sample">1h 50min</string>
     <string name="description_sample">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
-    <string name="log_in_success">Login success.</string>
-    <string name="log_in_failure">Login failure.</string>
+    <string name="log_in_success">Login success</string>
+    <string name="log_in_failure">Login failure</string>
     <string name="quick_access">Quick Access</string>
     <string name="profile">Profile</string>
     <string name="sign_in">Sign in</string>

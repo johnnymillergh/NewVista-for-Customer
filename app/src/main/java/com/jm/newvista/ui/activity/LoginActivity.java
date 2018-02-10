@@ -91,6 +91,9 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
     @Override
     public void onLoginSuccess() {
         loginStatus.setText(R.string.log_in_success);
+        Intent intent = new Intent();
+        intent.putExtra("data_returned", Boolean.valueOf("true"));
+        setResult(MainActivity.LOGIN_ACTIVITY_CODE, intent);
         finish();
     }
 

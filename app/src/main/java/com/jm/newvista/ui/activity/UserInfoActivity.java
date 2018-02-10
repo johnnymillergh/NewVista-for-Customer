@@ -51,6 +51,9 @@ public class UserInfoActivity extends BaseActivity<UserInfoModel, UserInfoView, 
 
     @Override
     public void onDisplayUserInfo(UserEntity userEntity) {
+        if (userEntity == null) {
+            return;
+        }
         username.setText(userEntity.getUsername());
         email.setText(userEntity.getEmail());
         gender.setText(userEntity.getGender());

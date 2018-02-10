@@ -1,5 +1,7 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.jm.newvista.bean.UserEntity;
@@ -7,6 +9,7 @@ import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.MainModel;
 import com.jm.newvista.mvp.model.UserModel;
 import com.jm.newvista.mvp.view.MainView;
+import com.jm.newvista.util.ImageUtil;
 
 /**
  * Created by Johnny on 2/6/2018.
@@ -14,30 +17,41 @@ import com.jm.newvista.mvp.view.MainView;
 
 public class MainPresenter extends BasePresenter<MainModel, MainView> {
     MainModel mainModel;
-    MainView mainView;
     UserModel userModel;
 
     public MainPresenter() {
         mainModel = new MainModel();
+        userModel = new UserModel();
         super.BasePresenter(mainModel);
     }
 
-    public void initNavigationView() {
-        mainView = getView();
-        userModel = new UserModel();
-        UserEntity userEntity = userModel.getFromDB();
-        if (userEntity != null) {
-            mainView.onUpdateNavigationView(userEntity);
-        }
+    @SuppressLint("StaticFieldLeak")
+    public void updateNavigationView() {
+        new AsyncTask<Void, Void, UserEntity>() {
+            @Override
+            protected UserEntity doInBackground(Void... voids) {
+                UserEntity userEntity = userModel.getFromDB();
+                if (userEntity != null) {
+                    userEntity.setAvatar(ImageUtil.decode(userEntity.getAvatarStr()));
+                    return userEntity;
+                } else {
+                    return null;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(UserEntity userEntity) {
+                getView().onUpdateNavigationView(userEntity);
+            }
+        }.execute();
     }
 
     public void getMovieFromServer() {
-        mainView = getView();
         mainModel.getAndSaveMovie(new MainModel.MainModelCallbackListener() {
             @Override
             public void onSaveMovieFinish() {
                 Log.v("getAndSaveMovie", getClass() + ", movie saved");
-                mainView.onNotifyMovieSaved();
+                getView().onNotifyMovieSaved();
             }
 
             @Override
