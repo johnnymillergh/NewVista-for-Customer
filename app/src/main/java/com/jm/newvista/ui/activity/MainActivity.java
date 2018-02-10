@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -150,6 +152,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             }).start();
         } else if (id == R.id.signOutItem) {
             //TODO
+            showSignOutDialog();
         } else if (id == R.id.orderItem) {
             //TODO
         } else if (id == R.id.commentItem) {
@@ -164,6 +167,29 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         // Close drawer
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showSignOutDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setIcon(R.mipmap.ic_launcher_round)
+                .setTitle(R.string.sign_out_title)
+                .setMessage(getString(R.string.sign_out_message))
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, R.string.sign_out_cancel_message, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, R.string.sign_out_confirm_message, Toast.LENGTH_SHORT).show();
+                        getPresenter().signOut();
+                        dialog.dismiss();
+                    }
+                }).create();
+        dialog.show();
     }
 
 
@@ -257,5 +283,15 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         Glide.with(this).load(ImageUtil.decode(userEntity.getAvatarStr())).into(avatarNavigation);
         usernameNavigation.setText(userEntity.getUsername());
         emailNavigation.setText(userEntity.getEmail());
+    }
+
+    @Override
+    public void onSignOutSuccess() {
+        Toast.makeText(this, R.string.sign_out_success, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSignOutFailure() {
+        Toast.makeText(this, R.string.sign_out_failure, Toast.LENGTH_SHORT).show();
     }
 }

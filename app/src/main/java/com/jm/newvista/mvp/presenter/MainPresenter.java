@@ -39,6 +39,27 @@ public class MainPresenter extends BasePresenter<MainModel, MainView> {
                 Log.v("getAndSaveMovie", getClass() + ", movie saved");
                 mainView.onNotifyMovieSaved();
             }
+
+            @Override
+            public void onDeleteData(int status) {
+            }
+        });
+    }
+
+    public void signOut() {
+        mainModel.deleteAllData(new MainModel.MainModelCallbackListener() {
+            @Override
+            public void onSaveMovieFinish() {
+            }
+
+            @Override
+            public void onDeleteData(int status) {
+                if (status > 0) {
+                    getView().onSignOutSuccess();
+                } else {
+                    getView().onSignOutFailure();
+                }
+            }
         });
     }
 }

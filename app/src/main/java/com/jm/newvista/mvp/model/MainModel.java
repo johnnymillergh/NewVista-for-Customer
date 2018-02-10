@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.base.BaseModel;
 import com.jm.newvista.mvp.dao.MovieDao;
+import com.jm.newvista.mvp.dao.UserDao;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
@@ -67,6 +68,12 @@ public class MainModel extends BaseModel {
         }
     }
 
+    public void deleteAllData(MainModelCallbackListener mainModelCallbackListener) {
+        UserDao userDao = new UserDao();
+        int status = userDao.deleteAll();
+        mainModelCallbackListener.onDeleteData(status);
+    }
+
     @Override
     public void cancel() {
         Log.v("cancel", getClass().toString());
@@ -75,5 +82,7 @@ public class MainModel extends BaseModel {
 
     public interface MainModelCallbackListener {
         void onSaveMovieFinish();
+
+        void onDeleteData(int status);
     }
 }

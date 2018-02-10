@@ -31,7 +31,7 @@
                 app:mt_hint="Custom hint"
                 app:mt_maxSuggestionsCount="5"
                 app:mt_navIconEnabled="true"
-                app:mt_placeholder="NewVista"/>
+                app:mt_placeholder="@string/app_name"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 

@@ -33,4 +33,14 @@
     <string name="other">Other</string>
     <string name="settings">设置</string>
     <string name="about">关于本应用</string>
+    <string name="sign_out_title">登出提示</string>
+    <string name="sign_out_message">如果你登出，你的个人数据将会被清除（包括你的账号信息以及数据缓存）。你确定要登出吗？</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="sign_out_cancel_message">欢迎回来！</string>
+    <string name="sign_out_confirm_message">下次再见！</string>
+    <string name="sign_out_success">登出成功</string>
+    <string name="sign_out_failure">等处失败</string>
+    <string name="app_editor">钟俊</string>
+    <string name="email_sample">android@google.com</string>
 </resources>

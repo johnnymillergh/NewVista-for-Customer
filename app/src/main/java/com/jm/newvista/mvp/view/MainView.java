@@ -11,4 +11,8 @@ public interface MainView extends BaseView {
     void onNotifyMovieSaved();
 
     void onUpdateNavigationView(UserEntity userEntity);
+
+    void onSignOutSuccess();
+
+    void onSignOutFailure();
 }
