@@ -4,7 +4,7 @@ import org.litepal.crud.DataSupport;
 
 import java.io.Serializable;
 
-public class MovieEntity  extends DataSupport implements Serializable {
+public class MovieEntity  extends DataSupport {
     private int id;
     private String title;
     private String duration;
