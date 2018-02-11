@@ -41,17 +41,17 @@ public class MovieDao implements IDao<MovieEntity> {
         return 0;
     }
 
-    public List<MovieEntity> queryByGenre(MovieEntity entity) {
+    public List<MovieEntity> queryMoviesByGenre(MovieEntity entity) {
         return DataSupport.where("genre LIKE ?", "%" + entity.getGenre() + "%").find(MovieEntity.class);
     }
 
-    public List<MovieEntity> queryByTitle(MovieEntity entity) {
+    public List<MovieEntity> queryMoviesByTitle(MovieEntity entity) {
         return DataSupport.where("title LIKE ?", "%" + entity.getTitle() + "%").find(MovieEntity.class);
     }
 
     @Override
     public MovieEntity queryById(MovieEntity entity) {
-        return null;
+        return MovieEntity.find(MovieEntity.class, entity.getId());
     }
 
     @Override
