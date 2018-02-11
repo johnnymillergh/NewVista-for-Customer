@@ -54,4 +54,5 @@
     <string name="directors">导演</string>
     <string name="stars">领衔主演</string>
     <string name="all_details">查看电影详情</string>
+    <string name="genre">GENRE</string>
 </resources>
