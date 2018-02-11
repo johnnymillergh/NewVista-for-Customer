@@ -55,4 +55,15 @@
     <string name="all_details">查看电影详情</string>
     <string name="genre">体裁</string>
     <string name="back">返回</string>
+    <string name="country">Country</string>
+    <string name="country_sample">China, Canada, USA</string>
+    <string name="language">Language</string>
+    <string name="release_date">Release Date</string>
+    <string name="filming_location">Filming Location</string>
+    <string name="filming_location_sample">Michigan Motion Picture Studios, 1999 Centerpoint Parkway, Pontiac, Michigan, USA</string>
+    <string name="runtime">Runtime</string>
+    <string name="runtime_sample">154 min</string>
+    <string name="aspect_ratio">Aspect Ratio</string>
+    <string name="aspect_ratio_sample">1.90 : 1</string>
+    <string name="language_sample">English</string>
 </resources>

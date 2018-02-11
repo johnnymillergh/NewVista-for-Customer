@@ -59,8 +59,6 @@ public class NewMovieReleasesRecyclerViewAdapter
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(myContext, "New movie card onClick " + newMovie.getTitle(), Toast.LENGTH_SHORT)
-                            .show();
                     Intent intent = new Intent(myContext, MovieActivity.class);
                     intent.putExtra("movieId", newMovie.getId());
                     intent.putExtra("from", "NewMovieReleases");

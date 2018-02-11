@@ -22,7 +22,7 @@ public class DescriptionDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_description, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_description_dialog, null);
         TextView description = view.findViewById(R.id.description);
         String descriptionStr = mListener.onGetDescription();
         description.setText(descriptionStr);

@@ -15,4 +15,6 @@ public interface MovieView extends BaseView {
     void onUpdateMovieInformation(MovieEntity movieEntity);
 
     void onDisplayDescriptionDialog();
+
+    void onDisplayAllDetailsDialog();
 }

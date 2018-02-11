@@ -19,12 +19,14 @@ import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.presenter.MoviePresenter;
 import com.jm.newvista.mvp.view.MovieView;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.ui.fragment.AllDetailsDialogFragment;
 import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
 
 public class MovieActivity
         extends BaseActivity<MovieModel, MovieView, MoviePresenter>
         implements MovieView,
-        DescriptionDialogFragment.DescriptionFragmentCallbackListener {
+        DescriptionDialogFragment.DescriptionFragmentCallbackListener,
+        AllDetailsDialogFragment.AllDetailsDialogFragmentCallbackListener {
     private Toolbar toolbar;
     private ImageView poster;
     private TextView title;
@@ -86,12 +88,11 @@ public class MovieActivity
     }
 
     public void onClickReadMore(View view) {
-        Toast.makeText(this, "onClickReadMore", Toast.LENGTH_SHORT).show();
         getPresenter().displayDescriptionDialog();
     }
 
     public void onClickAllDetails(View view) {
-        Toast.makeText(this, "onClickAllDetails", Toast.LENGTH_SHORT).show();
+        getPresenter().displayAllDetailsDialog();
     }
 
     private void transition(View view) {
@@ -129,7 +130,18 @@ public class MovieActivity
     }
 
     @Override
+    public void onDisplayAllDetailsDialog() {
+        AllDetailsDialogFragment allDetailsDialogFragment = new AllDetailsDialogFragment();
+        allDetailsDialogFragment.show(getSupportFragmentManager());
+    }
+
+    @Override
     public String onGetDescription() {
         return currentMovieEntity.getDescription();
+    }
+
+    @Override
+    public MovieEntity onGetMovie() {
+        return currentMovieEntity;
     }
 }

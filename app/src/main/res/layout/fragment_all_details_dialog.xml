@@ -1,0 +1,228 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.jm.newvista.ui.fragment.DescriptionDialogFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        >
+
+        <TextView
+            android:id="@+id/gnr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/genre"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/genre_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gnr"/>
+
+        <TextView
+            android:id="@+id/drctr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/directors"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/genre"/>
+
+        <TextView
+            android:id="@+id/director"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/director_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drctr"/>
+
+        <TextView
+            android:id="@+id/strs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/stars"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/director"/>
+
+        <TextView
+            android:id="@+id/stars"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/stars_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/strs"/>
+
+        <View
+            android:id="@+id/separator1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/md_grey_300_color_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stars"/>
+
+        <TextView
+            android:id="@+id/cntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/country"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/separator1"/>
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/country_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cntry"/>
+
+        <TextView
+            android:id="@+id/lng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/language"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/country"/>
+
+        <TextView
+            android:id="@+id/language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/language_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lng"/>
+
+        <TextView
+            android:id="@+id/rlsdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/release_date"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/language"/>
+
+        <TextView
+            android:id="@+id/releaseDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/release_date_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rlsdt"/>
+
+        <TextView
+            android:id="@+id/flmlctn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/filming_location"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/releaseDate"/>
+
+        <TextView
+            android:id="@+id/filmingLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/filming_location_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flmlctn"/>
+
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/md_grey_300_color_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filmingLocation"/>
+
+        <TextView
+            android:id="@+id/rntm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/runtime"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/separator2"/>
+
+        <TextView
+            android:id="@+id/runtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/runtime_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rntm"/>
+
+        <TextView
+            android:id="@+id/asprt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/aspect_ratio"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.Title"
+            app:layout_constraintTop_toBottomOf="@+id/runtime"/>
+
+        <TextView
+            android:id="@+id/aspectRatio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/aspect_ratio_sample"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/asprt"/>
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
