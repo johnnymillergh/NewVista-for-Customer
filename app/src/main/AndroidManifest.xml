@@ -18,6 +18,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -35,11 +40,6 @@
             android:launchMode="singleTask">
         </activity>
         <activity android:name=".ui.activity.MovieActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.PosterViewActivity"

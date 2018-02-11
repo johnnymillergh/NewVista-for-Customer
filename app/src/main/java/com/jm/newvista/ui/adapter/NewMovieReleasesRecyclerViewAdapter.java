@@ -1,6 +1,9 @@
 package com.jm.newvista.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +18,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.ui.activity.MainActivity;
+import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.GlideBlurTransformation;
 
 import java.util.List;
@@ -29,6 +34,11 @@ public class NewMovieReleasesRecyclerViewAdapter
         extends RecyclerView.Adapter<NewMovieReleasesRecyclerViewAdapter.MyViewHolder> {
     private Context myContext;
     private List<MovieEntity> newMovies;
+    private MainActivity mainActivity;
+
+    public NewMovieReleasesRecyclerViewAdapter(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,16 +50,24 @@ public class NewMovieReleasesRecyclerViewAdapter
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (newMovies != null) {
             final MovieEntity newMovie = newMovies.get(position);
             holder.title.setText(newMovie.getTitle());
             holder.genre.setText(newMovie.getGenre());
+            final ImageView poster = holder.poster;
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(myContext, "New movie card onClick " + newMovie.getTitle(), Toast.LENGTH_SHORT)
                             .show();
+                    Intent intent = new Intent(myContext, MovieActivity.class);
+                    intent.putExtra("movieId", newMovie.getId());
+                    intent.putExtra("from", "NewMovieReleases");
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation(mainActivity, poster, myContext.getString(R.string
+                                    .transition_poster));
+                    myContext.startActivity(intent, options.toBundle());
                 }
             });
             Glide.with(myContext).load(newMovie.getPoster()).transition(withCrossFade()).into(holder.poster);

@@ -330,4 +330,9 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     public void onSignOutFailure() {
         Toast.makeText(this, R.string.sign_out_failure, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public MainActivity onGetActivity() {
+        return this;
+    }
 }

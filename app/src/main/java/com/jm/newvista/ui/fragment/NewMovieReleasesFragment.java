@@ -19,6 +19,7 @@ import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.model.NewMovieReleasesModel;
 import com.jm.newvista.mvp.presenter.NewMovieReleasesPresenter;
 import com.jm.newvista.mvp.view.NewMovieReleasesView;
+import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.adapter.NewMovieReleasesRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
@@ -83,7 +84,7 @@ public class NewMovieReleasesFragment
                 onMoreClick(v);
             }
         });
-        newMovieReleasesRecyclerViewAdapter = new NewMovieReleasesRecyclerViewAdapter();
+        newMovieReleasesRecyclerViewAdapter = new NewMovieReleasesRecyclerViewAdapter(mListener.onGetActivity());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
         newMovieReleasesRecyclerView.setLayoutManager(layoutManager);
@@ -96,10 +97,7 @@ public class NewMovieReleasesFragment
         Toast.makeText(getContext(), "More click", Toast.LENGTH_SHORT).show();
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void onButtonPressed() {
     }
 
     @Override
@@ -140,6 +138,6 @@ public class NewMovieReleasesFragment
     }
 
     public interface NewMovieReleasesFragmentCallbackListener {
-        void onFragmentInteraction(Uri uri);
+        MainActivity onGetActivity();
     }
 }
