@@ -97,9 +97,6 @@ public class NewMovieReleasesFragment
         Toast.makeText(getContext(), "More click", Toast.LENGTH_SHORT).show();
     }
 
-    public void onButtonPressed() {
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
