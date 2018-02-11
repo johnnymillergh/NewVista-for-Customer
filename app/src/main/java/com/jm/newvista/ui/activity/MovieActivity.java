@@ -2,7 +2,6 @@ package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +37,7 @@ public class MovieActivity extends BaseActivity<MovieModel, MovieView, MoviePres
     private FrameLayout rateThisMovieContainer;
     private FrameLayout userReviewContainer;
 
-    private MovieEntity movieEntity;
+    private MovieEntity currentMovieEntity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +90,8 @@ public class MovieActivity extends BaseActivity<MovieModel, MovieView, MoviePres
     }
 
     private void transition(View view) {
-        Intent intent = new Intent(MovieActivity.this, PosterViewActivity.class);
-        intent.putExtra("movie", movieEntity);
+        Intent intent = new Intent(MovieActivity.this, PosterGalleryActivity.class);
+        intent.putExtra("movieId", currentMovieEntity.getId());
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(MovieActivity.this, view, getString(R.string.transition_poster));
         startActivity(intent, options.toBundle());
@@ -106,6 +105,7 @@ public class MovieActivity extends BaseActivity<MovieModel, MovieView, MoviePres
     @Override
     public void onUpdateMovieInformation(MovieEntity movieEntity) {
         if (movieEntity == null) return;
+        this.currentMovieEntity = movieEntity;
         toolbar.setTitle(movieEntity.getTitle());
         Glide.with(this).load(movieEntity.getPoster()).into(poster);
         title.setText(movieEntity.getTitle());

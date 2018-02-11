@@ -42,7 +42,7 @@
         <activity android:name=".ui.activity.MovieActivity">
         </activity>
         <activity
-            android:name=".ui.activity.PosterViewActivity"
+            android:name=".ui.activity.PosterGalleryActivity"
             android:theme="@style/AppThemePosterView">
         </activity>
     </application>

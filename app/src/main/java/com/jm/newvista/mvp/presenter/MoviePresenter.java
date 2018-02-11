@@ -15,7 +15,8 @@ import com.jm.newvista.util.ImageUtil;
  */
 
 public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
-    MovieModel movieModel;
+    private MovieModel movieModel;
+    private MovieEntity movieEntity;
 
     public MoviePresenter() {
         movieModel = new MovieModel();
@@ -32,7 +33,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                 new AsyncTask<Integer, Void, MovieEntity>() {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
-                        MovieEntity movieEntity = movieModel.getMovieFromDB(integers[0]);
+                        movieEntity = movieModel.getMovieFromDB(integers[0]);
                         movieEntity.setPoster(ImageUtil.decode(movieEntity.getPosterStr()));
                         return movieEntity;
                     }

@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jm.newvista.ui.activity.PosterViewActivity">
+    tools:context="com.jm.newvista.ui.activity.PosterGalleryActivity">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/poster"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
         android:transitionName="@string/transition_poster"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,6 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:maxLines="1"
-        android:text="@string/movie_title_sample"
         android:textColor="@color/md_white_color_code"
         android:textSize="18sp"
         android:textStyle="bold"
