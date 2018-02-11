@@ -13,4 +13,6 @@ public interface MovieView extends BaseView {
     Intent onGetIntent();
 
     void onUpdateMovieInformation(MovieEntity movieEntity);
+
+    void onDisplayDescriptionDialog();
 }

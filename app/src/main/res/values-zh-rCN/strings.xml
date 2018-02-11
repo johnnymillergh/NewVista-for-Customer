@@ -22,15 +22,15 @@
     <string name="description_sample">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
     <string name="log_in_success">登录成功</string>
     <string name="log_in_failure">登录失败</string>
-    <string name="quick_access">Quick Access</string>
+    <string name="quick_access">快速访问</string>
     <string name="profile">个人档案</string>
     <string name="sign_in">登录</string>
     <string name="sign_out">登出</string>
-    <string name="my_newvista">My NewVista</string>
+    <string name="my_newvista">我的新万视</string>
     <string name="order">订单</string>
     <string name="comment">评论</string>
     <string name="watchlist">心愿单</string>
-    <string name="other">Other</string>
+    <string name="other">其他</string>
     <string name="settings">设置</string>
     <string name="about">关于本应用</string>
     <string name="sign_out_title">登出提示</string>
@@ -47,12 +47,12 @@
     <string name="order_ticket">最低订购价：￥</string>
     <string name="director_sample">Micheal Bay</string>
     <string name="stars_sample">Mark Wahlberg, Anthony Hopkins, Josh Duhamel</string>
-    <string name="currency">￥</string>
     <string name="storyline">故事线</string>
     <string name="read_more">阅读更多</string>
     <string name="cast_amp_credits">演职员表</string>
     <string name="directors">导演</string>
     <string name="stars">领衔主演</string>
     <string name="all_details">查看电影详情</string>
-    <string name="genre">GENRE</string>
+    <string name="genre">体裁</string>
+    <string name="back">返回</string>
 </resources>

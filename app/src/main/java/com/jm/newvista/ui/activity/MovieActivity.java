@@ -19,8 +19,12 @@ import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.presenter.MoviePresenter;
 import com.jm.newvista.mvp.view.MovieView;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
 
-public class MovieActivity extends BaseActivity<MovieModel, MovieView, MoviePresenter> implements MovieView {
+public class MovieActivity
+        extends BaseActivity<MovieModel, MovieView, MoviePresenter>
+        implements MovieView,
+        DescriptionDialogFragment.DescriptionFragmentCallbackListener {
     private Toolbar toolbar;
     private ImageView poster;
     private TextView title;
@@ -83,6 +87,7 @@ public class MovieActivity extends BaseActivity<MovieModel, MovieView, MoviePres
 
     public void onClickReadMore(View view) {
         Toast.makeText(this, "onClickReadMore", Toast.LENGTH_SHORT).show();
+        getPresenter().displayDescriptionDialog();
     }
 
     public void onClickAllDetails(View view) {
@@ -115,5 +120,16 @@ public class MovieActivity extends BaseActivity<MovieModel, MovieView, MoviePres
         genre.setText(movieEntity.getGenre());
         director.setText(movieEntity.getDirector());
         stars.setText(movieEntity.getStars());
+    }
+
+    @Override
+    public void onDisplayDescriptionDialog() {
+        DescriptionDialogFragment descriptionDialogFragment = new DescriptionDialogFragment();
+        descriptionDialogFragment.show(getSupportFragmentManager());
+    }
+
+    @Override
+    public String onGetDescription() {
+        return currentMovieEntity.getDescription();
     }
 }

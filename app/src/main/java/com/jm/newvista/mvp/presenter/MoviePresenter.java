@@ -47,4 +47,9 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
             default:
         }
     }
+
+    public void displayDescriptionDialog() {
+        if (movieEntity == null) return;
+        getView().onDisplayDescriptionDialog();
+    }
 }
