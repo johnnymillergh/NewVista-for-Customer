@@ -2,12 +2,14 @@ package com.jm.newvista.ui.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
@@ -24,6 +26,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 public class TopMovieViewPagerAdapter extends PagerAdapter {
     private Context context;
+    private CardView topMovieCardView;
     private ImageView topMovieImageView;
     private TextView topMovieTextView;
     private List<String> topMovieTitles = new ArrayList<>();
@@ -34,10 +37,11 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         final View view = LayoutInflater.from(context).inflate(R.layout.item_top_movie, container, false);
-        topMovieImageView = (ImageView) view.findViewById(R.id.topMovieImageView);
-        topMovieTextView = (TextView) view.findViewById(R.id.topMovieTitle);
+        topMovieCardView = view.findViewById(R.id.topMovieCardView);
+        topMovieImageView = view.findViewById(R.id.topMovieImageView);
+        topMovieTextView = view.findViewById(R.id.topMovieTitle);
         if (topMovieTitles.size() == 5) {
             topMovieTextView.setText(topMovieTitles.get(position));
         }
@@ -47,6 +51,12 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
             Log.v("instantiateItem", bytes.length + "");
             Glide.with(view).load(bytes).transition(withCrossFade()).into(topMovieImageView);
         }
+        topMovieCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "topMovieCardView " + topMovieTitles.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
         container.addView(view);
         return view;
     }
