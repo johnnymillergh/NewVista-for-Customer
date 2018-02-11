@@ -94,7 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/md_grey_500_color_code"
+                    android:background="@color/md_grey_300_color_code"
                     app:layout_constraintStart_toStartOf="@+id/username"
                     app:layout_constraintTop_toBottomOf="@+id/username"/>
 
@@ -135,7 +135,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/md_grey_500_color_code"
+                    android:background="@color/md_grey_300_color_code"
                     app:layout_constraintStart_toStartOf="@+id/email"
                     app:layout_constraintTop_toBottomOf="@+id/email"/>
 
@@ -176,7 +176,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/md_grey_500_color_code"
+                    android:background="@color/md_grey_300_color_code"
                     app:layout_constraintStart_toStartOf="@+id/gender"
                     app:layout_constraintTop_toBottomOf="@+id/gender"/>
 
