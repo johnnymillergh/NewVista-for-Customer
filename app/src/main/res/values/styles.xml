@@ -24,7 +24,7 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-    <style name="AppThemePosterView" parent="AppTheme">
+    <style name="AppThemeGallery" parent="AppTheme">
         <item name="android:windowBackground">@color/md_black_color_code</item>
     </style>
 

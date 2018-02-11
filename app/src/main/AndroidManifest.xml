@@ -43,7 +43,7 @@
         </activity>
         <activity
             android:name=".ui.activity.PosterGalleryActivity"
-            android:theme="@style/AppThemePosterView">
+            android:theme="@style/AppThemeGallery">
         </activity>
     </application>
 

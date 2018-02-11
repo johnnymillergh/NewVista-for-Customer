@@ -33,7 +33,6 @@ import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
-import com.jm.newvista.util.ImageUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;

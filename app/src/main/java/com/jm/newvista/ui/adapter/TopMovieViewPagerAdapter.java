@@ -1,12 +1,16 @@
 package com.jm.newvista.ui.adapter;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +28,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  * Created by Johnny on 1/29/2018.
  */
 
-public class TopMovieViewPagerAdapter extends PagerAdapter {
+public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTouchListener {
     private Context context;
     private CardView topMovieCardView;
     private ImageView topMovieImageView;
@@ -57,6 +61,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
                 Toast.makeText(context, "topMovieCardView " + topMovieTitles.get(position), Toast.LENGTH_SHORT).show();
             }
         });
+        topMovieCardView.setOnTouchListener(this);
         container.addView(view);
         return view;
     }
@@ -95,5 +100,26 @@ public class TopMovieViewPagerAdapter extends PagerAdapter {
 
     public void setTopMoviePoster(HashMap<Integer, byte[]> topMoviePoster) {
         this.topMoviePoster = topMoviePoster;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                ObjectAnimator upAnim = ObjectAnimator.ofFloat(v, "translationZ", 4);
+                upAnim.setDuration(150);
+                upAnim.setInterpolator(new DecelerateInterpolator());
+                upAnim.start();
+                break;
+
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                ObjectAnimator downAnim = ObjectAnimator.ofFloat(v, "translationZ", 0);
+                downAnim.setDuration(150);
+                downAnim.setInterpolator(new AccelerateInterpolator());
+                downAnim.start();
+                break;
+        }
+        return false;
     }
 }

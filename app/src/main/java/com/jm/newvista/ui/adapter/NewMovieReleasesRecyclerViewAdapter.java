@@ -1,6 +1,6 @@
 package com.jm.newvista.ui.adapter;
 
-import android.app.Activity;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -10,9 +10,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -89,7 +90,7 @@ public class NewMovieReleasesRecyclerViewAdapter
         return position;
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
         CardView cardView;
         ImageView poster;
         TextView title;
@@ -97,10 +98,33 @@ public class NewMovieReleasesRecyclerViewAdapter
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.cardView);
-            poster = (ImageView) itemView.findViewById(R.id.poster);
-            title = (TextView) itemView.findViewById(R.id.title);
-            genre = (TextView) itemView.findViewById(R.id.genre);
+            cardView = itemView.findViewById(R.id.cardView);
+            poster = itemView.findViewById(R.id.poster);
+            title = itemView.findViewById(R.id.title);
+            genre = itemView.findViewById(R.id.genre);
+
+            cardView.setOnTouchListener(this);
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    ObjectAnimator upAnim = ObjectAnimator.ofFloat(v, "translationZ", 8);
+                    upAnim.setDuration(150);
+                    upAnim.setInterpolator(new DecelerateInterpolator());
+                    upAnim.start();
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    ObjectAnimator downAnim = ObjectAnimator.ofFloat(v, "translationZ", 0);
+                    downAnim.setDuration(150);
+                    downAnim.setInterpolator(new AccelerateInterpolator());
+                    downAnim.start();
+                    break;
+            }
+            return false;
         }
     }
 

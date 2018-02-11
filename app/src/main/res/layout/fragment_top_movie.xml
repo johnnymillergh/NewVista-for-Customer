@@ -8,15 +8,16 @@
     tools:context="com.jm.newvista.ui.fragment.TopMovieFragment">
 
     <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/topMovieRecyclerView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"/>-->
+    <!--android:id="@+id/topMovieRecyclerView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"/>-->
 
     <com.jm.newvista.ui.myview.MyViewPager
         android:id="@+id/topMovieViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"/>
 
     <com.rd.PageIndicatorView
         android:id="@+id/pageIndicatorView"

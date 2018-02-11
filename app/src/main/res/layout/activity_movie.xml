@@ -32,7 +32,8 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layoutAnimation="@anim/animation_layout_from_bottom_to_top">
 
             <ImageView
                 android:id="@+id/poster"
@@ -43,8 +44,7 @@
                 android:onClick="onClickPoster"
                 android:transitionName="@string/transition_poster"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/title"
