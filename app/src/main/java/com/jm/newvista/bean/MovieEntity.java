@@ -2,7 +2,9 @@ package com.jm.newvista.bean;
 
 import org.litepal.crud.DataSupport;
 
-public class MovieEntity  extends DataSupport {
+import java.io.Serializable;
+
+public class MovieEntity  extends DataSupport implements Serializable {
     private int id;
     private String title;
     private String duration;
