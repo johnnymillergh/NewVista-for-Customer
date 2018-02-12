@@ -45,6 +45,20 @@
             android:name=".ui.activity.PosterGalleryActivity"
             android:theme="@style/AppThemeGallery">
         </activity>
+
+        <service
+            android:name=".service.MessageService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".ui.activity.MessageServiceTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
