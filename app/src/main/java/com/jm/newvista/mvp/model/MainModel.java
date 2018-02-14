@@ -4,11 +4,13 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jm.newvista.bean.MessageEntity;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BaseModel;
 import com.jm.newvista.mvp.dao.MovieDao;
 import com.jm.newvista.mvp.dao.UserDao;
+import com.jm.newvista.util.MessageServiceUtil;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
@@ -78,6 +80,34 @@ public class MainModel extends BaseModel {
         UserDao userDao = new UserDao();
         int status = userDao.deleteAll();
         mainModelCallbackListener.onDeleteData(status);
+    }
+
+    public void sendLocalServerSocketInfoToWebServer() {
+        UserDao userDao = new UserDao();
+        UserEntity userEntity = userDao.getFirst();
+
+        if (userEntity != null) {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("email", userEntity.getEmail());
+            params.put("password", userEntity.getPassword());
+            params.put("port", MessageServiceUtil.localPort + "");
+
+            myOkHttp.post().url(NetworkUtil.SECONDARY_LOGON_URL).params(params).enqueue(new RawResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, String response) {
+                    if (response.contains("success")) {
+                        Log.v("sendLocalServerSocket", "sendLocalServerSocketInfoToWebServer: success");
+                    } else {
+                        Log.v("sendLocalServerSocket", "sendLocalServerSocketInfoToWebServer: failure");
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
+                    Log.v("Network", "sendLocalServerSocketInfoToWebServer: network failure");
+                }
+            });
+        }
     }
 
     @Override
