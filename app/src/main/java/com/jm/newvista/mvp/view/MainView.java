@@ -15,4 +15,6 @@ public interface MainView extends BaseView {
     void onSignOutSuccess();
 
     void onSignOutFailure();
+
+    void onMakeToast(String message);
 }

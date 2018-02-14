@@ -1,10 +1,13 @@
 package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -29,10 +32,12 @@ import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.model.MainModel;
 import com.jm.newvista.mvp.presenter.MainPresenter;
 import com.jm.newvista.mvp.view.MainView;
+import com.jm.newvista.service.MessageService;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
+import com.jm.newvista.util.MessageServiceUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -46,7 +51,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         MainView,
         TopMovieFragment.TopMovieCallbackListener,
         GenreFragment.GenreFragmentCallbackListener,
-        NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener {
+        NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener,
+        MessageService.MessageServiceCallbackListener {
     public static final int LOGIN_ACTIVITY_CODE = 1;
     private MaterialSearchBar searchBar;
     private DrawerLayout drawerLayout;
@@ -55,7 +61,26 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     private ArrayList<String> searchBarSuggestions = new ArrayList<>();
     CircleImageView avatarNavigation;
 
+    MessageService messageService;
+    MessageService.Binder binder;
+
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            binder = (MessageService.Binder) service;
+            messageService = binder.getService();
+            messageService.setMyCallback(MainActivity.this);
+            messageService.onBindFinished();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
     @Override
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null) {
             return;
@@ -66,6 +91,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 if (loginFlag) {
                     Log.v("onUpdateNavigationView", loginFlag + "");
                     getPresenter().updateNavigationView();
+                    getPresenter().sendLocalServerSocketInfoToWebServer();
                 }
                 break;
             default:
@@ -76,11 +102,18 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        startMessageService();
         showSplashScreen();
         initView();
         initTopMovieFragment();
         getPresenter().getMovieFromServer();
         getPresenter().updateNavigationView();
+    }
+
+    private void startMessageService() {
+        Intent intent = new Intent(this, MessageService.class);
+        startService(intent);
+        bindService(intent, connection, BIND_AUTO_CREATE);
     }
 
     @Override
@@ -341,7 +374,17 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     }
 
     @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public MainActivity onGetActivity() {
         return this;
+    }
+
+    @Override
+    public void onLocalServerSocketStarted() {
+        getPresenter().sendLocalServerSocketInfoToWebServer();
     }
 }

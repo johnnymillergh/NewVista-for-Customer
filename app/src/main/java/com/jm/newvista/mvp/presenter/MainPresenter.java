@@ -7,7 +7,6 @@ import android.util.Log;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.MainModel;
-import com.jm.newvista.mvp.model.UserModel;
 import com.jm.newvista.mvp.view.MainView;
 import com.jm.newvista.util.ImageUtil;
 
@@ -82,6 +81,20 @@ public class MainPresenter extends BasePresenter<MainModel, MainView> {
                 } else {
                     getView().onSignOutFailure();
                 }
+            }
+        });
+    }
+
+    public void sendLocalServerSocketInfoToWebServer() {
+        mainModel.sendLocalPortInfoToWebServer(new MainModel.SendLocalPortListener() {
+            @Override
+            public void onSendLocalPortSuccess() {
+                getView().onMakeToast("Local port information sent to server successfully");
+            }
+
+            @Override
+            public void onSendLocalPortFailure() {
+                getView().onMakeToast("Local port information didn't send to server");
             }
         });
     }

@@ -2,10 +2,6 @@ package com.jm.newvista.util;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.jm.newvista.bean.MessageEntity;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
