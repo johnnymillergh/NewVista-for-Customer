@@ -82,7 +82,7 @@ public class MainModel extends BaseModel {
         mainModelCallbackListener.onDeleteData(status);
     }
 
-    public void sendLocalServerSocketInfoToWebServer() {
+    public void sendLocalPortInfoToWebServer(final SendLocalPortListener sendLocalPortListener) {
         UserDao userDao = new UserDao();
         UserEntity userEntity = userDao.getFirst();
 
@@ -96,15 +96,18 @@ public class MainModel extends BaseModel {
                 @Override
                 public void onSuccess(int statusCode, String response) {
                     if (response.contains("success")) {
-                        Log.v("sendLocalServerSocket", "sendLocalServerSocketInfoToWebServer: success");
+                        Log.v("sendLocalServerSocket", "sendLocalPortInfoToWebServer: success");
+                        sendLocalPortListener.onSendLocalPortSuccess();
                     } else {
-                        Log.v("sendLocalServerSocket", "sendLocalServerSocketInfoToWebServer: failure");
+                        Log.v("sendLocalServerSocket", "sendLocalPortInfoToWebServer: failure");
+                        sendLocalPortListener.onSendLocalPortFailure();
                     }
                 }
 
                 @Override
                 public void onFailure(int statusCode, String error_msg) {
-                    Log.v("Network", "sendLocalServerSocketInfoToWebServer: network failure");
+                    Log.v("Network", "sendLocalPortInfoToWebServer: network failure");
+                    sendLocalPortListener.onSendLocalPortFailure();
                 }
             });
         }
@@ -120,5 +123,11 @@ public class MainModel extends BaseModel {
         void onSaveMovieFinish();
 
         void onDeleteData(int status);
+    }
+
+    public interface SendLocalPortListener {
+        void onSendLocalPortSuccess();
+
+        void onSendLocalPortFailure();
     }
 }
