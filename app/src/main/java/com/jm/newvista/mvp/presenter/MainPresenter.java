@@ -9,6 +9,7 @@ import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.MainModel;
 import com.jm.newvista.mvp.view.MainView;
 import com.jm.newvista.util.ImageUtil;
+import com.jm.newvista.util.MessageServiceUtil;
 
 /**
  * Created by Johnny on 2/6/2018.
@@ -89,7 +90,8 @@ public class MainPresenter extends BasePresenter<MainModel, MainView> {
         mainModel.sendLocalPortInfoToWebServer(new MainModel.SendLocalPortListener() {
             @Override
             public void onSendLocalPortSuccess() {
-                getView().onMakeToast("Local port information sent to server successfully");
+                getView().onMakeToast("Local port information sent to server successfully " + MessageServiceUtil
+                        .localPort);
             }
 
             @Override

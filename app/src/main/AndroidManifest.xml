@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
@@ -25,28 +24,23 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
-
         <activity
             android:name=".ui.activity.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeReversed"
             android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
-
         <activity
             android:name=".ui.activity.UserInfoActivity"
             android:launchMode="singleTask">
         </activity>
-
         <activity android:name=".ui.activity.MovieActivity">
         </activity>
-
         <activity
             android:name=".ui.activity.PosterGalleryActivity"
             android:theme="@style/AppThemeGallery">
