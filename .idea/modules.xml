@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/NewVista.iml" filepath="$PROJECT_DIR$/NewVista.iml" />
       <module fileurl="file://$PROJECT_DIR$/SeatTable/SeatTable.iml" filepath="$PROJECT_DIR$/SeatTable/SeatTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expandabletextview/expandabletextview.iml" filepath="$PROJECT_DIR$/expandabletextview/expandabletextview.iml" />
     </modules>
   </component>
 </project>
