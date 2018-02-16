@@ -55,4 +55,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     // Implementation of ImageView for Android that supports zooming, by various touch gestures.
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    // Android's TextView that can expand/collapse like the Google Play's app description
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }

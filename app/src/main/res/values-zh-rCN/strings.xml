@@ -74,4 +74,5 @@
     <string name="yes">是的</string>
     <string name="rate_this_movie">给这个电影打个分</string>
     <string name="login_prompt">请登录后再写下评论</string>
+    <string name="johnny_miller">Johnny Miller</string>
 </resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_person_white_24dp"/>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/johnny_miller"
+        android:textColor="@color/md_black_color_code"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imgv1"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:tint="@color/md_orange_600_color_code"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:srcCompat="@drawable/ic_star_black_48dp"/>
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:text="9"
+        android:textColor="@color/md_black_color_code"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgv1"
+        app:layout_constraintTop_toBottomOf="@+id/username"/>
+
+    <TextView
+        android:id="@+id/txtfrct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="/10"
+        app:layout_constraintStart_toEndOf="@+id/score"
+        app:layout_constraintTop_toBottomOf="@+id/username"/>
+
+    <TextView
+        android:id="@+id/datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="35dp"
+        android:text="December 24, 2017"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="As Soon As It Was Over, I Wanted to See It Again"
+        android:textColor="@color/md_black_color_code"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imgv1"
+        app:layout_constraintTop_toBottomOf="@+id/imgv1"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:singleLine="false"
+        android:text="I love the circus. I love quality cinema. Not since Billy Rose's Jumbo (1962) has a motion picture so successfully combined these two elements. I wouldn't be surprised if it won the same awards as Cecil B. DeMille's The Greatest Show on Earth (1952). Michael Gracey skillfully brought together the best music, choreography, cast, cinematography, visual effects, costumes, and set decoration I have seen in recent years, all fresh and original, and integrated them into nothing short of a masterpiece."
+        android:textColor="@color/md_black_color_code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+
+</android.support.constraint.ConstraintLayout>
+
