@@ -1,1 +1,1 @@
-include ':app', ':SeatTable', ':expandabletextview'
+include ':app', ':SeatTable'
