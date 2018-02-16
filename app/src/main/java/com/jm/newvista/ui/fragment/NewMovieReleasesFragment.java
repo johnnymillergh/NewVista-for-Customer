@@ -124,7 +124,7 @@ public class NewMovieReleasesFragment
     }
 
     @Override
-    public void notifyFinishAttaching() {
+    public void notifyFinishAttachingView() {
         getPresenter().getNewMovie();
     }
 

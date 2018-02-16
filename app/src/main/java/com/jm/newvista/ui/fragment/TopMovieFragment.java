@@ -107,7 +107,7 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
     }
 
     @Override
-    public void notifyFinishAttaching() {
+    public void notifyFinishAttachingView() {
         getPresenter().getTopMovieAndDisplay();
     }
 

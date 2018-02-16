@@ -3,22 +3,25 @@ package com.jm.newvista.ui.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RatingBar;
 
 import com.jm.newvista.R;
+import com.jm.newvista.mvp.model.RateMovieModel;
+import com.jm.newvista.mvp.presenter.RateMoviePresenter;
+import com.jm.newvista.mvp.view.RateMovieView;
+import com.jm.newvista.ui.base.BaseFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RateMovieFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RateMovieFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class RateMovieFragment extends Fragment {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class RateMovieFragment extends BaseFragment<RateMovieModel,RateMovieView,RateMoviePresenter>
+        implements RateMovieView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,21 +31,20 @@ public class RateMovieFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private RateMovieFragmentListener mListener;
+
+    private CircleImageView avatar;
+    private RatingBar ratingBar;
+    private TextInputEditText title;
+    private TextInputEditText text;
+    private RadioButton yes;
+    private RadioButton no;
+    private Button submit;
 
     public RateMovieFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RateMovieFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static RateMovieFragment newInstance(String param1, String param2) {
         RateMovieFragment fragment = new RateMovieFragment();
         Bundle args = new Bundle();
@@ -64,8 +66,30 @@ public class RateMovieFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rate_movie, container, false);
+        View view = inflater.inflate(R.layout.fragment_rate_movie, container, false);
+        initView(view);
+        return view;
+    }
+
+    private void initView(View view) {
+        avatar = view.findViewById(R.id.avatar);
+        ratingBar = view.findViewById(R.id.ratingBar);
+        title = view.findViewById(R.id.title);
+        text = view.findViewById(R.id.text);
+        yes = view.findViewById(R.id.yes);
+        no = view.findViewById(R.id.no);
+        submit = view.findViewById(R.id.submit);
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickSubmit(v);
+            }
+        });
+    }
+
+    private void onClickSubmit(View v) {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -78,11 +102,10 @@ public class RateMovieFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof RateMovieFragmentListener) {
+            mListener = (RateMovieFragmentListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement RateMovieFragmentListener");
         }
     }
 
@@ -92,18 +115,22 @@ public class RateMovieFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+    @Override
+    public RateMovieView createView() {
+        return this;
+    }
+
+    @Override
+    public RateMoviePresenter createPresenter() {
+        return new RateMoviePresenter();
+    }
+
+    @Override
+    public void notifyFinishAttachingView() {
+
+    }
+
+    public interface RateMovieFragmentListener {
         void onFragmentInteraction(Uri uri);
     }
 }
