@@ -16,6 +16,30 @@ public abstract class BaseFragment<M extends BaseModel, V extends BaseView, P ex
         Fragment {
     private P presenter;
     private V view;
+//    // Status of visibility of fragment
+//    protected boolean isVisible;
+//    // Status of preparation of fragment
+//    public boolean isPrepared = false;
+//
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (getUserVisibleHint()) {
+//            isVisible = true;
+//            onVisible();
+//        } else {
+//            isVisible = false;
+//            onInVisible();
+//        }
+//    }
+//
+//    protected abstract void onInVisible();
+//
+//    protected void onVisible(){
+//        loadData();
+//    }
+//
+//    protected abstract void loadData();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

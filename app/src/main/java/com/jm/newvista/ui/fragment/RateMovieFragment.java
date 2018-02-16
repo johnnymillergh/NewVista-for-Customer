@@ -1,18 +1,25 @@
 package com.jm.newvista.ui.fragment;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jm.newvista.R;
+import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.model.RateMovieModel;
 import com.jm.newvista.mvp.presenter.RateMoviePresenter;
 import com.jm.newvista.mvp.view.RateMovieView;
@@ -20,16 +27,9 @@ import com.jm.newvista.ui.base.BaseFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RateMovieFragment extends BaseFragment<RateMovieModel,RateMovieView,RateMoviePresenter>
+public class RateMovieFragment extends BaseFragment<RateMovieModel, RateMovieView, RateMoviePresenter>
         implements RateMovieView {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String movieTitle;
 
     private RateMovieFragmentListener mListener;
 
@@ -45,22 +45,9 @@ public class RateMovieFragment extends BaseFragment<RateMovieModel,RateMovieView
         // Required empty public constructor
     }
 
-    public static RateMovieFragment newInstance(String param1, String param2) {
-        RateMovieFragment fragment = new RateMovieFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -89,14 +76,7 @@ public class RateMovieFragment extends BaseFragment<RateMovieModel,RateMovieView
     }
 
     private void onClickSubmit(View v) {
-
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        getPresenter().submitUserReview();
     }
 
     @Override
@@ -127,10 +107,55 @@ public class RateMovieFragment extends BaseFragment<RateMovieModel,RateMovieView
 
     @Override
     public void notifyFinishAttachingView() {
+        getPresenter().displayUserAvatar();
+    }
 
+    @Override
+    public void onUpdateAvatar(UserEntity userEntity) {
+        Glide.with(this).load(userEntity.getAvatar()).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                avatar.setImageDrawable(resource);
+            }
+        });
+    }
+
+    @Override
+    public String getMovieTitle() {
+        movieTitle = mListener.onGetMovieTitle();
+        return movieTitle;
+    }
+
+    @Override
+    public float getScores() {
+        return ratingBar.getRating();
+    }
+
+    @Override
+    public String getTitle() {
+        return title.getText().toString();
+    }
+
+    @Override
+    public String getText() {
+        return text.getText().toString();
+    }
+
+    @Override
+    public boolean getIsSpoilers() {
+        if (yes.isChecked()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void makeToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public interface RateMovieFragmentListener {
-        void onFragmentInteraction(Uri uri);
+        String onGetMovieTitle();
     }
 }

@@ -57,4 +57,8 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
         if (movieEntity == null) return;
         getView().onDisplayAllDetailsDialog();
     }
+
+    public String getMovieTitle() {
+        return movieEntity.getTitle();
+    }
 }

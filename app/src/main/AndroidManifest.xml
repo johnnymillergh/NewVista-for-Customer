@@ -39,7 +39,9 @@
             android:name=".ui.activity.UserInfoActivity"
             android:launchMode="singleTask">
         </activity>
-        <activity android:name=".ui.activity.MovieActivity">
+        <activity
+            android:name=".ui.activity.MovieActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
         <activity
             android:name=".ui.activity.PosterGalleryActivity"
@@ -53,6 +55,8 @@
         </service>
 
         <activity android:name=".ui.activity.MessageServiceTestActivity">
+        </activity>
+        <activity android:name=".ui.activity.SearchResultActivity">
         </activity>
     </application>
 

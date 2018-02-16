@@ -66,4 +66,12 @@
     <string name="runtime_sample">154 min</string>
     <string name="aspect_ratio">Aspect Ratio</string>
     <string name="aspect_ratio_sample">1.90 : 1</string>
+    <string name="rate_this_movie">Rate this movie</string>
+    <string name="review_title">Review title here</string>
+    <string name="your_review">Your review here</string>
+    <string name="spoiler">Does this review contain spoilers?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="submit">Submit</string>
+    <string name="login_prompt">Before you write down a movie review, you should log in first.</string>
 </resources>

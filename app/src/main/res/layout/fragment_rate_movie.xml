@@ -6,26 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.jm.newvista.ui.fragment.RateMovieFragment">
 
-    <android.support.v4.widget.CircleImageView
-        android:id="@+id/avatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:elevation="4dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@color/md_grey_200_color_code"
+        android:background="@color/md_grey_100_color_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,13 +21,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/txtv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:text="Rate this  movie"
+                android:text="@string/rate_this_movie"
                 android:textColor="@color/md_black_color_code"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,17 +35,18 @@
 
             <RatingBar
                 android:id="@+id/ratingBar"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:numStars="10"
+                android:numStars="5"
+                android:rating="0.5"
+                android:stepSize="0.5"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtv"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/txtinput"
@@ -75,7 +62,7 @@
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Review title here"/>
+                    android:hint="@string/review_title"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -93,19 +80,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Your review here"
+                    android:hint="@string/your_review"
                     android:inputType="textMultiLine"
-                    android:text="@string/description_sample"/>
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/txtv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Does this review contain spoilers?"
+                android:text="@string/spoiler"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtinput2"/>
 
@@ -116,34 +103,48 @@
                 android:layout_marginStart="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8">
+                app:layout_constraintTop_toBottomOf="@+id/txtv2">
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Yes"/>
+                    android:checked="true"
+                    android:text="@string/yes"/>
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="No"/>
+                    android:text="@string/no"/>
             </RadioGroup>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/submit"
                 style="@style/Button.Borderless.Small.ColorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Submit"
+                android:text="@string/submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtinput2"/>
 
         </android.support.constraint.ConstraintLayout>
     </FrameLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="centerCrop"
+        app:civ_border_width="4dp"
+        app:civ_border_color="@color/md_white_color_code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>

@@ -1,8 +1,10 @@
 package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +23,14 @@ import com.jm.newvista.mvp.view.MovieView;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.AllDetailsDialogFragment;
 import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
+import com.jm.newvista.ui.fragment.RateMovieFragment;
 
 public class MovieActivity
         extends BaseActivity<MovieModel, MovieView, MoviePresenter>
         implements MovieView,
         DescriptionDialogFragment.DescriptionFragmentCallbackListener,
-        AllDetailsDialogFragment.AllDetailsDialogFragmentCallbackListener {
+        AllDetailsDialogFragment.AllDetailsDialogFragmentCallbackListener,
+        RateMovieFragment.RateMovieFragmentListener {
     private Toolbar toolbar;
     private ImageView poster;
     private TextView title;
@@ -51,6 +55,13 @@ public class MovieActivity
         setContentView(R.layout.activity_movie);
         initView();
         getPresenter().getAndDisplayMovie();
+        initFragment();
+    }
+
+    private void initFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        RateMovieFragment rateMovieFragment = new RateMovieFragment();
+        fragmentManager.beginTransaction().add(R.id.rateThisMovieContainer, rateMovieFragment).commit();
     }
 
     @Override
@@ -143,5 +154,10 @@ public class MovieActivity
     @Override
     public MovieEntity onGetMovie() {
         return currentMovieEntity;
+    }
+
+    @Override
+    public String onGetMovieTitle() {
+        return getPresenter().getMovieTitle();
     }
 }

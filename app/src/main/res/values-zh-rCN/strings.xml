@@ -66,4 +66,12 @@
     <string name="aspect_ratio_sample">1.90 : 1</string>
     <string name="language_sample">English</string>
     <string name="filming_location">拍摄地点</string>
+    <string name="your_review">你的评价正文</string>
+    <string name="spoiler">你的评价是否含有剧透？</string>
+    <string name="no">不是</string>
+    <string name="submit">提交</string>
+    <string name="review_title">简短地写下你的评价标题</string>
+    <string name="yes">是的</string>
+    <string name="rate_this_movie">给这个电影打个分</string>
+    <string name="login_prompt">请登录后再写下评论</string>
 </resources>
