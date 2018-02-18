@@ -72,35 +72,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="As Soon As It Was Over, I Wanted to See It Again"
-        android:textColor="@color/md_black_color_code"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imgv1"
-        app:layout_constraintTop_toBottomOf="@+id/imgv1"/>
-
-    <TextView
-        android:id="@+id/text"
+    <LinearLayout
+        android:id="@+id/lnlo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:singleLine="false"
-        android:text="I love the circus. I love quality cinema. Not since Billy Rose's Jumbo (1962) has a motion picture so successfully combined these two elements. I wouldn't be surprised if it won the same awards as Cecil B. DeMille's The Greatest Show on Earth (1952). Michael Gracey skillfully brought together the best music, choreography, cast, cinematography, visual effects, costumes, and set decoration I have seen in recent years, all fresh and original, and integrated them into nothing short of a masterpiece."
-        android:textColor="@color/md_black_color_code"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title"/>
+        app:layout_constraintStart_toStartOf="@+id/imgv1"
+        app:layout_constraintTop_toBottomOf="@+id/imgv1">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="As Soon As It Was Over, I Wanted to See It Again"
+            android:textColor="@color/md_black_color_code"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:text="I love the circus. I love quality cinema. Not since Billy Rose's Jumbo (1962) has a motion picture so successfully combined these two elements. I wouldn't be surprised if it won the same awards as Cecil B. DeMille's The Greatest Show on Earth (1952). Michael Gracey skillfully brought together the best music, choreography, cast, cinematography, visual effects, costumes, and set decoration I have seen in recent years, all fresh and original, and integrated them into nothing short of a masterpiece."
+            android:textColor="@color/md_black_color_code"/>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
 
