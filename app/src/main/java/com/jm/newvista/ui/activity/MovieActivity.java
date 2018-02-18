@@ -24,13 +24,15 @@ import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.AllDetailsDialogFragment;
 import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
 import com.jm.newvista.ui.fragment.RateMovieFragment;
+import com.jm.newvista.ui.fragment.UserReviewFragment;
 
 public class MovieActivity
         extends BaseActivity<MovieModel, MovieView, MoviePresenter>
         implements MovieView,
         DescriptionDialogFragment.DescriptionFragmentCallbackListener,
         AllDetailsDialogFragment.AllDetailsDialogFragmentCallbackListener,
-        RateMovieFragment.RateMovieFragmentListener {
+        RateMovieFragment.RateMovieFragmentListener,
+        UserReviewFragment.UserReviewFragmentListener {
     private Toolbar toolbar;
     private ImageView poster;
     private TextView title;
@@ -61,7 +63,10 @@ public class MovieActivity
     private void initFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         RateMovieFragment rateMovieFragment = new RateMovieFragment();
-        fragmentManager.beginTransaction().add(R.id.rateThisMovieContainer, rateMovieFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.rateThisMovieContainer, rateMovieFragment).commit();
+
+        UserReviewFragment userReviewFragment = new UserReviewFragment();
+        fragmentManager.beginTransaction().replace(R.id.userReviewContainer, userReviewFragment).commit();
     }
 
     @Override
