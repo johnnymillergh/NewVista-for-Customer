@@ -204,7 +204,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/directors"
-                android:textAppearance="@style/TextAppearance.Body"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cstCrdts"/>
 
@@ -225,7 +224,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/stars"
-                android:textAppearance="@style/TextAppearance.Body"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/director"/>
 
