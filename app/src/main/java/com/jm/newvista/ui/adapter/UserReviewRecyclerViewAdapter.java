@@ -46,6 +46,7 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
             holder.datetime.setText(userReviewEntity.getDateTime().toString());
             holder.title.setText(userReviewEntity.getTitle());
             holder.text.setText(userReviewEntity.getText());
+            holder.username.setText(userReviewEntity.getUsername());
             Glide.with(context).load(NetworkUtil.GET_AVATAR_URL + "?id=" + userReviewEntity.getUserId()).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable>

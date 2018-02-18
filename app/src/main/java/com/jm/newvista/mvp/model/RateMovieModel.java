@@ -14,6 +14,7 @@ import com.jm.newvista.util.ApplicationUtil;
 import com.jm.newvista.util.ImageUtil;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
+import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
 import java.util.HashMap;
 import java.util.concurrent.Callable;
@@ -36,9 +37,10 @@ public class RateMovieModel extends BaseModel {
     }
 
     public void postUserReview(String movieTitle, UserReviewEntity userReviewEntity,
-                               PostUserReviewListener postUserReviewListener) {
+                               final PostUserReviewListener postUserReviewListener) {
         if (currentUser != null) {
             HashMap<String, String> params = new HashMap<>();
+            params.put("userReviewOperation", "Add");
             params.put("email", currentUser.getEmail());
             params.put("movieTitle", movieTitle);
             params.put("score", userReviewEntity.getScore() + "");
@@ -46,6 +48,23 @@ public class RateMovieModel extends BaseModel {
             params.put("text", userReviewEntity.getText());
             params.put("isSpoilers", userReviewEntity.getIsSpoilers() + "");
             Log.v("postUserReview", params.toString());
+
+            myOkHttp.post().url(NetworkUtil.USER_REVIEW_MANAGEMENT_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, String response) {
+                    Log.v("postUserReview", response);
+                    if (response.contains("success")) {
+                        postUserReviewListener.onPostSuccess(ApplicationUtil.getContext()
+                                .getString(R.string.login_prompt));
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, String error_msg) {
+                    Log.v("postUserReview", error_msg);
+                    postUserReviewListener.onPostFailure(error_msg);
+                }
+            });
         } else {
             postUserReviewListener.onPostFailure(ApplicationUtil.getContext().getString(R.string.login_prompt));
         }
