@@ -25,6 +25,7 @@ import com.jm.newvista.ui.fragment.AllDetailsDialogFragment;
 import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
 import com.jm.newvista.ui.fragment.RateMovieFragment;
 import com.jm.newvista.ui.fragment.UserReviewFragment;
+import com.jm.newvista.util.NetworkUtil;
 
 public class MovieActivity
         extends BaseActivity<MovieModel, MovieView, MoviePresenter>
@@ -129,7 +130,7 @@ public class MovieActivity
         if (movieEntity == null) return;
         this.currentMovieEntity = movieEntity;
         toolbar.setTitle(movieEntity.getTitle());
-        Glide.with(this).load(movieEntity.getPoster()).into(poster);
+        Glide.with(this).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + movieEntity.getTitle()).into(poster);
         title.setText(movieEntity.getTitle());
         releaseDate.setText(movieEntity.getReleaseDate());
         duration.setText(movieEntity.getDuration());

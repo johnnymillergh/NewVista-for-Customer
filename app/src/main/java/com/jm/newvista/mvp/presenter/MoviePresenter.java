@@ -34,7 +34,6 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
                         movieEntity = movieModel.getMovieFromDB(integers[0]);
-                        movieEntity.setPoster(ImageUtil.decode(movieEntity.getPosterStr()));
                         return movieEntity;
                     }
 

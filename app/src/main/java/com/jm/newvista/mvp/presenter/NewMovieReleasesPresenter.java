@@ -35,10 +35,6 @@ public class NewMovieReleasesPresenter extends BasePresenter<NewMovieReleasesMod
                     @Override
                     protected List doInBackground(Void... voids) {
                         List<MovieEntity> newMovies = newMovieReleasesModel.getNewMovie();
-                        for (int i = 0; i < newMovies.size(); i++) {
-                            String encodedPosterStr = newMovies.get(i).getPosterStr();
-                            newMovies.get(i).setPoster(ImageUtil.decode(encodedPosterStr));
-                        }
                         return newMovies;
                     }
 

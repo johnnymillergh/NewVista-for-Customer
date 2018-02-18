@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.GlideBlurTransformation;
+import com.jm.newvista.util.NetworkUtil;
 
 import java.util.List;
 
@@ -69,7 +71,8 @@ public class NewMovieReleasesRecyclerViewAdapter
                     myContext.startActivity(intent, options.toBundle());
                 }
             });
-            Glide.with(myContext).load(newMovie.getPoster()).transition(withCrossFade()).into(holder.poster);
+            Glide.with(myContext).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + newMovie.getTitle())
+                    .transition(withCrossFade()).into(holder.poster);
 //            GlideBlurTransformation glideBlurTransformation = new GlideBlurTransformation(myContext);
 //            Glide.with(myContext).load(newMovie.getPoster()).apply(RequestOptions.bitmapTransform
 //            (glideBlurTransformation)).into(holder.poster);
