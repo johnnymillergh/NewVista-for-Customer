@@ -34,7 +34,6 @@ public class PosterGalleryPresenter extends BasePresenter<PosterGalleryModel, Po
                 MovieEntity movieEntity = new MovieEntity();
                 movieEntity.setId(integers[0]);
                 movieEntity = movieDao.queryById(movieEntity);
-                movieEntity.setPoster(ImageUtil.decode(movieEntity.getPosterStr()));
                 return movieEntity;
             }
 

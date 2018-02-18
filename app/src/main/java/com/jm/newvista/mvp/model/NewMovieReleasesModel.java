@@ -43,32 +43,7 @@ public class NewMovieReleasesModel extends BaseModel {
     }
 
     public void getAndSaveNewMoviePoster(final NewMovieReleasesCallbackListener newMovieReleasesCallbackListener) {
-        int flag = 0;
-        for (MovieEntity entity : newMovieList) {
-            if (entity.getPosterStr() == null) {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("movieOperation", "getPoster");//movieOperation=getPoster&title=Blade+Runner+2049+%282017%29
-                params.put("title", entity.getTitle());
-                myOkHttp.post().url(NetworkUtil.GET_MOVIE_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, String response) {
-                        MovieEntity movieEntity = new Gson().fromJson(response, MovieEntity.class);
-                        updateNewMoviePoster(movieEntity, newMovieReleasesCallbackListener);
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, String error_msg) {
-
-                    }
-                });
-            } else {
-                savedMovieCount++;
-                flag++;
-            }
-        }
-        if (flag == newMovieList.size()) {
-            newMovieReleasesCallbackListener.onFinishSavingPoster();
-        }
+        newMovieReleasesCallbackListener.onFinishSavingPoster();
     }
 
     private void updateNewMoviePoster(MovieEntity entity, NewMovieReleasesCallbackListener

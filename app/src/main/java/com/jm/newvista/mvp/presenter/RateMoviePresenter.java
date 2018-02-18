@@ -1,5 +1,6 @@
 package com.jm.newvista.mvp.presenter;
 
+import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.bean.UserReviewEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.RateMovieModel;
@@ -19,7 +20,10 @@ public class RateMoviePresenter extends BasePresenter<RateMovieModel, RateMovieV
     }
 
     public void displayUserAvatar() {
-        getView().onUpdateAvatar(rateMovieModel.getDecodedUserInfo());
+        UserEntity decodedCurrentUser = rateMovieModel.getDecodedUserInfo();
+        if (decodedCurrentUser != null) {
+            getView().onUpdateAvatar(decodedCurrentUser);
+        }
     }
 
     public void submitUserReview() {

@@ -18,6 +18,7 @@ import com.jm.newvista.mvp.model.PosterGalleryModel;
 import com.jm.newvista.mvp.presenter.PosterGalleryPresenter;
 import com.jm.newvista.mvp.view.PosterGalleryView;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.util.NetworkUtil;
 
 public class PosterGalleryActivity
         extends BaseActivity<PosterGalleryModel, PosterGalleryView, PosterGalleryPresenter>
@@ -57,11 +58,13 @@ public class PosterGalleryActivity
     @Override
     public void onUpdate(MovieEntity movieEntity) {
         title.setText(movieEntity.getTitle());
-        Glide.with(this).load(movieEntity.getPoster()).into(new SimpleTarget<Drawable>() {
-            @Override
-            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                poster.setImageDrawable(resource);
-            }
-        });
+        Glide.with(this).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + movieEntity.getTitle())
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable>
+                            transition) {
+                        poster.setImageDrawable(resource);
+                    }
+                });
     }
 }
