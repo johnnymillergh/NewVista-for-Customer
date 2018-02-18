@@ -21,4 +21,6 @@ public interface RateMovieView extends BaseView {
     boolean getIsSpoilers();
 
     void makeToast(String message);
+
+    void onClearReview();
 }

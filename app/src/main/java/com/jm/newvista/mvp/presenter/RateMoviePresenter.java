@@ -47,11 +47,13 @@ public class RateMoviePresenter extends BasePresenter<RateMovieModel, RateMovieV
             @Override
             public void onPostSuccess(String message) {
                 rateMovieView.makeToast(message);
+                rateMovieView.onClearReview();
             }
 
             @Override
             public void onPostFailure(String message) {
                 rateMovieView.makeToast(message);
+                rateMovieView.onClearReview();
             }
         });
     }

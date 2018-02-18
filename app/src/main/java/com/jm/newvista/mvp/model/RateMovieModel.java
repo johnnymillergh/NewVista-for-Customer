@@ -40,7 +40,7 @@ public class RateMovieModel extends BaseModel {
                                final PostUserReviewListener postUserReviewListener) {
         if (currentUser != null) {
             HashMap<String, String> params = new HashMap<>();
-            params.put("userReviewOperation", "Add");
+            params.put("userReviewOperation", "add");
             params.put("email", currentUser.getEmail());
             params.put("movieTitle", movieTitle);
             params.put("score", userReviewEntity.getScore() + "");
@@ -54,8 +54,9 @@ public class RateMovieModel extends BaseModel {
                 public void onSuccess(int statusCode, String response) {
                     Log.v("postUserReview", response);
                     if (response.contains("success")) {
-                        postUserReviewListener.onPostSuccess(ApplicationUtil.getContext()
-                                .getString(R.string.login_prompt));
+                        postUserReviewListener.onPostSuccess(response);
+                    } else {
+                        postUserReviewListener.onPostFailure(response);
                     }
                 }
 

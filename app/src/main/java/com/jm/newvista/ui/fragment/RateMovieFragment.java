@@ -181,6 +181,13 @@ public class RateMovieFragment extends BaseFragment<RateMovieModel, RateMovieVie
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onClearReview() {
+        title.setText("");
+        text.setText("");
+        ratingBar.setRating(1f);
+    }
+
     public interface RateMovieFragmentListener {
         String onGetMovieTitle();
     }
