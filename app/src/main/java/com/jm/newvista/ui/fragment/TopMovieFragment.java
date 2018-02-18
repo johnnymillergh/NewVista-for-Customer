@@ -3,12 +3,9 @@ package com.jm.newvista.ui.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TopMovieModel;
@@ -22,31 +19,19 @@ import com.rd.animation.type.AnimationType;
 
 public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, TopMoviePresenter> implements
         TopMovieView {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     private MyViewPager topMovieViewPager;
     private TopMovieViewPagerAdapter topMovieViewPagerAdapter;
 
-    private TopMovieCallbackListener topMovieCallbackListener;
+    private TopMovieFragmentListener topMovieFragmentListener;
 
     public TopMovieFragment() {
         // Required empty public constructor
     }
 
-    public static TopMovieFragment newInstance() {
-        TopMovieFragment fragment = new TopMovieFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
@@ -61,39 +46,23 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
         PageIndicatorView pageIndicatorView = (PageIndicatorView) view.findViewById(R.id.pageIndicatorView);
         pageIndicatorView.setViewPager(topMovieViewPager);
         pageIndicatorView.setAnimationType(AnimationType.WORM);
-
-        // RecyclerView
-//        View view = inflater.inflate(R.layout.fragment_top_movie, container, false);
-//        RecyclerView recyclerView = view.findViewById(R.id.topMovieRecyclerView);
-//        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
-//        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
-//        recyclerView.setLayoutManager(layoutManager);
-//        TopMovieRecyclerViewAdapter topMovieRecyclerViewAdapter = new TopMovieRecyclerViewAdapter();
-//        recyclerView.setAdapter(topMovieRecyclerViewAdapter);
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (topMovieCallbackListener != null) {
-            topMovieCallbackListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof TopMovieCallbackListener) {
-            topMovieCallbackListener = (TopMovieCallbackListener) context;
+        if (context instanceof TopMovieFragmentListener) {
+            topMovieFragmentListener = (TopMovieFragmentListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement TopMovieCallbackListener");
+            throw new RuntimeException(context.toString() + " must implement TopMovieFragmentListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        topMovieCallbackListener = null;
+        topMovieFragmentListener = null;
     }
 
     @Override
@@ -131,8 +100,7 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
         return topMovieViewPager;
     }
 
-    public interface TopMovieCallbackListener {
-        // TODO: Update argument type and name
+    public interface TopMovieFragmentListener {
         void onFragmentInteraction(Uri uri);
     }
 }

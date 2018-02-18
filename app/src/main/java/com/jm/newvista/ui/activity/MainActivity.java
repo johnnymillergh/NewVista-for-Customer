@@ -37,7 +37,6 @@ import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
-import com.jm.newvista.util.MessageServiceUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         NavigationView.OnNavigationItemSelectedListener,
         MaterialSearchBar.OnSearchActionListener,
         MainView,
-        TopMovieFragment.TopMovieCallbackListener,
+        TopMovieFragment.TopMovieFragmentListener,
         GenreFragment.GenreFragmentCallbackListener,
         NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener,
         MessageService.MessageServiceCallbackListener {
