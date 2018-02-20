@@ -37,6 +37,7 @@ import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
+import com.jm.newvista.util.ApplicationUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -116,8 +117,21 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(ApplicationUtil.getContext()).clearDiskCache();
+            }
+        }).start();
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            DrawerLayout drawer = findViewById(R.id.drawerLayout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
             moveTaskToBack(false);
             return true;
         }

@@ -16,7 +16,7 @@ public class NetworkUtil {
     public static final String GET_MOVIE_URL = "http://johnnymiller.site/servlet.customer.GetMovie";
     public static final String GET_MOVIE_POSTER_URL = "http://johnnymiller.site/getMoviePoster.jsp";
     public static final String GET_TOP_MOVIE_POSTER_URL = "http://johnnymiller.site/getTopMoviePoster.jsp";
-    public static final String USER_REVIEW_MANAGEMENT_URL = "http://192.168.123.217/servlet.customer.UserReviewManagement";
+    public static final String USER_REVIEW_MANAGEMENT_URL = "http://johnnymiller.site/servlet.customer.UserReviewManagement";
     public static final String ORDER_URL = "http://johnnymiller.site/servlet.customer.Order";
     public static final String GET_TOP_MOVIE_URL = "http://johnnymiller.site/servlet.customer.GetTopMovie";
 }
