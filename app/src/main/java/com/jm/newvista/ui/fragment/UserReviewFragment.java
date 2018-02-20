@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -56,6 +57,8 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         userReviewRecyclerViewAdapter = new UserReviewRecyclerViewAdapter();
         userReviewRecyclerView.setNestedScrollingEnabled(false);
         userReviewRecyclerView.setAdapter(userReviewRecyclerViewAdapter);
+        userReviewRecyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(),
+                DividerItemDecoration.VERTICAL));
     }
 
     @Override
