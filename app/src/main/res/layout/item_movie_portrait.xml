@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorAccent"/>
+            />
 
         <TextView
             android:id="@+id/title"
@@ -36,7 +36,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:lines="2"
-            android:text="Transformers: The Last Knight (2017)"
+            android:maxLines="2"
             android:textColor="@color/md_grey_800_color_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,6 @@
             android:layout_marginEnd="4dp"
             android:layout_marginStart="4dp"
             android:maxLines="1"
-            android:text="Sci-Fi, Fantasy, Action"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
