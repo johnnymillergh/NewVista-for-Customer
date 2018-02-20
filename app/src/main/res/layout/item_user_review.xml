@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/johnny_miller"
         android:textColor="@color/md_black_color_code"
         app:layout_constraintStart_toEndOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -45,7 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
-        android:text="9"
         android:textColor="@color/md_black_color_code"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -67,7 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="35dp"
-        android:text="December 24, 2017"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -89,16 +86,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:text="As Soon As It Was Over, I Wanted to See It Again"
             android:textColor="@color/md_black_color_code"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="false"
-            android:text="I love the circus. I love quality cinema. Not since Billy Rose's Jumbo (1962) has a motion picture so successfully combined these two elements. I wouldn't be surprised if it won the same awards as Cecil B. DeMille's The Greatest Show on Earth (1952). Michael Gracey skillfully brought together the best music, choreography, cast, cinematography, visual effects, costumes, and set decoration I have seen in recent years, all fresh and original, and integrated them into nothing short of a masterpiece."
             android:textColor="@color/md_black_color_code"/>
     </LinearLayout>
 
