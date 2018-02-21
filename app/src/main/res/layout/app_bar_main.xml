@@ -28,7 +28,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                app:mt_hint="Custom hint"
+                app:mt_hint="@string/search_bar_hint"
                 app:mt_maxSuggestionsCount="5"
                 app:mt_navIconEnabled="true"
                 app:mt_placeholder="@string/app_name"/>
