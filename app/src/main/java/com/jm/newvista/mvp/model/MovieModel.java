@@ -16,6 +16,13 @@ public class MovieModel extends BaseModel {
         return movieDao.queryById(movieEntity);
     }
 
+    public MovieEntity getMovieFromDB(String title) {
+        MovieDao movieDao = new MovieDao();
+        MovieEntity movieEntity = new MovieEntity();
+        movieEntity.setTitle(title);
+        return movieDao.queryMovieByTitle(movieEntity);
+    }
+
     @Override
     public void cancel() {
 

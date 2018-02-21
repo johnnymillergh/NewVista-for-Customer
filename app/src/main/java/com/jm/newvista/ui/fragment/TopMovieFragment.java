@@ -11,6 +11,7 @@ import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TopMovieModel;
 import com.jm.newvista.mvp.presenter.TopMoviePresenter;
 import com.jm.newvista.mvp.view.TopMovieView;
+import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.adapter.TopMovieViewPagerAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 import com.jm.newvista.ui.myview.MyViewPager;
@@ -40,7 +41,7 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
         // ViewPager
         View view = inflater.inflate(R.layout.fragment_top_movie, container, false);
         topMovieViewPager = (MyViewPager) view.findViewById(R.id.topMovieViewPager);
-        topMovieViewPagerAdapter = new TopMovieViewPagerAdapter(getContext());
+        topMovieViewPagerAdapter = new TopMovieViewPagerAdapter();
         topMovieViewPager.setAdapter(topMovieViewPagerAdapter);
         topMovieViewPager.setOffscreenPageLimit(4);
         PageIndicatorView pageIndicatorView = (PageIndicatorView) view.findViewById(R.id.pageIndicatorView);

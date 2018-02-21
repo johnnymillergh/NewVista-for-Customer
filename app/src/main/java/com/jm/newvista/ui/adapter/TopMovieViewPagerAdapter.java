@@ -2,6 +2,8 @@ package com.jm.newvista.ui.adapter;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
+import com.jm.newvista.ui.activity.MainActivity;
+import com.jm.newvista.ui.activity.MovieActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,12 +40,11 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
     private List<String> topMovieTitles = new ArrayList<>();
     private HashMap<Integer, byte[]> topMoviePoster = new HashMap<>();
 
-    public TopMovieViewPagerAdapter(Context context) {
-        this.context = context;
-    }
-
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
+        if (context == null) {
+            context = container.getContext();
+        }
         final View view = LayoutInflater.from(context).inflate(R.layout.item_top_movie, container, false);
         topMovieCardView = view.findViewById(R.id.topMovieCardView);
         topMovieImageView = view.findViewById(R.id.topMovieImageView);
@@ -59,6 +62,10 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "topMovieCardView " + topMovieTitles.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MovieActivity.class);
+                intent.putExtra("title", topMovieTitles.get(position));
+                intent.putExtra("from", "TopMovie");
+                context.startActivity(intent);
             }
         });
         topMovieCardView.setOnTouchListener(this);

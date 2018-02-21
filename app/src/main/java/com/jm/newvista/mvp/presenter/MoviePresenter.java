@@ -59,6 +59,21 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     }
                 }.execute(movieId);
                 break;
+            case "TopMovie":
+                final String title = intent.getStringExtra("title");
+                new AsyncTask<Void, Void, MovieEntity>() {
+                    @Override
+                    protected MovieEntity doInBackground(Void... voids) {
+                        movieEntity = movieModel.getMovieFromDB(title);
+                        return movieEntity;
+                    }
+
+                    @Override
+                    protected void onPostExecute(MovieEntity movieEntity) {
+                        getView().onUpdateMovieInformation(movieEntity);
+                    }
+                }.execute();
+                break;
             default:
         }
     }

@@ -37,8 +37,7 @@ public class MovieDao implements IDao<MovieEntity> {
         values.put("posterstr", entity.getPosterStr());
         List<MovieEntity> movieEntities = DataSupport.where("title=?", entity.getTitle()).find(MovieEntity.class);
         MovieEntity movieEntity = movieEntities.get(0);
-        DataSupport.update(MovieEntity.class, values, movieEntity.getId());
-        return 0;
+        return DataSupport.update(MovieEntity.class, values, movieEntity.getId());
     }
 
     public List<MovieEntity> queryMoviesByGenre(MovieEntity entity) {
@@ -47,6 +46,11 @@ public class MovieDao implements IDao<MovieEntity> {
 
     public List<MovieEntity> queryMoviesByTitle(MovieEntity entity) {
         return DataSupport.where("title LIKE ?", "%" + entity.getTitle() + "%").find(MovieEntity.class);
+    }
+
+    public MovieEntity queryMovieByTitle(MovieEntity entity) {
+        List<MovieEntity> result = DataSupport.where("title=?", entity.getTitle()).find(MovieEntity.class);
+        return result.size() == 1 ? result.get(0) : null;
     }
 
     @Override

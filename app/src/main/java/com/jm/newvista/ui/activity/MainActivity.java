@@ -122,7 +122,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Glide.get(ApplicationUtil.getContext()).clearDiskCache();
+//                Glide.get(ApplicationUtil.getContext()).clearDiskCache();
             }
         }).start();
     }
