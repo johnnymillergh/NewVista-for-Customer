@@ -38,7 +38,7 @@ public class TopMovieRecyclerViewAdapter extends RecyclerView.Adapter<TopMovieRe
         return 6;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView movieTitleTextView;
 
         public MyViewHolder(View itemView) {

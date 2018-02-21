@@ -288,6 +288,10 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         Toast.makeText(this, "Search: " + text, Toast.LENGTH_SHORT).show();
         searchBarSuggestions.add(text.toString());
         searchBar.disableSearch();
+        Intent intent = new Intent(this, SearchResultActivity.class);
+        intent.putExtra("from", "SearchBar:Title");
+        intent.putExtra("title", text.toString());
+        startActivity(intent);
     }
 
     @SuppressLint("RtlHardcoded")
