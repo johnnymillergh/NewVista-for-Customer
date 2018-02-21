@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">新万视</string>
-    <string name="genres">动作,冒险,动画,传记,喜剧,犯罪,记录,剧情,家庭,奇幻,历史,恐怖,音乐,音乐剧,神秘,浪漫,科幻,短片,惊悚,战争,西方</string>
+    <string-array name="genres_array">
+        <item>Action</item>
+        <item>Adventure</item>
+        <item>Animation</item>
+        <item>Biography</item>
+        <item>Comedy</item>
+        <item>Crime</item>
+        <item>Documentary</item>
+        <item>Drama</item>
+        <item>Family</item>
+        <item>Fantasy</item>
+        <item>History</item>
+        <item>Horror</item>
+        <item>Music</item>
+        <item>Musical</item>
+        <item>Mystery</item>
+        <item>Romance</item>
+        <item>Mystery</item>
+        <item>Sci-Fi</item>
+        <item>Short</item>
+        <item>Thriller</item>
+        <item>War</item>
+        <item>Western</item>
+    </string-array>
     <string name="username">用户名</string>
     <string name="email">邮箱</string>
     <string name="gender">性别</string>

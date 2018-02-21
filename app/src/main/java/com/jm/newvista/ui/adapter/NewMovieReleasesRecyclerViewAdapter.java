@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,12 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.activity.MovieActivity;
-import com.jm.newvista.util.GlideBlurTransformation;
 import com.jm.newvista.util.NetworkUtil;
 
 import java.util.List;
@@ -35,7 +32,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 public class NewMovieReleasesRecyclerViewAdapter
         extends RecyclerView.Adapter<NewMovieReleasesRecyclerViewAdapter.MyViewHolder> {
-    private Context myContext;
+    private Context context;
     private List<MovieEntity> newMovies;
     private MainActivity mainActivity;
 
@@ -45,8 +42,8 @@ public class NewMovieReleasesRecyclerViewAdapter
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (myContext == null) {
-            myContext = parent.getContext();
+        if (context == null) {
+            context = parent.getContext();
         }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_portrait, parent, false);
         return new MyViewHolder(view);
@@ -62,19 +59,19 @@ public class NewMovieReleasesRecyclerViewAdapter
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(myContext, MovieActivity.class);
+                    Intent intent = new Intent(context, MovieActivity.class);
                     intent.putExtra("movieId", newMovie.getId());
                     intent.putExtra("from", "NewMovieReleases");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation(mainActivity, poster, myContext.getString(R.string
+                            makeSceneTransitionAnimation(mainActivity, poster, context.getString(R.string
                                     .transition_poster));
-                    myContext.startActivity(intent, options.toBundle());
+                    context.startActivity(intent, options.toBundle());
                 }
             });
-            Glide.with(myContext).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + newMovie.getTitle())
+            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + newMovie.getTitle())
                     .transition(withCrossFade()).into(holder.poster);
-//            GlideBlurTransformation glideBlurTransformation = new GlideBlurTransformation(myContext);
-//            Glide.with(myContext).load(newMovie.getPoster()).apply(RequestOptions.bitmapTransform
+//            GlideBlurTransformation glideBlurTransformation = new GlideBlurTransformation(context);
+//            Glide.with(context).load(newMovie.getPoster()).apply(RequestOptions.bitmapTransform
 //            (glideBlurTransformation)).into(holder.poster);
         }
     }

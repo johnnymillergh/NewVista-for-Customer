@@ -30,11 +30,11 @@ public class SearchResultPresenter extends BasePresenter<SearchResultModel, Sear
     @SuppressLint("StaticFieldLeak")
     public void getAndDisplayResult() {
         searchResultView = getView();
+        searchResultView.onDisplayLoadingDialog(ApplicationUtil.getContext().getString(R.string.loading));
         Intent intent = searchResultView.onGetIntent();
         String from = intent.getStringExtra("from");
         switch (from) {
             case "SearchBar:Title":
-                searchResultView.onDisplayLoadingDialog(ApplicationUtil.getContext().getString(R.string.loading));
                 final String title = intent.getStringExtra("title");
                 new AsyncTask<Void, Void, List<MovieEntity>>() {
                     @Override
@@ -58,6 +58,25 @@ public class SearchResultPresenter extends BasePresenter<SearchResultModel, Sear
             case "SearchBar:Star":
                 break;
             case "Genre":
+                final String genre = intent.getStringExtra("genre");
+                new AsyncTask<Void, Void, List<MovieEntity>>() {
+                    @Override
+                    protected List doInBackground(Void... voids) {
+                        MovieEntity movieEntity = new MovieEntity();
+                        movieEntity.setGenre(genre);
+                        return searchResultModel.getSearchResultByGenre(movieEntity);
+                    }
+
+                    @Override
+                    protected void onPostExecute(List<MovieEntity> list) {
+                        SearchResultRecyclerViewAdapter searchResultRecyclerViewAdapter = searchResultView
+                                .onGetSearchResultRecyclerViewAdapter();
+                        searchResultRecyclerViewAdapter.setSearchResultList(list);
+                        searchResultRecyclerViewAdapter.notifyDataSetChanged();
+                        searchResultView.onSetToolBarTitle(genre);
+                        searchResultView.onDismissLoadingDialog();
+                    }
+                }.execute();
                 break;
             default:
         }

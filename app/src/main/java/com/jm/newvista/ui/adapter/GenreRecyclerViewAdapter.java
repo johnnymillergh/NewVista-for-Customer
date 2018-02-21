@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.ui.activity.SearchResultActivity;
 import com.robertlevonyan.views.chip.Chip;
 import com.robertlevonyan.views.chip.OnChipClickListener;
 
@@ -24,8 +26,10 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (context == null) {
+            context = parent.getContext();
+        }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_genre, parent, false);
-        context = parent.getContext();
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -37,6 +41,10 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
             @Override
             public void onChipClick(View v) {
                 Toast.makeText(context, "onChipClick " + genres.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, SearchResultActivity.class);
+                intent.putExtra("from", "Genre");
+                intent.putExtra("genre", genres.get(position).toString());
+                context.startActivity(intent);
             }
         });
     }
