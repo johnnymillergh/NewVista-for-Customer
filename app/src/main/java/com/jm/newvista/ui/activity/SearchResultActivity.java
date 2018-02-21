@@ -38,7 +38,7 @@ public class SearchResultActivity extends BaseActivity<SearchResultModel, Search
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         searchResultRecyclerView.setLayoutManager(linearLayoutManager);
-        searchResultRecyclerViewAdapter = new SearchResultRecyclerViewAdapter();
+        searchResultRecyclerViewAdapter = new SearchResultRecyclerViewAdapter(this);
         searchResultRecyclerView.setAdapter(searchResultRecyclerViewAdapter);
         searchResultRecyclerView.setNestedScrollingEnabled(false);
     }

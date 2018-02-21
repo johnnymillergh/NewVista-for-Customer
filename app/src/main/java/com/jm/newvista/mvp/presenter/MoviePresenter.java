@@ -27,9 +27,25 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
     public void getAndDisplayMovie() {
         Intent intent = getView().onGetIntent();
         String from = intent.getStringExtra("from");
+        int movieId;
         switch (from) {
             case "NewMovieReleases":
-                int movieId = intent.getIntExtra("movieId", 0);
+                movieId = intent.getIntExtra("movieId", 0);
+                new AsyncTask<Integer, Void, MovieEntity>() {
+                    @Override
+                    protected MovieEntity doInBackground(Integer... integers) {
+                        movieEntity = movieModel.getMovieFromDB(integers[0]);
+                        return movieEntity;
+                    }
+
+                    @Override
+                    protected void onPostExecute(MovieEntity movieEntity) {
+                        getView().onUpdateMovieInformation(movieEntity);
+                    }
+                }.execute(movieId);
+                break;
+            case "SearchResult":
+                movieId = intent.getIntExtra("movieId", 0);
                 new AsyncTask<Integer, Void, MovieEntity>() {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
