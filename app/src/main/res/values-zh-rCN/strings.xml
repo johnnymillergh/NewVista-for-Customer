@@ -100,4 +100,6 @@
     <string name="johnny_miller">Johnny Miller</string>
     <string name="loading">加载中…</string>
     <string name="search_bar_hint">按电影名搜索</string>
+    <string name="random_picks_title">为你随机挑选</string>
+    <string name="surprise">惊喜不惊喜？！</string>
 </resources>
