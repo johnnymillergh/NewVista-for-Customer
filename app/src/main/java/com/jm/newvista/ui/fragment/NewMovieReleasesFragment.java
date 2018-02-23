@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +21,7 @@ import com.jm.newvista.mvp.model.NewMovieReleasesModel;
 import com.jm.newvista.mvp.presenter.NewMovieReleasesPresenter;
 import com.jm.newvista.mvp.view.NewMovieReleasesView;
 import com.jm.newvista.ui.activity.MainActivity;
+import com.jm.newvista.ui.activity.NewMovieReleasesActivity;
 import com.jm.newvista.ui.adapter.NewMovieReleasesRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
@@ -94,7 +96,8 @@ public class NewMovieReleasesFragment
     }
 
     public void onMoreClick(View view) {
-        Toast.makeText(getContext(), "More click", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), NewMovieReleasesActivity.class);
+        startActivity(intent);
     }
 
     @Override

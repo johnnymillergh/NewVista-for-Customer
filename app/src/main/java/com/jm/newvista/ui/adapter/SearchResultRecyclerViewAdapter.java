@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -15,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
-import com.jm.newvista.ui.activity.SearchResultActivity;
 import com.jm.newvista.util.NetworkUtil;
 
 import java.util.List;
@@ -26,10 +26,10 @@ import java.util.List;
 
 public class SearchResultRecyclerViewAdapter
         extends RecyclerView.Adapter<SearchResultRecyclerViewAdapter.MyViewHolder> {
-    private SearchResultActivity searchResultActivity;
+    private Activity activity;
 
-    public SearchResultRecyclerViewAdapter(SearchResultActivity searchResultActivity) {
-        this.searchResultActivity = searchResultActivity;
+    public SearchResultRecyclerViewAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     private Context context;
@@ -63,7 +63,7 @@ public class SearchResultRecyclerViewAdapter
                 intent.putExtra("movieId", movieEntity.getId());
                 intent.putExtra("from", "SearchResult");
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(searchResultActivity, poster, context.getString(R.string
+                        makeSceneTransitionAnimation(activity, poster, context.getString(R.string
                                 .transition_poster));
                 context.startActivity(intent, options.toBundle());
             }

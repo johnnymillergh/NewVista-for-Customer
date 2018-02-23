@@ -19,12 +19,10 @@ import java.util.List;
  */
 
 public class NewMovieReleasesModel extends BaseModel {
-    MyOkHttp myOkHttp;
     List<MovieEntity> newMovieList = new ArrayList<>();
     int savedMovieCount = 0;
 
     public NewMovieReleasesModel() {
-        this.myOkHttp = NetworkUtil.myOkHttp;
         newMovieList = getNewMovie();
     }
 
@@ -61,7 +59,6 @@ public class NewMovieReleasesModel extends BaseModel {
     @Override
     public void cancel() {
         Log.v("cancel", getClass().toString());
-        myOkHttp.cancel(this);
     }
 
     public interface NewMovieReleasesCallbackListener {
