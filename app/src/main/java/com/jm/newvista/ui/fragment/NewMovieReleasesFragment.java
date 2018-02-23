@@ -87,7 +87,6 @@ public class NewMovieReleasesFragment
         newMovieReleasesRecyclerViewAdapter = new NewMovieReleasesRecyclerViewAdapter(mListener.onGetActivity());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
-        layoutManager.setReverseLayout(true);
         newMovieReleasesRecyclerView.setLayoutManager(layoutManager);
         newMovieReleasesRecyclerView.setAdapter(newMovieReleasesRecyclerViewAdapter);
         newMovieReleasesRecyclerView.setNestedScrollingEnabled(false);

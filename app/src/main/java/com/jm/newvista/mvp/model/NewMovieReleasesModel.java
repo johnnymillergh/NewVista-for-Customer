@@ -36,7 +36,8 @@ public class NewMovieReleasesModel extends BaseModel {
         if (newMovieList.size() != 0) {
             newMovieList.clear();
         }
-        for (int i = startIndex; i < endIndex; i++) {
+        // Reverse list item
+        for (int i = endIndex - 1; i >= startIndex; i--) {
             newMovieList.add(entities.get(i));
         }
         return newMovieList;
