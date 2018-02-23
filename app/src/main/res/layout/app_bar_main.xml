@@ -69,6 +69,15 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/genreChipsContainer">
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/randomPicksContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/newMovieReleasesContainer">
+            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 
