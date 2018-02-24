@@ -8,7 +8,7 @@
       alt="Download from Google Play"
       height="80">](https://play.google.com/store/apps/details?id=com.jm.newvista)
 
-[https://www.coolapk.com/apk/177794](https://www.coolapk.com/apk/177794 "Download from Coolapl")
+[https://www.coolapk.com/apk/177794](https://www.coolapk.com/apk/177794 "Download from Coolapk")
 
 ## Features  
 - **App**
