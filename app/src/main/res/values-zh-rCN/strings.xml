@@ -36,8 +36,8 @@
     <string name="log_in_status_1">等待中…</string>
     <string name="sign_up">注册</string>
     <string name="forgot">忘记密码？</string>
-    <string name="new_movie_releases">New Movie Releases</string>
-    <string name="new_movie_subtitle">Watch all the big hits</string>
+    <string name="new_movie_releases">新电影发布</string>
+    <string name="new_movie_subtitle">关注最新动向</string>
     <string name="more">更多</string>
     <string name="movie_title_sample">Transformers: The Last Knight (2017)</string>
     <string name="genre_sample">Sci-Fi, Fantasy, Action</string>
