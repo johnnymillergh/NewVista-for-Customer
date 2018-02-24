@@ -39,7 +39,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="Movie title here"
                 android:textAlignment="center"
                 android:textColor="@color/md_grey_800_color_code"
                 android:textSize="22sp"

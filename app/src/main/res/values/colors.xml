@@ -13,6 +13,7 @@
     <color name="ic_background">#ffffff</color>
     <color name="statusBarColor">#00000000</color>
     <color name="windowBackground">#EEEEEE</color>
+    <color name="windowBackgroundLight">#FAFAFA</color>
     <color name="darkFontColor">#000000</color>
     <color name="lightFontColor">#FFFFFF</color>
 
