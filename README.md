@@ -2,7 +2,7 @@
 
 # New Vista  
 
-**open-source** Movie ticket booking app, my graduation project.
+**Open-source** Movie ticket booking app, my graduation project.
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Download from Google Play"
