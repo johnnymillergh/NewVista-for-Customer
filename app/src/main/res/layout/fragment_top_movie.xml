@@ -12,7 +12,7 @@
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"/>-->
 
-    <com.jm.newvista.ui.myview.MyViewPager
+    <com.jm.newvista.ui.mine.view.MyViewPager
         android:id="@+id/topMovieViewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

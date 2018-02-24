@@ -11,16 +11,14 @@ import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TopMovieModel;
 import com.jm.newvista.mvp.presenter.TopMoviePresenter;
 import com.jm.newvista.mvp.view.TopMovieView;
-import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.adapter.TopMovieViewPagerAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
-import com.jm.newvista.ui.myview.MyViewPager;
+import com.jm.newvista.ui.mine.view.MyViewPager;
 import com.rd.PageIndicatorView;
 import com.rd.animation.type.AnimationType;
 
 public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, TopMoviePresenter> implements
         TopMovieView {
-
     private MyViewPager topMovieViewPager;
     private TopMovieViewPagerAdapter topMovieViewPagerAdapter;
 

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ public class MovieActivity
         UserReviewFragment.UserReviewFragmentListener {
     private Toolbar toolbar;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private NestedScrollView nestedScrollView;
     private ImageView poster;
     private TextView title;
     private TextView releaseDate;
@@ -93,6 +95,7 @@ public class MovieActivity
                 refreshUserReview();
             }
         });
+        nestedScrollView = findViewById(R.id.nestedScrollView);
         poster = findViewById(R.id.poster);
         title = findViewById(R.id.title);
         releaseDate = findViewById(R.id.releaseDate);
@@ -126,6 +129,11 @@ public class MovieActivity
 
     public void onClickAllDetails(View view) {
         getPresenter().displayAllDetailsDialog();
+    }
+
+    public void onClickFAB(View view) {
+        nestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
+        nestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
     }
 
     private void transition(View view) {
