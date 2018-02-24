@@ -26,23 +26,7 @@
 ## Specs / Open-source libraries:
 
 - Minimum **SDK 21**, _but AppCompat is used all the way ;-)_
-- [**Kotlin**](https://github.com/JetBrains/kotlin) all new modules starting from 2.5.3 will be written in **#Kotlin**.
-- **MVP**-architecture: [**ThirtyInch**](https://github.com/grandcentrix/ThirtyInch) because its ThirtyInch.
-- [**RxJava2**](https://github.com/ReactiveX/RxJava) & [**RxAndroid**](https://github.com/ReactiveX/RxAndroid) for Retrofit & background threads
-- [**Retrofit**](https://github.com/square/retrofit) for constructing the REST API
-- [**Requery**](https://github.com/requery/requery/) for offline-mode
-- [**Stream API**](https://github.com/aNNiMON/Lightweight-Stream-API) for dealing with `Collections`
-- [**ButterKnife**](https://github.com/JakeWharton/butterknife) for view binding
-- [**Android State**](https://github.com/evernote/android-state) for saving instance states
-- [**Lombok**](https://projectlombok.github.io) for getters and setters
-- [**Material-BottomNavigation**](https://github.com/sephiroth74/Material-BottomNavigation) for `BottomBar` tabs
 - [**Glide**](https://github.com/bumptech/glide) for loading images
-- [**commonmark**](https://github.com/atlassian/commonmark-java) for _Markdown_ conversion to html
-- [**Toasty**](https://github.com/GrenderG/Toasty) for displaying error/success messages
-- [**ShapedImageView**](https://github.com/gavinliu/ShapedImageView) for round avatars
-- [**Material-About-Library**](https://github.com/daniel-stoneuk/material-about-library) for the about screen
-- [**Fabric**](https://fabric.io/kits/android/crashlytics) analytics & crash reporting.
-- **Android Support Libraries**, the almighty ;-)
 
 ## License
 
