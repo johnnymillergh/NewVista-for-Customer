@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="/10"
+        android:text="@string/full_scores"
         app:layout_constraintStart_toEndOf="@+id/score"
         app:layout_constraintTop_toBottomOf="@+id/username"/>
 
@@ -80,6 +80,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imgv1"
         app:layout_constraintTop_toBottomOf="@+id/imgv1">
+
+        <TextView
+            android:id="@+id/isSpoilers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/warning_spoilers"
+            android:textAllCaps="false"
+            android:textColor="@color/md_red_500_color_code"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/title"

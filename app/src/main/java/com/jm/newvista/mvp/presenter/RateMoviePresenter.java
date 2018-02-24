@@ -1,10 +1,12 @@
 package com.jm.newvista.mvp.presenter;
 
+import com.jm.newvista.R;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.bean.UserReviewEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.RateMovieModel;
 import com.jm.newvista.mvp.view.RateMovieView;
+import com.jm.newvista.util.ApplicationUtil;
 
 /**
  * Created by Johnny on 2/16/2018.
@@ -48,6 +50,8 @@ public class RateMoviePresenter extends BasePresenter<RateMovieModel, RateMovieV
             public void onPostSuccess(String message) {
                 rateMovieView.makeToast(message);
                 rateMovieView.onClearReview();
+                rateMovieView.makeToast(ApplicationUtil.getContext()
+                        .getString(R.string.pull_down_to_refresh_user_review));
             }
 
             @Override

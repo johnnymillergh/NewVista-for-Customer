@@ -42,11 +42,12 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         if (userReviews != null) {
             UserReviewEntity userReviewEntity = userReviews.get(position);
+            holder.username.setText(userReviewEntity.getUsername());
             holder.score.setText(String.valueOf(userReviewEntity.getScore()));
             holder.datetime.setText(userReviewEntity.getDateTime().toString());
+            if (userReviewEntity.getIsSpoilers()) holder.isSpoilers.setVisibility(View.VISIBLE);
             holder.title.setText(userReviewEntity.getTitle());
             holder.text.setText(userReviewEntity.getText());
-            holder.username.setText(userReviewEntity.getUsername());
             Glide.with(context).load(NetworkUtil.GET_AVATAR_URL + "?id=" + userReviewEntity.getUserId()).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable>
@@ -86,6 +87,7 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
         TextView username;
         TextView score;
         TextView datetime;
+        TextView isSpoilers;
         TextView title;
         TextView text;
 
@@ -95,6 +97,7 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
             username = itemView.findViewById(R.id.username);
             score = itemView.findViewById(R.id.score);
             datetime = itemView.findViewById(R.id.datetime);
+            isSpoilers = itemView.findViewById(R.id.isSpoilers);
             title = itemView.findViewById(R.id.title);
             text = itemView.findViewById(R.id.text);
         }
