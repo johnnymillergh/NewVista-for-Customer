@@ -18,7 +18,10 @@ import com.jm.newvista.R;
 import com.jm.newvista.bean.UserReviewEntity;
 import com.jm.newvista.util.NetworkUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,7 +47,12 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
             UserReviewEntity userReviewEntity = userReviews.get(position);
             holder.username.setText(userReviewEntity.getUsername());
             holder.score.setText(String.valueOf(userReviewEntity.getScore()));
-            holder.datetime.setText(userReviewEntity.getDateTime().toString());
+
+            Date date = userReviewEntity.getDateTime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:s aa MMM d, yyyy", Locale.ENGLISH);
+            String dateStr = simpleDateFormat.format(date);
+            holder.datetime.setText(dateStr);
+
             if (userReviewEntity.getIsSpoilers()) holder.isSpoilers.setVisibility(View.VISIBLE);
             holder.title.setText(userReviewEntity.getTitle());
             holder.text.setText(userReviewEntity.getText());

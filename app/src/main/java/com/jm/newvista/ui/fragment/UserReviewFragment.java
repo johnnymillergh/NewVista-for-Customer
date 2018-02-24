@@ -69,6 +69,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         });
 
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+        linearLayoutManager.setReverseLayout(true);
         userReviewRecyclerView.setLayoutManager(linearLayoutManager);
         userReviewRecyclerViewAdapter = new UserReviewRecyclerViewAdapter();
         userReviewRecyclerView.setNestedScrollingEnabled(false);

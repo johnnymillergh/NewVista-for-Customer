@@ -108,9 +108,7 @@ public class MovieActivity
 
     private void refreshUserReview() {
         Toast.makeText(this, R.string.refreshing_user_review, Toast.LENGTH_LONG).show();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.userReviewContainer, new UserReviewFragment()).commit();
-        swipeRefreshLayout.setRefreshing(false);
+        getPresenter().refreshUserReview(getSupportFragmentManager(), swipeRefreshLayout);
     }
 
     public void onClickPoster(View view) {
