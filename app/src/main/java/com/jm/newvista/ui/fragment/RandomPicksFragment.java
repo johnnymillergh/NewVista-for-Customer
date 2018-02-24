@@ -3,23 +3,28 @@ package com.jm.newvista.ui.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.jm.newvista.R;
+import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.mvp.model.RandomPicksModel;
+import com.jm.newvista.mvp.presenter.RandomPicksPresenter;
+import com.jm.newvista.mvp.view.RandomPicksView;
 import com.jm.newvista.ui.adapter.RandomPicksRecyclerViewAdapter;
+import com.jm.newvista.ui.base.BaseFragment;
 
 import java.util.List;
 
-public class RandomPicksFragment extends Fragment {
-    private List<MotionEvent> randomPicks;
+public class RandomPicksFragment
+        extends BaseFragment<RandomPicksModel, RandomPicksView, RandomPicksPresenter>
+        implements RandomPicksView {
+    private List<MovieEntity> randomPicks;
     private RandomPicksFragmentListener mListener;
 
     private RecyclerView randomPicksRecyclerView;
@@ -65,6 +70,28 @@ public class RandomPicksFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onFinishPreparedRandomPicks(List<MovieEntity> randomPicks) {
+        this.randomPicks = randomPicks;
+        randomPicksRecyclerViewAdapter.setRandomPicks(randomPicks);
+        randomPicksRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public RandomPicksView createView() {
+        return this;
+    }
+
+    @Override
+    public RandomPicksPresenter createPresenter() {
+        return new RandomPicksPresenter();
+    }
+
+    @Override
+    public void notifyFinishAttachingView() {
+        getPresenter().getAndDisplayRandomPicks();
     }
 
     public interface RandomPicksFragmentListener {

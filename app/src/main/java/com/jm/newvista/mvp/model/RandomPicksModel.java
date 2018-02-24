@@ -23,7 +23,8 @@ public class RandomPicksModel extends BaseModel {
         while (resultList.size() <= 10) {
             int randomIndex = random.nextInt(fullList.size());
             MovieEntity randomMovieEntity = fullList.get(randomIndex);
-            if (randomMovieEntity != null) resultList.add(fullList.get(randomIndex));
+            if (randomMovieEntity != null)
+                if (!resultList.contains(fullList.get(randomIndex))) resultList.add(fullList.get(randomIndex));
         }
         return resultList;
     }

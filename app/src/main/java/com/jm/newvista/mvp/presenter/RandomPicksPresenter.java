@@ -1,8 +1,14 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
+
+import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.RandomPicksModel;
 import com.jm.newvista.mvp.view.RandomPicksView;
+
+import java.util.List;
 
 /**
  * Created by Johnny on 2/23/2018.
@@ -17,7 +23,19 @@ public class RandomPicksPresenter extends BasePresenter<RandomPicksModel, Random
         super.BasePresenter(randomPicksModel);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public void getAndDisplayRandomPicks() {
+        randomPicksView = getView();
+        new AsyncTask<Void, Void, List<MovieEntity>>() {
+            @Override
+            protected List<MovieEntity> doInBackground(Void... voids) {
+                return randomPicksModel.getRandomPicksFromDB();
+            }
 
+            @Override
+            protected void onPostExecute(List<MovieEntity> entities) {
+                randomPicksView.onFinishPreparedRandomPicks(entities);
+            }
+        }.execute();
     }
 }
