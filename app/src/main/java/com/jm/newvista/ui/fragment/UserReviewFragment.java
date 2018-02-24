@@ -1,9 +1,7 @@
 package com.jm.newvista.ui.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -12,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
@@ -29,6 +29,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
 
     private UserReviewFragmentListener mListener;
     private String movieTitle;
+    private Spinner spinner;
     private RecyclerView userReviewRecyclerView;
     private UserReviewRecyclerViewAdapter userReviewRecyclerViewAdapter;
 
@@ -50,8 +51,23 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     }
 
     private void initView(View view) {
+        spinner = view.findViewById(R.id.spinner);
         userReviewRecyclerView = view.findViewById(R.id.userReviewRecyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) linearLayoutManager.setReverseLayout(true);
+                else linearLayoutManager.setReverseLayout(false);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         userReviewRecyclerView.setLayoutManager(linearLayoutManager);
         userReviewRecyclerViewAdapter = new UserReviewRecyclerViewAdapter();

@@ -24,6 +24,10 @@
         <item>War</item>
         <item>Western</item>
     </string-array>
+    <string-array name="user_review_sort_by">
+        <item>Newest review first</item>
+        <item>Oldest review first</item>
+    </string-array>
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="gender">Gender</string>

@@ -25,6 +25,10 @@
         <item>War</item>
         <item>Western</item>
     </string-array>
+    <string-array name="user_review_sort_by">
+        <item>最新评论优先</item>
+        <item>最早评论优先</item>
+    </string-array>
     <string name="username">用户名</string>
     <string name="email">邮箱</string>
     <string name="gender">性别</string>
