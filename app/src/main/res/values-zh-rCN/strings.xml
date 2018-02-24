@@ -102,4 +102,7 @@
     <string name="search_bar_hint">按电影名搜索</string>
     <string name="random_picks_title">为你随机挑选</string>
     <string name="surprise">惊喜不惊喜？！</string>
+    <string name="refreshing_user_review">刷新评论中…</string>
+    <string name="pull_down_to_refresh_user_review">提示：下拉刷新评论</string>
+    <string name="warning_spoilers">警告：该内容含有剧透</string>
 </resources>

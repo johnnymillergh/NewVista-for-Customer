@@ -8,7 +8,6 @@ import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.view.MovieView;
-import com.jm.newvista.util.ImageUtil;
 
 /**
  * Created by Johnny on 2/11/2018.

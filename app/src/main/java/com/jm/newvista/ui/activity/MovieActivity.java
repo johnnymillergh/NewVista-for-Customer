@@ -2,9 +2,11 @@ package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +37,7 @@ public class MovieActivity
         RateMovieFragment.RateMovieFragmentListener,
         UserReviewFragment.UserReviewFragmentListener {
     private Toolbar toolbar;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private ImageView poster;
     private TextView title;
     private TextView releaseDate;
@@ -82,6 +85,14 @@ public class MovieActivity
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshUserReview();
+            }
+        });
         poster = findViewById(R.id.poster);
         title = findViewById(R.id.title);
         releaseDate = findViewById(R.id.releaseDate);
@@ -93,6 +104,13 @@ public class MovieActivity
         director = findViewById(R.id.director);
         stars = findViewById(R.id.stars);
         allDetails = findViewById(R.id.allDetails);
+    }
+
+    private void refreshUserReview() {
+        Toast.makeText(this, R.string.refreshing_user_review, Toast.LENGTH_LONG).show();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.userReviewContainer, new UserReviewFragment()).commit();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     public void onClickPoster(View view) {

@@ -102,4 +102,8 @@
     <string name="search_bar_hint">Search by title</string>
     <string name="random_picks_title">Random Picks for You</string>
     <string name="surprise">Surprise!</string>
+    <string name="refreshing_user_review">Refreshing user review…</string>
+    <string name="pull_down_to_refresh_user_review">Pull down to refresh user review</string>
+    <string name="warning_spoilers">Warning: Spoilers</string>
+    <string name="full_scores" translatable="false">/10</string>
 </resources>
