@@ -110,4 +110,5 @@
     <string name="pull_down_to_refresh_user_review">Pull down to refresh user review</string>
     <string name="warning_spoilers">Warning: Spoilers</string>
     <string name="full_scores" translatable="false">/10</string>
+    <string name="account">Account</string>
 </resources>
