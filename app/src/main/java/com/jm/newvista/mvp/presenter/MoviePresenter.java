@@ -19,6 +19,7 @@ import com.jm.newvista.ui.fragment.UserReviewFragment;
 
 public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
     private MovieModel movieModel;
+    private MovieView movieView;
     private MovieEntity movieEntity;
 
     public MoviePresenter() {
@@ -28,6 +29,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
 
     @SuppressLint("StaticFieldLeak")
     public void getAndDisplayMovie() {
+        movieView = getView();
         Intent intent = getView().onGetIntent();
         String from = intent.getStringExtra("from");
         int movieId;
@@ -43,7 +45,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
 
                     @Override
                     protected void onPostExecute(MovieEntity movieEntity) {
-                        getView().onUpdateMovieInformation(movieEntity);
+                        movieView.onUpdateMovieInformation(movieEntity);
                     }
                 }.execute(movieId);
                 break;
@@ -58,7 +60,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
 
                     @Override
                     protected void onPostExecute(MovieEntity movieEntity) {
-                        getView().onUpdateMovieInformation(movieEntity);
+                        movieView.onUpdateMovieInformation(movieEntity);
                     }
                 }.execute(movieId);
                 break;
@@ -73,7 +75,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
 
                     @Override
                     protected void onPostExecute(MovieEntity movieEntity) {
-                        getView().onUpdateMovieInformation(movieEntity);
+                        movieView.onUpdateMovieInformation(movieEntity);
                     }
                 }.execute();
                 break;

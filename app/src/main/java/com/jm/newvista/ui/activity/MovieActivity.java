@@ -137,6 +137,16 @@ public class MovieActivity
     }
 
     @Override
+    public void onDisplayRefreshing() {
+        swipeRefreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void onFinishRefreshing() {
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
     public Intent onGetIntent() {
         return getIntent();
     }

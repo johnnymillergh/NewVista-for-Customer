@@ -34,6 +34,7 @@ public class UserReviewPresenter extends BasePresenter<UserReviewModel, UserRevi
             @Override
             public void onFailure(String errorMessage) {
                 userReviewView.makeToast(errorMessage);
+                userReviewView.onFailLoadingUserReview();
             }
         });
     }

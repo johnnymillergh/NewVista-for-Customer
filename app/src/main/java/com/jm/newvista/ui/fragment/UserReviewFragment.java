@@ -26,7 +26,6 @@ import java.util.List;
 
 public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReviewView, UserReviewPresenter>
         implements UserReviewView {
-
     private UserReviewFragmentListener mListener;
     private String movieTitle;
     private Spinner spinner;
@@ -51,6 +50,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     }
 
     private void initView(View view) {
+        mListener.onDisplayRefreshing();
         spinner = view.findViewById(R.id.spinner);
         userReviewRecyclerView = view.findViewById(R.id.userReviewRecyclerView);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -115,11 +115,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     public void onSetUserReviewList(List<UserReviewEntity> userReviews) {
         userReviewRecyclerViewAdapter.setUserReviews(userReviews);
         userReviewRecyclerViewAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onNotifyDataChanged() {
-        userReviewRecyclerViewAdapter.notifyDataSetChanged();
+        mListener.onFinishRefreshing();
     }
 
     @Override
@@ -127,7 +123,16 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onFailLoadingUserReview() {
+        mListener.onFinishRefreshing();
+    }
+
     public interface UserReviewFragmentListener {
         String onGetMovieTitle();
+
+        void onDisplayRefreshing();
+
+        void onFinishRefreshing();
     }
 }

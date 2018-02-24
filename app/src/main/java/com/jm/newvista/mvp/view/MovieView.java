@@ -10,6 +10,10 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface MovieView extends BaseView {
+    void onDisplayRefreshing();
+
+    void onFinishRefreshing();
+
     Intent onGetIntent();
 
     void onUpdateMovieInformation(MovieEntity movieEntity);

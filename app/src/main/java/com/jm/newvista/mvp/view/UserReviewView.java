@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserReviewView extends BaseView {
     void onSetUserReviewList(List<UserReviewEntity> userReviews);
 
-    void onNotifyDataChanged();
-
     void makeToast(String message);
+
+    void onFailLoadingUserReview();
 }
