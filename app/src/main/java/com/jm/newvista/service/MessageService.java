@@ -31,8 +31,8 @@ public class MessageService extends Service implements MessageServiceUtil.Messag
     }
 
     private void startLocalPort() {
-        messageServiceUtil.setMyCallback(this);
-        messageServiceUtil.start();
+//        messageServiceUtil.setMyCallback(this);
+//        messageServiceUtil.start();
     }
 
     @Override

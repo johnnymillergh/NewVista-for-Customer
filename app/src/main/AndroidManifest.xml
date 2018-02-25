@@ -18,11 +18,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -47,6 +42,19 @@
             android:name=".ui.activity.PosterGalleryActivity"
             android:theme="@style/AppThemeGallery">
         </activity>
+        <activity android:name=".ui.activity.MessageServiceTestActivity">
+        </activity>
+        <activity android:name=".ui.activity.SearchResultActivity">
+        </activity>
+        <activity android:name=".ui.activity.NewMovieReleasesActivity">
+        </activity>
+        <activity android:name=".ui.activity.SeatSelectionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".service.MessageService"
@@ -54,12 +62,6 @@
             android:exported="true">
         </service>
 
-        <activity android:name=".ui.activity.MessageServiceTestActivity">
-        </activity>
-        <activity android:name=".ui.activity.SearchResultActivity">
-        </activity>
-        <activity android:name=".ui.activity.NewMovieReleasesActivity">
-        </activity>
     </application>
 
 </manifest>
