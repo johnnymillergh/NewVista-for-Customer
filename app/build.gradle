@@ -45,10 +45,6 @@ dependencies {
     compile 'org.litepal.android:core:1.6.1'
     // Material Design Search Bar for Android
     compile 'com.github.mancj:MaterialSearchBar:0.7.5'
-    // Banner slider is an easy to use library for implement image sliders in android apps.
-    compile 'com.ss.bannerslider:bannerslider:1.8.0'
-    // Easy implements Header & Footer view, Support LinerLayoutManager, GridLayoutManager, StaggeredLayoutManager, With least modify!
-    compile 'com.songhang:smart-headerfooter-recyclerview:1.0.1'
     // An page indicator for Android ViewPager
     compile 'com.romandanylyk:pageindicatorview:1.0.0@aar'
     // Material Chip view. Can be used as tags for categories, contacts or creating text clouds

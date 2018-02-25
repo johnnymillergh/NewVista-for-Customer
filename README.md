@@ -2,7 +2,7 @@
 
 # New Vista  
 
-**Open-source** Movie ticket booking app, my graduation project.
+**Open-source** Movie ticket booking app, my graduation project. Android client app For Customer (Subsystem of Movie Ticket Management System).
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Download from Google Play"
@@ -25,8 +25,16 @@
 
 ## Specs / Open-source libraries:
 
-- Minimum **SDK 21**, _but AppCompat is used all the way ;-)_
-- [**Glide**](https://github.com/bumptech/glide) for loading images
+- Minimum **SDK 22**, _but AppCompat is used all the way ;-)_
+- [**MyOkHttp**](https://github.com/tsy12321/MyOkHttp) An HTTP & HTTP/2 client for Android and Java applications.
+- [**Glide**](https://github.com/bumptech/glide) An image loading and caching library for Android focused on smooth scrolling.
+- [**Gson**](https://github.com/google/gson) A Java serialization/deserialization library to convert Java Objects into JSON and back.
+- [**LitePal**](https://github.com/LitePalFramework/LitePal) An Android library that makes developers use SQLite database extremely easy.
+- [**MaterialSearchBar**](https://github.com/mancj/MaterialSearchBar) Material Design Search Bar for Android.
+- [**PageIndicatorView**](https://github.com/romandanylyk/PageIndicatorView) An page indicator for Android ViewPager.
+- [**MaterialChipView**](https://github.com/robertlevonyan/materialChipView) Material Chip view. Can be used as tags for categories, contacts or creating text clouds.
+- [**PhotoView**](https://github.com/chrisbanes/PhotoView) Implementation of ImageView for Android that supports zooming, by various touch gestures.
+- [**ExpandableTextView**](https://github.com/Manabu-GT/ExpandableTextView) Android's TextView that can expand/collapse like the Google Play's app description.
 
 ## License
 
@@ -44,7 +52,7 @@
 |:-:|:-:|
 | ![Third](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180221-214010.png) | ![Fourth]() |
 
-## FastHub Logo
+## New Vista Logo
 
 **New Vista** logo is designed by **Johnny Miller**.  
 [Google+]() | [Twitter]()  

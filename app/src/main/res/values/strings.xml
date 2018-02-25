@@ -102,7 +102,7 @@
     <string name="submit">Submit</string>
     <string name="login_prompt">Before you write down a movie review, you should log in first.</string>
     <string name="johnny_miller">Johnny Miller</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="search_bar_hint">Search by title</string>
     <string name="random_picks_title">Random Picks for You</string>
     <string name="surprise">Surprise!</string>
