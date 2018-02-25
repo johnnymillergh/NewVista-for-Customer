@@ -65,14 +65,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:background="@color/md_grey_200_color_code"
             app:layout_constraintBottom_toTopOf="@+id/txtv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/showtime">
 
-            <com.qfdqc.views.seattable.SeatTable
-                android:id="@+id/seatTable"
+            <io.github.lh911002.seatview.seat.SeatView
+                android:id="@+id/seatView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </FrameLayout>
@@ -84,10 +83,10 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:text="Selected seats"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/selectionResultRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/selectionResultRecyclerView"
@@ -105,7 +104,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Confirm"
+            android:onClick="onClickConfirm"
+            android:text="Total: $70, Confirm"
             android:textColor="@color/md_white_color_code"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
