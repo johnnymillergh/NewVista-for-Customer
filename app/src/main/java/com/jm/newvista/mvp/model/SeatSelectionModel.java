@@ -22,6 +22,6 @@ public class SeatSelectionModel extends BaseModel {
 
     @Override
     public void cancel() {
-
+        myOkHttp.cancel(this);
     }
 }
