@@ -311,7 +311,7 @@ public class SeatView extends View {
         if (clickedSeat == null) return false;
         if (currentSelectionCount == maxSelectionCount && clickedSeat.status == Seat.STATUS.SELECTABLE) {
             if (onClickSeatListener != null) {
-                onClickSeatListener.onExceedSMaxSelectionCount(maxSelectionCount);
+                onClickSeatListener.onExceedMaxSelectionCount(maxSelectionCount);
             }
         }
         if (clickedSeat.status == Seat.STATUS.SELECTABLE) {

@@ -9,5 +9,5 @@ public interface OnClickSeatListener {
 
     void lockSeat(Seat selectedSeat);
 
-    void onExceedSMaxSelectionCount(int maxSelectionCount);
+    void onExceedMaxSelectionCount(int maxSelectionCount);
 }

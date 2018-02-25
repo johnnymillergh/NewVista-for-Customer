@@ -100,7 +100,7 @@ public class OnClickSeatSelectionActivity extends AppCompatActivity implements O
     }
 
     @Override
-    public void onExceedSMaxSelectionCount(int maxSelectionCount) {
+    public void onExceedMaxSelectionCount(int maxSelectionCount) {
         Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
     }
 }
