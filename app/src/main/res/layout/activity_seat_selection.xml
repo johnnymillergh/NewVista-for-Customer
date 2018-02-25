@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jm.newvista.ui.activity.SeatSelectionActivity">
+    tools:context="com.jm.newvista.ui.activity.OnClickSeatSelectionActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarMovie"
@@ -173,8 +173,8 @@
             android:background="@color/md_white_color_code"
             android:elevation="2dp"
             android:orientation="vertical"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/frmlo">
 
@@ -187,7 +187,7 @@
                 android:layout_marginStart="16dp"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="Seat not selected"
+                android:text="@string/seat_not_selected"
                 android:textColor="@color/md_black_color_code"
                 android:textSize="18sp"
                 android:textStyle="bold"/>

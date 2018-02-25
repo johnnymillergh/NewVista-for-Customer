@@ -114,5 +114,7 @@
     <string name="available">可选</string>
     <string name="unavailable">已售</string>
     <string name="selected">已选</string>
-    <string name="selected_seats">Selected seats</string>
+    <string name="selected_seats">已选座位：\n</string>
+    <string name="seat_not_selected">未选座位</string>
+    <string name="four_seats_warning">本次选座的个数不能超过</string>
 </resources>

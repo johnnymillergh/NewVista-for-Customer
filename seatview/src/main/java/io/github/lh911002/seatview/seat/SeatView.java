@@ -48,10 +48,12 @@ public class SeatView extends View {
     private double lastFingerDistance = Integer.MAX_VALUE;
     private boolean fingerOnScreen = false;
 
-    private ISeatListener seatClickListener;
+    private OnClickSeatListener onClickSeatListener;
     private String mScreenName = "";
     private HashMap<String, Seat> submitSeats = new HashMap<>();
 
+    private int maxSelectionCount;
+    private int currentSelectionCount;
 
     public SeatView(Context context) {
         super(context);
@@ -66,7 +68,8 @@ public class SeatView extends View {
     }
 
 
-    public void initSeatView(final String screenName, final SeatImages seatImages, final List<SeatRow> seatMap) {
+    public void initSeatView(final String screenName, final SeatImages seatImages, final List<SeatRow> seatMap, int
+            maxSelectionCount) {
 
         ViewTreeObserver vto = getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -81,6 +84,7 @@ public class SeatView extends View {
             }
         });
 
+        this.maxSelectionCount = maxSelectionCount;
     }
 
 
@@ -305,17 +309,26 @@ public class SeatView extends View {
      */
     private boolean checkOrUnCheckSeat(Seat clickedSeat) {
         if (clickedSeat == null) return false;
+        if (currentSelectionCount == maxSelectionCount && clickedSeat.status == Seat.STATUS.SELECTABLE) {
+            if (onClickSeatListener != null) {
+                onClickSeatListener.onExceedSMaxSelectionCount(maxSelectionCount);
+            }
+        }
         if (clickedSeat.status == Seat.STATUS.SELECTABLE) {
+            if (currentSelectionCount == maxSelectionCount) return false;
             clickedSeat.status = Seat.STATUS.SELECTED;
             submitSeats.put(clickedSeat.id, clickedSeat);
-            if (seatClickListener != null) {
-                seatClickListener.lockSeat(clickedSeat);
+            if (onClickSeatListener != null) {
+                onClickSeatListener.lockSeat(clickedSeat);
+                currentSelectionCount++;
             }
+            return true;
         } else if (clickedSeat.status == Seat.STATUS.SELECTED) {
             clickedSeat.status = Seat.STATUS.SELECTABLE;
             submitSeats.remove(clickedSeat.id);
-            if (seatClickListener != null) {
-                seatClickListener.releaseSeat(clickedSeat);
+            if (onClickSeatListener != null) {
+                onClickSeatListener.releaseSeat(clickedSeat);
+                currentSelectionCount--;
             }
             return true;
         }
@@ -323,12 +336,12 @@ public class SeatView extends View {
     }
 
 
-    public ISeatListener getSeatClickListener() {
-        return seatClickListener;
+    public OnClickSeatListener getOnClickSeatListener() {
+        return onClickSeatListener;
     }
 
-    public void setSeatClickListener(ISeatListener seatClickListener) {
-        this.seatClickListener = seatClickListener;
+    public void setOnClickSeatListener(OnClickSeatListener onClickSeatListener) {
+        this.onClickSeatListener = onClickSeatListener;
     }
 
     private RectF getThumbSeatRect(float seatWidth, float seatHeight, float seatGapInLine, float

@@ -115,5 +115,7 @@
     <string name="available">Available</string>
     <string name="unavailable">Unavailable</string>
     <string name="selected">Selected</string>
-    <string name="selected_seats">Selected seats</string>
+    <string name="selected_seats">Selected seats:\n</string>
+    <string name="seat_not_selected">Seat not selected</string>
+    <string name="seats_warning">The selected seat count CANNOT exceed </string>
 </resources>

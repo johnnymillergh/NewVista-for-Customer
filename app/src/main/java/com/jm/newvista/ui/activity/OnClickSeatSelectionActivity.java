@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -8,19 +9,20 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.lh911002.seatview.seat.ISeatListener;
+import io.github.lh911002.seatview.seat.OnClickSeatListener;
 import io.github.lh911002.seatview.seat.Seat;
 import io.github.lh911002.seatview.seat.SeatImages;
 import io.github.lh911002.seatview.seat.SeatRow;
 import io.github.lh911002.seatview.seat.SeatView;
 
-public class SeatSelectionActivity extends AppCompatActivity implements ISeatListener {
+public class OnClickSeatSelectionActivity extends AppCompatActivity implements OnClickSeatListener {
     private Toolbar toolbar;
     private TextView movieTitle;
     private TextView showtime;
@@ -48,8 +50,8 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
         seatSelection.setMovementMethod(ScrollingMovementMethod.getInstance());
         confirm = findViewById(R.id.confirm);
         seatView = findViewById(R.id.seatView);
-        seatView.setSeatClickListener(this);
-        seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap());
+        seatView.setOnClickSeatListener(this);
+        seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap(), 4);
     }
 
     public void onClickConfirm(View view) {
@@ -82,16 +84,23 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
         return seatRows;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void releaseSeat(Seat canceledSeat) {
         seats.remove(canceledSeat);
-        if (seats.size() == 0) seatSelection.setText("Seat not selected");
-        else seatSelection.setText("Seats " + seats);
+        if (seats.size() == 0) seatSelection.setText(getString(R.string.seat_not_selected));
+        else seatSelection.setText(getString(R.string.selected_seats) + seats);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void lockSeat(Seat selectedSeat) {
         seats.add(selectedSeat);
-        seatSelection.setText("Seats " + seats);
+        seatSelection.setText(getString(R.string.selected_seats) + seats);
+    }
+
+    @Override
+    public void onExceedSMaxSelectionCount(int maxSelectionCount) {
+        Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
     }
 }
