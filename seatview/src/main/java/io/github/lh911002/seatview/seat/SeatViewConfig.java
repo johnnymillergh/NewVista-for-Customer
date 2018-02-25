@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Path;
 import android.graphics.RectF;
 
-import java.util.HashMap;
 import java.util.List;
 
 import io.github.lh911002.seatview.R;
