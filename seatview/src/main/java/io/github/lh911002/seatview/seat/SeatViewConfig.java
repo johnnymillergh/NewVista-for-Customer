@@ -245,10 +245,10 @@ public class SeatViewConfig {
     public Path getScreenPath() {
         Path screenPath = new Path();
         float centerX = getScreenCenterX();
-        screenPath.moveTo(centerX - screenWidth / 2, 0);
-        screenPath.lineTo(centerX - screenWidth / 2 + 0.03f * windowWidth, screenHeight);
-        screenPath.lineTo(centerX + screenWidth / 2 - 0.03f * windowWidth, screenHeight);
-        screenPath.lineTo(centerX + screenWidth / 2, 0);
+        screenPath.moveTo(centerX - screenWidth / 1.8f, 0);
+        screenPath.lineTo(centerX - screenWidth / 1.8f + 0.03f * windowWidth, screenHeight);
+        screenPath.lineTo(centerX + screenWidth / 1.8f - 0.03f * windowWidth, screenHeight);
+        screenPath.lineTo(centerX + screenWidth / 1.8f, 0);
         screenPath.close();
         return screenPath;
     }

@@ -56,6 +56,5 @@ dependencies {
     // Android's TextView that can expand/collapse like the Google Play's app description
     compile 'com.ms-square:expandableTextView:0.1.4'
     // A movie seat selection view for Android
-    compile project(path: ':SeatTable')
     implementation project(':seatview')
 }

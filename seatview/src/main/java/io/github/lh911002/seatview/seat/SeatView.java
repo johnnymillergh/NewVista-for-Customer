@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -85,7 +86,7 @@ public class SeatView extends View {
 
     private void initPaint() {
         commonPaint.setAntiAlias(true);
-        screenPaint.setColor(Color.parseColor("#E5E5E5"));
+        screenPaint.setColor(Color.parseColor("#757575"));
         screenPaint.setStyle(Paint.Style.FILL);
         screenPaint.setAntiAlias(true);
         CornerPathEffect cornerPathEffect = new CornerPathEffect(12);
@@ -102,10 +103,11 @@ public class SeatView extends View {
         rowNumPaint.setTextSize(mSeatViewConfig.barTextSize);
 
 
-        centerTextPaint.setColor(Color.parseColor("#202020"));
+        centerTextPaint.setColor(Color.parseColor("#FFFFFF"));
         centerTextPaint.setTextAlign(Paint.Align.CENTER);
         centerTextPaint.setAntiAlias(true);
         centerTextPaint.setTextSize(mSeatViewConfig.centerTextSize);
+        centerTextPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
 
         centerLinePaint.setStyle(Paint.Style.STROKE);
@@ -180,7 +182,7 @@ public class SeatView extends View {
     private void drawCenterLine(Canvas canvas) {
         Path linePath = mSeatViewConfig.getCenterLinePath();
         canvas.drawPath(linePath, centerLinePaint);
-        canvas.drawText(mScreenName + "  银幕", mSeatViewConfig.getScreenCenterX(), mSeatViewConfig
+        canvas.drawText(mScreenName + " SCREEN", mSeatViewConfig.getScreenCenterX(), mSeatViewConfig
                 .screenHeight / 2 + centerTextPaint.getTextSize() / 2 - 4, centerTextPaint);
 
     }
@@ -237,63 +239,63 @@ public class SeatView extends View {
 
     private GestureDetector gestureDetector = new GestureDetector(getContext(), new
             GestureDetector.SimpleOnGestureListener() {
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (mSeatViewConfig != null) {
-                mSeatViewConfig.moveSeatView((int) distanceX, (int) distanceY);
-            }
-            invalidate();
-            return true;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            return super.onFling(e1, e2, velocityX, velocityY);
-        }
-
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent event) {
-            int[] clickedPosition = mSeatViewConfig.getClickedSeat(event.getX(), event.getY());
-            if (clickedPosition != null && lastFingerDistance == Integer.MAX_VALUE) {
-                int rowIndex = clickedPosition[0];
-                int columnIndex = clickedPosition[1];
-                Seat clickedSeat = mSeatViewConfig.seatArray[rowIndex][columnIndex];
-                if (clickedSeat != null) {
-                    checkOrUnCheckSeat(clickedSeat);
-                }
-                invalidate();
-            } else {
-                // click blank area
-            }
-
-
-            if (mSeatViewConfig.seatWidth < mSeatViewConfig.seatMaxWidth && lastFingerDistance ==
-                    Integer.MAX_VALUE) {
-                final float x = event.getX();
-                final float y = event.getY();
-
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        float newSeatWidth = mSeatViewConfig.seatWidth + 8;
-                        newSeatWidth = Math.min(newSeatWidth, mSeatViewConfig.seatMaxWidth);
-
-                        mSeatViewConfig.setSeatWidth(newSeatWidth, x, y);
-                        invalidate();
-                        if (newSeatWidth >= mSeatViewConfig.seatMaxWidth) return;
-                        postDelayed(this, 10);
+                @Override
+                public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                    if (mSeatViewConfig != null) {
+                        mSeatViewConfig.moveSeatView((int) distanceX, (int) distanceY);
                     }
-                }, 20);
+                    invalidate();
+                    return true;
+                }
 
-            }
-            return super.onSingleTapUp(event);
-        }
-    });
+                @Override
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                    return super.onFling(e1, e2, velocityX, velocityY);
+                }
+
+                @Override
+                public boolean onDown(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public boolean onSingleTapUp(MotionEvent event) {
+                    int[] clickedPosition = mSeatViewConfig.getClickedSeat(event.getX(), event.getY());
+                    if (clickedPosition != null && lastFingerDistance == Integer.MAX_VALUE) {
+                        int rowIndex = clickedPosition[0];
+                        int columnIndex = clickedPosition[1];
+                        Seat clickedSeat = mSeatViewConfig.seatArray[rowIndex][columnIndex];
+                        if (clickedSeat != null) {
+                            checkOrUnCheckSeat(clickedSeat);
+                        }
+                        invalidate();
+                    } else {
+                        // click blank area
+                    }
+
+
+                    if (mSeatViewConfig.seatWidth < mSeatViewConfig.seatMaxWidth && lastFingerDistance ==
+                            Integer.MAX_VALUE) {
+                        final float x = event.getX();
+                        final float y = event.getY();
+
+                        postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                float newSeatWidth = mSeatViewConfig.seatWidth + 8;
+                                newSeatWidth = Math.min(newSeatWidth, mSeatViewConfig.seatMaxWidth);
+
+                                mSeatViewConfig.setSeatWidth(newSeatWidth, x, y);
+                                invalidate();
+                                if (newSeatWidth >= mSeatViewConfig.seatMaxWidth) return;
+                                postDelayed(this, 10);
+                            }
+                        }, 20);
+
+                    }
+                    return super.onSingleTapUp(event);
+                }
+            });
 
     /**
      * 选座或者取消选座

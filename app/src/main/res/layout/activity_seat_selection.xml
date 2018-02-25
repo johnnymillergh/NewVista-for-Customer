@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
-            app:title="Seat selection"
+            app:title="Theater name here"
             app:titleTextColor="@color/colorTextOnPrimary"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -32,85 +32,193 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/movieTitle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/lnrlo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/movie_title_sample"
-            android:textColor="@color/md_black_color_code"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:background="@color/md_white_color_code"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="4dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/showtime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:text="2018-01-15 10:20:00"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movieTitle"/>
+            <TextView
+                android:id="@+id/movieTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/movie_title_sample"
+                android:textColor="@color/md_black_color_code"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/showtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/showtime_sample"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movieTitle"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/md_grey_300_color_code"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:background="@color/md_grey_500_color_code"
+                    android:elevation="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/movies_seat_normal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/available"
+                    android:textColor="@color/availableFontColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:background="@color/md_grey_500_color_code"
+                    android:elevation="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/movies_seat_lock"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/unavailable"
+                    android:textColor="@color/unavailableFontColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:background="@color/md_grey_500_color_code"
+                    android:elevation="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/movies_seat_checked"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/selected"
+                    android:textColor="@color/selectedFontColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/frml"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/txtv"
+            android:background="@color/md_grey_200_color_code"
+            app:layout_constraintBottom_toTopOf="@+id/selectionResultContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/showtime">
+            app:layout_constraintTop_toBottomOf="@+id/lnrlo">
 
             <io.github.lh911002.seatview.seat.SeatView
                 android:id="@+id/seatView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/txtv"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/selectionResultContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:text="Selected seats"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/selectionResultRecyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:background="@color/md_white_color_code"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/frmlo">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/selectionResultRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/confirm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/txtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/selected_seats"
+                android:textColor="@color/md_black_color_code"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/confirm"
-            android:layout_width="0dp"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/selectionResultRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frmlo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:onClick="onClickConfirm"
-            android:text="Total: $70, Confirm"
-            android:textColor="@color/md_white_color_code"
-            android:textSize="18sp"
+            android:background="@color/md_white_color_code"
+            android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="onClickConfirm"
+                android:text="Total: $70, Confirm"
+                android:textColor="@color/md_white_color_code"
+                android:textSize="18sp"/>
+        </FrameLayout>
 
     </android.support.constraint.ConstraintLayout>
 

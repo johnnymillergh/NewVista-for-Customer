@@ -4,13 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.jm.newvista.R;
-import com.qfdqc.views.seattable.SeatTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +27,13 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
     private Toolbar toolbar;
     private TextView movieTitle;
     private TextView showtime;
-    private SeatTable seatTable;
+    private LinearLayout selectionResultContainer;
     private RecyclerView selectionResultRecyclerView;
     private Button confirm;
     private SeatView seatView;
+
+    private Animation selectionResultContainerInAnimation;
+    private Animation selectionResultContainerOutAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +46,17 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
         toolbar = findViewById(R.id.toolbar);
         movieTitle = findViewById(R.id.movieTitle);
         showtime = findViewById(R.id.showtime);
-//        seatTable.findViewById(R.id.seatTable);
+        selectionResultContainer = findViewById(R.id.selectionResultContainer);
         selectionResultRecyclerView = findViewById(R.id.selectionResultRecyclerView);
         confirm = findViewById(R.id.confirm);
         seatView = findViewById(R.id.seatView);
         seatView.setSeatClickListener(this);
-        seatView.initSeatView("Github", new SeatImages(getResources()), querySeatMap());
+        seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap());
+
+        selectionResultContainerInAnimation = AnimationUtils
+                .loadAnimation(this, R.anim.seat_selection_result_in);//加载
+        selectionResultContainerOutAnimation = AnimationUtils
+                .loadAnimation(this, R.anim.seat_selection_result_out);//加载
     }
 
     public void onClickConfirm(View view) {
@@ -55,7 +65,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
 
     private List<SeatRow> querySeatMap() {
         List<SeatRow> seatRows = new ArrayList<>();
-        for (int rowCount = 0; rowCount < 26; rowCount++) {
+        for (int rowCount = 0; rowCount < 20; rowCount++) {
             SeatRow seatRow = new SeatRow();
             seatRow.rowName = String.valueOf(rowCount);
             List<Seat> seats = new ArrayList<>();
@@ -70,7 +80,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
                 if (rowCount == 3 && colCount == 8) {
                     seat.status = Seat.STATUS.SELECTED;
                 }
-                if (colCount == 5 & rowCount != 10) {
+                if (colCount == 5 & rowCount != 5) {
                     seat.status = Seat.STATUS.UNSELECTABLE;
                 }
                 seat.id = String.valueOf(seat);
