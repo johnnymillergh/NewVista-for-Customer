@@ -161,8 +161,8 @@
 
             <io.github.lh911002.seatview.seat.SeatView
                 android:id="@+id/seatView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 />
         </FrameLayout>
 
@@ -173,28 +173,24 @@
             android:background="@color/md_white_color_code"
             android:elevation="2dp"
             android:orientation="vertical"
+            android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/frmlo">
 
+
             <TextView
-                android:id="@+id/txtv"
+                android:id="@+id/seatSelection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:text="@string/selected_seats"
+                android:lines="2"
+                android:maxLines="2"
+                android:text="Seat not selected"
                 android:textColor="@color/md_black_color_code"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/selectionResultRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="visible">
-
-            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
         <FrameLayout

@@ -24,6 +24,6 @@ public class Seat {
 
     @Override
     public String toString() {
-        return "[" + rowName + ", " + columnName + "]";
+        return "[" + RowNameUtil.numToAlphabet.get(rowName) + columnName + "]";
     }
 }

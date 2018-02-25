@@ -2,14 +2,11 @@ package com.jm.newvista.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.jm.newvista.R;
@@ -28,12 +25,11 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
     private TextView movieTitle;
     private TextView showtime;
     private LinearLayout selectionResultContainer;
-    private RecyclerView selectionResultRecyclerView;
+    private TextView seatSelection;
     private Button confirm;
     private SeatView seatView;
 
-    private Animation selectionResultContainerInAnimation;
-    private Animation selectionResultContainerOutAnimation;
+    private List<Seat> seats = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +43,13 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
         movieTitle = findViewById(R.id.movieTitle);
         showtime = findViewById(R.id.showtime);
         selectionResultContainer = findViewById(R.id.selectionResultContainer);
-        selectionResultRecyclerView = findViewById(R.id.selectionResultRecyclerView);
+        seatSelection = findViewById(R.id.seatSelection);
+        seatSelection.setVerticalFadingEdgeEnabled(true);
+        seatSelection.setMovementMethod(ScrollingMovementMethod.getInstance());
         confirm = findViewById(R.id.confirm);
         seatView = findViewById(R.id.seatView);
         seatView.setSeatClickListener(this);
         seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap());
-
-        selectionResultContainerInAnimation = AnimationUtils
-                .loadAnimation(this, R.anim.seat_selection_result_in);//加载
-        selectionResultContainerOutAnimation = AnimationUtils
-                .loadAnimation(this, R.anim.seat_selection_result_out);//加载
     }
 
     public void onClickConfirm(View view) {
@@ -77,9 +70,6 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
                 } else {
                     seat.status = Seat.STATUS.SELECTABLE;
                 }
-                if (rowCount == 3 && colCount == 8) {
-                    seat.status = Seat.STATUS.SELECTED;
-                }
                 if (colCount == 5 & rowCount != 5) {
                     seat.status = Seat.STATUS.UNSELECTABLE;
                 }
@@ -94,13 +84,14 @@ public class SeatSelectionActivity extends AppCompatActivity implements ISeatLis
 
     @Override
     public void releaseSeat(Seat canceledSeat) {
-        Toast.makeText(this, "已选" + seatView.getSubmitSeats().size() + "个座位: " + canceledSeat, Toast
-                .LENGTH_SHORT).show();
+        seats.remove(canceledSeat);
+        if (seats.size() == 0) seatSelection.setText("Seat not selected");
+        else seatSelection.setText("Seats " + seats);
     }
 
     @Override
     public void lockSeat(Seat selectedSeat) {
-        Toast.makeText(this, "已选" + seatView.getSubmitSeats().size() + "个座位: " + selectedSeat, Toast
-                .LENGTH_SHORT).show();
+        seats.add(selectedSeat);
+        seatSelection.setText("Seats " + seats);
     }
 }
