@@ -2,10 +2,11 @@ package com.jm.newvista.bean;
 
 import org.litepal.crud.DataSupport;
 
-public class TheaterEntity  extends DataSupport {
+public class TheaterEntity extends DataSupport {
     private int id;
     private String name;
     private String location;
+    private byte[] logo;
 
     public int getId() {
         return id;
@@ -29,5 +30,13 @@ public class TheaterEntity  extends DataSupport {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
     }
 }
