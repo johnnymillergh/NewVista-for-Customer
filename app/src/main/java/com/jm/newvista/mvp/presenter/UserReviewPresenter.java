@@ -30,22 +30,26 @@ public class UserReviewPresenter extends BasePresenter<UserReviewModel, UserRevi
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onSuccess(final List<UserReviewEntity> userReviews) {
-                new AsyncTask<Void, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        try {
-                            Thread.sleep(1000 * 3);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                if (userReviews.size() != 0) {
+                    new AsyncTask<Void, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            try {
+                                Thread.sleep(1000 * 3);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            return null;
                         }
-                        return null;
-                    }
 
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        userReviewView.onSetUserReviewList(userReviews);
-                    }
-                }.execute();
+                        @Override
+                        protected void onPostExecute(Void aVoid) {
+                            userReviewView.onSetUserReviewList(userReviews);
+                        }
+                    }.execute();
+                } else {
+                    userReviewView.onSetUserReviewList(userReviews);
+                }
             }
 
             @Override
