@@ -62,6 +62,8 @@
             android:exported="true">
         </service>
 
+        <activity android:name=".ui.activity.MovieScheduleActivity">
+        </activity>
     </application>
 
 </manifest>

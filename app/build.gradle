@@ -58,7 +58,7 @@ dependencies {
     // A movie seat selection view for Android
     implementation project(':seatview')
     // A simple layout with holes and separator
-    compile('com.github.santalu:ticket-view:1.0.1'){
+    compile('com.github.santalu:ticket-view:1.0.1') {
         exclude group: "com.android.support"
     }
 }
