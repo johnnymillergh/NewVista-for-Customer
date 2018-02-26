@@ -63,7 +63,13 @@ public class MovieActivity
         setContentView(R.layout.activity_movie);
         initView();
         getPresenter().getAndDisplayMovie();
-        initFragment();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus) {
+            initFragment();
+        }
     }
 
     private void initFragment() {
