@@ -9,8 +9,11 @@ import java.sql.Timestamp;
 public class MovieScheduleEntity  extends DataSupport {
     private int id;
     private int movieId;
-    private int auditoriumId;
+    private String movieTitle;
     private int auditoriumTheaterId;
+    private String theaterName;
+    private int auditoriumId;
+    private String auditoriumName;
     private float price;
     private Timestamp showtime;
     private Date dateOfShow;
@@ -32,12 +35,12 @@ public class MovieScheduleEntity  extends DataSupport {
         this.movieId = movieId;
     }
 
-    public int getAuditoriumId() {
-        return auditoriumId;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public void setAuditoriumId(int auditoriumId) {
-        this.auditoriumId = auditoriumId;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public int getAuditoriumTheaterId() {
@@ -46,6 +49,30 @@ public class MovieScheduleEntity  extends DataSupport {
 
     public void setAuditoriumTheaterId(int auditoriumTheaterId) {
         this.auditoriumTheaterId = auditoriumTheaterId;
+    }
+
+    public String getTheaterName() {
+        return theaterName;
+    }
+
+    public void setTheaterName(String theaterName) {
+        this.theaterName = theaterName;
+    }
+
+    public int getAuditoriumId() {
+        return auditoriumId;
+    }
+
+    public void setAuditoriumId(int auditoriumId) {
+        this.auditoriumId = auditoriumId;
+    }
+
+    public String getAuditoriumName() {
+        return auditoriumName;
+    }
+
+    public void setAuditoriumName(String auditoriumName) {
+        this.auditoriumName = auditoriumName;
     }
 
     public float getPrice() {
