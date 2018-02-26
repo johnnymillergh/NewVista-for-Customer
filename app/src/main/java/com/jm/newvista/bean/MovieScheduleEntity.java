@@ -17,8 +17,8 @@ public class MovieScheduleEntity  extends DataSupport {
     private String location;
     private float price;
     private Timestamp showtime;
-    private Date dateOfShow;
-    private Time timeOfShow;
+//    private Date dateOfShow;
+//    private Time timeOfShow;
 
     public int getId() {
         return id;
@@ -100,21 +100,21 @@ public class MovieScheduleEntity  extends DataSupport {
         this.showtime = showtime;
     }
 
-    public Date getDateOfShow() {
-        return dateOfShow;
-    }
-
-    public void setDateOfShow(Date dateOfShow) {
-        this.dateOfShow = dateOfShow;
-    }
-
-    public Time getTimeOfShow() {
-        return timeOfShow;
-    }
-
-    public void setTimeOfShow(Time timeOfShow) {
-        this.timeOfShow = timeOfShow;
-    }
+//    public Date getDateOfShow() {
+//        return dateOfShow;
+//    }
+//
+//    public void setDateOfShow(Date dateOfShow) {
+//        this.dateOfShow = dateOfShow;
+//    }
+//
+//    public Time getTimeOfShow() {
+//        return timeOfShow;
+//    }
+//
+//    public void setTimeOfShow(Time timeOfShow) {
+//        this.timeOfShow = timeOfShow;
+//    }
 
     @Override
     public String toString() {

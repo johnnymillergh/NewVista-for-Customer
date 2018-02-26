@@ -19,5 +19,6 @@ public class NetworkUtil {
     public static final String USER_REVIEW_MANAGEMENT_URL = "http://johnnymiller.site/servlet.customer.UserReviewManagement";
     public static final String ORDER_URL = "http://johnnymiller.site/servlet.customer.Order";
     public static final String GET_TOP_MOVIE_URL = "http://johnnymiller.site/servlet.customer.GetTopMovie";
+    public static final String GET_MOVIE_SCHEDULE_URL = "http://johnnymiller.site/servlet.customer.GetMovieSchedule";
     public static final String GET_THEATER_LOGO_URL = "http://johnnymiller.site/getTheaterLogo.jsp";
 }

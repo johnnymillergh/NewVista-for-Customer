@@ -120,7 +120,9 @@ public class MovieActivity
     }
 
     public void onClickOrder(View view) {
-        Toast.makeText(this, "onClickOrder", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MovieScheduleActivity.class);
+        intent.putExtra("movieTitle", currentMovieEntity.getTitle());
+        startActivity(intent);
     }
 
     public void onClickReadMore(View view) {
