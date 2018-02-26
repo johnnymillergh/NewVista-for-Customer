@@ -42,10 +42,10 @@
     <string name="new_movie_releases">New Movie Releases</string>
     <string name="new_movie_subtitle">Watch all the big hits</string>
     <string name="more">More</string>
-    <string name="movie_title_sample">Transformers: The Last Knight (2017)</string>
-    <string name="genre_sample">Sci-Fi, Fantasy, Action</string>
-    <string name="duration_sample">2h 34min</string>
-    <string name="description_sample">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
+    <string name="movie_title_sample" translatable="false">Transformers: The Last Knight (2017)</string>
+    <string name="genre_sample" translatable="false">Sci-Fi, Fantasy, Action</string>
+    <string name="duration_sample" translatable="false">2h 34min</string>
+    <string name="description_sample" translatable="false">Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.</string>
     <string name="log_in_success">Login success</string>
     <string name="log_in_failure">Login failure</string>
     <string name="quick_access">Quick Access</string>
@@ -68,11 +68,11 @@
     <string name="sign_out_success">Sign out success</string>
     <string name="sign_out_failure">Sign out failure</string>
     <string name="app_editor">Johnny Miller</string>
-    <string name="email_sample">android@google.com</string>
-    <string name="release_date_sample">June 21, 2017</string>
+    <string name="email_sample" translatable="false">android@google.com</string>
+    <string name="release_date_sample" translatable="false">June 21, 2017</string>
     <string name="order_ticket">Order From $</string>
-    <string name="director_sample">Micheal Bay</string>
-    <string name="stars_sample">Mark Wahlberg, Anthony Hopkins, Josh Duhamel</string>
+    <string name="director_sample" translatable="false">Micheal Bay</string>
+    <string name="stars_sample" translatable="false">Mark Wahlberg, Anthony Hopkins, Josh Duhamel</string>
     <string name="storyline">Storyline</string>
     <string name="read_more">Read more</string>
     <string name="cast_amp_credits"><![CDATA[CAST & CREDITS]]></string>
@@ -83,16 +83,16 @@
     <string name="back">Back</string>
     <string name="transition_poster" translatable="false">1</string>
     <string name="country">Country</string>
-    <string name="country_sample">China, Canada, USA</string>
+    <string name="country_sample" translatable="false">China, Canada, USA</string>
     <string name="language">Language</string>
-    <string name="language_sample">English</string>
+    <string name="language_sample" translatable="false">English</string>
     <string name="release_date">Release Date</string>
     <string name="filming_location">Filming Location</string>
-    <string name="filming_location_sample">Michigan Motion Picture Studios, 1999 Centerpoint Parkway, Pontiac, Michigan, USA</string>
+    <string name="filming_location_sample" translatable="false">Michigan Motion Picture Studios, 1999 Centerpoint Parkway, Pontiac, Michigan, USA</string>
     <string name="runtime">Runtime</string>
-    <string name="runtime_sample">154 min</string>
+    <string name="runtime_sample" translatable="false">154 min</string>
     <string name="aspect_ratio">Aspect Ratio</string>
-    <string name="aspect_ratio_sample">1.90 : 1</string>
+    <string name="aspect_ratio_sample" translatable="false">1.90 : 1</string>
     <string name="rate_this_movie">Rate this movie</string>
     <string name="review_title">Review title here</string>
     <string name="your_review">Your review here</string>
@@ -101,7 +101,7 @@
     <string name="no">No</string>
     <string name="submit">Submit</string>
     <string name="login_prompt">Before you write down a movie review, you should log in first.</string>
-    <string name="johnny_miller">Johnny Miller</string>
+    <string name="johnny_miller" translatable="false">Johnny Miller</string>
     <string name="loading">Loading…</string>
     <string name="search_bar_hint">Search by title</string>
     <string name="random_picks_title">Random Picks for You</string>
@@ -111,11 +111,16 @@
     <string name="warning_spoilers">Warning: Spoilers</string>
     <string name="full_scores" translatable="false">/10</string>
     <string name="account">Account</string>
-    <string name="showtime_sample">2018-01-15 10:20:00</string>
+    <string name="showtime_sample" translatable="false">2018-01-15 10:20:00</string>
     <string name="available">Available</string>
     <string name="unavailable">Unavailable</string>
     <string name="selected">Selected</string>
     <string name="selected_seats">Selected seats:\n</string>
     <string name="seat_not_selected">Seat not selected</string>
     <string name="seats_warning">The selected seat count CANNOT exceed&#160;</string>
+    <string name="theater_name_sample" translatable="false">AMC Century City 15</string>
+    <string name="theater_location_sample" translatable="false">10250 Santa Monica Blvd Ste 2000, Los Angeles, CA 90067</string>
+    <string name="from">From</string>
+    <string name="currency">$</string>
+    <string name="price_sample" translatable="false">35</string>
 </resources>

@@ -14,6 +14,7 @@ public class MovieScheduleEntity  extends DataSupport {
     private String theaterName;
     private int auditoriumId;
     private String auditoriumName;
+    private String location;
     private float price;
     private Timestamp showtime;
     private Date dateOfShow;
@@ -73,6 +74,14 @@ public class MovieScheduleEntity  extends DataSupport {
 
     public void setAuditoriumName(String auditoriumName) {
         this.auditoriumName = auditoriumName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public float getPrice() {

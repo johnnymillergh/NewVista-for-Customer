@@ -26,14 +26,13 @@ import java.util.List;
 
 public class SearchResultRecyclerViewAdapter
         extends RecyclerView.Adapter<SearchResultRecyclerViewAdapter.MyViewHolder> {
+    private Context context;
+    private List<MovieEntity> searchResultList;
     private Activity activity;
 
     public SearchResultRecyclerViewAdapter(Activity activity) {
         this.activity = activity;
     }
-
-    private Context context;
-    private List<MovieEntity> searchResultList;
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
