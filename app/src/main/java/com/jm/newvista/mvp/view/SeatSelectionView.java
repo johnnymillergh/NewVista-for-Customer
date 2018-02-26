@@ -7,4 +7,7 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface SeatSelectionView extends BaseView {
+    void onUpdateBasicInfo();
+
+    void onUpdateSeatView();
 }

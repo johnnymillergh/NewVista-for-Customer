@@ -12,6 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.mvp.model.SeatSelectionModel;
+import com.jm.newvista.mvp.presenter.SeatSelectionPresenter;
+import com.jm.newvista.mvp.view.SeatSelectionView;
+import com.jm.newvista.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +26,11 @@ import io.github.lh911002.seatview.seat.SeatImages;
 import io.github.lh911002.seatview.seat.SeatRow;
 import io.github.lh911002.seatview.seat.SeatView;
 
-public class OnClickSeatSelectionActivity extends AppCompatActivity implements OnClickSeatListener {
+public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel,SeatSelectionView,SeatSelectionPresenter>
+        implements SeatSelectionView, OnClickSeatListener {
     private Toolbar toolbar;
     private TextView movieTitle;
     private TextView showtime;
-    private LinearLayout selectionResultContainer;
     private TextView seatSelection;
     private Button confirm;
     private SeatView seatView;
@@ -44,7 +48,6 @@ public class OnClickSeatSelectionActivity extends AppCompatActivity implements O
         toolbar = findViewById(R.id.toolbar);
         movieTitle = findViewById(R.id.movieTitle);
         showtime = findViewById(R.id.showtime);
-        selectionResultContainer = findViewById(R.id.selectionResultContainer);
         seatSelection = findViewById(R.id.seatSelection);
         seatSelection.setVerticalFadingEdgeEnabled(true);
         seatSelection.setMovementMethod(ScrollingMovementMethod.getInstance());
@@ -84,6 +87,16 @@ public class OnClickSeatSelectionActivity extends AppCompatActivity implements O
         return seatRows;
     }
 
+    @Override
+    public SeatSelectionView createView() {
+        return this;
+    }
+
+    @Override
+    public SeatSelectionPresenter createPresenter() {
+        return new SeatSelectionPresenter();
+    }
+
     @SuppressLint("SetTextI18n")
     @Override
     public void releaseSeat(Seat canceledSeat) {
@@ -102,5 +115,15 @@ public class OnClickSeatSelectionActivity extends AppCompatActivity implements O
     @Override
     public void onExceedMaxSelectionCount(int maxSelectionCount) {
         Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUpdateBasicInfo() {
+
+    }
+
+    @Override
+    public void onUpdateSeatView() {
+
     }
 }

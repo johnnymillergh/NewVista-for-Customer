@@ -17,6 +17,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.UserReviewEntity;
 import com.jm.newvista.util.NetworkUtil;
+import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -97,7 +98,7 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
         TextView datetime;
         TextView isSpoilers;
         TextView title;
-        TextView text;
+        ExpandableTextView text;
 
         MyViewHolder(View itemView) {
             super(itemView);
