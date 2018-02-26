@@ -1,5 +1,7 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.jm.newvista.bean.UserReviewEntity;
@@ -25,10 +27,25 @@ public class UserReviewPresenter extends BasePresenter<UserReviewModel, UserRevi
     public void getAndDisplayUserReview(String movieTitle) {
         userReviewView = getView();
         userReviewModel.getUserReview(movieTitle, new UserReviewModel.GetUserReviewListener() {
+            @SuppressLint("StaticFieldLeak")
             @Override
-            public void onSuccess(List<UserReviewEntity> userReviews) {
-                userReviewView.onSetUserReviewList(userReviews);
-                Log.v("UserReviewFragment", userReviews.size() + "");
+            public void onSuccess(final List<UserReviewEntity> userReviews) {
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        try {
+                            Thread.sleep(1000 * 3);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        userReviewView.onSetUserReviewList(userReviews);
+                    }
+                }.execute();
             }
 
             @Override
