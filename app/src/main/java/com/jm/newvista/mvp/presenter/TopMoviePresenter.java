@@ -41,19 +41,19 @@ public class TopMoviePresenter extends BasePresenter<TopMovieModel, TopMovieView
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onFinishLoadingPoster(final TopMovieEntity entity) {
-                final HashMap<Integer, byte[]> topMoviePoster = topMovieView.getViewPagerAdapter().getTopMoviePoster();
-                new AsyncTask<Void, Void, byte[]>() {
-                    @Override
-                    protected byte[] doInBackground(Void... voids) {
-                        return ImageUtil.decode(entity.getPosterStr());
-                    }
-
-                    @Override
-                    protected void onPostExecute(byte[] bytes) {
-                        topMoviePoster.put(entity.getId(), bytes);
-                        topMovieView.getViewPagerAdapter().notifyDataSetChanged();
-                    }
-                }.execute();
+//                final HashMap<Integer, byte[]> topMoviePoster = topMovieView.getViewPagerAdapter().getTopMoviePoster();
+//                new AsyncTask<Void, Void, byte[]>() {
+//                    @Override
+//                    protected byte[] doInBackground(Void... voids) {
+//                        return ImageUtil.decode(entity.getPosterStr());
+//                    }
+//
+//                    @Override
+//                    protected void onPostExecute(byte[] bytes) {
+//                        topMoviePoster.put(entity.getId(), bytes);
+//                        topMovieView.getViewPagerAdapter().notifyDataSetChanged();
+//                    }
+//                }.execute();
             }
         });
     }

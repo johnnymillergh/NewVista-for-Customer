@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.MovieScheduleModel;
@@ -35,7 +36,6 @@ public class MovieScheduleActivity
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setSubtitle(R.string.movie_schedule);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -75,7 +75,7 @@ public class MovieScheduleActivity
 
     @Override
     public void onSetToolBarTitle(String toolBarTitle) {
-        toolbar.setTitle(toolBarTitle);
+        toolbar.setSubtitle(toolBarTitle);
     }
 
     @Override

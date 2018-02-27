@@ -3,10 +3,8 @@ package com.jm.newvista.ui.adapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,12 +13,11 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
-import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.activity.MovieActivity;
+import com.jm.newvista.util.NetworkUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +41,12 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
     public Object instantiateItem(ViewGroup container, final int position) {
         if (context == null) {
             context = container.getContext();
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Glide.get(context).clearDiskCache();
+//                }
+//            }).start();
         }
         final View view = LayoutInflater.from(context).inflate(R.layout.item_top_movie, container, false);
         topMovieCardView = view.findViewById(R.id.topMovieCardView);
@@ -51,13 +54,15 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
         topMovieTextView = view.findViewById(R.id.topMovieTitle);
         if (topMovieTitles.size() == 5) {
             topMovieTextView.setText(topMovieTitles.get(position));
+            Glide.with(context).load("http:192.168.123.217/getTopMoviePoster.jsp?movieTitle=" + topMovieTitles.get
+                    (position)).transition(withCrossFade()).into(topMovieImageView);
         }
-        if (topMoviePoster.size() == 5) {
-            Log.v("instantiateItem", position + "");
-            byte[] bytes = topMoviePoster.get(position + 1);
-            Log.v("instantiateItem", bytes.length + "");
-            Glide.with(view).load(bytes).transition(withCrossFade()).into(topMovieImageView);
-        }
+//        if (topMoviePoster.size() == 5) {
+//            Log.v("instantiateItem", position + "");
+//            byte[] bytes = topMoviePoster.get(position + 1);
+//            Log.v("instantiateItem", bytes.length + "");
+//            Glide.with(view).load(bytes).transition(withCrossFade()).into(topMovieImageView);
+//        }
         topMovieCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

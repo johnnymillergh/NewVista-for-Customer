@@ -20,6 +20,7 @@
             android:theme="@style/BaseToolBarTheme"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
+            app:title="@string/movie_schedule"
             app:titleTextColor="@color/colorTextOnPrimary"/>
     </android.support.design.widget.AppBarLayout>
 
