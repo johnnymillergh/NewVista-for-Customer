@@ -33,6 +33,7 @@ public class MovieScheduleActivity
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setSubtitle(R.string.movie_schedule);
         movieScheduleRecyclerView = findViewById(R.id.movieScheduleRecyclerView);
         movieScheduleRecyclerViewAdapter = new MovieScheduleRecyclerViewAdapter();
         movieScheduleRecyclerView.setAdapter(movieScheduleRecyclerViewAdapter);

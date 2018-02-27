@@ -32,7 +32,6 @@ public class MovieScheduleModel extends BaseModel {
         myOkHttp.post().url(NetworkUtil.GET_MOVIE_SCHEDULE_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
-                Log.v("onSuccess", response);
                 List<MovieScheduleEntity> entities = new Gson().fromJson(response,
                         new TypeToken<List<MovieScheduleEntity>>() {
                         }.getType());

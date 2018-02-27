@@ -123,4 +123,5 @@
     <string name="from">From</string>
     <string name="currency">$</string>
     <string name="price_sample" translatable="false">35</string>
+    <string name="movie_schedule">Movie Schedule</string>
 </resources>

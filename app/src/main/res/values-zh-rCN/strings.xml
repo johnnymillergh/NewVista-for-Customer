@@ -104,4 +104,5 @@
     <string name="seats_warning">本次选座的个数不能超过</string>
     <string name="from">最低价</string>
     <string name="currency">￥</string>
+    <string name="movie_schedule">排片档期</string>
 </resources>
