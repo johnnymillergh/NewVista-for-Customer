@@ -18,6 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:theme="@style/BaseToolBarTheme"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
             app:titleTextColor="@color/colorTextOnPrimary"/>

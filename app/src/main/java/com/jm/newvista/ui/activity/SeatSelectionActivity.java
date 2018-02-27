@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -46,6 +47,17 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel,SeatS
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         movieTitle = findViewById(R.id.movieTitle);
         showtime = findViewById(R.id.showtime);
         seatSelection = findViewById(R.id.seatSelection);

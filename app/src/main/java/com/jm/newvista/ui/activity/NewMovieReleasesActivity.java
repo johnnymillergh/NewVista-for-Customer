@@ -1,9 +1,11 @@
 package com.jm.newvista.ui.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.NewMovieReleasesActivityModel;
@@ -30,6 +32,17 @@ public class NewMovieReleasesActivity
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         newMovieReleasesRecyclerView = findViewById(R.id.newMovieReleasesRecyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

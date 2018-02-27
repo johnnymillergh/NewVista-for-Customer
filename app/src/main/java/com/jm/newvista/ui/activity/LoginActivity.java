@@ -41,7 +41,6 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

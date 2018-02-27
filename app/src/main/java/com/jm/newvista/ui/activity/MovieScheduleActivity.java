@@ -2,9 +2,11 @@ package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
@@ -34,6 +36,17 @@ public class MovieScheduleActivity
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setSubtitle(R.string.movie_schedule);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         movieScheduleRecyclerView = findViewById(R.id.movieScheduleRecyclerView);
         movieScheduleRecyclerViewAdapter = new MovieScheduleRecyclerViewAdapter();
         movieScheduleRecyclerView.setAdapter(movieScheduleRecyclerViewAdapter);
