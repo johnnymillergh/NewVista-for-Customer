@@ -113,9 +113,9 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
 
     @Override
     public void onSetUserReviewList(List<UserReviewEntity> userReviews) {
+        mListener.onFinishRefreshing();
         userReviewRecyclerViewAdapter.setUserReviews(userReviews);
         userReviewRecyclerViewAdapter.notifyDataSetChanged();
-        mListener.onFinishRefreshing();
     }
 
     @Override
