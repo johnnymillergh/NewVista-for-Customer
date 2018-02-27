@@ -41,12 +41,6 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
     public Object instantiateItem(ViewGroup container, final int position) {
         if (context == null) {
             context = container.getContext();
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Glide.get(context).clearDiskCache();
-//                }
-//            }).start();
         }
         final View view = LayoutInflater.from(context).inflate(R.layout.item_top_movie, container, false);
         topMovieCardView = view.findViewById(R.id.topMovieCardView);
@@ -54,15 +48,9 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
         topMovieTextView = view.findViewById(R.id.topMovieTitle);
         if (topMovieTitles.size() == 5) {
             topMovieTextView.setText(topMovieTitles.get(position));
-            Glide.with(context).load("http:192.168.123.217/getTopMoviePoster.jsp?movieTitle=" + topMovieTitles.get
+            Glide.with(context).load(NetworkUtil.GET_TOP_MOVIE_POSTER_URL + "?movieTitle=" + topMovieTitles.get
                     (position)).transition(withCrossFade()).into(topMovieImageView);
         }
-//        if (topMoviePoster.size() == 5) {
-//            Log.v("instantiateItem", position + "");
-//            byte[] bytes = topMoviePoster.get(position + 1);
-//            Log.v("instantiateItem", bytes.length + "");
-//            Glide.with(view).load(bytes).transition(withCrossFade()).into(topMovieImageView);
-//        }
         topMovieCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
