@@ -35,6 +35,10 @@
         <item name="android:windowBackground">@color/md_black_color_code</item>
     </style>
 
+    <style name="BaseToolBarTheme">
+        <item name="colorControlNormal">#ffffff</item>
+    </style>
+
     <style name="Button.Borderless.Small.ColorPrimary" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:minHeight">48dip</item>

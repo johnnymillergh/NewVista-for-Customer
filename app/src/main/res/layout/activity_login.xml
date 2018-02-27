@@ -15,7 +15,7 @@
         android:layout_height="224dp"
         android:background="?attr/colorPrimary"
         android:elevation="6dp"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/BaseToolBarTheme"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layoutAnimation="@anim/animation_layout_from_bottom_to_top"
             android:orientation="vertical"
-            android:paddingLeft="32dp"
             android:paddingRight="32dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp">

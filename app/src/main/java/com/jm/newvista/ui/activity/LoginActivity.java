@@ -2,6 +2,8 @@ package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -17,6 +19,7 @@ import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.util.ApplicationUtil;
 
 public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPresenter> implements LoginView {
+    private Toolbar toolbar;
     private EditText email;
     private EditText password;
     private EditText serverIp;
@@ -27,12 +30,25 @@ public class LoginActivity extends BaseActivity<LoginModel, LoginView, LoginPres
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        initialView();
+        initView();
         onNotifyPresenterToAutofill();
         Log.v("LoginActivity", (getPresenter().getView() == null) + "");
     }
 
-    private void initialView() {
+    private void initView() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         serverIp = findViewById(R.id.serverIp);
