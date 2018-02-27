@@ -56,6 +56,7 @@ public class MovieActivity
     private FrameLayout userReviewContainer;
 
     private MovieEntity currentMovieEntity;
+    private boolean isLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +68,9 @@ public class MovieActivity
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus) {
+        if (hasFocus && !isLoaded) {
             initFragment();
+            isLoaded = true;
         }
     }
 

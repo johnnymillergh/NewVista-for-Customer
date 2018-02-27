@@ -61,7 +61,6 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
         topMovieCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "topMovieCardView " + topMovieTitles.get(position), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, MovieActivity.class);
                 intent.putExtra("title", topMovieTitles.get(position));
                 intent.putExtra("from", "TopMovie");
@@ -114,7 +113,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 ObjectAnimator upAnim = ObjectAnimator.ofFloat(v, "translationZ", 4);
-                upAnim.setDuration(150);
+                upAnim.setDuration(50);
                 upAnim.setInterpolator(new DecelerateInterpolator());
                 upAnim.start();
                 break;
@@ -122,7 +121,7 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 ObjectAnimator downAnim = ObjectAnimator.ofFloat(v, "translationZ", 0);
-                downAnim.setDuration(150);
+                downAnim.setDuration(50);
                 downAnim.setInterpolator(new AccelerateInterpolator());
                 downAnim.start();
                 break;

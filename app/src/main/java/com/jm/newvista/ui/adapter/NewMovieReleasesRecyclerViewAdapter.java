@@ -111,7 +111,7 @@ public class NewMovieReleasesRecyclerViewAdapter
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     ObjectAnimator upAnim = ObjectAnimator.ofFloat(v, "translationZ", 8);
-                    upAnim.setDuration(150);
+                    upAnim.setDuration(50);
                     upAnim.setInterpolator(new DecelerateInterpolator());
                     upAnim.start();
                     break;
@@ -119,7 +119,7 @@ public class NewMovieReleasesRecyclerViewAdapter
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
                     ObjectAnimator downAnim = ObjectAnimator.ofFloat(v, "translationZ", 0);
-                    downAnim.setDuration(150);
+                    downAnim.setDuration(50);
                     downAnim.setInterpolator(new AccelerateInterpolator());
                     downAnim.start();
                     break;
