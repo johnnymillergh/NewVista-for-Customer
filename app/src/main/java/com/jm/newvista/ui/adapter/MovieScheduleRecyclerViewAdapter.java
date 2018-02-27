@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 /**
  * Created by Johnny on 2/21/2018.
  */
@@ -55,7 +57,7 @@ public class MovieScheduleRecyclerViewAdapter
         holder.showtime.setText(dateStr);
         holder.price.setText(String.valueOf(entity.getPrice()));
         Glide.with(context).load(NetworkUtil.GET_THEATER_LOGO_URL + "?id=" + entity.getAuditoriumTheaterId())
-                .into(holder.logo);
+                .transition(withCrossFade()).into(holder.logo);
 
         // Set click listener
         holder.cardView.setOnClickListener(new View.OnClickListener() {
