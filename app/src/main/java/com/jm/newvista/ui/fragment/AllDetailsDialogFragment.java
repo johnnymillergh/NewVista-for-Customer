@@ -14,6 +14,7 @@ import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 
 public class AllDetailsDialogFragment extends DialogFragment {
+    private TextView title;
     private TextView genre;
     private TextView director;
     private TextView stars;
@@ -43,6 +44,7 @@ public class AllDetailsDialogFragment extends DialogFragment {
     }
 
     private void updateView(MovieEntity movieEntity) {
+        title.setText(movieEntity.getTitle());
         genre.setText(movieEntity.getGenre());
         director.setText(movieEntity.getDirector());
         stars.setText(movieEntity.getStars());
@@ -55,6 +57,7 @@ public class AllDetailsDialogFragment extends DialogFragment {
     }
 
     private void initView(View rootView) {
+        title = rootView.findViewById(R.id.title);
         genre = rootView.findViewById(R.id.genre);
         director = rootView.findViewById(R.id.director);
         stars = rootView.findViewById(R.id.stars);
