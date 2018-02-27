@@ -48,9 +48,9 @@
 |:-:|:-:|
 | ![First](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180224-122135.png) | ![Sec](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180221-213954.png) |
 
-| Movie list | Profile |
+| Movie list | Movie Schedule |
 |:-:|:-:|
-| ![Third](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180221-214010.png) | ![Fourth]() |
+| ![Third](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180221-214010.png) | ![Fourth](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180227-191152.png) |
 
 ## New Vista Logo
 
