@@ -94,7 +94,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
     }
 
     public String getMovieTitle() {
-        return movieEntity.getTitle();
+        return movieEntity == null ? null : movieEntity.getTitle();
     }
 
     @SuppressLint("StaticFieldLeak")

@@ -106,9 +106,10 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
 
     @Override
     public void notifyFinishAttachingView() {
-        movieTitle = mListener.onGetMovieTitle();
-        Log.v("UserReviewFragment", movieTitle);
-        getPresenter().getAndDisplayUserReview(movieTitle);
+        if (mListener != null) {
+            movieTitle = mListener.onGetMovieTitle();
+            getPresenter().getAndDisplayUserReview(movieTitle);
+        }
     }
 
     @Override
