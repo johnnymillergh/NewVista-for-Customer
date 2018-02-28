@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.adapter;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -18,7 +19,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
-import com.jm.newvista.ui.activity.MainActivity;
 import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.NetworkUtil;
 
@@ -34,10 +34,10 @@ public class NowInTheatersRecyclerViewAdapter
         extends RecyclerView.Adapter<NowInTheatersRecyclerViewAdapter.MyViewHolder> {
     private Context context;
     private List<MovieEntity> moviesInTheaters;
-    private MainActivity mainActivity;
+    private Activity activity;
 
-    public NowInTheatersRecyclerViewAdapter(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
+    public NowInTheatersRecyclerViewAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class NowInTheatersRecyclerViewAdapter
                     intent.putExtra("movieId", newMovie.getId());
                     intent.putExtra("from", "NewMovieReleases");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation(mainActivity, poster, context.getString(R.string
+                            makeSceneTransitionAnimation(activity, poster, context.getString(R.string
                                     .transition_poster));
                     context.startActivity(intent, options.toBundle());
                 }

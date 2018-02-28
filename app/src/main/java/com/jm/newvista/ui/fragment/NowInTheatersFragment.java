@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +15,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import com.jm.newvista.R;
+import com.jm.newvista.ui.adapter.NowInTheatersRecyclerViewAdapter;
 
 public class NowInTheatersFragment extends Fragment {
     private NowInTheatersFragmentListener mListener;
 
     private Button more;
     private RecyclerView nowInTheatersRecyclerView;
+    private NowInTheatersRecyclerViewAdapter nowInTheatersRecyclerViewAdapter;
 
     public NowInTheatersFragment() {
         // Required empty public constructor
@@ -50,6 +54,11 @@ public class NowInTheatersFragment extends Fragment {
             }
         });
         nowInTheatersRecyclerView = view.findViewById(R.id.nowInTheatersRecyclerView);
+        nowInTheatersRecyclerViewAdapter = new NowInTheatersRecyclerViewAdapter(getActivity());
+        nowInTheatersRecyclerView.setAdapter(nowInTheatersRecyclerViewAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+        nowInTheatersRecyclerView.setLayoutManager(layoutManager);
     }
 
     private void onClickMore(View v) {

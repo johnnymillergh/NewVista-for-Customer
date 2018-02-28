@@ -48,7 +48,6 @@
                 android:id="@+id/topMovieContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent">
             </FrameLayout>
 
@@ -57,7 +56,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/topMovieContainer">
             </FrameLayout>
 
@@ -66,16 +64,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/genreChipsContainer">
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/nowInTheatersContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/newMovieReleasesContainer">
             </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/randomPicksContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/newMovieReleasesContainer">
+                app:layout_constraintTop_toBottomOf="@+id/nowInTheatersContainer">
             </FrameLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>

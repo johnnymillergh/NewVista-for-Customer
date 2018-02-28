@@ -36,9 +36,9 @@ import com.jm.newvista.service.MessageService;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
+import com.jm.newvista.ui.fragment.NowInTheatersFragment;
 import com.jm.newvista.ui.fragment.RandomPicksFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
-import com.jm.newvista.util.ApplicationUtil;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -54,14 +54,15 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         GenreFragment.GenreFragmentCallbackListener,
         NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener,
         MessageService.MessageServiceCallbackListener,
-        RandomPicksFragment.RandomPicksFragmentListener {
+        RandomPicksFragment.RandomPicksFragmentListener,
+        NowInTheatersFragment.NowInTheatersFragmentListener {
     public static final int LOGIN_ACTIVITY_CODE = 1;
     private MaterialSearchBar searchBar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private RelativeLayout splashScreen;
     private ArrayList<String> searchBarSuggestions = new ArrayList<>();
-    CircleImageView avatarNavigation;
+    CircleImageView avatar;
 
     MessageService messageService;
     MessageService.Binder binder;
@@ -161,8 +162,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             public void afterTextChanged(Editable editable) {
             }
         });
-        avatarNavigation = navigationView.getHeaderView(0).findViewById(R.id.avatarNavigation);
-        avatarNavigation.setOnClickListener(new View.OnClickListener() {
+        avatar = navigationView.getHeaderView(0).findViewById(R.id.avatarNavigation);
+        avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickAvatar(v);
@@ -176,10 +177,6 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         // Add top movie fragment
         TopMovieFragment topMovieFragment = new TopMovieFragment();
         fragmentManager.beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
-
-        // Add genre fragment
-        GenreFragment genreFragment = new GenreFragment();
-        fragmentManager.beginTransaction().add(R.id.genreChipsContainer, genreFragment).commit();
     }
 
     @Override
@@ -360,10 +357,15 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         // TODO: Add module fragment here which is about movie!!!
         Log.v("onNotifyMovieSaved", "Movie saved");
         FragmentManager fragmentManager = getSupportFragmentManager();
+        // Add genre fragment
+        fragmentManager.beginTransaction().replace(R.id.genreChipsContainer, new GenreFragment()).commit();
         // Add new movie releases fragment
-        fragmentManager.beginTransaction().add(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment())
+                .commit();
+        // Add now in theaters fragment
+        fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment()).commit();
         // Add random picks fragment
-        fragmentManager.beginTransaction().add(R.id.randomPicksContainer, new RandomPicksFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.randomPicksContainer, new RandomPicksFragment()).commit();
     }
 
     @Override
@@ -377,7 +379,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         TextView usernameNavigation = headerView.findViewById(R.id.usernameNavigation);
         TextView emailNavigation = headerView.findViewById(R.id.emailNavigation);
         // Update view
-        Glide.with(this).load(userEntity.getAvatar()).into(avatarNavigation);
+        Glide.with(this).load(userEntity.getAvatar()).into(avatar);
         usernameNavigation.setText(userEntity.getUsername());
         emailNavigation.setText(userEntity.getEmail());
         navigationView.getMenu().findItem(R.id.signInItem).setEnabled(false);
