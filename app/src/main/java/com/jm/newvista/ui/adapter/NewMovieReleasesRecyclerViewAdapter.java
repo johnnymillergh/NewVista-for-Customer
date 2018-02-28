@@ -68,7 +68,7 @@ public class NewMovieReleasesRecyclerViewAdapter
                     context.startActivity(intent, options.toBundle());
                 }
             });
-            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + newMovie.getTitle())
+            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + newMovie.getTitle())
                     .transition(withCrossFade()).into(holder.poster);
 //            GlideBlurTransformation glideBlurTransformation = new GlideBlurTransformation(context);
 //            Glide.with(context).load(newMovie.getPoster()).apply(RequestOptions.bitmapTransform

@@ -48,8 +48,8 @@ public class TopMovieViewPagerAdapter extends PagerAdapter implements View.OnTou
         topMovieTextView = view.findViewById(R.id.topMovieTitle);
         if (topMovieTitles.size() == 5) {
             topMovieTextView.setText(topMovieTitles.get(position));
-            Glide.with(context).load(NetworkUtil.GET_TOP_MOVIE_POSTER_URL + "?movieTitle=" + topMovieTitles.get
-                    (position)).transition(withCrossFade()).into(topMovieImageView);
+            Glide.with(context).load(NetworkUtil.GET_TOP_MOVIE_POSTER_URL + topMovieTitles.get(position))
+                    .transition(withCrossFade()).into(topMovieImageView);
         }
         topMovieCardView.setOnClickListener(new View.OnClickListener() {
             @Override

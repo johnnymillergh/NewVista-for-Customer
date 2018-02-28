@@ -54,7 +54,7 @@ public class SearchResultRecyclerViewAdapter
         holder.genre.setText(movieEntity.getGenre());
         holder.duration.setText(movieEntity.getDuration());
         holder.description.setText(movieEntity.getDescription());
-        Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + movieEntity.getTitle())
+        Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
                 .into(holder.poster);
 
         // Set click listener

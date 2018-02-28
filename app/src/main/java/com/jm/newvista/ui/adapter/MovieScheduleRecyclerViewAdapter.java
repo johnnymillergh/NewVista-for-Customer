@@ -56,7 +56,7 @@ public class MovieScheduleRecyclerViewAdapter
         // Set properties
         holder.showtime.setText(dateStr);
         holder.price.setText(String.valueOf(entity.getPrice()));
-        Glide.with(context).load(NetworkUtil.GET_THEATER_LOGO_URL + "?id=" + entity.getAuditoriumTheaterId())
+        Glide.with(context).load(NetworkUtil.GET_THEATER_LOGO_URL + entity.getAuditoriumTheaterId())
                 .transition(withCrossFade()).into(holder.logo);
 
         // Set click listener

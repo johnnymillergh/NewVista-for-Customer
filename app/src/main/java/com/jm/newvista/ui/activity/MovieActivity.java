@@ -183,7 +183,7 @@ public class MovieActivity
         if (movieEntity == null) return;
         this.currentMovieEntity = movieEntity;
         toolbar.setTitle(movieEntity.getTitle());
-        Glide.with(this).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + movieEntity.getTitle()).into(poster);
+        Glide.with(this).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle()).into(poster);
         title.setText(movieEntity.getTitle());
         releaseDate.setText(movieEntity.getReleaseDate());
         duration.setText(movieEntity.getDuration());

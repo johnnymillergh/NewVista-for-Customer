@@ -65,7 +65,7 @@ public class PosterGalleryActivity
     @Override
     public void onUpdate(MovieEntity movieEntity) {
         title.setText(movieEntity.getTitle());
-        Glide.with(this).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + movieEntity.getTitle())
+        Glide.with(this).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable>

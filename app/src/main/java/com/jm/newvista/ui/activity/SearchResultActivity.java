@@ -68,7 +68,7 @@ public class SearchResultActivity extends BaseActivity<SearchResultModel, Search
 
     @Override
     public void onSetToolBarTitle(String toolBarTitle) {
-        toolbar.setTitle(toolBarTitle);
+        toolbar.setTitle(getString(R.string.search_title) + toolBarTitle);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
             if (userReviewEntity.getIsSpoilers()) holder.isSpoilers.setVisibility(View.VISIBLE);
             holder.title.setText(userReviewEntity.getTitle());
             holder.text.setText(userReviewEntity.getText());
-            Glide.with(context).load(NetworkUtil.GET_AVATAR_URL + "?id=" + userReviewEntity.getUserId()).into(new SimpleTarget<Drawable>() {
+            Glide.with(context).load(NetworkUtil.GET_AVATAR_URL + userReviewEntity.getUserId()).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable>
                         transition) {

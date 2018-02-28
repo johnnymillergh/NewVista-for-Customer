@@ -68,7 +68,7 @@ public class RandomPicksRecyclerViewAdapter
                     context.startActivity(intent, options.toBundle());
                 }
             });
-            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + "?title=" + movieEntity.getTitle())
+            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
                     .transition(withCrossFade()).into(holder.poster);
         }
     }
