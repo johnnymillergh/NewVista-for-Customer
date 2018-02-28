@@ -106,4 +106,5 @@
     <string name="currency">￥</string>
     <string name="movie_schedule">排片档期</string>
     <string name="search_title">搜索：</string>
+    <string name="no_movie_schedule">暂无排片档期</string>
 </resources>

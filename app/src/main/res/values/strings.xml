@@ -125,4 +125,5 @@
     <string name="price_sample" translatable="false">35</string>
     <string name="movie_schedule">Movie Schedule</string>
     <string name="search_title">Search:&#160;</string>
+    <string name="no_movie_schedule">No movie schedule yet</string>
 </resources>

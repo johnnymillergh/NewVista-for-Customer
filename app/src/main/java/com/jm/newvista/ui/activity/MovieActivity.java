@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.presenter.MoviePresenter;
 import com.jm.newvista.mvp.view.MovieView;
@@ -191,6 +192,16 @@ public class MovieActivity
         genre.setText(movieEntity.getGenre());
         director.setText(movieEntity.getDirector());
         stars.setText(movieEntity.getStars());
+    }
+
+    @Override
+    public void onUpdateOrderButton(MovieScheduleEntity lowestPriceEntity) {
+        order.setText(getString(R.string.order_ticket) + lowestPriceEntity.getPrice());
+    }
+
+    @Override
+    public void onNullResult() {
+        order.setText(R.string.no_movie_schedule);
     }
 
     @Override

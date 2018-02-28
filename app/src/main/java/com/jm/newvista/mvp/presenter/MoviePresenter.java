@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.view.MovieView;
@@ -40,6 +41,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
                         movieEntity = movieModel.getMovieFromDB(integers[0]);
+                        getAndDisplayPriceByMovieId(movieEntity.getId());
                         return movieEntity;
                     }
 
@@ -55,6 +57,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
                         movieEntity = movieModel.getMovieFromDB(integers[0]);
+                        getAndDisplayPriceByMovieId(movieEntity.getId());
                         return movieEntity;
                     }
 
@@ -70,6 +73,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Void... voids) {
                         movieEntity = movieModel.getMovieFromDB(title);
+                        getAndDisplayPriceByMovieId(movieEntity.getId());
                         return movieEntity;
                     }
 
@@ -81,6 +85,27 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                 break;
             default:
         }
+    }
+
+    private void getAndDisplayPriceByMovieTitle() {
+    }
+
+    private void getAndDisplayPriceByMovieId(int movieId) {
+        movieModel.getLowestPriceByMovieId(movieId, new MovieModel.GetLowestPriceListener() {
+            @Override
+            public void onSuccess(MovieScheduleEntity lowestPriceEntity) {
+                movieView.onUpdateOrderButton(lowestPriceEntity);
+            }
+
+            @Override
+            public void onNullResult() {
+                movieView.onNullResult();
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+            }
+        });
     }
 
     public void displayDescriptionDialog() {
