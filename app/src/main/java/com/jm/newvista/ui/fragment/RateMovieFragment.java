@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
@@ -47,8 +49,12 @@ public class RateMovieFragment extends BaseFragment<RateMovieModel, RateMovieVie
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in_from_bottom_to_top);
+        } else {
+            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+        }
     }
 
     @Override

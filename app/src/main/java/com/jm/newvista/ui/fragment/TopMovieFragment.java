@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TopMovieModel;
@@ -29,8 +31,12 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter) {
+            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+        } else {
+            return AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
+        }
     }
 
     @Override
