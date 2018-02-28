@@ -8,6 +8,7 @@ import com.jm.newvista.mvp.model.MovieScheduleModel;
 import com.jm.newvista.mvp.view.MovieScheduleView;
 import com.jm.newvista.ui.adapter.MovieScheduleRecyclerViewAdapter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class MovieSchedulePresenter extends BasePresenter<MovieScheduleModel, Mo
             @Override
             public void onSuccess(List<MovieScheduleEntity> movieSchedules) {
                 MovieScheduleRecyclerViewAdapter adapter = movieScheduleView.onGetMovieScheduleRecyclerViewAdapter();
-                adapter.setMovieSchedules(movieSchedules);
+                adapter.setMovieSchedules(sortByPriceInAscendingOrder(movieSchedules));
                 adapter.notifyItemRangeChanged(0, movieSchedules.size());
             }
 
@@ -55,5 +56,10 @@ public class MovieSchedulePresenter extends BasePresenter<MovieScheduleModel, Mo
                 movieScheduleView.onGetMovieScheduleFailure();
             }
         });
+    }
+
+    private List<MovieScheduleEntity> sortByPriceInAscendingOrder(List<MovieScheduleEntity> movieSchedules) {
+        Collections.sort(movieSchedules);
+        return movieSchedules;
     }
 }

@@ -1,12 +1,14 @@
 package com.jm.newvista.bean;
 
+import android.support.annotation.NonNull;
+
 import org.litepal.crud.DataSupport;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-public class MovieScheduleEntity  extends DataSupport {
+public class MovieScheduleEntity extends DataSupport implements Comparable<MovieScheduleEntity> {
     private int id;
     private int movieId;
     private String movieTitle;
@@ -118,6 +120,16 @@ public class MovieScheduleEntity  extends DataSupport {
 
     @Override
     public String toString() {
-        return "MovieScheduleEntity: "+id + ", " + movieId + ", " + auditoriumId + ", " + auditoriumTheaterId;
+        return "MovieScheduleEntity: " + id + ", " + movieId + ", " + auditoriumId + ", " + auditoriumTheaterId;
+    }
+
+    @Override
+    public int compareTo(@NonNull MovieScheduleEntity o) {
+        if (this.getPrice() < o.getPrice()) {
+            return -1;
+        } else if (this.getPrice() == o.getPrice()) {
+            return 0;
+        }
+        return 1;
     }
 }
