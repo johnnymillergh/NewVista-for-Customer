@@ -1,5 +1,7 @@
 package com.jm.newvista.mvp.model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.MovieEntity;
@@ -57,6 +59,7 @@ public class MovieModel extends BaseModel {
         myOkHttp.get().url(NetworkUtil.GET_LOWEST_PRICE_URL2 + movieId).tag(this).enqueue(new RawResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
+                Log.v("onSuccess", response);
                 MovieScheduleEntity lowestPriceEntity = new Gson().fromJson(response, MovieScheduleEntity.class);
                 if (lowestPriceEntity != null) getLowestPriceListener.onSuccess(lowestPriceEntity);
                 else getLowestPriceListener.onNullResult();

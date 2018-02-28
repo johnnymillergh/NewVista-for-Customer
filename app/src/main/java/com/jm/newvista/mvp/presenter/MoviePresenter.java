@@ -41,7 +41,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
                         movieEntity = movieModel.getMovieFromDB(integers[0]);
-                        getAndDisplayPriceByMovieId(movieEntity.getId());
+                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
 
@@ -57,7 +57,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
                         movieEntity = movieModel.getMovieFromDB(integers[0]);
-                        getAndDisplayPriceByMovieId(movieEntity.getId());
+                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
 
@@ -73,7 +73,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Void... voids) {
                         movieEntity = movieModel.getMovieFromDB(title);
-                        getAndDisplayPriceByMovieId(movieEntity.getId());
+                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
 
@@ -87,9 +87,26 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
         }
     }
 
-    private void getAndDisplayPriceByMovieTitle() {
+    private void getAndDisplayPriceByMovieTitle(String movieTitle) {
+        movieModel.getLowestPriceByMovieTitle(movieTitle, new MovieModel.GetLowestPriceListener() {
+            @Override
+            public void onSuccess(MovieScheduleEntity lowestPriceEntity) {
+                movieView.onUpdateOrderButton(lowestPriceEntity);
+            }
+
+            @Override
+            public void onNullResult() {
+                movieView.onNullResult();
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+            }
+        });
     }
 
+    // Deprecated
+    @Deprecated
     private void getAndDisplayPriceByMovieId(int movieId) {
         movieModel.getLowestPriceByMovieId(movieId, new MovieModel.GetLowestPriceListener() {
             @Override
