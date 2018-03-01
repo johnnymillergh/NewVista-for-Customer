@@ -179,6 +179,9 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         // Add top movie fragment
         TopMovieFragment topMovieFragment = new TopMovieFragment();
         fragmentManager.beginTransaction().add(R.id.topMovieContainer, topMovieFragment).commit();
+        // Add genre fragment
+        fragmentManager.beginTransaction().replace(R.id.genreChipsContainer, new GenreFragment()).commit();
+
     }
 
     @Override
@@ -359,8 +362,6 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         // TODO: Add module fragment here which is about movie!!!
         Log.v("onNotifyMovieSaved", "Movie saved");
         FragmentManager fragmentManager = getSupportFragmentManager();
-        // Add genre fragment
-        fragmentManager.beginTransaction().replace(R.id.genreChipsContainer, new GenreFragment()).commit();
         // Add new movie releases fragment
         fragmentManager.beginTransaction().replace(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment())
                 .commit();

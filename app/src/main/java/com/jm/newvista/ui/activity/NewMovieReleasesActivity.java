@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.NewMovieReleasesActivityModel;
@@ -51,6 +53,9 @@ public class NewMovieReleasesActivity
         searchResultRecyclerViewAdapter = new SearchResultRecyclerViewAdapter(this);
         newMovieReleasesRecyclerView.setAdapter(searchResultRecyclerViewAdapter);
         newMovieReleasesRecyclerView.setNestedScrollingEnabled(false);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim
+                .animation_layout_from_bottom_to_top);
+        newMovieReleasesRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override

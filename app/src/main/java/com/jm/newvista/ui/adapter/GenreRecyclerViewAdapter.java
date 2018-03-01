@@ -3,6 +3,7 @@ package com.jm.newvista.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+        Log.v("onBindViewHolder", "GenreRecyclerViewAdapter: " + position);
         holder.genreChip.setChipText(genres.get(position).toUpperCase());
         holder.genreChip.setOnChipClickListener(new OnChipClickListener() {
             @Override

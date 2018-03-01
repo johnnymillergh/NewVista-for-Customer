@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.ui.adapter.GenreRecyclerViewAdapter;
@@ -41,7 +42,7 @@ public class GenreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_genre, container, false);
 
-        RecyclerView genreRecyclerView = (RecyclerView) view.findViewById(R.id.genreRecyclerView);
+        RecyclerView genreRecyclerView = view.findViewById(R.id.genreRecyclerView);
         GenreRecyclerViewAdapter genreRecyclerViewAdapter = new GenreRecyclerViewAdapter();
 
         List<String> genres = genreRecyclerViewAdapter.getGenres();
@@ -51,13 +52,6 @@ public class GenreFragment extends Fragment {
         genreRecyclerView.setAdapter(genreRecyclerViewAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(OrientationHelper.HORIZONTAL);
-        genreRecyclerView.setLayoutManager(new RecyclerView.LayoutManager() {
-            @Override
-            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams
-                        .WRAP_CONTENT);
-            }
-        });
         genreRecyclerView.setLayoutManager(linearLayoutManager);
         genreRecyclerView.setNestedScrollingEnabled(false);
         return view;
