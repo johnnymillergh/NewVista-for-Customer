@@ -129,7 +129,7 @@ public class MovieActivity
 
     private void refreshUserReview() {
         Toast.makeText(this, R.string.refreshing_user_review, Toast.LENGTH_LONG).show();
-        getPresenter().refreshUserReview(getSupportFragmentManager(), swipeRefreshLayout);
+        getPresenter().refreshUserReview(getSupportFragmentManager());
     }
 
     public void onClickPoster(View view) {

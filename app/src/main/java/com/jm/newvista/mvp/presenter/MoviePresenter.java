@@ -139,30 +139,8 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
         return movieEntity == null ? null : movieEntity.getTitle();
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public void refreshUserReview(final FragmentManager supportFragmentManager, final SwipeRefreshLayout
-            swipeRefreshLayout) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                supportFragmentManager.beginTransaction().replace(R.id.userReviewContainer, new UserReviewFragment())
-                        .commit();
-            }
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }.execute();
+    public void refreshUserReview(final FragmentManager supportFragmentManager) {
+        supportFragmentManager.beginTransaction().replace(R.id.userReviewContainer, new UserReviewFragment())
+                .commit();
     }
 }
