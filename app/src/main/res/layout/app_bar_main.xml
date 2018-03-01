@@ -80,6 +80,15 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/nowInTheatersContainer">
             </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/featureContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/randomPicksContainer">
+            </FrameLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 

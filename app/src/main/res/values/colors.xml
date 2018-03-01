@@ -19,6 +19,7 @@
     <color name="availableFontColor">#000000</color>
     <color name="unavailableFontColor">#F85255</color>
     <color name="selectedFontColor">#23B5F3</color>
+    <color name="featureBackgroundColor">#FF1844</color>
 
     <!-- red -->
     <color name="md_red_50_color_code">#fde0dc</color>

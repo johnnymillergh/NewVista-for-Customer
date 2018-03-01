@@ -34,6 +34,7 @@ import com.jm.newvista.mvp.presenter.MainPresenter;
 import com.jm.newvista.mvp.view.MainView;
 import com.jm.newvista.service.MessageService;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.ui.fragment.FeatureFragment;
 import com.jm.newvista.ui.fragment.GenreFragment;
 import com.jm.newvista.ui.fragment.NewMovieReleasesFragment;
 import com.jm.newvista.ui.fragment.NowInTheatersFragment;
@@ -55,7 +56,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         NewMovieReleasesFragment.NewMovieReleasesFragmentCallbackListener,
         MessageService.MessageServiceCallbackListener,
         RandomPicksFragment.RandomPicksFragmentListener,
-        NowInTheatersFragment.NowInTheatersFragmentListener {
+        NowInTheatersFragment.NowInTheatersFragmentListener,
+        FeatureFragment.FeatureFragmentListener {
     public static final int LOGIN_ACTIVITY_CODE = 1;
     private MaterialSearchBar searchBar;
     private DrawerLayout drawerLayout;
@@ -366,6 +368,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment()).commit();
         // Add random picks fragment
         fragmentManager.beginTransaction().replace(R.id.randomPicksContainer, new RandomPicksFragment()).commit();
+        // Add feature fragment
+        fragmentManager.beginTransaction().replace(R.id.featureContainer, new FeatureFragment()).commit();
     }
 
     @Override
