@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -76,6 +78,8 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         userReviewRecyclerView.setAdapter(userReviewRecyclerViewAdapter);
         userReviewRecyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(),
                 DividerItemDecoration.VERTICAL));
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
+        userReviewRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override

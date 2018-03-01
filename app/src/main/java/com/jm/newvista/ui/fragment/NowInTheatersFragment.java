@@ -66,8 +66,8 @@ public class NowInTheatersFragment
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
         nowInTheatersRecyclerView.setLayoutManager(layoutManager);
-//        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
-//        nowInTheatersRecyclerView.setLayoutAnimation(animation);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
+        nowInTheatersRecyclerView.setLayoutAnimation(animation);
     }
 
     private void onClickMore(View v) {

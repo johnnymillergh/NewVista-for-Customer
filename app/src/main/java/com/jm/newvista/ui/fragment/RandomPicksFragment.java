@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 
 import com.jm.newvista.R;
@@ -65,6 +66,8 @@ public class RandomPicksFragment
         layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
         randomPicksRecyclerView.setLayoutManager(layoutManager);
         randomPicksRecyclerView.setAdapter(randomPicksRecyclerViewAdapter);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
+        randomPicksRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override
