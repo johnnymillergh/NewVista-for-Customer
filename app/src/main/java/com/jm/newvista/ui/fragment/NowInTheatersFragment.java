@@ -12,12 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 
 import com.jm.newvista.R;
+import com.jm.newvista.mvp.model.NowInTheatersModel;
+import com.jm.newvista.mvp.presenter.NowInTheatersPresenter;
+import com.jm.newvista.mvp.view.NowInTheatersView;
 import com.jm.newvista.ui.adapter.NowInTheatersRecyclerViewAdapter;
+import com.jm.newvista.ui.base.BaseFragment;
 
-public class NowInTheatersFragment extends Fragment {
+public class NowInTheatersFragment
+        extends BaseFragment<NowInTheatersModel, NowInTheatersView, NowInTheatersPresenter>
+        implements NowInTheatersView {
     private NowInTheatersFragmentListener mListener;
 
     private Button more;
@@ -59,6 +66,8 @@ public class NowInTheatersFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
         nowInTheatersRecyclerView.setLayoutManager(layoutManager);
+//        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
+//        nowInTheatersRecyclerView.setLayoutAnimation(animation);
     }
 
     private void onClickMore(View v) {
@@ -85,6 +94,26 @@ public class NowInTheatersFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public NowInTheatersRecyclerViewAdapter onGetNowInTheatersRecyclerViewAdapter() {
+        return nowInTheatersRecyclerViewAdapter;
+    }
+
+    @Override
+    public NowInTheatersView createView() {
+        return this;
+    }
+
+    @Override
+    public NowInTheatersPresenter createPresenter() {
+        return new NowInTheatersPresenter();
+    }
+
+    @Override
+    public void notifyFinishAttachingView() {
+        getPresenter().getAndDisplayMoviesInTheaters();
     }
 
     public interface NowInTheatersFragmentListener {
