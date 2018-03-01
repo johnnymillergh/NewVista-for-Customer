@@ -191,7 +191,7 @@ public class RateMovieFragment extends BaseFragment<RateMovieModel, RateMovieVie
     public void onClearReview() {
         title.setText("");
         text.setText("");
-        ratingBar.setRating(1f);
+        ratingBar.setRating(0.5f);
     }
 
     public interface RateMovieFragmentListener {

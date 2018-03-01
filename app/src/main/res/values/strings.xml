@@ -127,4 +127,5 @@
     <string name="search_title">Search:&#160;</string>
     <string name="no_movie_schedule">No movie schedule yet</string>
     <string name="feature">If you like my app,\nplease please give me a five star\nand lease a comment in Google Play</string>
+    <string name="user_reviews">User Reviews</string>
 </resources>
