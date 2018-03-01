@@ -1,5 +1,10 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+
 import com.jm.newvista.R;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.bean.UserReviewEntity;
@@ -8,6 +13,9 @@ import com.jm.newvista.mvp.model.RateMovieModel;
 import com.jm.newvista.mvp.view.RateMovieView;
 import com.jm.newvista.util.ApplicationUtil;
 
+import java.util.HashMap;
+import java.util.jar.Attributes;
+
 /**
  * Created by Johnny on 2/16/2018.
  */
@@ -15,10 +23,25 @@ import com.jm.newvista.util.ApplicationUtil;
 public class RateMoviePresenter extends BasePresenter<RateMovieModel, RateMovieView> {
     private RateMovieModel rateMovieModel;
     private RateMovieView rateMovieView;
+    private SoundPool soundPool;
+    private HashMap<Integer, Integer> hashMap;
 
     public RateMoviePresenter() {
         rateMovieModel = new RateMovieModel();
         super.BasePresenter(rateMovieModel);
+        initSoundPool();
+    }
+
+    private void initSoundPool() {
+        SoundPool.Builder builder = new SoundPool.Builder();
+        builder.setMaxStreams(2);
+        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
+        attrBuilder.setLegacyStreamType(AudioManager.STREAM_MUSIC);
+        builder.setAudioAttributes(attrBuilder.build());
+        soundPool = builder.build();
+        hashMap = new HashMap<Integer, Integer>();
+        hashMap.put(1, soundPool.load(ApplicationUtil.context, R.raw.send_message, 1));
+        hashMap.put(2, soundPool.load(ApplicationUtil.context, R.raw.error, 1));
     }
 
     public void displayUserAvatar() {
@@ -48,6 +71,7 @@ public class RateMoviePresenter extends BasePresenter<RateMovieModel, RateMovieV
         rateMovieModel.postUserReview(movieTitle, userReviewEntity, new RateMovieModel.PostUserReviewListener() {
             @Override
             public void onPostSuccess(String message) {
+                playSoundEffect(1);
                 rateMovieView.makeToast(message);
                 rateMovieView.onClearReview();
                 rateMovieView.makeToast(ApplicationUtil.getContext()
@@ -56,9 +80,26 @@ public class RateMoviePresenter extends BasePresenter<RateMovieModel, RateMovieV
 
             @Override
             public void onPostFailure(String message) {
+                playSoundEffect(2);
                 rateMovieView.makeToast(message);
                 rateMovieView.onClearReview();
             }
         });
+    }
+
+    private void playSoundEffect(int mediaId) {
+        AudioManager audioManager = (AudioManager) ApplicationUtil.context.getSystemService(Context.AUDIO_SERVICE);
+        // Get max volume
+        float streamVolumeMax = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        float volume = streamVolumeMax;
+        // Play sound
+        switch (mediaId) {
+            case 1:
+                soundPool.play(hashMap.get(1), volume, volume, 1, 0, 1.0f);
+                break;
+            case 2:
+                soundPool.play(hashMap.get(2), volume, volume, 1, 0, 1.0f);
+                break;
+        }
     }
 }

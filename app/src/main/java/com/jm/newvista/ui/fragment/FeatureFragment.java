@@ -1,17 +1,23 @@
 package com.jm.newvista.ui.fragment;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import com.jm.newvista.R;
 
-public class FeatureFragment extends Fragment {
+public class FeatureFragment extends Fragment implements View.OnTouchListener{
     private FeatureFragmentListener mListener;
+    private CardView cardView;
 
     public FeatureFragment() {
         // Required empty public constructor
@@ -20,8 +26,20 @@ public class FeatureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feature, container, false);
+        View view = inflater.inflate(R.layout.fragment_feature, container, false);
+        cardView = view.findViewById(R.id.cardView);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickCardView(v);
+            }
+        });
+        cardView.setOnTouchListener(this);
+        return view;
+    }
+
+    private void onClickCardView(View v) {
+
     }
 
     public void onButtonPressed(Uri uri) {
@@ -44,6 +62,27 @@ public class FeatureFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                ObjectAnimator upAnim = ObjectAnimator.ofFloat(v, "translationZ", 8);
+                upAnim.setDuration(50);
+                upAnim.setInterpolator(new DecelerateInterpolator());
+                upAnim.start();
+                break;
+
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                ObjectAnimator downAnim = ObjectAnimator.ofFloat(v, "translationZ", 0);
+                downAnim.setDuration(50);
+                downAnim.setInterpolator(new AccelerateInterpolator());
+                downAnim.start();
+                break;
+        }
+        return false;
     }
 
     public interface FeatureFragmentListener {
