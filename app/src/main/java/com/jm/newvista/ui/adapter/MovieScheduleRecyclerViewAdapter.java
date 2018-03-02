@@ -2,6 +2,7 @@ package com.jm.newvista.ui.adapter;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieScheduleEntity;
+import com.jm.newvista.ui.activity.SeatSelectionActivity;
 import com.jm.newvista.util.NetworkUtil;
 
 import java.text.SimpleDateFormat;
@@ -33,11 +35,6 @@ public class MovieScheduleRecyclerViewAdapter
         extends RecyclerView.Adapter<MovieScheduleRecyclerViewAdapter.MyViewHolder> {
     private Context context;
     private List<MovieScheduleEntity> movieSchedules;
-    private OnClickCardViewListener mListener;
-
-    public MovieScheduleRecyclerViewAdapter(OnClickCardViewListener mListener) {
-        this.mListener = mListener;
-    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,7 +44,7 @@ public class MovieScheduleRecyclerViewAdapter
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         MovieScheduleEntity entity = movieSchedules.get(position);
 
         // Set properties
@@ -55,7 +52,7 @@ public class MovieScheduleRecyclerViewAdapter
         holder.location.setText(entity.getLocation());
         // Format datetime
         Date date = entity.getShowtime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:s aa MMM d, yyyy", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
         String dateStr = simpleDateFormat.format(date);
         // Set properties
         holder.showtime.setText(dateStr);
@@ -67,9 +64,10 @@ public class MovieScheduleRecyclerViewAdapter
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.onClickCardView(v);
-                }
+                Intent intent = new Intent(context, SeatSelectionActivity.class);
+                intent.putExtra("movieScheduleId", movieSchedules.get(position).getId());
+                intent.putExtra("theaterName", movieSchedules.get(position).getTheaterName());
+                context.startActivity(intent);
             }
         });
     }
@@ -81,6 +79,10 @@ public class MovieScheduleRecyclerViewAdapter
 
     public void setMovieSchedules(List<MovieScheduleEntity> movieSchedules) {
         this.movieSchedules = movieSchedules;
+    }
+
+    public List<MovieScheduleEntity> getMovieSchedules() {
+        return movieSchedules;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
@@ -122,9 +124,5 @@ public class MovieScheduleRecyclerViewAdapter
             }
             return false;
         }
-    }
-
-    public interface OnClickCardViewListener{
-        void onClickCardView(View view);
     }
 }

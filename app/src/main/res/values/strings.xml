@@ -128,4 +128,6 @@
     <string name="explore_trending">Explore trending</string>
     <string name="newest_first">Newest first</string>
     <string name="oldest_first">Oldest first</string>
+    <string name="movie_schedule_error">Something went wrong: No movies schedules</string>
+    <string name="seat_selection">Seat selection</string>
 </resources>

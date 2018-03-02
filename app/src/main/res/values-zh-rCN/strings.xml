@@ -109,4 +109,6 @@
     <string name="explore_trending">探索潮流</string>
     <string name="newest_first">最新评论优先</string>
     <string name="oldest_first">最早评论优先</string>
+    <string name="movie_schedule_error">未知错误：未能显示排片档期</string>
+    <string name="seat_selection">座位选择</string>
 </resources>

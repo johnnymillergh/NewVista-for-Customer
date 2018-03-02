@@ -1,25 +1,28 @@
 package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.SeatSelectionModel;
 import com.jm.newvista.mvp.presenter.SeatSelectionPresenter;
 import com.jm.newvista.mvp.view.SeatSelectionView;
 import com.jm.newvista.ui.base.BaseActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.github.lh911002.seatview.seat.OnClickSeatListener;
 import io.github.lh911002.seatview.seat.Seat;
@@ -27,7 +30,7 @@ import io.github.lh911002.seatview.seat.SeatImages;
 import io.github.lh911002.seatview.seat.SeatRow;
 import io.github.lh911002.seatview.seat.SeatView;
 
-public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel,SeatSelectionView,SeatSelectionPresenter>
+public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, SeatSelectionView, SeatSelectionPresenter>
         implements SeatSelectionView, OnClickSeatListener {
     private Toolbar toolbar;
     private TextView movieTitle;
@@ -43,6 +46,9 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel,SeatS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_selection);
         initView();
+        getPresenter().updateToolBar();
+
+        getPresenter().getAndDisplayMovieSchedule();
     }
 
     private void initView() {
@@ -130,8 +136,25 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel,SeatS
     }
 
     @Override
-    public void onUpdateBasicInfo() {
+    public Intent onGetIntent() {
+        return getIntent();
+    }
 
+    @Override
+    public void onUpdateToolBar(String movieTitle) {
+        toolbar.setSubtitle(movieTitle);
+    }
+
+    @Override
+    public void onUpdateBasicInfo(MovieScheduleEntity movieScheduleEntity) {
+        movieTitle.setText(movieScheduleEntity.getMovieTitle());
+
+        // Format datetime
+        Date date = movieScheduleEntity.getShowtime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+        String dateStr = simpleDateFormat.format(date);
+
+        showtime.setText(dateStr);
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.jm.newvista.mvp.view;
 
+import android.content.Intent;
+
+import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.base.BaseView;
 
 /**
@@ -7,7 +10,11 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface SeatSelectionView extends BaseView {
-    void onUpdateBasicInfo();
+    Intent onGetIntent();
+
+    void onUpdateToolBar(String movieTitle);
+
+    void onUpdateBasicInfo(MovieScheduleEntity movieScheduleEntity);
 
     void onUpdateSeatView();
 }
