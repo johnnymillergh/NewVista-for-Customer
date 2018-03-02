@@ -15,4 +15,6 @@ public interface UserReviewView extends BaseView {
     void makeToast(String message);
 
     void onFailLoadingUserReview();
+
+    void onSetUserReviewsCount(int count);
 }

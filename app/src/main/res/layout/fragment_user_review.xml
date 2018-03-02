@@ -10,13 +10,20 @@
         android:id="@+id/txtv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:text="@string/user_reviews"
         android:textColor="@color/md_black_color_code"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/sort"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/userReviewsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/txtv"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <View

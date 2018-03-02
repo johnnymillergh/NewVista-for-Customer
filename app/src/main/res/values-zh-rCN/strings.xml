@@ -25,10 +25,6 @@
         <item>War</item>
         <item>Western</item>
     </string-array>
-    <string-array name="user_review_sort_by">
-        <item>最新评论优先</item>
-        <item>最早评论优先</item>
-    </string-array>
     <string name="username">用户名</string>
     <string name="email">邮箱</string>
     <string name="gender">性别</string>
@@ -111,6 +107,6 @@
     <string name="user_reviews">用户评论</string>
     <string name="now_in_theaters">正在影院热映</string>
     <string name="explore_trending">探索潮流</string>
-    <string name="newest_first">Newest first</string>
-    <string name="oldest_first">Oldest first</string>
+    <string name="newest_first">最新评论优先</string>
+    <string name="oldest_first">最早评论优先</string>
 </resources>

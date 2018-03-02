@@ -35,7 +35,7 @@ public class UserReviewPresenter extends BasePresenter<UserReviewModel, UserRevi
                         @Override
                         protected Void doInBackground(Void... voids) {
                             try {
-                                Thread.sleep(1000 * 3);
+                                Thread.sleep(1000 * 2);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -45,10 +45,12 @@ public class UserReviewPresenter extends BasePresenter<UserReviewModel, UserRevi
                         @Override
                         protected void onPostExecute(Void aVoid) {
                             userReviewView.onSetUserReviewList(userReviews);
+                            userReviewView.onSetUserReviewsCount(userReviews.size());
                         }
                     }.execute();
                 } else {
                     userReviewView.onSetUserReviewList(userReviews);
+                    userReviewView.onSetUserReviewsCount(0);
                 }
             }
 

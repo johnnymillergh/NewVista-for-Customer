@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
@@ -32,6 +33,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         PopupMenu.OnMenuItemClickListener {
     private UserReviewFragmentListener mListener;
     private String movieTitle;
+    private TextView userReviewsCount;
     private ImageButton sort;
     private RecyclerView userReviewRecyclerView;
     private UserReviewRecyclerViewAdapter userReviewRecyclerViewAdapter;
@@ -56,6 +58,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
 
     private void initView(View view) {
         mListener.onDisplayRefreshing();
+        userReviewsCount = view.findViewById(R.id.userReviewsCount);
         sort = view.findViewById(R.id.sort);
         sort.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +154,11 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     @Override
     public void onFailLoadingUserReview() {
         mListener.onFinishRefreshing();
+    }
+
+    @Override
+    public void onSetUserReviewsCount(int count) {
+        userReviewsCount.setText(String.valueOf(count));
     }
 
     public interface UserReviewFragmentListener {
