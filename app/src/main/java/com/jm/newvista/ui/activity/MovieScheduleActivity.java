@@ -20,7 +20,8 @@ import com.jm.newvista.ui.base.BaseActivity;
 
 public class MovieScheduleActivity
         extends BaseActivity<MovieScheduleModel, MovieScheduleView, MovieSchedulePresenter>
-        implements MovieScheduleView {
+        implements MovieScheduleView,
+        MovieScheduleRecyclerViewAdapter.OnClickCardViewListener {
     private Toolbar toolbar;
     private RecyclerView movieScheduleRecyclerView;
     private MovieScheduleRecyclerViewAdapter movieScheduleRecyclerViewAdapter;
@@ -48,7 +49,7 @@ public class MovieScheduleActivity
             }
         });
         movieScheduleRecyclerView = findViewById(R.id.movieScheduleRecyclerView);
-        movieScheduleRecyclerViewAdapter = new MovieScheduleRecyclerViewAdapter();
+        movieScheduleRecyclerViewAdapter = new MovieScheduleRecyclerViewAdapter(this);
         movieScheduleRecyclerView.setAdapter(movieScheduleRecyclerViewAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         movieScheduleRecyclerView.setLayoutManager(layoutManager);
@@ -91,5 +92,12 @@ public class MovieScheduleActivity
     @Override
     public void onGetMovieScheduleFailure() {
 
+    }
+
+    @Override
+    public void onClickCardView(View view) {
+        Intent intent = new Intent(this, SeatSelectionActivity.class);
+        intent.putExtra("movieTitle", getIntent().getStringExtra("movieTitle"));
+        startActivity(intent);
     }
 }
