@@ -130,4 +130,6 @@
     <string name="user_reviews">User Reviews</string>
     <string name="now_in_theaters">Now In Theaters</string>
     <string name="explore_trending">Explore trending</string>
+    <string name="newest_first">Newest first</string>
+    <string name="oldest_first">Oldest first</string>
 </resources>

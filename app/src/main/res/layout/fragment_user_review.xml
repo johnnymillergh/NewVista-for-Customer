@@ -13,10 +13,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:text="@string/user_reviews"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/spinner"
+        android:textColor="@color/md_black_color_code"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/sort"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -30,13 +29,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtv"/>
 
-    <Spinner
-        android:id="@+id/spinner"
+    <ImageButton
+        android:id="@+id/sort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="3dp"
-        android:entries="@array/user_review_sort_by"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_tune_black_24dp"
+        android:tint="@color/md_grey_700_color_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 

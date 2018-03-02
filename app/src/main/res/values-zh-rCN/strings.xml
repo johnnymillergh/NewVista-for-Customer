@@ -111,4 +111,6 @@
     <string name="user_reviews">用户评论</string>
     <string name="now_in_theaters">正在影院热映</string>
     <string name="explore_trending">探索潮流</string>
+    <string name="newest_first">Newest first</string>
+    <string name="oldest_first">Oldest first</string>
 </resources>

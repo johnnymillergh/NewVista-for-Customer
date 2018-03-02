@@ -5,15 +5,16 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.AdapterView;
-import android.widget.Spinner;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
@@ -27,12 +28,14 @@ import com.jm.newvista.ui.base.BaseFragment;
 import java.util.List;
 
 public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReviewView, UserReviewPresenter>
-        implements UserReviewView {
+        implements UserReviewView,
+        PopupMenu.OnMenuItemClickListener {
     private UserReviewFragmentListener mListener;
     private String movieTitle;
-    private Spinner spinner;
+    private ImageButton sort;
     private RecyclerView userReviewRecyclerView;
     private UserReviewRecyclerViewAdapter userReviewRecyclerViewAdapter;
+    private LinearLayoutManager linearLayoutManager;
 
     public UserReviewFragment() {
         // Required empty public constructor
@@ -53,23 +56,16 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
 
     private void initView(View view) {
         mListener.onDisplayRefreshing();
-        spinner = view.findViewById(R.id.spinner);
-        userReviewRecyclerView = view.findViewById(R.id.userReviewRecyclerView);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sort = view.findViewById(R.id.sort);
+        sort.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) linearLayoutManager.setReverseLayout(true);
-                else linearLayoutManager.setReverseLayout(false);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                onClickSort(v);
             }
         });
 
+        userReviewRecyclerView = view.findViewById(R.id.userReviewRecyclerView);
+        linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         linearLayoutManager.setReverseLayout(true);
         userReviewRecyclerView.setLayoutManager(linearLayoutManager);
@@ -78,8 +74,30 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         userReviewRecyclerView.setAdapter(userReviewRecyclerViewAdapter);
         userReviewRecyclerView.addItemDecoration(new DividerItemDecoration(this.getContext(),
                 DividerItemDecoration.VERTICAL));
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim
+                .animation_layout_fade_in);
         userReviewRecyclerView.setLayoutAnimation(animation);
+    }
+
+    private void onClickSort(View v) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), v);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.sort_user_review_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.newest_first:
+                linearLayoutManager.setReverseLayout(true);
+                break;
+            case R.id.oldest_first:
+                linearLayoutManager.setReverseLayout(false);
+                break;
+        }
+        return false;
     }
 
     @Override
