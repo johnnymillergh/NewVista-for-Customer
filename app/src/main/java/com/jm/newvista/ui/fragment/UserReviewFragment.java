@@ -85,7 +85,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     private void onClickSort(View v) {
         PopupMenu popupMenu = new PopupMenu(getContext(), v);
         MenuInflater menuInflater = popupMenu.getMenuInflater();
-        menuInflater.inflate(R.menu.sort_user_review_menu, popupMenu.getMenu());
+        menuInflater.inflate(R.menu.fragment_user_review_sort, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.show();
     }
@@ -93,10 +93,10 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.newest_first:
+            case R.id.newestFirst:
                 linearLayoutManager.setReverseLayout(true);
                 break;
-            case R.id.oldest_first:
+            case R.id.oldestFirst:
                 linearLayoutManager.setReverseLayout(false);
                 break;
         }

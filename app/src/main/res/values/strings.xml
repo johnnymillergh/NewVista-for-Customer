@@ -136,4 +136,7 @@
     <string name="loading3">Loading...</string>
     <string name="total">Total: $</string>
     <string name="confirm2">, Confirm</string>
+    <string name="add_to_watchlist">Add to watchlist</string>
+    <string name="remove_from_watchlist">Remove from watchlist</string>
+    <string name="share">Share</string>
 </resources>

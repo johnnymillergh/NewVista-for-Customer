@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -10,6 +11,8 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -31,6 +34,8 @@ import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
 import com.jm.newvista.ui.fragment.RateMovieFragment;
 import com.jm.newvista.ui.fragment.UserReviewFragment;
 import com.jm.newvista.util.NetworkUtil;
+
+import java.lang.reflect.Method;
 
 public class MovieActivity
         extends BaseActivity<MovieModel, MovieView, MoviePresenter>
@@ -71,6 +76,33 @@ public class MovieActivity
             initFragment();
             isLoaded = true;
         }
+    }
+
+    @Override
+    @SuppressLint("PrivateApi")
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_movie_options, menu);
+        try {
+            Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+            method.setAccessible(true);
+            method.invoke(menu, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.addToWatchlist:
+                break;
+            case R.id.removeFromWatchlist:
+                break;
+            case R.id.share:
+                break;
+        }
+        return false;
     }
 
     private void initFragment() {
