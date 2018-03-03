@@ -205,7 +205,7 @@
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:onClick="onClickConfirm"
-                android:text="Total: $70, Confirm"
+                android:text="@string/confirm"
                 android:textColor="@color/md_white_color_code"
                 android:textSize="18sp"/>
         </FrameLayout>

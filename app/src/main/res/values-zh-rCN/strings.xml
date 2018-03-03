@@ -115,4 +115,6 @@
     <string name="loading1">加载中.</string>
     <string name="loading2">加载中..</string>
     <string name="loading3">加载中…</string>
+    <string name="total">总价：￥</string>
+    <string name="confirm2">，确认</string>
 </resources>

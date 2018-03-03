@@ -154,30 +154,4 @@ public class SeatSelectionPresenter extends BasePresenter<SeatSelectionModel, Se
         }
         return maxCol;
     }
-
-    private List<SeatRow> querySeatMap() {
-        List<SeatRow> seatRows = new ArrayList<>();
-        for (int rowCount = 0; rowCount < 10; rowCount++) {
-            SeatRow seatRow = new SeatRow();
-            seatRow.rowName = String.valueOf(rowCount);
-            List<Seat> seats = new ArrayList<>();
-            for (int colCount = 0; colCount < 15; colCount++) {
-                Seat seat = new Seat();
-                seat.columnName = String.valueOf(colCount + 1);
-                if (rowCount == 5) {
-                    seat.status = Seat.STATUS.CORRIDOR;
-                } else {
-                    seat.status = Seat.STATUS.SELECTABLE;
-                }
-                if (colCount == 5 & rowCount != 5) {
-                    seat.status = Seat.STATUS.UNSELECTABLE;
-                }
-                seat.id = String.valueOf(seat);
-                seats.add(seat);
-            }
-            seatRow.seats = seats;
-            seatRows.add(seatRow);
-        }
-        return seatRows;
-    }
 }

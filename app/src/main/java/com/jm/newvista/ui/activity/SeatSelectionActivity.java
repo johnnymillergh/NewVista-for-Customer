@@ -20,6 +20,7 @@ import com.jm.newvista.mvp.view.SeatSelectionView;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.dialog.LoadingAlertDialog;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +44,8 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     private SeatView seatView;
 
     private List<Seat> selectedSeats = new ArrayList<>();
+
+    private MovieScheduleEntity currentMovieSchedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +106,9 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     public void lockSeat(Seat selectedSeat) {
         selectedSeats.add(selectedSeat);
         seatSelection.setText(getString(R.string.selected_seats) + selectedSeats);
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
+        String total = decimalFormat.format(currentMovieSchedule.getPrice() * selectedSeats.size());
+        confirm.setText(getString(R.string.total) + total + getString(R.string.confirm2));
         Toast.makeText(this, "Id: " + selectedSeat.id + ", row name: " + selectedSeat.rowName + ", col name: " +
                 selectedSeat.columnName + ", status: " + selectedSeat.status, Toast.LENGTH_SHORT).show();
     }
@@ -124,6 +130,8 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
 
     @Override
     public void onUpdateBasicInfo(MovieScheduleEntity movieScheduleEntity) {
+        currentMovieSchedule = movieScheduleEntity;
+
         movieTitle.setText(movieScheduleEntity.getMovieTitle());
 
         // Format datetime
