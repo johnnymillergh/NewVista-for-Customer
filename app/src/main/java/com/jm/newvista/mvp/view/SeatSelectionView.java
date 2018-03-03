@@ -28,4 +28,6 @@ public interface SeatSelectionView extends BaseView {
     void onDismissLoadingDialog();
 
     void onSetSeatView(SeatView seatView);
+
+    void onMakeToast(String message);
 }

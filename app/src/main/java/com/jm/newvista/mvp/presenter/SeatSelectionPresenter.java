@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.jm.newvista.bean.MovieScheduleEntity;
+import com.jm.newvista.bean.SeatEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.SeatSelectionModel;
 import com.jm.newvista.mvp.view.SeatSelectionView;
@@ -52,34 +53,77 @@ public class SeatSelectionPresenter extends BasePresenter<SeatSelectionModel, Se
 
             @Override
             public void onFailure(String errorMessage) {
+                seatSelectionView.onMakeToast(errorMessage);
+            }
+        });
+    }
 
+    public void getAndDisplaySeat() {
+        Intent intent = seatSelectionView.onGetIntent();
+        int auditoriumId = intent.getIntExtra("auditoriumId", -1);
+
+        seatSelectionView.onDisplayLoadingDialog();
+
+        seatSelectionModel.getSeatFromServer(auditoriumId, new SeatSelectionModel.GetSeatListener() {
+            @Override
+            public void onSuccess(List<SeatEntity> seatEntities) {
+                initSeatView(seatEntities);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                seatSelectionView.onMakeToast(errorMessage);
             }
         });
     }
 
     @SuppressLint("StaticFieldLeak")
-    public void getAndDisplaySeat() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                seatSelectionView.onDisplayLoadingDialog();
-            }
+    @SuppressWarnings("unchecked")
+    private void initSeatView(List<SeatEntity> seatEntities) {
+        Intent intent = seatSelectionView.onGetIntent();
+        final String auditoriumName = intent.getStringExtra("auditoriumName");
 
+        new AsyncTask<List<SeatEntity>, Void, List<SeatRow>>() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            protected List<SeatRow> doInBackground(List<SeatEntity>[] lists) {
+                List<SeatEntity> seatEntities = lists[0];
+                List<SeatRow> seatRows = new ArrayList<>();
+
+                int maxRowCount = getMaxRowNumber(seatEntities);
+                int maxColCount = getMaxColNumber(seatEntities);
+
+                int seatEntitiesIndex = 0;
+
+                for (int rowCount = 0; rowCount < maxRowCount; rowCount++) {
+                    SeatRow seatRow = new SeatRow();
+                    seatRow.rowName = String.valueOf(rowCount);
+                    List<Seat> seats = new ArrayList<>();
+                    for (int colCount = 0; colCount < maxColCount; colCount++) {
+                        Seat seat = new Seat();
+                        seat.columnName = String.valueOf(colCount + 1);
+
+                        SeatEntity seatEntity = seatEntities.get(seatEntitiesIndex);
+                        if (!seatEntity.getIsSelected()) {
+                            seat.status = Seat.STATUS.SELECTABLE;
+                        }else{
+                            seat.status = Seat.STATUS.UNSELECTABLE;
+                        }
+
+                        seat.id = String.valueOf(seatEntitiesIndex);
+                        seats.add(seat);
+                        seatEntitiesIndex++;
+                    }
+                    seatRow.seats = seats;
+                    seatRows.add(seatRow);
                 }
-                return null;
+                return seatRows;
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
+            protected void onPostExecute(List<SeatRow> seatMap) {
                 SeatView seatView = seatSelectionView.onUpdateSeatView();
-                seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(ApplicationUtil.context
-                        .getResources()), querySeatMap(), 4);
+                seatView.initSeatView(auditoriumName.toUpperCase(), new SeatImages(ApplicationUtil.context
+                        .getResources()), seatMap, 4);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                         FrameLayout.LayoutParams.MATCH_PARENT);
                 seatView.setLayoutParams(params);
@@ -88,7 +132,27 @@ public class SeatSelectionPresenter extends BasePresenter<SeatSelectionModel, Se
                 seatSelectionView.onSetSeatView(seatView);
                 seatSelectionView.onDismissLoadingDialog();
             }
-        }.execute();
+        }.execute(seatEntities);
+    }
+
+    private int getMaxRowNumber(List<SeatEntity> seatEntities) {
+        int maxRow = 0;
+        for (SeatEntity se : seatEntities) {
+            if (se.getRowNumber() > maxRow) {
+                maxRow = se.getRowNumber();
+            }
+        }
+        return maxRow;
+    }
+
+    private int getMaxColNumber(List<SeatEntity> seatEntities) {
+        int maxCol = 0;
+        for (SeatEntity se : seatEntities) {
+            if (se.getRowNumber() > maxCol) {
+                maxCol = se.getColNumber();
+            }
+        }
+        return maxCol;
     }
 
     private List<SeatRow> querySeatMap() {

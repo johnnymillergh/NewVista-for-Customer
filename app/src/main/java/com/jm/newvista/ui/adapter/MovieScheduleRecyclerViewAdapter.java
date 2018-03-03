@@ -67,6 +67,8 @@ public class MovieScheduleRecyclerViewAdapter
                 Intent intent = new Intent(context, SeatSelectionActivity.class);
                 intent.putExtra("movieScheduleId", movieSchedules.get(position).getId());
                 intent.putExtra("theaterName", movieSchedules.get(position).getTheaterName());
+                intent.putExtra("auditoriumName", movieSchedules.get(position).getAuditoriumName());
+                intent.putExtra("auditoriumId", movieSchedules.get(position).getAuditoriumId());
                 context.startActivity(intent);
             }
         });

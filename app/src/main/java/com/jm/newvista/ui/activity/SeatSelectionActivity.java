@@ -158,4 +158,9 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         this.seatView = seatView;
         this.seatView.setOnClickSeatListener(this);
     }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 }
