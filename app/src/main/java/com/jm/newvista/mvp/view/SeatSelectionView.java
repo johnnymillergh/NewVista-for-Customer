@@ -26,4 +26,6 @@ public interface SeatSelectionView extends BaseView {
     void onDisplayLoadingDialog();
 
     void onDismissLoadingDialog();
+
+    void onSetSeatView(SeatView seatView);
 }

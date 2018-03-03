@@ -28,12 +28,10 @@ import java.util.Locale;
 
 import io.github.lh911002.seatview.seat.OnClickSeatListener;
 import io.github.lh911002.seatview.seat.Seat;
-import io.github.lh911002.seatview.seat.SeatImages;
-import io.github.lh911002.seatview.seat.SeatRow;
 import io.github.lh911002.seatview.seat.SeatView;
 
 public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, SeatSelectionView, SeatSelectionPresenter>
-        implements SeatSelectionView {
+        implements SeatSelectionView, OnClickSeatListener {
     private Toolbar toolbar;
     private TextView movieTitle;
     private TextView showtime;
@@ -41,6 +39,10 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     private Button confirm;
     private FrameLayout seatViewContainer;
     private LoadingAlertDialog loadingAlertDialog;
+
+    private SeatView seatView;
+
+    private List<Seat> selectedSeats = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,25 +90,25 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         return new SeatSelectionPresenter();
     }
 
-//    @SuppressLint("SetTextI18n")
-//    @Override
-//    public void releaseSeat(Seat canceledSeat) {
-//        seats.remove(canceledSeat);
-//        if (seats.size() == 0) seatSelection.setText(getString(R.string.seat_not_selected));
-//        else seatSelection.setText(getString(R.string.selected_seats) + seats);
-//    }
-//
-//    @SuppressLint("SetTextI18n")
-//    @Override
-//    public void lockSeat(Seat selectedSeat) {
-//        seats.add(selectedSeat);
-//        seatSelection.setText(getString(R.string.selected_seats) + seats);
-//    }
-//
-//    @Override
-//    public void onExceedMaxSelectionCount(int maxSelectionCount) {
-//        Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
-//    }
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void releaseSeat(Seat canceledSeat) {
+        selectedSeats.remove(canceledSeat);
+        if (selectedSeats.size() == 0) seatSelection.setText(getString(R.string.seat_not_selected));
+        else seatSelection.setText(getString(R.string.selected_seats) + selectedSeats);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void lockSeat(Seat selectedSeat) {
+        selectedSeats.add(selectedSeat);
+        seatSelection.setText(getString(R.string.selected_seats) + selectedSeats);
+    }
+
+    @Override
+    public void onExceedMaxSelectionCount(int maxSelectionCount) {
+        Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public Intent onGetIntent() {
@@ -149,5 +151,11 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     @Override
     public void onDismissLoadingDialog() {
         if (loadingAlertDialog != null) loadingAlertDialog.dismiss();
+    }
+
+    @Override
+    public void onSetSeatView(SeatView seatView) {
+        this.seatView = seatView;
+        this.seatView.setOnClickSeatListener(this);
     }
 }
