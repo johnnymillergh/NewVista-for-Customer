@@ -109,7 +109,7 @@ public class SeatSelectionPresenter extends BasePresenter<SeatSelectionModel, Se
                             seat.status = Seat.STATUS.UNSELECTABLE;
                         }
 
-                        seat.id = String.valueOf(seatEntitiesIndex);
+                        seat.id = String.valueOf(seatEntity.getId());
                         seats.add(seat);
                         seatEntitiesIndex++;
                     }

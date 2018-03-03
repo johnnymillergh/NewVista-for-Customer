@@ -103,6 +103,8 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     public void lockSeat(Seat selectedSeat) {
         selectedSeats.add(selectedSeat);
         seatSelection.setText(getString(R.string.selected_seats) + selectedSeats);
+        Toast.makeText(this, "Id: " + selectedSeat.id + ", row name: " + selectedSeat.rowName + ", col name: " +
+                selectedSeat.columnName + ", status: " + selectedSeat.status, Toast.LENGTH_SHORT).show();
     }
 
     @Override
