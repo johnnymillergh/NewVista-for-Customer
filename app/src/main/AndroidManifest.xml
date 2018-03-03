@@ -64,6 +64,12 @@
 
         <activity android:name=".ui.activity.MovieScheduleActivity">
         </activity>
+        <activity android:name=".ui.activity.AboutActivity">
+        </activity>
+        <activity android:name=".ui.activity.WatchlistActivity">
+        </activity>
+        <activity android:name=".ui.activity.OrderHistoryActivity">
+        </activity>
     </application>
 
 </manifest>
