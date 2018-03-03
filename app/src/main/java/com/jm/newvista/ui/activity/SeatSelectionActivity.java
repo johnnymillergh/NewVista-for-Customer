@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     private TextView showtime;
     private TextView seatSelection;
     private Button confirm;
-    private SeatView seatView;
+    //    private SeatView seatView;
+    private FrameLayout seatViewContainer;
 
     private List<Seat> seats = new ArrayList<>();
 
@@ -47,8 +49,8 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         setContentView(R.layout.activity_seat_selection);
         initView();
         getPresenter().updateToolBar();
-
         getPresenter().getAndDisplayMovieSchedule();
+        getPresenter().getAndDisplaySeat();
     }
 
     private void initView() {
@@ -70,9 +72,11 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         seatSelection.setVerticalFadingEdgeEnabled(true);
         seatSelection.setMovementMethod(ScrollingMovementMethod.getInstance());
         confirm = findViewById(R.id.confirm);
-        seatView = findViewById(R.id.seatView);
-        seatView.setOnClickSeatListener(this);
-        seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap(), 4);
+        seatViewContainer = findViewById(R.id.seatViewContainer);
+//        seatView = findViewById(R.id.seatView);
+//        seatView.setOnClickSeatListener(this);
+//        seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap(), 4);
+//        seatView.
     }
 
     public void onClickConfirm(View view) {
@@ -158,7 +162,12 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     }
 
     @Override
-    public void onUpdateSeatView() {
+    public SeatView onUpdateSeatView() {
+        return new SeatView(this);
+    }
 
+    @Override
+    public FrameLayout onGetSeatViewContainer() {
+        return seatViewContainer;
     }
 }

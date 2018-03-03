@@ -25,4 +25,5 @@ public class NetworkUtil {
     public static final String GET_LOWEST_PRICE_URL = "http://johnnymiller.site/getLowestPrice.jsp?movieTitle=";
     public static final String GET_LOWEST_PRICE_URL2 = "http://johnnymiller.site/getLowestPrice.jsp?movieId=";
     public static final String GET_NOW_IN_THEATERS_URL = "http://johnnymiller.site/getNowInTheaters.jsp";
+    public static final String SAT_MANAGEMENT_URL = "http://johnnymiller.site/servlet.customer.SATManagement";
 }
