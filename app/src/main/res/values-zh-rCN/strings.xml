@@ -117,7 +117,8 @@
     <string name="loading3">加载中…</string>
     <string name="total">总价：￥</string>
     <string name="confirm2">，确认</string>
-    <string name="add_to_watchlist">Add to watchlist</string>
-    <string name="remove_from_watchlist">Remove from watchlist</string>
-    <string name="share">Share</string>
+    <string name="add_to_watchlist">添加到心愿单</string>
+    <string name="remove_from_watchlist">从心愿单移除</string>
+    <string name="share">分享</string>
+    <string name="about_version">版本号：</string>
 </resources>

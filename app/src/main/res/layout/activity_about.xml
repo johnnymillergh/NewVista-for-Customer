@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,4 +7,256 @@
     android:layout_height="match_parent"
     tools:context="com.jm.newvista.ui.activity.AboutActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/BaseToolBarTheme"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="enterAlways"
+            app:title="About"
+            android:elevation="0dp"
+            app:titleTextColor="@color/colorTextOnPrimary"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="4dp">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:id="@+id/imgv1"
+                        android:layout_width="64dp"
+                        android:layout_height="128dp"
+                        android:background="@color/md_grey_300_color_code"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/web_hi_res_512"/>
+
+                    <LinearLayout
+                        android:id="@+id/lnrl1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imgv1"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/txtv1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hello, glad to see you!"
+                            android:textColor="@color/md_amber_a700_color_code"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/version"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:textStyle="italic"/>
+                    </LinearLayout>
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/text_margin"
+                        android:text="If you liked this app, feel free to contact me."
+                        android:textColor="@color/md_amber_a700_color_code"
+                        android:textStyle="bold"/>
+
+                    <View
+                        android:id="@+id/separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/md_grey_300_color_code"/>
+
+                    <LinearLayout
+                        android:id="@+id/rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:clickable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:tint="@color/md_grey_700_color_code"
+                            app:srcCompat="@drawable/ic_shop_black_24dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:text="Rate on Google Play"
+                            android:textStyle="italic"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:clickable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:tint="@color/md_grey_700_color_code"
+                            app:srcCompat="@drawable/ic_email_black_48px"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:text="Feedback by email"
+                            android:textStyle="italic"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/github"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:clickable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:src="@drawable/ic_github_grey"
+                            android:tint="@color/md_grey_700_color_code"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:text="Source code on GitHub"
+                            android:textStyle="italic"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:selectableItemBackground"
+                        android:clickable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:src="@drawable/ic_location_on_black_48px"
+                            android:tint="@color/md_grey_700_color_code"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/text_margin"
+                            android:text="Harbin, HLJ Prov., P.R.China"
+                            android:textStyle="italic"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:id="@+id/copyright"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/text_margin"
+                        android:src="@drawable/ic_copyright_black_24dp"
+                        android:tint="@color/md_grey_700_color_code"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/text_margin"
+                        android:text="Open source licenses"
+                        android:textStyle="italic"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_share_white_24dp"/>
+</android.support.design.widget.CoordinatorLayout>

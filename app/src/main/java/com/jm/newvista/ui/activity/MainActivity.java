@@ -252,7 +252,18 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         } else if (id == R.id.settingsItem) {
             //TODO
         } else if (id == R.id.aboutItem) {
-            //TODO
+            final Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(320);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+                }
+            }).start();
         }
         // Close drawer
         drawerLayout.closeDrawer(GravityCompat.START);

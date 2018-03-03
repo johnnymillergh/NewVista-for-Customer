@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".ui.activity.PosterGalleryActivity"
-            android:theme="@style/AppThemeGallery">
+            android:theme="@style/AppTheme.Gallery">
         </activity>
         <activity android:name=".ui.activity.MessageServiceTestActivity">
         </activity>
@@ -64,7 +64,8 @@
 
         <activity android:name=".ui.activity.MovieScheduleActivity">
         </activity>
-        <activity android:name=".ui.activity.AboutActivity">
+        <activity android:name=".ui.activity.AboutActivity"
+            android:theme="@style/AppTheme.About">
         </activity>
         <activity android:name=".ui.activity.WatchlistActivity">
         </activity>
