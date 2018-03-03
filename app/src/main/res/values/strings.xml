@@ -130,4 +130,8 @@
     <string name="oldest_first">Oldest first</string>
     <string name="movie_schedule_error">Something went wrong: No movies schedules</string>
     <string name="seat_selection">Seat selection</string>
+    <string name="loading0">Loading</string>
+    <string name="loading1">Loading.</string>
+    <string name="loading2">Loading..</string>
+    <string name="loading3">Loading...</string>
 </resources>

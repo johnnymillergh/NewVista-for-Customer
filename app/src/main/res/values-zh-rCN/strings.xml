@@ -111,4 +111,8 @@
     <string name="oldest_first">最早评论优先</string>
     <string name="movie_schedule_error">未知错误：未能显示排片档期</string>
     <string name="seat_selection">座位选择</string>
+    <string name="loading0">加载中</string>
+    <string name="loading1">加载中.</string>
+    <string name="loading2">加载中..</string>
+    <string name="loading3">加载中…</string>
 </resources>

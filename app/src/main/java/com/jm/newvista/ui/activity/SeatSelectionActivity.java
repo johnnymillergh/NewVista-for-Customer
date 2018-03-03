@@ -18,6 +18,7 @@ import com.jm.newvista.mvp.model.SeatSelectionModel;
 import com.jm.newvista.mvp.presenter.SeatSelectionPresenter;
 import com.jm.newvista.mvp.view.SeatSelectionView;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.ui.dialog.LoadingAlertDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,16 +33,14 @@ import io.github.lh911002.seatview.seat.SeatRow;
 import io.github.lh911002.seatview.seat.SeatView;
 
 public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, SeatSelectionView, SeatSelectionPresenter>
-        implements SeatSelectionView, OnClickSeatListener {
+        implements SeatSelectionView {
     private Toolbar toolbar;
     private TextView movieTitle;
     private TextView showtime;
     private TextView seatSelection;
     private Button confirm;
-    //    private SeatView seatView;
     private FrameLayout seatViewContainer;
-
-    private List<Seat> seats = new ArrayList<>();
+    private LoadingAlertDialog loadingAlertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,40 +72,10 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         seatSelection.setMovementMethod(ScrollingMovementMethod.getInstance());
         confirm = findViewById(R.id.confirm);
         seatViewContainer = findViewById(R.id.seatViewContainer);
-//        seatView = findViewById(R.id.seatView);
-//        seatView.setOnClickSeatListener(this);
-//        seatView.initSeatView("Auditorium 1".toUpperCase(), new SeatImages(getResources()), querySeatMap(), 4);
-//        seatView.
     }
 
     public void onClickConfirm(View view) {
 
-    }
-
-    private List<SeatRow> querySeatMap() {
-        List<SeatRow> seatRows = new ArrayList<>();
-        for (int rowCount = 0; rowCount < 20; rowCount++) {
-            SeatRow seatRow = new SeatRow();
-            seatRow.rowName = String.valueOf(rowCount);
-            List<Seat> seats = new ArrayList<>();
-            for (int colCount = 0; colCount < 15; colCount++) {
-                Seat seat = new Seat();
-                seat.columnName = String.valueOf(colCount + 1);
-                if (rowCount == 5) {
-                    seat.status = Seat.STATUS.CORRIDOR;
-                } else {
-                    seat.status = Seat.STATUS.SELECTABLE;
-                }
-                if (colCount == 5 & rowCount != 5) {
-                    seat.status = Seat.STATUS.UNSELECTABLE;
-                }
-                seat.id = String.valueOf(seat);
-                seats.add(seat);
-            }
-            seatRow.seats = seats;
-            seatRows.add(seatRow);
-        }
-        return seatRows;
     }
 
     @Override
@@ -119,25 +88,25 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         return new SeatSelectionPresenter();
     }
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void releaseSeat(Seat canceledSeat) {
-        seats.remove(canceledSeat);
-        if (seats.size() == 0) seatSelection.setText(getString(R.string.seat_not_selected));
-        else seatSelection.setText(getString(R.string.selected_seats) + seats);
-    }
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void lockSeat(Seat selectedSeat) {
-        seats.add(selectedSeat);
-        seatSelection.setText(getString(R.string.selected_seats) + seats);
-    }
-
-    @Override
-    public void onExceedMaxSelectionCount(int maxSelectionCount) {
-        Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
-    }
+//    @SuppressLint("SetTextI18n")
+//    @Override
+//    public void releaseSeat(Seat canceledSeat) {
+//        seats.remove(canceledSeat);
+//        if (seats.size() == 0) seatSelection.setText(getString(R.string.seat_not_selected));
+//        else seatSelection.setText(getString(R.string.selected_seats) + seats);
+//    }
+//
+//    @SuppressLint("SetTextI18n")
+//    @Override
+//    public void lockSeat(Seat selectedSeat) {
+//        seats.add(selectedSeat);
+//        seatSelection.setText(getString(R.string.selected_seats) + seats);
+//    }
+//
+//    @Override
+//    public void onExceedMaxSelectionCount(int maxSelectionCount) {
+//        Toast.makeText(this, getString(R.string.seats_warning) + maxSelectionCount, Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
     public Intent onGetIntent() {
@@ -169,5 +138,16 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     @Override
     public FrameLayout onGetSeatViewContainer() {
         return seatViewContainer;
+    }
+
+    @Override
+    public void onDisplayLoadingDialog() {
+        loadingAlertDialog = new LoadingAlertDialog(this);
+        loadingAlertDialog.show();
+    }
+
+    @Override
+    public void onDismissLoadingDialog() {
+        if (loadingAlertDialog != null) loadingAlertDialog.dismiss();
     }
 }

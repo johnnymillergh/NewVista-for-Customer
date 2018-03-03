@@ -22,4 +22,8 @@ public interface SeatSelectionView extends BaseView {
     SeatView onUpdateSeatView();
 
     FrameLayout onGetSeatViewContainer();
+
+    void onDisplayLoadingDialog();
+
+    void onDismissLoadingDialog();
 }
