@@ -64,12 +64,17 @@
 
         <activity android:name=".ui.activity.MovieScheduleActivity">
         </activity>
-        <activity android:name=".ui.activity.AboutActivity"
+        <activity
+            android:name=".ui.activity.AboutActivity"
             android:theme="@style/AppTheme.About">
         </activity>
         <activity android:name=".ui.activity.WatchlistActivity">
         </activity>
         <activity android:name=".ui.activity.OrderHistoryActivity">
+        </activity>
+        <activity android:name=".ui.activity.NowInTheatersActivity">
+        </activity>
+        <activity android:name=".ui.activity.RandomPicksActivity">
         </activity>
     </application>
 
