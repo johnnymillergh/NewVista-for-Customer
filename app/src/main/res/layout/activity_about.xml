@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,8 +21,7 @@
             android:theme="@style/BaseToolBarTheme"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
-            app:title="About"
-            android:elevation="0dp"
+            app:title="@string/about_new_vista"
             app:titleTextColor="@color/colorTextOnPrimary"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -44,8 +44,7 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true">
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/imgv1"
@@ -74,7 +73,7 @@
                             android:id="@+id/txtv1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Hello, glad to see you!"
+                            android:text="@string/hello"
                             android:textColor="@color/md_amber_a700_color_code"
                             android:textStyle="bold"/>
 
@@ -82,7 +81,6 @@
                             android:id="@+id/version"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
                             android:textStyle="italic"/>
                     </LinearLayout>
 
@@ -96,16 +94,16 @@
                 app:cardCornerRadius="4dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/txtv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/text_margin"
-                        android:text="If you liked this app, feel free to contact me."
+                        android:text="@string/contact_me"
                         android:textColor="@color/md_amber_a700_color_code"
                         android:textStyle="bold"/>
 
@@ -121,6 +119,8 @@
                         android:layout_height="wrap_content"
                         android:background="?android:selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClick"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -136,7 +136,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_margin="@dimen/text_margin"
-                            android:text="Rate on Google Play"
+                            android:text="@string/rate_on_google_play"
                             android:textStyle="italic"/>
                     </LinearLayout>
 
@@ -146,6 +146,8 @@
                         android:layout_height="wrap_content"
                         android:background="?android:selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClick"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -161,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_margin="@dimen/text_margin"
-                            android:text="Feedback by email"
+                            android:text="@string/feedback"
                             android:textStyle="italic"/>
                     </LinearLayout>
 
@@ -171,6 +173,8 @@
                         android:layout_height="wrap_content"
                         android:background="?android:selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClick"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -186,7 +190,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_margin="@dimen/text_margin"
-                            android:text="Source code on GitHub"
+                            android:text="@string/code_github"
                             android:textStyle="italic"/>
                     </LinearLayout>
 
@@ -196,6 +200,8 @@
                         android:layout_height="wrap_content"
                         android:background="?android:selectableItemBackground"
                         android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onClick"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -211,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_margin="@dimen/text_margin"
-                            android:text="Harbin, HLJ Prov., P.R.China"
+                            android:text="@string/my_location"
                             android:textStyle="italic"/>
                     </LinearLayout>
 
@@ -225,11 +231,13 @@
                 app:cardCornerRadius="4dp">
 
                 <LinearLayout
-                    android:id="@+id/copyright"
+                    android:id="@+id/license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:selectableItemBackground"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onClick"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -245,7 +253,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_margin="@dimen/text_margin"
-                        android:text="Open source licenses"
+                        android:text="@string/licenses"
                         android:textStyle="italic"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>

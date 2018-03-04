@@ -140,4 +140,15 @@
     <string name="remove_from_watchlist">Remove from watchlist</string>
     <string name="share">Share</string>
     <string name="about_version">Version: </string>
+    <string name="hello">Hello, glad to see you!</string>
+    <string name="contact_me">If you liked this app, feel free to contact me.</string>
+    <string name="rate_on_google_play">Rate on Google Play</string>
+    <string name="feedback">Feedback by email</string>
+    <string name="code_github">Source code on GitHub</string>
+    <string name="my_location">Harbin, HLJ Prov., P.R.China</string>
+    <string name="licenses">Open source licenses</string>
+    <string name="about_new_vista">About New Vista</string>
+    <string name="about_email_intent">About: New Vista</string>
+    <string name="about_not_found_email">Not found email app</string>
+    <string name="share_with">Share with</string>
 </resources>

@@ -121,4 +121,15 @@
     <string name="remove_from_watchlist">从心愿单移除</string>
     <string name="share">分享</string>
     <string name="about_version">版本号：</string>
+    <string name="hello">Hello, 非常高兴见到你！</string>
+    <string name="contact_me">如果你喜欢这个App，欢迎和我联系！</string>
+    <string name="rate_on_google_play">评价（Google play）</string>
+    <string name="feedback">反馈（E-mail）</string>
+    <string name="code_github">源代码（GitHub）</string>
+    <string name="my_location">中国黑龙江省哈尔滨市</string>
+    <string name="licenses">开源许可证</string>
+    <string name="about_new_vista">关于新万视</string>
+    <string name="about_email_intent">关于：新万视</string>
+    <string name="about_not_found_email">没有发现邮件程序</string>
+    <string name="share_with">分享方式</string>
 </resources>

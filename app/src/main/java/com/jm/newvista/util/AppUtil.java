@@ -7,19 +7,10 @@ import android.content.pm.PackageManager;
 import com.jm.newvista.R;
 
 /**
- * Created by zhang on 2017.11.22.
+ * Created by Johnny on 3/4/2018.
  */
 
 public class AppUtil {
-
-    public static boolean checkAppInstalled(Context context, String packageName) {
-        try {
-            context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-            return true;
-        } catch (PackageManager.NameNotFoundException e) {
-            return false;
-        }
-    }
 
     public static String getVersionName(Context context) {
         try {
