@@ -20,7 +20,7 @@ import com.jm.newvista.R;
 import com.jm.newvista.util.AppUtil;
 import com.jm.newvista.util.Constant;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity{
     private Toolbar toolbar;
     private ScrollView scrollView;
 
@@ -37,6 +37,12 @@ public class AboutActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         scrollView = findViewById(R.id.scrollView);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in_from_bottom_to_top);

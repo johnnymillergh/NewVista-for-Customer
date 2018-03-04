@@ -37,6 +37,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/versionCardView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
@@ -74,7 +75,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/hello"
-                            android:textColor="@color/md_amber_a700_color_code"
+                            android:textColor="@color/colorPrimary"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -88,6 +89,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/appCardView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
@@ -104,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/text_margin"
                         android:text="@string/contact_me"
-                        android:textColor="@color/md_amber_a700_color_code"
+                        android:textColor="@color/colorPrimary"
                         android:textStyle="bold"/>
 
                     <View
@@ -225,6 +227,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/licensesCardView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
@@ -259,6 +262,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/inspirationCardView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"

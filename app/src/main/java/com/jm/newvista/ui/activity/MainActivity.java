@@ -241,16 +241,59 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 }
             }).start();
         } else if (id == R.id.signOutItem) {
-            //TODO
             showSignOutDialog();
         } else if (id == R.id.orderItem) {
-            //TODO
+            final Intent intent = new Intent(MainActivity.this, OrderHistoryActivity.class);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(320);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+                }
+            }).start();
         } else if (id == R.id.commentItem) {
-            //TODO
+//            final Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        Thread.sleep(320);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+//                }
+//            }).start();
         } else if (id == R.id.watchlistItem) {
-            //TODO
+            final Intent intent = new Intent(MainActivity.this, WatchlistActivity.class);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(320);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+                }
+            }).start();
         } else if (id == R.id.settingsItem) {
-            //TODO
+//            final Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        Thread.sleep(320);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+//                }
+//            }).start();
         } else if (id == R.id.aboutItem) {
             final Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             new Thread(new Runnable() {
