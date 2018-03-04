@@ -80,22 +80,28 @@ public class AboutActivity extends AppCompatActivity {
                 break;
 
             case R.id.license:
-//                final Dialog dialog = new Dialog(this, R.style.DialogFullscreenWithTitle);
-//                dialog.setTitle(getString(R.string.about_source_licenses));
-//                dialog.setContentView(R.layout.dialog_source_licenses);
-//
-//                final WebView webView = dialog.findViewById(R.id.web_source_licenses);
-//                webView.loadUrl("file:///android_asset/source_licenses.html");
-//
-//                Button btn_source_licenses_close = dialog.findViewById(R.id.btn_source_licenses_close);
-//                btn_source_licenses_close.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                dialog.show();
+                final Dialog dialog = new Dialog(this, R.style.DialogFullscreenWithTitle);
+                dialog.setTitle(getString(R.string.licenses));
+                dialog.setContentView(R.layout.dialog_source_licenses);
+
+                final WebView webView = dialog.findViewById(R.id.webView);
+                webView.loadUrl("file:///android_asset/source_licenses.html");
+
+                Button close = dialog.findViewById(R.id.close);
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+                break;
+
+            case R.id.inspiration:
+                intent.setData(Uri.parse(Constant.MATERIAL_DESIGN_APP_URL));
+                intent.setAction(Intent.ACTION_VIEW);
+                startActivity(intent);
                 break;
 
             case R.id.share:

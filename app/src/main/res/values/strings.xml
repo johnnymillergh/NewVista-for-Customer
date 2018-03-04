@@ -151,4 +151,6 @@
     <string name="about_email_intent">About: New Vista</string>
     <string name="about_not_found_email">Not found email app</string>
     <string name="share_with">Share with</string>
+    <string name="close">Close</string>
+    <string name="inspiration">UI Design Inspiration from Google Play and Material Design app by Eajy</string>
 </resources>

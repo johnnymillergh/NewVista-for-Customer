@@ -132,4 +132,6 @@
     <string name="about_email_intent">关于：新万视</string>
     <string name="about_not_found_email">没有发现邮件程序</string>
     <string name="share_with">分享方式</string>
+    <string name="close">关闭</string>
+    <string name="inspiration">UI设计灵感来源于Google Play和Eajy的Material Design APP</string>
 </resources>
