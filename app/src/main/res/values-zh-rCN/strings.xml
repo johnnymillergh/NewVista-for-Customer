@@ -134,4 +134,5 @@
     <string name="share_with">分享方式</string>
     <string name="close">关闭</string>
     <string name="inspiration">UI设计灵感来源于Google Play和Eajy的Material Design APP</string>
+    <string name="order_history">Order History</string>
 </resources>
