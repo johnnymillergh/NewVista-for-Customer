@@ -53,9 +53,6 @@ public class NewMovieReleasesActivity
         searchResultRecyclerViewAdapter = new SearchResultRecyclerViewAdapter(this);
         newMovieReleasesRecyclerView.setAdapter(searchResultRecyclerViewAdapter);
         newMovieReleasesRecyclerView.setNestedScrollingEnabled(false);
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim
-                .animation_layout_from_bottom_to_top);
-        newMovieReleasesRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override

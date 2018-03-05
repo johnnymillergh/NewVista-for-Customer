@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.model.RandomPicksModel;
 import com.jm.newvista.mvp.presenter.RandomPicksPresenter;
 import com.jm.newvista.mvp.view.RandomPicksView;
+import com.jm.newvista.ui.activity.NowInTheatersActivity;
+import com.jm.newvista.ui.activity.RandomPicksActivity;
 import com.jm.newvista.ui.adapter.RandomPicksRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
@@ -59,6 +62,12 @@ public class RandomPicksFragment
     private void initView(View view) {
         randomPicksRecyclerView = view.findViewById(R.id.randomPicksRecyclerView);
         more = view.findViewById(R.id.more);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickMore(v);
+            }
+        });
 
         randomPicksRecyclerViewAdapter = new RandomPicksRecyclerViewAdapter(getActivity());
 
@@ -68,6 +77,11 @@ public class RandomPicksFragment
         randomPicksRecyclerView.setAdapter(randomPicksRecyclerViewAdapter);
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
         randomPicksRecyclerView.setLayoutAnimation(animation);
+    }
+
+    private void onClickMore(View v) {
+        Intent intent = new Intent(getActivity(), RandomPicksActivity.class);
+        startActivity(intent);
     }
 
     @Override

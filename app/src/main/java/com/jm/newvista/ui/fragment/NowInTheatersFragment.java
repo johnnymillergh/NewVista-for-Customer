@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.NowInTheatersModel;
 import com.jm.newvista.mvp.presenter.NowInTheatersPresenter;
 import com.jm.newvista.mvp.view.NowInTheatersView;
+import com.jm.newvista.ui.activity.NewMovieReleasesActivity;
+import com.jm.newvista.ui.activity.NowInTheatersActivity;
 import com.jm.newvista.ui.adapter.NowInTheatersRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
@@ -71,7 +74,8 @@ public class NowInTheatersFragment
     }
 
     private void onClickMore(View v) {
-
+        Intent intent = new Intent(getActivity(), NowInTheatersActivity.class);
+        startActivity(intent);
     }
 
     public void onButtonPressed(Uri uri) {

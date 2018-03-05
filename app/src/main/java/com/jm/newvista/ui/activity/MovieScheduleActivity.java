@@ -53,9 +53,6 @@ public class MovieScheduleActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         movieScheduleRecyclerView.setLayoutManager(layoutManager);
         movieScheduleRecyclerView.setNestedScrollingEnabled(false);
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim
-                .animation_layout_from_bottom_to_top);
-        movieScheduleRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override
