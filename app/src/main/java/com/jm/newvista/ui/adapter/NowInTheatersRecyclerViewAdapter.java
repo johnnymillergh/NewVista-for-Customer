@@ -52,15 +52,15 @@ public class NowInTheatersRecyclerViewAdapter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (moviesInTheaters != null) {
-            final MovieEntity newMovie = moviesInTheaters.get(position);
-            holder.title.setText(newMovie.getTitle());
-            holder.genre.setText(newMovie.getGenre());
+            final MovieEntity movieEntity = moviesInTheaters.get(position);
+            holder.title.setText(movieEntity.getTitle());
+            holder.genre.setText(movieEntity.getGenre());
             final ImageView poster = holder.poster;
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, MovieActivity.class);
-                    intent.putExtra("movieId", newMovie.getId());
+                    intent.putExtra("movieTitle", movieEntity.getTitle());
                     intent.putExtra("from", "NewMovieReleases");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation(activity, poster, context.getString(R.string
@@ -68,7 +68,7 @@ public class NowInTheatersRecyclerViewAdapter
                     context.startActivity(intent, options.toBundle());
                 }
             });
-            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + newMovie.getTitle())
+            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
                     .transition(withCrossFade()).into(holder.poster);
         }
     }

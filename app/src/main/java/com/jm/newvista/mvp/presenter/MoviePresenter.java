@@ -36,11 +36,11 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
         int movieId;
         switch (from) {
             case "NewMovieReleases":
-                movieId = intent.getIntExtra("movieId", 0);
-                new AsyncTask<Integer, Void, MovieEntity>() {
+                String movieTitle = intent.getStringExtra("movieTitle");
+                new AsyncTask<String, Void, MovieEntity>() {
                     @Override
-                    protected MovieEntity doInBackground(Integer... integers) {
-                        movieEntity = movieModel.getMovieFromDB(integers[0]);
+                    protected MovieEntity doInBackground(String... strings) {
+                        movieEntity = movieModel.getMovieFromDB(strings[0]);
                         getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
@@ -49,7 +49,7 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     protected void onPostExecute(MovieEntity movieEntity) {
                         movieView.onUpdateMovieInformation(movieEntity);
                     }
-                }.execute(movieId);
+                }.execute(movieTitle);
                 break;
             case "SearchResult":
                 movieId = intent.getIntExtra("movieId", 0);

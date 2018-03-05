@@ -60,7 +60,7 @@ public class RandomPicksRecyclerViewAdapter
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, MovieActivity.class);
-                    intent.putExtra("movieId", movieEntity.getId());
+                    intent.putExtra("movieTitle", movieEntity.getTitle());
                     intent.putExtra("from", "NewMovieReleases");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation(activity, poster, context.getString(R.string

@@ -60,7 +60,7 @@ public class NewMovieReleasesRecyclerViewAdapter
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, MovieActivity.class);
-                    intent.putExtra("movieId", newMovie.getId());
+                    intent.putExtra("movieTitle", newMovie.getTitle());
                     intent.putExtra("from", "NewMovieReleases");
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation(mainActivity, poster, context.getString(R.string
