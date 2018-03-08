@@ -57,8 +57,6 @@ dependencies {
     compile 'com.ms-square:expandableTextView:0.1.4'
     // A movie seat selection view for Android
     implementation project(':seatview')
-    // A simple layout with holes and separator
-    compile('com.github.santalu:ticket-view:1.0.1') {
-        exclude group: "com.android.support"
-    }
+    // A custom view for showing tickets
+    compile 'com.github.mreram:ticketview:1.0.0'
 }

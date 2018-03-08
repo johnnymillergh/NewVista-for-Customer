@@ -16,7 +16,8 @@ import com.jm.newvista.util.ImageUtil;
  */
 
 public class PosterGalleryPresenter extends BasePresenter<PosterGalleryModel, PosterGalleryView> {
-    PosterGalleryModel posterGalleryModel;
+    private PosterGalleryModel posterGalleryModel;
+    private PosterGalleryView posterGalleryView;
 
     public PosterGalleryPresenter() {
         posterGalleryModel = new PosterGalleryModel();
@@ -25,6 +26,7 @@ public class PosterGalleryPresenter extends BasePresenter<PosterGalleryModel, Po
 
     @SuppressLint("StaticFieldLeak")
     public void getAndDisplayMovie() {
+        posterGalleryView = getView();
         Intent intent = getView().onGetIntent();
         int movieId = intent.getIntExtra("movieId", 0);
         new AsyncTask<Integer, Void, MovieEntity>() {
@@ -39,7 +41,7 @@ public class PosterGalleryPresenter extends BasePresenter<PosterGalleryModel, Po
 
             @Override
             protected void onPostExecute(MovieEntity movieEntity) {
-                getView().onUpdate(movieEntity);
+                posterGalleryView.onUpdate(movieEntity);
             }
         }.execute(movieId);
     }
