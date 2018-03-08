@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/BaseToolBarTheme"
-            app:title="Ticket Detail"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
+            app:title="Ticket Detail"
             app:titleTextColor="@color/colorTextOnPrimary"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -168,7 +168,7 @@
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="New Vista Ticket"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/ticketColorLight"
                     android:textSize="10sp"/>
             </com.mreram.ticketview.TicketView>
 

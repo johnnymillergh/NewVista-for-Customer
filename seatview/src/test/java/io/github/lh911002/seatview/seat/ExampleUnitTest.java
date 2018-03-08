@@ -1,4 +1,4 @@
-package com.mreram.ticketview;
+package io.github.lh911002.seatview.seat;
 
 import org.junit.Test;
 

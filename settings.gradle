@@ -1,1 +1,1 @@
-include ':app', ':seatview', ':ticketview'
+include ':app', ':seatview'

@@ -1,4 +1,4 @@
-package com.mreram.ticketview;
+package io.github.lh911002.seatview.seat;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
- * Instrumented test, which will execute on an Android device.
+ * Instrumentation test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.ticketview.test", appContext.getPackageName());
+        assertEquals("io.github.lh911002.seatview", appContext.getPackageName());
     }
 }
