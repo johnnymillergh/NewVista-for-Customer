@@ -21,6 +21,7 @@
     <color name="selectedFontColor">#23B5F3</color>
     <color name="featureBackgroundColor">#FF1844</color>
     <color name="ticketColorLight">#0085BE</color>
+    <color name="ticketWindowBackground">#ffefef</color>
 
     <!-- red -->
     <color name="md_red_50_color_code">#fde0dc</color>

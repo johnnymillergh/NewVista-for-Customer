@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/md_grey_300_color_code"/>
+    <gradient
+        android:startColor="@color/ticketColorLight"
+        android:endColor="@color/colorAccentDark"
+        android:angle="270"/>
     <corners
         android:bottomRightRadius="8dp"
         android:bottomLeftRadius="8dp"/>
