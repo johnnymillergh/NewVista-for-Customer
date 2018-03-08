@@ -154,4 +154,10 @@
     <string name="close">Close</string>
     <string name="inspiration">UI Design Inspiration from Google Play and Material Design app by Eajy</string>
     <string name="order_history">Order History</string>
+    <string name="ticket_detail">Ticket Detail</string>
+    <string name="new_vista_ticket_trademark">New Vista Ticket ™</string>
+    <string name="order_number">Order Number:</string>
+    <string name="total_price">Total Price:</string>
+    <string name="ticket_amount">Ticket Amount:</string>
+    <string name="johnny_miller_designed">Designed by Johnny Miller</string>
 </resources>

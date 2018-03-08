@@ -135,4 +135,10 @@
     <string name="close">关闭</string>
     <string name="inspiration">UI设计灵感来源于Google Play和Eajy的Material Design APP</string>
     <string name="order_history">Order History</string>
+    <string name="ticket_detail">Ticket Detail</string>
+    <string name="new_vista_ticket_trademark">New Vista Ticket ™</string>
+    <string name="order_number">新万视订单号：</string>
+    <string name="total_price">总  价：</string>
+    <string name="ticket_amount">电影票数：</string>
+    <string name="johnny_miller_designed">鈡俊 智造</string>
 </resources>

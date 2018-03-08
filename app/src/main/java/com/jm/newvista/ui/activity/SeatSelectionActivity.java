@@ -99,6 +99,10 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         selectedSeats.remove(canceledSeat);
         if (selectedSeats.size() == 0) seatSelection.setText(getString(R.string.seat_not_selected));
         else seatSelection.setText(getString(R.string.selected_seats) + selectedSeats);
+
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
+        String total = decimalFormat.format(currentMovieSchedule.getPrice() * selectedSeats.size());
+        confirm.setText(getString(R.string.total) + total + getString(R.string.confirm2));
     }
 
     @SuppressLint("SetTextI18n")
@@ -106,9 +110,11 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     public void lockSeat(Seat selectedSeat) {
         selectedSeats.add(selectedSeat);
         seatSelection.setText(getString(R.string.selected_seats) + selectedSeats);
+
         DecimalFormat decimalFormat = new DecimalFormat(".00");
         String total = decimalFormat.format(currentMovieSchedule.getPrice() * selectedSeats.size());
         confirm.setText(getString(R.string.total) + total + getString(R.string.confirm2));
+
         Toast.makeText(this, "Id: " + selectedSeat.id + ", row name: " + selectedSeat.rowName + ", col name: " +
                 selectedSeat.columnName + ", status: " + selectedSeat.status, Toast.LENGTH_SHORT).show();
     }

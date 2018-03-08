@@ -21,7 +21,7 @@
             android:theme="@style/BaseToolBarTheme"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
-            app:title="Ticket Detail"
+            app:title="@string/ticket_detail"
             app:titleTextColor="@color/colorTextOnPrimary"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -168,7 +168,7 @@
                     android:background="@drawable/bg_ticket_bottom"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="New Vista Ticket"
+                    android:text="@string/new_vista_ticket_trademark"
                     android:textColor="@color/md_white_color_code"
                     android:textSize="10sp"/>
             </com.mreram.ticketview.TicketView>
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Order Number: "
+                        android:text="@string/order_number"
                         android:textColor="@color/md_black_color_code"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/separator1"/>
@@ -213,7 +213,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Total Price: "
+                        android:text="@string/total_price"
                         android:textColor="@color/md_black_color_code"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtvon"/>
@@ -225,7 +225,7 @@
                         android:layout_marginBottom="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Ticket Amount: "
+                        android:text="@string/ticket_amount"
                         android:textColor="@color/md_black_color_code"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -237,7 +237,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="8dp"
-                        android:text="Order Id Here"
                         android:textColor="@color/md_black_color_code"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/txtvon"
@@ -249,7 +248,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="8dp"
-                        android:text="Total Price Here"
                         android:textColor="@color/md_black_color_code"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/txttp"
@@ -261,7 +259,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="8dp"
-                        android:text="Ticket Amount Here"
                         android:textColor="@color/md_black_color_code"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/txtta"
