@@ -18,11 +18,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -78,7 +73,13 @@
         </activity>
         <activity android:name=".ui.activity.OrderDetailActivity">
         </activity>
-        <activity android:name=".ui.activity.TicketDetailActivity">
+        <activity android:name=".ui.activity.TicketDetailActivity"
+            android:theme="@style/AppTheme.Ticket">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

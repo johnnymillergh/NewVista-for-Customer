@@ -58,5 +58,5 @@ dependencies {
     // A movie seat selection view for Android
     implementation project(':seatview')
     // A custom view for showing tickets
-    compile 'com.github.mreram:ticketview:1.0.0'
+    implementation project(':ticketview')
 }

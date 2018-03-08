@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,4 +7,179 @@
     android:layout_height="match_parent"
     tools:context="com.jm.newvista.ui.activity.TicketDetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarMovie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/BaseToolBarTheme"
+            app:title="Ticket Detail"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="enterAlways"
+            app:titleTextColor="@color/colorTextOnPrimary"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.mreram.ticketview.TicketView
+                android:id="@+id/ticketView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tv_anchor1="@+id/cl_head"
+                app:tv_anchor2="@+id/cl_center">
+
+                <LinearLayout
+                    android:id="@+id/cl_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_ticket_top"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:maxLines="1"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="20dp"
+                        android:text="Theater Name Here"
+                        android:textAlignment="center"
+                        android:textColor="@color/md_white_color_code"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/cl_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cl_head"
+                    android:background="#fff">
+
+                    <TextView
+                        android:id="@+id/movieTitle"
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:text="Movie Title Here"
+                        android:textColor="#000"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+
+                    <TextView
+                        android:id="@+id/showtime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Showtime here"
+                        android:textColor="@color/md_red_600_color_code"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/movieTitle"/>
+
+
+                    <TextView
+                        android:id="@+id/seatLocation"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:text="Seat location here"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/md_grey_800_color_code"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/movieTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/showtime"/>
+
+                    <View
+                        android:id="@+id/separator"
+                        android:layout_width="0dp"
+                        android:layout_height="5dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/divider_container"
+                        android:layerType="software"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/seatLocation"/>
+
+                    <ImageView
+                        android:id="@+id/qrCode"
+                        android:layout_width="176dp"
+                        android:layout_height="176dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/separator"
+                        app:srcCompat="@drawable/web_hi_res_512"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/txtBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cl_center"
+                    android:background="@drawable/bg_ticket_bottom"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="New Vista Ticket"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="10sp"/>
+            </com.mreram.ticketview.TicketView>
+
+            <FrameLayout
+                android:id="@+id/frml"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@+id/ticketView">
+
+            </FrameLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
