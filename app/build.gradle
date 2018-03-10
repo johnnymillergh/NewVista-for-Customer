@@ -59,4 +59,6 @@ dependencies {
     implementation project(':seatview')
     // A custom view for showing tickets
     compile 'com.github.mreram:ticketview:1.0.0'
+    // A PayPasswordView
+    compile 'com.twisty:ppv:1.0.0'
 }
