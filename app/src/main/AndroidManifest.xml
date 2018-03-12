@@ -78,8 +78,11 @@
         </activity>
         <activity android:name=".ui.activity.OrderDetailActivity">
         </activity>
-        <activity android:name=".ui.activity.TicketDetailActivity"
+        <activity
+            android:name=".ui.activity.TicketDetailActivity"
             android:theme="@style/AppTheme.Ticket">
+        </activity>
+        <activity android:name=".ui.activity.PaymentActivity">
         </activity>
     </application>
 
