@@ -77,8 +77,11 @@
             android:name=".ui.activity.TicketDetailActivity"
             android:theme="@style/AppTheme.Ticket">
         </activity>
-        <activity android:name=".ui.activity.PaymentActivity"
-            android:theme="@style/AppThemeReversed">
+        <activity
+            android:name=".ui.activity.PaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeReversed"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
