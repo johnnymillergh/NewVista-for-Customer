@@ -17,11 +17,11 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:theme="@style/BaseToolBarTheme"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="enterAlways"
-            app:title="Payment"
+            app:title="@string/payment"
             app:titleTextColor="@color/colorTextOnPrimary">
 
         </android.support.v7.widget.Toolbar>
@@ -32,35 +32,38 @@
 
             <TextView
                 android:id="@+id/movieTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="Movie Title Here"
                 android:textColor="@color/md_white_color_code"
+                app:layout_constraintEnd_toStartOf="@+id/poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/showtime"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Showtime Here"
                 android:textColor="@color/md_white_color_code"
+                app:layout_constraintEnd_toStartOf="@+id/poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movieTitle"/>
 
             <TextView
                 android:id="@+id/seat"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Seat Here"
                 android:textColor="@color/md_white_color_code"
+                app:layout_constraintEnd_toStartOf="@+id/poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/showtime"/>
 
@@ -68,10 +71,10 @@
                 android:id="@+id/totalPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="16dp"
-                android:text="Total Price Here"
+                android:text="@string/total"
                 android:textColor="@color/md_white_color_code"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -83,7 +86,7 @@
                 android:id="@+id/poster"
                 android:layout_width="104dp"
                 android:layout_height="152dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
@@ -91,7 +94,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background"/>
+                />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -99,7 +102,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -107,7 +110,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/lnrl"
@@ -125,15 +128,15 @@
                     android:layout_height="48dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_account_circle_black_48px"/>
+                    app:srcCompat="@drawable/ic_account_circle_black_48px" android:contentDescription="TODO"/>
 
                 <TextView
                     android:id="@+id/txtv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:text="Enter Payment Password"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/enter_payment_password"
                     android:textColor="@color/md_black_color_code"
                     android:textSize="18sp"/>
             </LinearLayout>
@@ -149,10 +152,11 @@
                 android:id="@+id/payPasswordView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/clear"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/separator"
@@ -161,19 +165,19 @@
                 app:ppv_length="6"/>
 
             <Button
-                android:id="@+id/pay"
+                android:id="@+id/clear"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="Pay"
+                android:onClick="onClickClear"
+                android:text="@string/clear"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/payPasswordView"/>
+                app:layout_constraintStart_toStartOf="parent"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 

@@ -141,4 +141,7 @@
     <string name="total_price">总  价：</string>
     <string name="ticket_amount">电影票数：</string>
     <string name="johnny_miller_designed">鈡俊 智造</string>
+    <string name="enter_payment_password">Enter Payment Password</string>
+    <string name="payment">Payment</string>
+    <string name="clear">Clear</string>
 </resources>

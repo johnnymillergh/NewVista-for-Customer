@@ -81,7 +81,7 @@
             android:name=".ui.activity.PaymentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeReversed"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

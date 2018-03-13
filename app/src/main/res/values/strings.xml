@@ -160,4 +160,7 @@
     <string name="total_price">Total Price:</string>
     <string name="ticket_amount">Ticket Amount:</string>
     <string name="johnny_miller_designed">Designed by Johnny Miller</string>
+    <string name="enter_payment_password">Enter Payment Password</string>
+    <string name="payment">Payment</string>
+    <string name="clear">Clear</string>
 </resources>
