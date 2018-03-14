@@ -54,14 +54,18 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
             @Override
             protected UserEntity doInBackground(Void... voids) {
                 UserEntity currentLoginUser = paymentModel.getCurrentLoginUser();
-                currentLoginUser.setAvatar(ImageUtil.decode(currentLoginUser.getAvatarStr()));
-                return currentLoginUser;
+                if (currentLoginUser != null) {
+                    currentLoginUser.setAvatar(ImageUtil.decode(currentLoginUser.getAvatarStr()));
+                    return currentLoginUser;
+                } else return null;
             }
 
             @Override
             protected void onPostExecute(UserEntity userEntity) {
-                Glide.with(ApplicationUtil.context).load(userEntity.getAvatar())
-                        .transition(withCrossFade()).into(paymentView.onGetAvatar());
+                if (userEntity != null) {
+                    Glide.with(ApplicationUtil.context).load(userEntity.getAvatar())
+                            .transition(withCrossFade()).into(paymentView.onGetAvatar());
+                }
             }
         }.execute();
     }
