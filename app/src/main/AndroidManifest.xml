@@ -13,11 +13,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <service
+            android:name=".service.MessageService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -50,13 +62,6 @@
         </activity>
         <activity android:name=".ui.activity.SeatSelectionActivity">
         </activity>
-
-        <service
-            android:name=".service.MessageService"
-            android:enabled="true"
-            android:exported="true">
-        </service>
-
         <activity android:name=".ui.activity.MovieScheduleActivity">
         </activity>
         <activity
@@ -82,11 +87,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeReversed"
             android:windowSoftInputMode="stateVisible|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 

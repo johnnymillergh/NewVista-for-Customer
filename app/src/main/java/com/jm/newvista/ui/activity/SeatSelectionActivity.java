@@ -2,6 +2,7 @@ package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -80,7 +81,27 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     }
 
     public void onClickConfirm(View view) {
+        Intent intent = new Intent(this, PaymentActivity.class);
+        Intent intentActivity = getIntent();
+        if (currentMovieSchedule != null) {
+            intent.putExtra("movieTitle", currentMovieSchedule.getMovieTitle());
 
+            // Format datetime
+            Date date = currentMovieSchedule.getShowtime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+            String dateStr = simpleDateFormat.format(date);
+            intent.putExtra("showtime", dateStr);
+
+            intent.putExtra("seat", selectedSeats.toString());
+
+            // Format total price
+            DecimalFormat decimalFormat = new DecimalFormat(".00");
+            String totalPrice = decimalFormat.format(currentMovieSchedule.getPrice() * selectedSeats.size());
+            intent.putExtra("totalPrice", totalPrice);
+
+            intent.putExtra("movieScheduleId", currentMovieSchedule.getId());
+            startActivity(intent);
+        }
     }
 
     @Override

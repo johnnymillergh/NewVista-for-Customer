@@ -1,5 +1,9 @@
 package com.jm.newvista.mvp.view;
 
+import android.content.Intent;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.jm.newvista.mvp.base.BaseView;
 
 /**
@@ -7,4 +11,17 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface PaymentView extends BaseView {
+    Intent onGetIntent();
+
+    TextView onGetMovieTitle();
+
+    TextView onGetShowtime();
+
+    TextView onGetSeat();
+
+    TextView onGetTotalPrice();
+
+    ImageView onGetPoster();
+
+    ImageView onGetAvatar();
 }

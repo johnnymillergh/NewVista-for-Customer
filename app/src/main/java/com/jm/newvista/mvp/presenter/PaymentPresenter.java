@@ -1,8 +1,16 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.content.Intent;
+import android.util.Log;
+
+import com.bumptech.glide.Glide;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.PaymentModel;
 import com.jm.newvista.mvp.view.PaymentView;
+import com.jm.newvista.util.ApplicationUtil;
+import com.jm.newvista.util.NetworkUtil;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * Created by Johnny on 3/12/2018.
@@ -15,5 +23,26 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
     public PaymentPresenter() {
         paymentModel = new PaymentModel();
         super.BasePresenter(paymentModel);
+    }
+
+    public void updateView() {
+        paymentView = getView();
+
+        Intent intent = paymentView.onGetIntent();
+
+        String movieTitle = intent.getStringExtra("movieTitle");
+        String showtime = intent.getStringExtra("showtime");
+        String seat = intent.getStringExtra("seat");
+        String totalPrice = intent.getStringExtra("totalPrice");
+
+        Log.v("String", movieTitle + " " + showtime + " " + seat + " " + totalPrice);
+        paymentView.onGetMovieTitle().setText(movieTitle);
+        paymentView.onGetShowtime().setText(showtime);
+        paymentView.onGetSeat().setText(seat);
+        paymentView.onGetTotalPrice().setText(paymentView.onGetTotalPrice().getText() + totalPrice);
+
+        Log.v("String", "Null?" + (paymentView.onGetPoster() == null));
+        Glide.with(ApplicationUtil.context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieTitle)
+                .transition(withCrossFade()).into(paymentView.onGetPoster());
     }
 }

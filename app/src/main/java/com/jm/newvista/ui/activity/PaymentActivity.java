@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,8 @@ public class PaymentActivity
     private TextView movieTitle;
     private TextView showtime;
     private TextView seat;
+    private TextView totalPrice;
+    private ImageView poster;
     private ImageView avatar;
     private PayPasswordView payPasswordView;
     private Button clear;
@@ -32,6 +35,8 @@ public class PaymentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         initView();
+
+        getPresenter().updateView();
     }
 
     private void initView() {
@@ -48,10 +53,12 @@ public class PaymentActivity
         movieTitle = findViewById(R.id.movieTitle);
         showtime = findViewById(R.id.showtime);
         seat = findViewById(R.id.seat);
+        poster = findViewById(R.id.poster);
         avatar = findViewById(R.id.avatar);
         payPasswordView = findViewById(R.id.payPasswordView);
         payPasswordView.setOnInputDoneListener(result -> inputDone(result));
         clear = findViewById(R.id.clear);
+        totalPrice = findViewById(R.id.totalPrice);
     }
 
     private void inputDone(String result) {
@@ -70,5 +77,40 @@ public class PaymentActivity
     @Override
     public PaymentPresenter createPresenter() {
         return new PaymentPresenter();
+    }
+
+    @Override
+    public Intent onGetIntent() {
+        return getIntent();
+    }
+
+    @Override
+    public TextView onGetMovieTitle() {
+        return movieTitle;
+    }
+
+    @Override
+    public TextView onGetShowtime() {
+        return showtime;
+    }
+
+    @Override
+    public TextView onGetSeat() {
+        return seat;
+    }
+
+    @Override
+    public TextView onGetTotalPrice() {
+        return totalPrice;
+    }
+
+    @Override
+    public ImageView onGetPoster() {
+        return poster;
+    }
+
+    @Override
+    public ImageView onGetAvatar() {
+        return avatar;
     }
 }
