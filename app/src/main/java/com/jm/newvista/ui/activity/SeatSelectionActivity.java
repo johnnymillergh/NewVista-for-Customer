@@ -83,7 +83,7 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     public void onClickConfirm(View view) {
         Intent intent = new Intent(this, PaymentActivity.class);
         Intent intentActivity = getIntent();
-        if (currentMovieSchedule != null) {
+        if (currentMovieSchedule != null && selectedSeats.size() != 0) {
             intent.putExtra("movieTitle", currentMovieSchedule.getMovieTitle());
 
             // Format datetime
