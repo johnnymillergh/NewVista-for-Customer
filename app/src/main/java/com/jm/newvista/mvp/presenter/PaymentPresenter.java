@@ -1,13 +1,17 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.PaymentModel;
 import com.jm.newvista.mvp.view.PaymentView;
 import com.jm.newvista.util.ApplicationUtil;
+import com.jm.newvista.util.ImageUtil;
 import com.jm.newvista.util.NetworkUtil;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -25,6 +29,7 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
         super.BasePresenter(paymentModel);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public void updateView() {
         paymentView = getView();
 
@@ -44,5 +49,20 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
         Log.v("String", "Null?" + (paymentView.onGetPoster() == null));
         Glide.with(ApplicationUtil.context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieTitle)
                 .transition(withCrossFade()).into(paymentView.onGetPoster());
+
+        new AsyncTask<Void, Void, UserEntity>() {
+            @Override
+            protected UserEntity doInBackground(Void... voids) {
+                UserEntity currentLoginUser = paymentModel.getCurrentLoginUser();
+                currentLoginUser.setAvatar(ImageUtil.decode(currentLoginUser.getAvatarStr()));
+                return currentLoginUser;
+            }
+
+            @Override
+            protected void onPostExecute(UserEntity userEntity) {
+                Glide.with(ApplicationUtil.context).load(userEntity.getAvatar())
+                        .transition(withCrossFade()).into(paymentView.onGetAvatar());
+            }
+        }.execute();
     }
 }
