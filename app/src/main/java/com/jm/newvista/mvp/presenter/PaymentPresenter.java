@@ -3,7 +3,6 @@ package com.jm.newvista.mvp.presenter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.bean.UserEntity;
@@ -40,13 +39,11 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
         String seat = intent.getStringExtra("seat");
         String totalPrice = intent.getStringExtra("totalPrice");
 
-        Log.v("String", movieTitle + " " + showtime + " " + seat + " " + totalPrice);
         paymentView.onGetMovieTitle().setText(movieTitle);
         paymentView.onGetShowtime().setText(showtime);
         paymentView.onGetSeat().setText(seat);
         paymentView.onGetTotalPrice().setText(paymentView.onGetTotalPrice().getText() + totalPrice);
 
-        Log.v("String", "Null?" + (paymentView.onGetPoster() == null));
         Glide.with(ApplicationUtil.context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieTitle)
                 .transition(withCrossFade()).into(paymentView.onGetPoster());
 
