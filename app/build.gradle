@@ -6,8 +6,8 @@ android {
         applicationId "com.jm.newvista"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode 14
-        versionName '1.5.1-beta'
+        versionCode 15
+        versionName '1.6.0-beta'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
