@@ -28,7 +28,24 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent"/>-->
 
-        <me.wavever.library.TagCornerImageView
+        <!--<me.wavever.library.TagCornerImageView-->
+            <!--android:id="@+id/poster"-->
+            <!--android:layout_width="104dp"-->
+            <!--android:layout_height="152dp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/ic_launcher_background"-->
+            <!--android:transitionName="@string/transition_poster"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:tag_background_color="@color/colorPrimary"-->
+            <!--app:tag_gravity="left_top_corner"-->
+            <!--app:tag_icon="@mipmap/ic_launcher"-->
+            <!--app:tag_text="No. 100"-->
+            <!--app:tag_text_size="8sp"-->
+            <!--app:tag_type="rect"/>-->
+
+        <net.wujingchao.android.view.SimpleTagImageView
+            xmlns:simple="http://schemas.android.com/apk/res-auto"
             android:id="@+id/poster"
             android:layout_width="104dp"
             android:layout_height="152dp"
@@ -37,12 +54,14 @@
             android:transitionName="@string/transition_poster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tag_background_color="@color/colorPrimary"
-            app:tag_gravity="left_top_corner"
-            app:tag_icon="@mipmap/ic_launcher"
-            app:tag_text="No. 100"
-            app:tag_text_size="8sp"
-            app:tag_type="rect"/>
+            simple:simple_corner_distance="16dp"
+            simple:simple_tag_background_color="@color/colorPrimary"
+            simple:simple_tag_enable="true"
+            simple:simple_tag_orientation="left_top"
+            simple:simple_tag_text="No. 10"
+            simple:simple_tag_textColor="@android:color/white"
+            simple:simple_tag_textSize="8sp"
+            simple:simple_tag_width="16dip"/>
 
         <TextView
             android:id="@+id/title"

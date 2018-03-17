@@ -3,23 +3,29 @@ package com.jm.newvista.ui.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TopRatedModel;
 import com.jm.newvista.mvp.presenter.TopRatedPresenter;
 import com.jm.newvista.mvp.view.TopRatedView;
+import com.jm.newvista.ui.adapter.TopRatedRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
 public class TopRatedFragment
         extends BaseFragment<TopRatedModel, TopRatedView, TopRatedPresenter>
         implements TopRatedView {
     private RecyclerView topRatedRecyclerView;
+    private TopRatedRecyclerViewAdapter topRatedRecyclerViewAdapter;
     private Button more;
     private TopRatedFragmentListener mListener;
 
@@ -36,8 +42,22 @@ public class TopRatedFragment
     }
 
     private void initView(View view) {
-        topRatedRecyclerView = view.findViewById(R.id.topRatedRecyclerView);
         more = view.findViewById(R.id.more);
+        more.setOnClickListener(this::onClickMore);
+
+        topRatedRecyclerView = view.findViewById(R.id.topRatedRecyclerView);
+        topRatedRecyclerViewAdapter = new TopRatedRecyclerViewAdapter(getActivity());
+        topRatedRecyclerView.setAdapter(topRatedRecyclerViewAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+        topRatedRecyclerView.setLayoutManager(layoutManager);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim
+                .animation_layout_fade_in);
+        topRatedRecyclerView.setLayoutAnimation(animation);
+    }
+
+    private void onClickMore(View v) {
+        Toast.makeText(getContext(), "onClickMore", Toast.LENGTH_SHORT).show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
