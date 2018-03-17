@@ -134,16 +134,16 @@
     <string name="share_with">分享方式</string>
     <string name="close">关闭</string>
     <string name="inspiration">UI设计灵感来源于Google Play和Eajy的Material Design APP</string>
-    <string name="order_history">Order History</string>
-    <string name="ticket_detail">Ticket Detail</string>
-    <string name="new_vista_ticket_trademark">New Vista Ticket ™</string>
+    <string name="order_history">订单历史</string>
+    <string name="ticket_detail">电影票详情</string>
+    <string name="new_vista_ticket_trademark">新万视电影票™</string>
     <string name="order_number">新万视订单号：</string>
     <string name="total_price">总  价：</string>
     <string name="ticket_amount">电影票数：</string>
     <string name="johnny_miller_designed">鈡俊 智造</string>
-    <string name="enter_payment_password">Enter Payment Password</string>
-    <string name="payment">Payment</string>
-    <string name="clear">Clear</string>
-    <string name="top_rated_movies">Top Rated Movies</string>
-    <string name="top_rated_movies_subtitle">Top 10 as rated by NewVista Users</string>
+    <string name="enter_payment_password">输入支付密码</string>
+    <string name="payment">支付</string>
+    <string name="clear">清空</string>
+    <string name="top_rated_movies">热评电影</string>
+    <string name="top_rated_movies_subtitle">新万视用户的选择</string>
 </resources>
