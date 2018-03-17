@@ -65,4 +65,6 @@ dependencies {
     compile 'com.github.mreram:ticketview:1.0.0'
     // A PayPasswordView
     compile 'com.twisty:ppv:1.0.0'
+    // TagCornerImageView is a custom ImageView that you can add different style tag on the corner of ImageView.
+    compile 'me.wavever.tagcornerimageview:library:0.2.0'
 }
