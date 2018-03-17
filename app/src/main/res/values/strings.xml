@@ -163,4 +163,6 @@
     <string name="enter_payment_password">Enter Payment Password</string>
     <string name="payment">Payment</string>
     <string name="clear">Clear</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="top_rated_movies_subtitle">Top 10 as rated by NewVista Users</string>
 </resources>
