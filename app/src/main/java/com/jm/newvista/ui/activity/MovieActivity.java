@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -186,6 +187,14 @@ public class MovieActivity
     public void onClickFAB(View view) {
         nestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
         nestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
+        FloatingActionButton fab = (FloatingActionButton) view;
+        fab.hide(new FloatingActionButton.OnVisibilityChangedListener() {
+            @Override
+            public void onHidden(FloatingActionButton fab) {
+                super.onHidden(fab);
+                fab.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
     private void transition(View view) {
