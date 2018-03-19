@@ -43,6 +43,18 @@
             simple:simple_tag_textSize="8sp"
             simple:simple_tag_width="16dip"/>
 
+        <com.klinker.android.badged_imageview.BadgedImageView
+            android:id="@+id/score"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:badgeColor="@android:color/white"
+            app:badgeGravity="right|bottom"
+            app:badgePadding="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/poster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"

@@ -19,11 +19,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.bean.MovieRatingEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.NetworkUtil;
+import com.klinker.android.badged_imageview.BadgedImageView;
 
 import net.wujingchao.android.view.SimpleTagImageView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -35,7 +38,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 public class TopRatedRecyclerViewAdapter
         extends RecyclerView.Adapter<TopRatedRecyclerViewAdapter.MyViewHolder> {
     private Context context;
-    private List<MovieEntity> topRatedMovies;
+    private List<MovieRatingEntity> topRatedMovies;
     private Activity activity;
 
     public TopRatedRecyclerViewAdapter(Activity activity) {
@@ -55,10 +58,13 @@ public class TopRatedRecyclerViewAdapter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (topRatedMovies != null) {
-            final MovieEntity movieEntity = topRatedMovies.get(position);
+            final MovieRatingEntity movieEntity = topRatedMovies.get(position);
             holder.title.setText(movieEntity.getTitle());
             holder.genre.setText(movieEntity.getGenre());
-            holder.poster.setTagText("No. " + position + 1);
+            holder.poster.setTagText("No. " + (position + 1));
+            DecimalFormat decimalFormat = new DecimalFormat(".0");
+            String averageScore = decimalFormat.format(movieEntity.getAverage_score());
+            holder.score.setBadge(averageScore);
             final ImageView poster = holder.poster;
             holder.cardView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, MovieActivity.class);
@@ -87,6 +93,7 @@ public class TopRatedRecyclerViewAdapter
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
         CardView cardView;
         SimpleTagImageView poster;
+        BadgedImageView score;
         TextView title;
         TextView genre;
 
@@ -94,6 +101,7 @@ public class TopRatedRecyclerViewAdapter
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
             poster = itemView.findViewById(R.id.poster);
+            score = itemView.findViewById(R.id.score);
             title = itemView.findViewById(R.id.title);
             genre = itemView.findViewById(R.id.genre);
 
@@ -122,11 +130,11 @@ public class TopRatedRecyclerViewAdapter
         }
     }
 
-    public List<MovieEntity> getTopRatedMovies() {
+    public List<MovieRatingEntity> getTopRatedMovies() {
         return topRatedMovies;
     }
 
-    public void setTopRatedMovies(List<MovieEntity> topRatedMovies) {
+    public void setTopRatedMovies(List<MovieRatingEntity> topRatedMovies) {
         this.topRatedMovies = topRatedMovies;
     }
 }

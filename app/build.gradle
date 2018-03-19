@@ -67,4 +67,6 @@ dependencies {
     compile 'com.twisty:ppv:1.0.0'
     // ImageView with a tag on android.
     compile 'net.wujingchao.android.view:simple-tag-imageview:1.0.1'
+    // Simple library for placing media type tags or text over an ImageView
+    compile 'com.klinkerapps:badged_imageview:1.0.5'
 }
