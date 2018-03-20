@@ -82,7 +82,14 @@ public class TopRatedRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return topRatedMovies == null ? 5 : topRatedMovies.size();
+        if (topRatedMovies == null) {
+            return 5;
+        }
+        if (topRatedMovies.size() > 10) {
+            return 10;
+        }else {
+            return topRatedMovies.size();
+        }
     }
 
     @Override

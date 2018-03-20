@@ -59,6 +59,14 @@ public class MovieActivity
     private TextView director;
     private TextView stars;
     private Button allDetails;
+    private FloatingActionButton.OnVisibilityChangedListener fabListener = new FloatingActionButton
+            .OnVisibilityChangedListener() {
+        @Override
+        public void onHidden(FloatingActionButton fab) {
+            super.onHidden(fab);
+            fab.setVisibility(View.INVISIBLE);
+        }
+    };
 
     private MovieEntity currentMovieEntity;
     private boolean isLoaded = false;
@@ -188,14 +196,9 @@ public class MovieActivity
         nestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
         nestedScrollView.fullScroll(NestedScrollView.FOCUS_UP);
         FloatingActionButton fab = (FloatingActionButton) view;
-        fab.hide(new FloatingActionButton.OnVisibilityChangedListener() {
-            @Override
-            public void onHidden(FloatingActionButton fab) {
-                super.onHidden(fab);
-                fab.setVisibility(View.INVISIBLE);
-            }
-        });
+        fab.hide(fabListener);
     }
+
 
     private void transition(View view) {
         Intent intent = new Intent(MovieActivity.this, PosterGalleryActivity.class);
