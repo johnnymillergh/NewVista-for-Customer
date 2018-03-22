@@ -69,4 +69,6 @@ dependencies {
     compile 'net.wujingchao.android.view:simple-tag-imageview:1.0.1'
     // Simple library for placing media type tags or text over an ImageView
     compile 'com.klinkerapps:badged_imageview:1.0.5'
+    // Charts/graphs library for Android compatible with API 8+, several chart types with support for scaling, scrolling and animations
+    compile 'com.github.lecho:hellocharts-android:v1.5.8'
 }
