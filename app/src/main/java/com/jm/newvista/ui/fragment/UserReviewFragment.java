@@ -109,7 +109,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         for (int i = 0; i < numColumns; i++) {
             values = new ArrayList<>();
             for (int j = 0; j < numSubColumns; j++) {
-                values.add(new SubcolumnValue(0, ChartUtils.pickColor()));
+                values.add(new SubcolumnValue(1, ChartUtils.pickColor()));
             }
 
             Column column = new Column(values);

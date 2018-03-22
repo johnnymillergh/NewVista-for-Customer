@@ -44,11 +44,11 @@ public class TopMovieFragment extends BaseFragment<TopMovieModel, TopMovieView, 
                              Bundle savedInstanceState) {
         // ViewPager
         View view = inflater.inflate(R.layout.fragment_top_movie, container, false);
-        topMovieViewPager = (MyViewPager) view.findViewById(R.id.topMovieViewPager);
+        topMovieViewPager = view.findViewById(R.id.topMovieViewPager);
         topMovieViewPagerAdapter = new TopMovieViewPagerAdapter();
         topMovieViewPager.setAdapter(topMovieViewPagerAdapter);
         topMovieViewPager.setOffscreenPageLimit(4);
-        PageIndicatorView pageIndicatorView = (PageIndicatorView) view.findViewById(R.id.pageIndicatorView);
+        PageIndicatorView pageIndicatorView = view.findViewById(R.id.pageIndicatorView);
         pageIndicatorView.setViewPager(topMovieViewPager);
         pageIndicatorView.setAnimationType(AnimationType.WORM);
         return view;
