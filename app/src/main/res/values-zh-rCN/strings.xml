@@ -146,4 +146,5 @@
     <string name="clear">清空</string>
     <string name="top_rated_movies">热评电影</string>
     <string name="top_rated_movies_subtitle">新万视用户的选择</string>
+    <string name="average">平均分</string>
 </resources>

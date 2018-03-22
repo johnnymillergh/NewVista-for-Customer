@@ -26,18 +26,36 @@ import com.jm.newvista.mvp.view.UserReviewView;
 import com.jm.newvista.ui.adapter.UserReviewRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
+
+import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Column;
+import lecho.lib.hellocharts.model.ColumnChartData;
+import lecho.lib.hellocharts.model.SubcolumnValue;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.ColumnChartView;
 
 public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReviewView, UserReviewPresenter>
         implements UserReviewView,
         PopupMenu.OnMenuItemClickListener {
     private UserReviewFragmentListener mListener;
     private String movieTitle;
+    private TextView averageScore;
+    private ColumnChartView chart;
+    private ColumnChartData data;
     private TextView userReviewsCount;
     private ImageButton sort;
     private RecyclerView userReviewRecyclerView;
     private UserReviewRecyclerViewAdapter userReviewRecyclerViewAdapter;
     private LinearLayoutManager linearLayoutManager;
+
+    private boolean hasAxes = true;
+    private boolean hasAxesNames = true;
+    private boolean hasLabels = false;
+    private boolean hasLabelForSelected = false;
 
     public UserReviewFragment() {
         // Required empty public constructor
@@ -53,19 +71,18 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_review, container, false);
         initView(view);
+        initChart();
         return view;
     }
 
     private void initView(View view) {
         mListener.onDisplayRefreshing();
+        averageScore = view.findViewById(R.id.averageScore);
+        chart = view.findViewById(R.id.chart);
         userReviewsCount = view.findViewById(R.id.userReviewsCount);
+
         sort = view.findViewById(R.id.sort);
-        sort.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickSort(v);
-            }
-        });
+        sort.setOnClickListener(v -> onClickSort(v));
 
         userReviewRecyclerView = view.findViewById(R.id.userReviewRecyclerView);
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -80,6 +97,55 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim
                 .animation_layout_fade_in);
         userReviewRecyclerView.setLayoutAnimation(animation);
+    }
+
+    private void initChart() {
+        int numSubColumns = 1;
+        int numColumns = 11;
+        // Column can have many subcolumns, here by default I use 1 subcolumn in each of 8 columns.
+        List<Column> columns = new ArrayList<>();
+        List<SubcolumnValue> values;
+        for (int i = 0; i < numColumns; i++) {
+            values = new ArrayList<>();
+            for (int j = 0; j < numSubColumns; j++) {
+                values.add(new SubcolumnValue(0, ChartUtils.pickColor()));
+            }
+
+            Column column = new Column(values);
+            column.setHasLabels(hasLabels);
+            column.setHasLabelsOnlyForSelected(hasLabelForSelected);
+            columns.add(column);
+        }
+        data = new ColumnChartData(columns);
+
+        if (hasAxes) {
+            Axis axisX = new Axis();
+            Axis axisY = new Axis().setHasLines(true);
+            if (hasAxesNames) {
+                axisX.setName("Score");
+                axisY.setName("User");
+            }
+            data.setAxisXBottom(axisX);
+            data.setAxisYLeft(axisY);
+        } else {
+            data.setAxisXBottom(null);
+            data.setAxisYLeft(null);
+        }
+
+        chart.setColumnChartData(data);
+        chart.setOnValueTouchListener(new ColumnChartOnValueSelectListener() {
+            @Override
+            public void onValueDeselected() {
+
+            }
+
+            @Override
+            public void onValueSelected(int i, int i1, SubcolumnValue subcolumnValue) {
+                Toast.makeText(getContext(), "User count: " + (int) subcolumnValue.getValue(), Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+        chart.startDataAnimation();
     }
 
     private void onClickSort(View v) {
@@ -143,6 +209,7 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
             mListener.onFinishRefreshing();
             userReviewRecyclerViewAdapter.setUserReviews(userReviews);
             userReviewRecyclerViewAdapter.notifyDataSetChanged();
+            getPresenter().displayUserReviewStatistics(data, userReviewRecyclerViewAdapter.getUserReviews());
         }
     }
 
@@ -159,6 +226,15 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     @Override
     public void onSetUserReviewsCount(int count) {
         userReviewsCount.setText(String.valueOf(count));
+    }
+
+    @Override
+    public void onUpdateChart(float score) {
+        chart.startDataAnimation();
+
+        DecimalFormat decimalFormat = new DecimalFormat(".0");
+        String scoreFormatted = decimalFormat.format(score);
+        averageScore.setText(scoreFormatted);
     }
 
     public interface UserReviewFragmentListener {

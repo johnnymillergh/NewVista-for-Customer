@@ -9,7 +9,16 @@ import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.UserReviewModel;
 import com.jm.newvista.mvp.view.UserReviewView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Column;
+import lecho.lib.hellocharts.model.ColumnChartData;
+import lecho.lib.hellocharts.model.SubcolumnValue;
+import lecho.lib.hellocharts.util.ChartUtils;
 
 /**
  * Created by Johnny on 2/16/2018.
@@ -60,5 +69,43 @@ public class UserReviewPresenter extends BasePresenter<UserReviewModel, UserRevi
                 userReviewView.onFailLoadingUserReview();
             }
         });
+    }
+
+    public void displayUserReviewStatistics(ColumnChartData data, List<UserReviewEntity> userReviews) {
+        // Prepare the statistic: Mapping: Score ---> Count
+        HashMap<Integer, Integer> statistic = new HashMap<>();
+        for (UserReviewEntity ure : userReviews) {
+            int score = ure.getScore();
+            if (!statistic.containsKey(score)) {
+                statistic.put(score, 1);
+            } else {
+                int count = statistic.get(score);
+                statistic.put(score, ++count);
+            }
+        }
+
+        // Average score
+        float totalScore = 0;
+        float totalUserCount = 0;
+        float averageScore = 0;
+        for (Map.Entry<Integer, Integer> entry : statistic.entrySet()) {
+            totalScore += entry.getKey() * entry.getValue();
+            totalUserCount += entry.getValue();
+        }
+        averageScore = totalScore / totalUserCount;
+
+        int index = 0;
+        for (Column column : data.getColumns()) {
+            int userCount = 0;
+            if (statistic.containsKey(index)) {
+                userCount = statistic.get(index);
+            }
+            for (SubcolumnValue value : column.getValues()) {
+                value.setTarget(userCount);
+            }
+            index++;
+        }
+
+        userReviewView.onUpdateChart(averageScore);
     }
 }

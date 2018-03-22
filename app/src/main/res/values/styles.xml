@@ -85,6 +85,12 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="TextAppearance.Score" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/darkFontColor</item>
+    </style>
+
     <style name="DialogFullscreenWithTitle" parent="@android:style/Theme.Material.Light.DialogWhenLarge">
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>

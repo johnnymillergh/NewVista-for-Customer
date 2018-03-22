@@ -7,15 +7,73 @@
     tools:context="com.jm.newvista.ui.fragment.UserReviewFragment">
 
     <TextView
-        android:id="@+id/txtv"
+        android:id="@+id/txtv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/average"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/separator1"
+        app:layout_constraintStart_toStartOf="@+id/separator1"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/separator1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/md_grey_300_color_code"
+        app:layout_constraintEnd_toEndOf="@+id/imgv"
+        app:layout_constraintStart_toStartOf="@+id/averageScore"
+        app:layout_constraintTop_toBottomOf="@+id/txtv1"/>
+
+    <TextView
+        android:id="@+id/averageScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/zero_dot_zero"
+        android:textAppearance="@style/TextAppearance.Score"
+        android:textSize="48sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtv1"/>
+
+    <ImageView
+        android:id="@+id/imgv"
+        android:layout_width="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_star_black_48dp"
+        android:tint="@color/md_orange_600_color_code"
+        app:layout_constraintBottom_toBottomOf="@+id/averageScore"
+        app:layout_constraintStart_toEndOf="@+id/averageScore"
+        app:layout_constraintTop_toTopOf="@+id/averageScore"/>
+
+    <lecho.lib.hellocharts.view.ColumnChartView
+        android:id="@+id/chart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/averageScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgv"
+        app:layout_constraintTop_toTopOf="@+id/txtv1"
+        app:layout_constraintVertical_bias="0.0">
+    </lecho.lib.hellocharts.view.ColumnChartView>
+
+    <TextView
+        android:id="@+id/txtv2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/user_reviews"
         android:textColor="@color/md_black_color_code"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/averageScore"/>
 
     <TextView
         android:id="@+id/userReviewsCount"
@@ -23,18 +81,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/txtv"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/txtv2"
+        app:layout_constraintTop_toTopOf="@+id/txtv2"/>
 
     <View
-        android:id="@+id/separator"
+        android:id="@+id/separator2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="2dp"
         android:background="@color/md_grey_300_color_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtv"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtv2"/>
 
     <ImageButton
         android:id="@+id/sort"
@@ -45,7 +103,7 @@
         android:src="@drawable/ic_tune_black_24dp"
         android:tint="@color/md_grey_700_color_code"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/userReviewsCount"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/userReviewRecyclerView"
@@ -54,5 +112,5 @@
         android:animateLayoutChanges="true"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/separator"/>
+        app:layout_constraintTop_toTopOf="@+id/separator2"/>
 </android.support.constraint.ConstraintLayout>

@@ -165,4 +165,6 @@
     <string name="clear">Clear</string>
     <string name="top_rated_movies">Top Rated Movies</string>
     <string name="top_rated_movies_subtitle">Top 10 as rated by NewVista Users</string>
+    <string name="average">Average</string>
+    <string name="zero_dot_zero" translatable="false">0.0</string>
 </resources>
