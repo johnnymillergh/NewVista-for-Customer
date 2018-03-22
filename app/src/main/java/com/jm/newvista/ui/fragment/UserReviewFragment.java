@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -232,9 +233,11 @@ public class UserReviewFragment extends BaseFragment<UserReviewModel, UserReview
     public void onUpdateChart(float score) {
         chart.startDataAnimation();
 
-        DecimalFormat decimalFormat = new DecimalFormat(".0");
-        String scoreFormatted = decimalFormat.format(score);
-        averageScore.setText(scoreFormatted);
+        if (!Float.valueOf(score).isNaN()) {
+            DecimalFormat decimalFormat = new DecimalFormat(".0");
+            String scoreFormatted = decimalFormat.format(score);
+            averageScore.setText(scoreFormatted);
+        }
     }
 
     public interface UserReviewFragmentListener {
