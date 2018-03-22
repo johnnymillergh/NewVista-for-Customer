@@ -35,67 +35,72 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <FrameLayout
-                android:id="@+id/topMovieContainer"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
-            </FrameLayout>
+                android:layout_height="match_parent">
 
-            <FrameLayout
-                android:id="@+id/genreChipsContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/topMovieContainer">
-            </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/topMovieContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+                </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/newMovieReleasesContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/genreChipsContainer">
-            </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/genreChipsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/topMovieContainer">
+                </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/nowInTheatersContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/newMovieReleasesContainer">
-            </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/newMovieReleasesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/genreChipsContainer">
+                </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/topRatedContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/nowInTheatersContainer">
-            </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/nowInTheatersContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/newMovieReleasesContainer">
+                </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/randomPicksContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/topRatedContainer">
-            </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/topRatedContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/nowInTheatersContainer">
+                </FrameLayout>
 
-            <FrameLayout
-                android:id="@+id/featureContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/randomPicksContainer">
-            </FrameLayout>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v4.widget.NestedScrollView>
+                <FrameLayout
+                    android:id="@+id/randomPicksContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/topRatedContainer">
+                </FrameLayout>
 
+                <FrameLayout
+                    android:id="@+id/featureContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/randomPicksContainer">
+                </FrameLayout>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.design.widget.CoordinatorLayout>

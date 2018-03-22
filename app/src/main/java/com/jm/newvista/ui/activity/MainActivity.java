@@ -6,12 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -65,8 +67,9 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private RelativeLayout splashScreen;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<String> searchBarSuggestions = new ArrayList<>();
-    CircleImageView avatar;
+    private CircleImageView avatar;
 
     MessageService messageService;
     MessageService.Binder binder;
@@ -149,6 +152,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
+
         searchBar = findViewById(R.id.searchBar);
         searchBar.setOnSearchActionListener(this);
 //        searchBar.inflateMenu(R.menu.main);
@@ -166,6 +170,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             public void afterTextChanged(Editable editable) {
             }
         });
+
         avatar = navigationView.getHeaderView(0).findViewById(R.id.avatarNavigation);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +178,45 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 onClickAvatar(v);
             }
         });
+
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshModules();
+            }
+        });
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void refreshModules() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                // Add new movie releases fragment
+                fragmentManager.beginTransaction().replace(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment())
+                        .commit();
+                // Add now in theaters fragment
+                fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment()).commit();
+                // Add top rated fragment
+                fragmentManager.beginTransaction().replace(R.id.topRatedContainer, new TopRatedFragment()).commit();
+                // Add random picks fragment
+                fragmentManager.beginTransaction().replace(R.id.randomPicksContainer, new RandomPicksFragment()).commit();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }.execute();
     }
 
     private void initTopMovieFragment() {
@@ -423,7 +467,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 .commit();
         // Add now in theaters fragment
         fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment()).commit();
-        // Add now in theaters fragment
+        // Add top rated fragment
         fragmentManager.beginTransaction().replace(R.id.topRatedContainer, new TopRatedFragment()).commit();
         // Add random picks fragment
         fragmentManager.beginTransaction().replace(R.id.randomPicksContainer, new RandomPicksFragment()).commit();
