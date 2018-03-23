@@ -324,22 +324,19 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+                    startActivity(intent);
                 }
             }).start();
         } else if (id == R.id.settingsItem) {
-//            final Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        Thread.sleep(320);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
-//                }
-//            }).start();
+            final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }).start();
         } else if (id == R.id.aboutItem) {
             final Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             new Thread(new Runnable() {
@@ -350,7 +347,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+                    startActivity(intent);
                 }
             }).start();
         }
