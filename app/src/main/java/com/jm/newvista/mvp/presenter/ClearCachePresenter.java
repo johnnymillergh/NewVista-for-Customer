@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.ClearCacheModel;
 import com.jm.newvista.mvp.view.ClearCacheView;
-import com.jm.newvista.util.CacheUtil;
 
 import java.util.List;
 
@@ -72,11 +71,6 @@ public class ClearCachePresenter extends BasePresenter<ClearCacheModel, ClearCac
     }
 
     public void clearCache() {
-        clearCacheModel.deleteCache(clearCacheView.onGetContext(), new ClearCacheModel.DeleteCacheListener() {
-            @Override
-            public void onDeleteDone() {
-                clearCacheView.onDeleteCacheDone();
-            }
-        });
+        clearCacheModel.deleteCache(clearCacheView.onGetContext(), () -> clearCacheView.onDeleteCacheDone());
     }
 }

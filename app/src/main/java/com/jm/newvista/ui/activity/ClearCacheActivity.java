@@ -3,7 +3,6 @@ package com.jm.newvista.ui.activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,14 +10,12 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.ClearCacheModel;
 import com.jm.newvista.mvp.presenter.ClearCachePresenter;
 import com.jm.newvista.mvp.view.ClearCacheView;
 import com.jm.newvista.ui.base.BaseActivity;
-import com.jm.newvista.util.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
