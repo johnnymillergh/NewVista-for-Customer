@@ -23,9 +23,11 @@ public class NetworkUtil {
     public static final String GET_TOP_MOVIE_URL = "http://johnnymiller.site/servlet.customer.GetTopMovie";
     public static final String GET_MOVIE_SCHEDULE_URL = "http://johnnymiller.site/servlet.customer.GetMovieSchedule";
     public static final String GET_THEATER_LOGO_URL = "http://johnnymiller.site/customer/getTheaterLogo.jsp?id=";
-    public static final String GET_LOWEST_PRICE_URL = "http://johnnymiller.site/customer/getLowestPrice.jsp?movieTitle=";
+    public static final String
+            GET_LOWEST_PRICE_URL = "http://johnnymiller.site/customer/getLowestPrice.jsp?movieTitle=";
     public static final String GET_LOWEST_PRICE_URL2 = "http://johnnymiller.site/customer/getLowestPrice.jsp?movieId=";
     public static final String GET_NOW_IN_THEATERS_URL = "http://johnnymiller.site/customer/getNowInTheaters.jsp";
     public static final String SAT_MANAGEMENT_URL = "http://johnnymiller.site/servlet.customer.SATManagement";
     public static final String GET_TOP_RATED_URL = "http://johnnymiller.site/customer/getTopRated.jsp";
+    public static final String GET_MOVIE_SCHEDULE_URL2 = "http://johnnymiller.site/customer/getMovieSchedule.jsp";
 }
