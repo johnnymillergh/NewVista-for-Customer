@@ -49,7 +49,7 @@ public class UserReviewRecyclerViewAdapter extends RecyclerView.Adapter<UserRevi
             holder.score.setText(String.valueOf(userReviewEntity.getScore()));
 
             Date date = userReviewEntity.getDateTime();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
             String dateStr = simpleDateFormat.format(date);
             holder.datetime.setText(dateStr);
 
