@@ -247,8 +247,7 @@
     <string name="clear_cache">Clear Cache</string>
     <string name="purchase">Purchase</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="null_result">Null result</string>
     <string name="choose_an_auditorium">Chose an Auditorium</string>
 </resources>
