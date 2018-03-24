@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.ui.activity.MovieScheduleDetailActivity;
-import com.jm.newvista.ui.activity.SeatSelectionActivity;
 import com.jm.newvista.util.NetworkUtil;
 
 import java.text.SimpleDateFormat;
@@ -62,16 +61,13 @@ public class MovieScheduleRecyclerViewAdapter
                 .transition(withCrossFade()).into(holder.logo);
 
         // Set click listener
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MovieScheduleDetailActivity.class);
-                intent.putExtra("movieTitle", movieSchedules.get(position).getMovieTitle());
-                intent.putExtra("auditoriumTheaterId", movieSchedules.get(position).getAuditoriumTheaterId());
-                intent.putExtra("theaterName", movieSchedules.get(position).getTheaterName());
-                intent.putExtra("location", movieSchedules.get(position).getLocation());
-                context.startActivity(intent);
-            }
+        holder.cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MovieScheduleDetailActivity.class);
+            intent.putExtra("movieTitle", movieSchedules.get(position).getMovieTitle());
+            intent.putExtra("auditoriumTheaterId", movieSchedules.get(position).getAuditoriumTheaterId());
+            intent.putExtra("theaterName", movieSchedules.get(position).getTheaterName());
+            intent.putExtra("location", movieSchedules.get(position).getLocation());
+            context.startActivity(intent);
         });
     }
 

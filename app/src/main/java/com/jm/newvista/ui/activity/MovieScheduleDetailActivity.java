@@ -1,7 +1,6 @@
 package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
