@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieScheduleEntity;
+import com.jm.newvista.ui.activity.MovieScheduleDetailActivity;
 import com.jm.newvista.ui.activity.SeatSelectionActivity;
 import com.jm.newvista.util.NetworkUtil;
 
@@ -64,11 +65,11 @@ public class MovieScheduleRecyclerViewAdapter
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SeatSelectionActivity.class);
-                intent.putExtra("movieScheduleId", movieSchedules.get(position).getId());
+                Intent intent = new Intent(context, MovieScheduleDetailActivity.class);
+                intent.putExtra("movieTitle", movieSchedules.get(position).getMovieTitle());
+                intent.putExtra("auditoriumTheaterId", movieSchedules.get(position).getAuditoriumTheaterId());
                 intent.putExtra("theaterName", movieSchedules.get(position).getTheaterName());
-                intent.putExtra("auditoriumName", movieSchedules.get(position).getAuditoriumName());
-                intent.putExtra("auditoriumId", movieSchedules.get(position).getAuditoriumId());
+                intent.putExtra("location", movieSchedules.get(position).getLocation());
                 context.startActivity(intent);
             }
         });

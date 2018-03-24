@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -11,8 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.MovieScheduleDetailModel;
 import com.jm.newvista.mvp.presenter.MovieScheduleDetailPresenter;
 import com.jm.newvista.mvp.view.MovieScheduleDetailView;
@@ -34,10 +37,13 @@ public class MovieScheduleDetailActivity
         setContentView(R.layout.activity_movie_schedule_detail);
         initView();
         initFragment();
+        getPresenter().getAndDisplayMovieScheduleDetail();
     }
 
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.choose_an_auditorium);
+        toolbar.setSubtitle(getIntent().getStringExtra("movieTitle"));
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -82,7 +88,30 @@ public class MovieScheduleDetailActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public Intent onGetIntent() {
+        return getIntent();
+    }
 
+    @Override
+    public MovieScheduleDetailRecyclerViewAdapter onGetMovieScheduleDetailRecyclerViewAdapter() {
+        return movieScheduleDetailRecyclerViewAdapter;
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public MovieScheduleEntity onGetMovieScheduleInfo() {
+        Intent intent = getIntent();
+        String theaterName = intent.getStringExtra("theaterName");
+        String location = intent.getStringExtra("location");
+        String movieTitle = intent.getStringExtra("movieTitle");
+        MovieScheduleEntity entity = new MovieScheduleEntity();
+        entity.setTheaterName(theaterName);
+        entity.setLocation(location);
+        entity.setMovieTitle(movieTitle);
+        return entity;
     }
 }

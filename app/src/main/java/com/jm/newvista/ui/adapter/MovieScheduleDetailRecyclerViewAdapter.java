@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieScheduleEntity;
+import com.jm.newvista.ui.activity.SeatSelectionActivity;
 import com.robertlevonyan.views.chip.Chip;
+import com.robertlevonyan.views.chip.OnChipClickListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import java.util.Locale;
 
 public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
         .Adapter<MovieScheduleDetailRecyclerViewAdapter.MyViewHolder> {
-    private List<MovieScheduleEntity> movieSchedules = new ArrayList<>();
+    private List<MovieScheduleEntity> movieSchedules;
     private Context context;
 
     @Override
@@ -40,7 +43,7 @@ public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        if (movieSchedules.size() != 0) {
+        if (movieSchedules != null) {
             MovieScheduleEntity movieScheduleEntity = movieSchedules.get(position);
 
             Date date = movieScheduleEntity.getShowtime();
@@ -50,13 +53,21 @@ public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
 
             holder.auditoriumName.setText(movieScheduleEntity.getAuditoriumName());
             holder.price.setText(String.valueOf(movieScheduleEntity.getPrice()));
-            holder.purchase.setOnClickListener(v -> Toast.makeText(context, "Purchase onClick", Toast.LENGTH_SHORT).show());
+
+            holder.purchase.setOnChipClickListener((v) -> {
+                Intent intent = new Intent(context, SeatSelectionActivity.class);
+                intent.putExtra("movieScheduleId", movieScheduleEntity.getId());
+                intent.putExtra("theaterName", movieScheduleEntity.getTheaterName());
+                intent.putExtra("auditoriumName", movieScheduleEntity.getAuditoriumName());
+                intent.putExtra("auditoriumId", movieScheduleEntity.getAuditoriumId());
+                context.startActivity(intent);
+            });
         }
     }
 
     @Override
     public int getItemCount() {
-        return movieSchedules.size() == 0 ? 5 : movieSchedules.size();
+        return movieSchedules == null ? 0 : movieSchedules.size();
     }
 
     @Override
@@ -81,5 +92,9 @@ public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
 
     public List<MovieScheduleEntity> getMovieSchedules() {
         return movieSchedules;
+    }
+
+    public void setMovieSchedules(List<MovieScheduleEntity> movieSchedules) {
+        this.movieSchedules = movieSchedules;
     }
 }
