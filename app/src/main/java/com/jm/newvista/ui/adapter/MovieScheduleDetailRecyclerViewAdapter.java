@@ -2,6 +2,7 @@ package com.jm.newvista.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,6 +63,15 @@ public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
                 intent.putExtra("auditoriumId", movieScheduleEntity.getAuditoriumId());
                 context.startActivity(intent);
             });
+
+            holder.constraintLayout.setOnClickListener((v)->{
+                Intent intent = new Intent(context, SeatSelectionActivity.class);
+                intent.putExtra("movieScheduleId", movieScheduleEntity.getId());
+                intent.putExtra("theaterName", movieScheduleEntity.getTheaterName());
+                intent.putExtra("auditoriumName", movieScheduleEntity.getAuditoriumName());
+                intent.putExtra("auditoriumId", movieScheduleEntity.getAuditoriumId());
+                context.startActivity(intent);
+            });
         }
     }
 
@@ -76,6 +86,7 @@ public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout constraintLayout;
         TextView showtime;
         TextView auditoriumName;
         TextView price;
@@ -83,6 +94,7 @@ public class MovieScheduleDetailRecyclerViewAdapter extends RecyclerView
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            constraintLayout = itemView.findViewById(R.id.constraintLayout);
             showtime = itemView.findViewById(R.id.showtime);
             auditoriumName = itemView.findViewById(R.id.auditoriumName);
             price = itemView.findViewById(R.id.price);
