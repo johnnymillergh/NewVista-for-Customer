@@ -151,4 +151,5 @@
     <string name="title_activity_settings">设置</string>
     <string name="pref_header_general">通用</string>
     <string name="clear_cache">清空缓存</string>
+    <string name="purchase">购票</string>
 </resources>
