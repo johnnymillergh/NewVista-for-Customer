@@ -5,10 +5,14 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +21,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -46,6 +51,7 @@ import com.jm.newvista.ui.fragment.TopRatedFragment;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -111,6 +117,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initLanguage();
         setContentView(R.layout.activity_main);
         startMessageService();
         showSplashScreen();
@@ -118,6 +125,25 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         initTopMovieFragment();
         getPresenter().getMovieFromServer();
         getPresenter().updateNavigationView();
+    }
+
+    private void initLanguage() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String language = prefs.getString("example_list", "-1");
+        if (language.equals("1")) {
+            Resources resources = getResources();
+            Configuration config = resources.getConfiguration();
+            DisplayMetrics dm = resources.getDisplayMetrics();
+            config.locale = Locale.ENGLISH;
+            resources.updateConfiguration(config, dm);
+        } else {
+            Resources resources = getResources();
+            Configuration config = resources.getConfiguration();
+            DisplayMetrics dm = resources.getDisplayMetrics();
+            config.locale = Locale.CHINA;
+            resources.updateConfiguration(config, dm);
+        }
+        Log.i("itchq", "checbox=" + prefs.getBoolean("checkbox", false));
     }
 
     private void startMessageService() {
@@ -206,14 +232,17 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             protected void onPostExecute(Void aVoid) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 // Add new movie releases fragment
-                fragmentManager.beginTransaction().replace(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment())
+                fragmentManager.beginTransaction().replace(R.id.newMovieReleasesContainer, new
+                        NewMovieReleasesFragment())
                         .commit();
                 // Add now in theaters fragment
-                fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment())
+                        .commit();
                 // Add top rated fragment
                 fragmentManager.beginTransaction().replace(R.id.topRatedContainer, new TopRatedFragment()).commit();
                 // Add random picks fragment
-                fragmentManager.beginTransaction().replace(R.id.randomPicksContainer, new RandomPicksFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.randomPicksContainer, new RandomPicksFragment())
+                        .commit();
                 swipeRefreshLayout.setRefreshing(false);
             }
         }.execute();

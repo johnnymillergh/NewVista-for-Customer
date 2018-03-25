@@ -19,11 +19,8 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.jm.newvista.R;
-import com.jm.newvista.mvp.base.BasePresenter;
-import com.jm.newvista.mvp.base.BaseView;
 import com.jm.newvista.mvp.model.SettingsModel;
 import com.jm.newvista.mvp.presenter.SettingsPresenter;
 import com.jm.newvista.mvp.view.SettingsView;
