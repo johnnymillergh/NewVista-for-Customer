@@ -53,12 +53,12 @@ public class MessageService extends Service implements MessageServiceUtil.Messag
 
     public void onBindFinished() {
         if (myCallback != null) {
-            myCallback.onLocalServerSocketStarted();
-            Notification.Builder builder = new Notification.Builder(ApplicationUtil.getContext())
-                    .setSmallIcon(R.mipmap.ic_launcher_round)
-                    .setContentTitle("Notification")
-                    .setContentText("Service started.");
-            notificationManager.notify(1, builder.build());
+//            myCallback.onLocalServerSocketStarted();
+//            Notification.Builder builder = new Notification.Builder(ApplicationUtil.getContext())
+//                    .setSmallIcon(R.mipmap.ic_launcher_round)
+//                    .setContentTitle("Notification")
+//                    .setContentText("Service started.");
+//            notificationManager.notify(1, builder.build());
         }
     }
 

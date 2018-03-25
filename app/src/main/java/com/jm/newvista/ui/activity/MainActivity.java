@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 if (loginFlag) {
                     Log.v("onUpdateNavigationView", loginFlag + "");
                     getPresenter().updateNavigationView();
-                    getPresenter().sendLocalServerSocketInfoToWebServer();
+//                    getPresenter().sendLocalServerSocketInfoToWebServer();
                 }
                 break;
             default:
