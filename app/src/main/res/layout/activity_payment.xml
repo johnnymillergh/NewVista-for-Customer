@@ -8,7 +8,6 @@
     tools:context="com.jm.newvista.ui.activity.PaymentActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -100,7 +99,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -126,9 +124,10 @@
                     android:id="@+id/avatar"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:contentDescription="TODO"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_account_circle_black_48px" android:contentDescription="TODO"/>
+                    app:srcCompat="@drawable/ic_account_circle_black_48px"/>
 
                 <TextView
                     android:id="@+id/txtv"

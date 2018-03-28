@@ -66,4 +66,8 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
             }
         }.execute();
     }
+
+    public void postPay() {
+
+    }
 }

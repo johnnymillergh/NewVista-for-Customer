@@ -63,6 +63,7 @@ public class PaymentActivity
 
     private void inputDone(String result) {
         Toast.makeText(PaymentActivity.this, result, Toast.LENGTH_SHORT).show();
+        getPresenter().postPay();
     }
 
     public void onClickClear(View view) {
