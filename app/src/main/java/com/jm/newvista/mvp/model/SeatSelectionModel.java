@@ -2,15 +2,20 @@ package com.jm.newvista.mvp.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.bean.SeatEntity;
+import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BaseModel;
+import com.jm.newvista.mvp.dao.UserDao;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
 
 import java.util.HashMap;
 import java.util.List;
+
+import io.github.lh911002.seatview.seat.Seat;
 
 /**
  * Created by Johnny on 2/25/2018.
@@ -60,6 +65,35 @@ public class SeatSelectionModel extends BaseModel {
         });
     }
 
+    public void postOrderInfo(int movieScheduleId, int ticketAmount, List<Seat> selectedSeats,
+                              PostOrderInfoListener postOrderInfoListener) {
+        UserDao dao = new UserDao();
+        UserEntity currentUser = dao.getFirst();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("email", currentUser.getEmail());
+        params.put("movieScheduleId", String.valueOf(movieScheduleId));
+        params.put("ticketAmount", String.valueOf(ticketAmount));
+        params.put("seatId", selectedSeats.get(0).id);
+
+        myOkHttp.post().url(NetworkUtil.ORDER_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                if (!response.contains("failure")) {
+                    CustomerOrderEntity orderEntity = new Gson().fromJson(response, CustomerOrderEntity.class);
+                    postOrderInfoListener.onSuccess(orderEntity);
+                } else {
+                    postOrderInfoListener.onFailure(response);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                postOrderInfoListener.onFailure(error_msg);
+            }
+        });
+    }
+
     @Override
     public void cancel() {
         myOkHttp.cancel(this);
@@ -77,4 +111,9 @@ public class SeatSelectionModel extends BaseModel {
         void onFailure(String errorMessage);
     }
 
+    public interface PostOrderInfoListener {
+        void onSuccess(CustomerOrderEntity orderEntity);
+
+        void onFailure(String errorMessage);
+    }
 }

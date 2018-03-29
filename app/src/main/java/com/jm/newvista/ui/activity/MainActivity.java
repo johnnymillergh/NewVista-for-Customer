@@ -327,22 +327,19 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+                    startActivity(intent);
                 }
             }).start();
         } else if (id == R.id.commentItem) {
-//            final Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        Thread.sleep(320);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
-//                }
-//            }).start();
+            Intent intent = new Intent(MainActivity.this, TicketDetailActivity.class);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }).start();
         } else if (id == R.id.watchlistItem) {
             final Intent intent = new Intent(MainActivity.this, WatchlistActivity.class);
             new Thread(new Runnable() {

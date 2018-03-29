@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,11 +9,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.zxing.BarcodeFormat;
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TicketDetailModel;
 import com.jm.newvista.mvp.presenter.TicketDetailPresenter;
 import com.jm.newvista.mvp.view.TicketDetailView;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class TicketDetailActivity
         extends BaseActivity<TicketDetailModel, TicketDetailView, TicketDetailPresenter>
@@ -70,5 +73,13 @@ public class TicketDetailActivity
         ticketAmount = findViewById(R.id.ticketAmount);
         theaterName2 = findViewById(R.id.theaterName2);
         theaterLocation = findViewById(R.id.theaterLocation);
+
+        try {
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.encodeBitmap("Johnny Miller", BarcodeFormat.QR_CODE, 400, 400);
+            qrCode.setImageBitmap(bitmap);
+        } catch(Exception e) {
+
+        }
     }
 }

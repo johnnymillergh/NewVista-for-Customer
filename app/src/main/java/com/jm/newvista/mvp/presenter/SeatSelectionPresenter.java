@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.bean.SeatEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
@@ -105,7 +106,7 @@ public class SeatSelectionPresenter extends BasePresenter<SeatSelectionModel, Se
                         SeatEntity seatEntity = seatEntities.get(seatEntitiesIndex);
                         if (!seatEntity.getIsSelected()) {
                             seat.status = Seat.STATUS.SELECTABLE;
-                        }else{
+                        } else {
                             seat.status = Seat.STATUS.UNSELECTABLE;
                         }
 
@@ -153,5 +154,26 @@ public class SeatSelectionPresenter extends BasePresenter<SeatSelectionModel, Se
             }
         }
         return maxCol;
+    }
+
+    public void takeOrder() {
+        seatSelectionView.onDisplayLoadingDialog();
+        int movieScheduleId = seatSelectionView.onGetCurrentMovieSchedule().getId();
+        List<Seat> selectedSeats = seatSelectionView.onGetSelectedSeats();
+        int ticketAmount = selectedSeats.size() > 1 ? 1 : selectedSeats.size();
+        seatSelectionModel.postOrderInfo(movieScheduleId, ticketAmount, selectedSeats,
+                new SeatSelectionModel.PostOrderInfoListener() {
+                    @Override
+                    public void onSuccess(CustomerOrderEntity orderEntity) {
+                        seatSelectionView.onStartPaymentActivity(orderEntity);
+                        seatSelectionView.onDismissLoadingDialog();
+                    }
+
+                    @Override
+                    public void onFailure(String errorMessage) {
+                        seatSelectionView.onMakeToast(errorMessage);
+                        seatSelectionView.onDismissLoadingDialog();
+                    }
+                });
     }
 }

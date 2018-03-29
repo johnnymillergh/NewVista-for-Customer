@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.SeatSelectionModel;
 import com.jm.newvista.mvp.presenter.SeatSelectionPresenter;
@@ -82,26 +83,26 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
 
     public void onClickConfirm(View view) {
         Intent intent = new Intent(this, PaymentActivity.class);
-        Intent intentActivity = getIntent();
-        if (currentMovieSchedule != null && selectedSeats.size() != 0) {
-            intent.putExtra("movieTitle", currentMovieSchedule.getMovieTitle());
-
-            // Format datetime
-            Date date = currentMovieSchedule.getShowtime();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
-            String dateStr = simpleDateFormat.format(date);
-            intent.putExtra("showtime", dateStr);
-
-            intent.putExtra("seat", selectedSeats.toString());
-
-            // Format total price
-            DecimalFormat decimalFormat = new DecimalFormat(".00");
-            String totalPrice = decimalFormat.format(currentMovieSchedule.getPrice() * selectedSeats.size());
-            intent.putExtra("totalPrice", totalPrice);
-
-            intent.putExtra("movieScheduleId", currentMovieSchedule.getId());
-            startActivity(intent);
-        }
+        getPresenter().takeOrder();
+//        if (currentMovieSchedule != null && selectedSeats.size() != 0) {
+//            intent.putExtra("movieTitle", currentMovieSchedule.getMovieTitle());
+//
+//            // Format datetime
+//            Date date = currentMovieSchedule.getShowtime();
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+//            String dateStr = simpleDateFormat.format(date);
+//            intent.putExtra("showtime", dateStr);
+//
+//            intent.putExtra("seat", selectedSeats.toString());
+//
+//            // Format total price
+//            DecimalFormat decimalFormat = new DecimalFormat(".00");
+//            String totalPrice = decimalFormat.format(currentMovieSchedule.getPrice() * selectedSeats.size());
+//            intent.putExtra("totalPrice", totalPrice);
+//
+//            intent.putExtra("movieScheduleId", currentMovieSchedule.getId());
+//            startActivity(intent);
+//        }
     }
 
     @Override
@@ -196,5 +197,39 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     @Override
     public void onMakeToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public List<Seat> onGetSelectedSeats() {
+        return selectedSeats;
+    }
+
+    @Override
+    public MovieScheduleEntity onGetCurrentMovieSchedule() {
+        return currentMovieSchedule;
+    }
+
+    @Override
+    public void onStartPaymentActivity(CustomerOrderEntity orderEntity) {
+        Intent intent = new Intent(this, PaymentActivity.class);
+        intent.putExtra("orderId", orderEntity.getId());
+
+        intent.putExtra("movieTitle", orderEntity.getMovieTitle());
+
+        // Format datetime
+        Date date = currentMovieSchedule.getShowtime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+        String dateStr = simpleDateFormat.format(date);
+        intent.putExtra("showtime", orderEntity.getShowtime());
+
+        intent.putExtra("seat", orderEntity.getSeatLocation());
+
+        // Format total price
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
+        String totalPrice = decimalFormat.format(orderEntity.getTotalPrice());
+        intent.putExtra("totalPrice", totalPrice);
+
+        intent.putExtra("movieScheduleId", orderEntity.getMovieScheduleId());
+        startActivity(intent);
     }
 }
