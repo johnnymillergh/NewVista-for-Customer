@@ -37,38 +37,40 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // 3rd-party Libraries
     // An HTTP & HTTP/2 client for Android and Java applications.
-    compile 'com.tsy:myokhttp:1.1.3'
+    implementation 'com.tsy:myokhttp:1.1.3'
     // An image loading and caching library for Android focused on smooth scrolling.
     implementation('com.github.bumptech.glide:glide:4.5.0') {
         exclude group: "com.android.support"
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
     // A Java serialization/deserialization library to convert Java Objects into JSON and back.
-    compile 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.2'
     // An Android library that makes developers use SQLite database extremely easy.
-    compile 'org.litepal.android:core:1.6.1'
+    implementation 'org.litepal.android:core:1.6.1'
     // Material Design Search Bar for Android
-    compile 'com.github.mancj:MaterialSearchBar:0.7.5'
+    implementation 'com.github.mancj:MaterialSearchBar:0.7.5'
     // An page indicator for Android ViewPager
-    compile 'com.romandanylyk:pageindicatorview:1.0.0@aar'
+    implementation 'com.romandanylyk:pageindicatorview:1.0.0@aar'
     // Material Chip view. Can be used as tags for categories, contacts or creating text clouds
     implementation 'com.robertlevonyan.view:MaterialChipView:1.1.3'
     // A circular ImageView for Android
-    compile 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     // Implementation of ImageView for Android that supports zooming, by various touch gestures.
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     // Android's TextView that can expand/collapse like the Google Play's app description
-    compile 'com.ms-square:expandableTextView:0.1.4'
+    implementation 'com.ms-square:expandableTextView:0.1.4'
     // A movie seat selection view for Android
-    implementation project(':seatview')
+    implementation project(':seat-view')
     // A custom view for showing tickets
-    compile 'com.github.mreram:ticketview:1.0.0'
+    implementation 'com.github.mreram:ticketview:1.0.0'
     // A PayPasswordView
-    compile 'com.twisty:ppv:1.0.0'
+    implementation 'com.twisty:ppv:1.0.0'
     // ImageView with a tag on android.
-    compile 'net.wujingchao.android.view:simple-tag-imageview:1.0.1'
+    implementation 'net.wujingchao.android.view:simple-tag-imageview:1.0.1'
     // Simple library for placing media type tags or text over an ImageView
-    compile 'com.klinkerapps:badged_imageview:1.0.5'
+    implementation 'com.klinkerapps:badged_imageview:1.0.5'
     // Charts/graphs library for Android compatible with API 8+, several chart types with support for scaling, scrolling and animations
-    compile 'com.github.lecho:hellocharts-android:v1.5.8'
+    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
+    // Port of the ZXing Android application as an Android library project, for embedding in an Android application.
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 }
