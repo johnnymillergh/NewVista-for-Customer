@@ -1,5 +1,7 @@
 package com.jm.newvista.mvp.model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.CustomerOrderEntity;
@@ -71,6 +73,7 @@ public class SeatSelectionModel extends BaseModel {
         UserEntity currentUser = dao.getFirst();
 
         HashMap<String, String> params = new HashMap<>();
+        params.put("orderOperation", "takeOrder");
         params.put("email", currentUser.getEmail());
         params.put("movieScheduleId", String.valueOf(movieScheduleId));
         params.put("ticketAmount", String.valueOf(ticketAmount));
@@ -79,12 +82,8 @@ public class SeatSelectionModel extends BaseModel {
         myOkHttp.post().url(NetworkUtil.ORDER_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
-                if (!response.contains("failure")) {
-                    CustomerOrderEntity orderEntity = new Gson().fromJson(response, CustomerOrderEntity.class);
-                    postOrderInfoListener.onSuccess(orderEntity);
-                } else {
-                    postOrderInfoListener.onFailure(response);
-                }
+                CustomerOrderEntity orderEntity = new Gson().fromJson(response, CustomerOrderEntity.class);
+                postOrderInfoListener.onSuccess(orderEntity);
             }
 
             @Override

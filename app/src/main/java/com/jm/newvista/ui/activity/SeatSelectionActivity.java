@@ -220,7 +220,7 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
         Date date = currentMovieSchedule.getShowtime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
         String dateStr = simpleDateFormat.format(date);
-        intent.putExtra("showtime", orderEntity.getShowtime());
+        intent.putExtra("showtime", dateStr);
 
         intent.putExtra("seat", orderEntity.getSeatLocation());
 
