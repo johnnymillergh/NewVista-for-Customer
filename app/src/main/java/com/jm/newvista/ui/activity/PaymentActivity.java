@@ -1,6 +1,9 @@
 package com.jm.newvista.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +17,7 @@ import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.PaymentModel;
 import com.jm.newvista.mvp.presenter.PaymentPresenter;
 import com.jm.newvista.mvp.view.PaymentView;
+import com.jm.newvista.receiver.FinishActivityReceiver;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.twisty.ppv.PayPasswordView;
 
@@ -30,13 +34,25 @@ public class PaymentActivity
     private PayPasswordView payPasswordView;
     private Button clear;
 
+    private FinishActivityReceiver finishActivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        finishActivityReceiver = new FinishActivityReceiver(this);
+        registerReceiver(finishActivityReceiver, new IntentFilter("FinishActivity:PaymentDone"));
+
         initView();
 
         getPresenter().updateView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(finishActivityReceiver);
     }
 
     private void initView() {
@@ -62,7 +78,7 @@ public class PaymentActivity
     }
 
     private void inputDone(String result) {
-        getPresenter().postPay();
+        getPresenter().postPay(result);
     }
 
     public void onClickClear(View view) {
@@ -112,5 +128,19 @@ public class PaymentActivity
     @Override
     public ImageView onGetAvatar() {
         return avatar;
+    }
+
+    @Override
+    public void onPaymentSuccess() {
+        Intent intent = new Intent(this, OrderHistoryActivity.class);
+        startActivity(intent);
+
+        intent = new Intent("FinishActivity:PaymentDone");
+        sendBroadcast(intent);
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

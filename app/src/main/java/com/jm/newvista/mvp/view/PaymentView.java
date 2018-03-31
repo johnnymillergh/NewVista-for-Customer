@@ -24,4 +24,8 @@ public interface PaymentView extends BaseView {
     ImageView onGetPoster();
 
     ImageView onGetAvatar();
+
+    void onPaymentSuccess();
+
+    void onMakeToast(String message);
 }

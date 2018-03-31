@@ -49,7 +49,7 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
         String movieTitle = currentOrderEntity.getMovieTitle();
 
         Date date = currentOrderEntity.getShowtime();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
         String dateStr = simpleDateFormat.format(date);
 
         String seat = currentOrderEntity.getSeatLocation();
@@ -85,7 +85,19 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
         }.execute();
     }
 
-    public void postPay() {
+    public void postPay(String paymentPassword) {
+        paymentModel.postPaymentToServer(currentOrderEntity, paymentPassword, new PaymentModel.PostPaymentListener() {
+            @Override
+            public void onSuccess(CustomerOrderEntity orderEntity) {
+                if (orderEntity.getIsPaid()) {
+                    paymentView.onPaymentSuccess();
+                }
+            }
 
+            @Override
+            public void onFailure(String errorMessage) {
+                paymentView.onMakeToast(errorMessage);
+            }
+        });
     }
 }

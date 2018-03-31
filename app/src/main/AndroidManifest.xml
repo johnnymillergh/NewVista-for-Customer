@@ -72,7 +72,9 @@
         </activity>
         <activity android:name=".ui.activity.WatchlistActivity">
         </activity>
-        <activity android:name=".ui.activity.OrderHistoryActivity">
+        <activity
+            android:name=".ui.activity.OrderHistoryActivity"
+            android:launchMode="singleTask">
         </activity>
         <activity android:name=".ui.activity.NowInTheatersActivity">
         </activity>
@@ -100,6 +102,12 @@
         </activity>
         <activity android:name=".ui.activity.MovieScheduleDetailActivity">
         </activity>
+
+        <receiver
+            android:name=".receiver.FinishActivityReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
     </application>
 
 </manifest>
