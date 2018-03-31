@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.OrderHistoryModel;
@@ -35,6 +36,7 @@ public class OrderHistoryActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
         initView();
+        getPresenter().getAndDisplayOrderHistory();
     }
 
     private void initView() {
@@ -72,5 +74,20 @@ public class OrderHistoryActivity
     @Override
     public OrderHistoryPresenter createPresenter() {
         return new OrderHistoryPresenter();
+    }
+
+    @Override
+    public OrderHistoryRecyclerViewAdapter onGetOrderHistoryRecyclerViewAdapter() {
+        return orderHistoryRecyclerViewAdapter;
+    }
+
+    @Override
+    public RecyclerView onGetOrderHistoryRecyclerView() {
+        return orderHistoryRecyclerView;
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

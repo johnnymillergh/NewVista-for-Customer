@@ -24,7 +24,11 @@ import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.NetworkUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -50,33 +54,44 @@ public class OrderHistoryRecyclerViewAdapter
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         if (customerOrders != null) {
             final CustomerOrderEntity orderEntity = customerOrders.get(position);
-//            holder.title.setText(orderEntity.getTitle());
-//            holder.genre.setText(orderEntity.getGenre());
-//            final ImageView poster = holder.poster;
-//            holder.cardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(context, MovieActivity.class);
-//                    intent.putExtra("movieTitle", orderEntity.getTitle());
-//                    intent.putExtra("from", "NewMovieReleases");
-//                    ActivityOptionsCompat options = ActivityOptionsCompat.
-//                            makeSceneTransitionAnimation(activity, poster, context.getString(R.string
-//                                    .transition_poster));
-//                    context.startActivity(intent, options.toBundle());
-//                }
-//            });
-//            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + orderEntity.getTitle())
-//                    .transition(withCrossFade()).into(holder.poster);
+            holder.theaterName.setText(orderEntity.getTheaterName());
+            holder.movieTitle.setText(orderEntity.getMovieTitle());
+
+            Date date = orderEntity.getShowtime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
+            String dateStr = simpleDateFormat.format(date);
+            holder.showtime.setText(dateStr);
+
+            holder.auditoriumName.setText(orderEntity.getAuditoriumName());
+            holder.seatLocation.setText(orderEntity.getSeatLocation());
+            holder.seatLocation.setText(orderEntity.getSeatLocation());
+
+            StringBuffer orderStatusStr = new StringBuffer();
+            if (orderEntity.getIsPaid()) orderStatusStr.append("Paid | ");
+            else orderStatusStr.append("Unpaid | ");
+
+            if (orderEntity.getIsUsed()) orderStatusStr.append("Used");
+            else orderStatusStr.append("Unused");
+
+            holder.orderStatus.setText(orderStatusStr);
+            holder.cardView.setOnClickListener(v -> {
+//                Intent intent = new Intent(context, MovieActivity.class);
+//                intent.putExtra("movieTitle", orderEntity.getTitle());
+//                intent.putExtra("from", "NewMovieReleases");
+//                ActivityOptionsCompat options = ActivityOptionsCompat.
+//                        makeSceneTransitionAnimation(activity, poster, context.getString(R.string
+//                                .transition_poster));
+//                context.startActivity(intent, options.toBundle());
+            });
+
+            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + orderEntity.getMovieTitle())
+                    .transition(withCrossFade()).into(holder.poster);
         }
     }
 
     @Override
     public int getItemCount() {
-        if (customerOrders == null) {
-            return 5;
-        } else {
-            return customerOrders.size();
-        }
+        return customerOrders == null ? 0 : customerOrders.size();
     }
 
     @Override
