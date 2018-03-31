@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">New Vista</string>
+    <string name="app_name">NewVista</string>
     <string-array name="genres_array">
         <item>Action</item>
         <item>Adventure</item>
