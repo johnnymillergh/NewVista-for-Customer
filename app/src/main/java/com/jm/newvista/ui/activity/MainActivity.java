@@ -319,16 +319,13 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             showSignOutDialog();
         } else if (id == R.id.orderItem) {
             final Intent intent = new Intent(MainActivity.this, OrderHistoryActivity.class);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(320);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    startActivity(intent);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                startActivity(intent);
             }).start();
         } else if (id == R.id.commentItem) {
             Intent intent = new Intent(MainActivity.this, TicketDetailActivity.class);
