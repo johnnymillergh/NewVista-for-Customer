@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.PaymentModel;
@@ -12,6 +14,11 @@ import com.jm.newvista.mvp.view.PaymentView;
 import com.jm.newvista.util.ApplicationUtil;
 import com.jm.newvista.util.ImageUtil;
 import com.jm.newvista.util.NetworkUtil;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -34,15 +41,24 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
 
         Intent intent = paymentView.onGetIntent();
 
-        String movieTitle = intent.getStringExtra("movieTitle");
-        String showtime = intent.getStringExtra("showtime");
-        String seat = intent.getStringExtra("seat");
-        String totalPrice = intent.getStringExtra("totalPrice");
+        CustomerOrderEntity orderEntity = new Gson().fromJson(intent.getStringExtra("orderEntity"),
+                CustomerOrderEntity.class);
+
+        String movieTitle = orderEntity.getMovieTitle();
+
+        Date date = orderEntity.getShowtime();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
+        String dateStr = simpleDateFormat.format(date);
+
+        String seat = orderEntity.getSeatLocation();
+
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
+        String totalPriceStr = decimalFormat.format(orderEntity.getTotalPrice());
 
         paymentView.onGetMovieTitle().setText(movieTitle);
-        paymentView.onGetShowtime().setText(showtime);
+        paymentView.onGetShowtime().setText(dateStr);
         paymentView.onGetSeat().setText(seat);
-        paymentView.onGetTotalPrice().setText(paymentView.onGetTotalPrice().getText() + totalPrice);
+        paymentView.onGetTotalPrice().setText(paymentView.onGetTotalPrice().getText() + totalPriceStr);
 
         Glide.with(ApplicationUtil.context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieTitle)
                 .transition(withCrossFade()).into(paymentView.onGetPoster());

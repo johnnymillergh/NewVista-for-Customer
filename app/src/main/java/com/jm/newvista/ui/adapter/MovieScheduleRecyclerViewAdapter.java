@@ -52,7 +52,7 @@ public class MovieScheduleRecyclerViewAdapter
         holder.location.setText(entity.getLocation());
         // Format datetime
         Date date = entity.getShowtime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
         String dateStr = simpleDateFormat.format(date);
         // Set properties
         holder.showtime.setText(dateStr);

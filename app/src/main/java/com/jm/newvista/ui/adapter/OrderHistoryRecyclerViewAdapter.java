@@ -18,10 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.GsonBuilder;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
+import com.jm.newvista.ui.activity.TicketDetailActivity;
 import com.jm.newvista.util.NetworkUtil;
 
 import java.text.SimpleDateFormat;
@@ -75,13 +77,9 @@ public class OrderHistoryRecyclerViewAdapter
 
             holder.orderStatus.setText(orderStatusStr);
             holder.cardView.setOnClickListener(v -> {
-//                Intent intent = new Intent(context, MovieActivity.class);
-//                intent.putExtra("movieTitle", orderEntity.getTitle());
-//                intent.putExtra("from", "NewMovieReleases");
-//                ActivityOptionsCompat options = ActivityOptionsCompat.
-//                        makeSceneTransitionAnimation(activity, poster, context.getString(R.string
-//                                .transition_poster));
-//                context.startActivity(intent, options.toBundle());
+                Intent intent = new Intent(context, TicketDetailActivity.class);
+                intent.putExtra("orderEntity", new GsonBuilder().disableHtmlEscaping().create().toJson(orderEntity));
+                context.startActivity(intent);
             });
 
             Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + orderEntity.getMovieTitle())

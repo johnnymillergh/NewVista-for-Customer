@@ -1,5 +1,6 @@
 package com.jm.newvista.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,14 +9,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.GsonBuilder;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 import com.jm.newvista.R;
+import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.mvp.model.TicketDetailModel;
 import com.jm.newvista.mvp.presenter.TicketDetailPresenter;
 import com.jm.newvista.mvp.view.TicketDetailView;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class TicketDetailActivity
         extends BaseActivity<TicketDetailModel, TicketDetailView, TicketDetailPresenter>
@@ -32,11 +43,14 @@ public class TicketDetailActivity
     private TextView theaterName2;
     private TextView theaterLocation;
 
+    private CustomerOrderEntity currentOrderEntity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_detail);
         initView();
+        getPresenter().updateView();
     }
 
     @Override
@@ -56,12 +70,7 @@ public class TicketDetailActivity
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener((v) -> finish());
 
         theaterName = findViewById(R.id.theaterName);
         movieTitle = findViewById(R.id.movieTitle);
@@ -78,8 +87,48 @@ public class TicketDetailActivity
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.encodeBitmap("Johnny Miller", BarcodeFormat.QR_CODE, 400, 400);
             qrCode.setImageBitmap(bitmap);
-        } catch(Exception e) {
+        } catch (Exception e) {
 
+        }
+    }
+
+    @Override
+    public Intent onGetIntent() {
+        return getIntent();
+    }
+
+    @Override
+    public void onUpdateView(CustomerOrderEntity orderEntity) {
+        currentOrderEntity = orderEntity;
+
+        theaterName.setText(orderEntity.getTheaterName());
+        movieTitle.setText(orderEntity.getMovieTitle());
+
+        Date date = orderEntity.getShowtime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
+        String dateStr = simpleDateFormat.format(date);
+        showtime.setText(dateStr);
+
+        seatLocation.setText(orderEntity.getSeatLocation());
+        orderId.setText(String.valueOf(orderEntity.getId()));
+
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
+        String totalPriceStr = decimalFormat.format(orderEntity.getTotalPrice());
+        totalPrice.setText(totalPriceStr);
+
+        ticketAmount.setText(String.valueOf(orderEntity.getTicketAmount()));
+        theaterName2.setText(orderEntity.getTheaterName());
+        theaterLocation.setText(orderEntity.getTheaterLocation());
+
+        if (!orderEntity.getIsPaid()) {
+            Glide.with(this).load(R.drawable.order_unpaid).into(qrCode);
+            qrCode.setOnClickListener(v -> {
+                Intent intent = new Intent(TicketDetailActivity.this, PaymentActivity.class);
+
+                intent.putExtra("orderEntity", new GsonBuilder().disableHtmlEscaping().create().toJson
+                        (currentOrderEntity));
+                startActivity(intent);
+            });
         }
     }
 }

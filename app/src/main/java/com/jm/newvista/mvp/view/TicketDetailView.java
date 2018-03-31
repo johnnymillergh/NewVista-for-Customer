@@ -1,5 +1,8 @@
 package com.jm.newvista.mvp.view;
 
+import android.content.Intent;
+
+import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.mvp.base.BaseView;
 
 /**
@@ -7,4 +10,7 @@ import com.jm.newvista.mvp.base.BaseView;
  */
 
 public interface TicketDetailView extends BaseView {
+    Intent onGetIntent();
+
+    void onUpdateView(CustomerOrderEntity orderEntity);
 }

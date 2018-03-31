@@ -291,29 +291,23 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
 
         if (id == R.id.accountItem) {
             final Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(320);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    startActivity(intent);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                startActivity(intent);
             }).start();
         } else if (id == R.id.signInItem) {
             final Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(320);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                startActivityForResult(intent, LOGIN_ACTIVITY_CODE);
             }).start();
         } else if (id == R.id.signOutItem) {
             showSignOutDialog();
@@ -328,7 +322,17 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 startActivity(intent);
             }).start();
         } else if (id == R.id.commentItem) {
-            Intent intent = new Intent(MainActivity.this, TicketDetailActivity.class);
+//            Intent intent = new Intent(MainActivity.this, CommentHistory.class);
+//            new Thread(() -> {
+//                try {
+//                    Thread.sleep(320);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                startActivity(intent);
+//            }).start();
+        } else if (id == R.id.watchlistItem) {
+            final Intent intent = new Intent(MainActivity.this, WatchlistActivity.class);
             new Thread(() -> {
                 try {
                     Thread.sleep(320);
@@ -336,19 +340,6 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                     e.printStackTrace();
                 }
                 startActivity(intent);
-            }).start();
-        } else if (id == R.id.watchlistItem) {
-            final Intent intent = new Intent(MainActivity.this, WatchlistActivity.class);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(320);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    startActivity(intent);
-                }
             }).start();
         } else if (id == R.id.settingsItem) {
             final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -362,16 +353,13 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
             }).start();
         } else if (id == R.id.aboutItem) {
             final Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(320);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    startActivity(intent);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                startActivity(intent);
             }).start();
         }
         // Close drawer

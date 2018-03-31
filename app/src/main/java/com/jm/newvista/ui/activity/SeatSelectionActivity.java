@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.google.gson.GsonBuilder;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.MovieScheduleEntity;
@@ -89,7 +90,7 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
 //
 //            // Format datetime
 //            Date date = currentMovieSchedule.getShowtime();
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
 //            String dateStr = simpleDateFormat.format(date);
 //            intent.putExtra("showtime", dateStr);
 //
@@ -161,7 +162,7 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
 
         // Format datetime
         Date date = movieScheduleEntity.getShowtime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
         String dateStr = simpleDateFormat.format(date);
 
         showtime.setText(dateStr);
@@ -212,24 +213,7 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
     @Override
     public void onStartPaymentActivity(CustomerOrderEntity orderEntity) {
         Intent intent = new Intent(this, PaymentActivity.class);
-        intent.putExtra("orderId", orderEntity.getId());
-
-        intent.putExtra("movieTitle", orderEntity.getMovieTitle());
-
-        // Format datetime
-        Date date = currentMovieSchedule.getShowtime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:m:ss aa MMM d, yyyy", Locale.ENGLISH);
-        String dateStr = simpleDateFormat.format(date);
-        intent.putExtra("showtime", dateStr);
-
-        intent.putExtra("seat", orderEntity.getSeatLocation());
-
-        // Format total price
-        DecimalFormat decimalFormat = new DecimalFormat(".00");
-        String totalPrice = decimalFormat.format(orderEntity.getTotalPrice());
-        intent.putExtra("totalPrice", totalPrice);
-
-        intent.putExtra("movieScheduleId", orderEntity.getMovieScheduleId());
+        intent.putExtra("orderEntity", new GsonBuilder().disableHtmlEscaping().create().toJson(orderEntity));
         startActivity(intent);
     }
 }
