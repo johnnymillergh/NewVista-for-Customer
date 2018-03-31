@@ -30,6 +30,8 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
     private PaymentModel paymentModel;
     private PaymentView paymentView;
 
+    private CustomerOrderEntity currentOrderEntity;
+
     public PaymentPresenter() {
         paymentModel = new PaymentModel();
         super.BasePresenter(paymentModel);
@@ -41,19 +43,19 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
 
         Intent intent = paymentView.onGetIntent();
 
-        CustomerOrderEntity orderEntity = new Gson().fromJson(intent.getStringExtra("orderEntity"),
+        currentOrderEntity = new Gson().fromJson(intent.getStringExtra("orderEntity"),
                 CustomerOrderEntity.class);
 
-        String movieTitle = orderEntity.getMovieTitle();
+        String movieTitle = currentOrderEntity.getMovieTitle();
 
-        Date date = orderEntity.getShowtime();
+        Date date = currentOrderEntity.getShowtime();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("h:mm:ss aa MMM d, yyyy", Locale.ENGLISH);
         String dateStr = simpleDateFormat.format(date);
 
-        String seat = orderEntity.getSeatLocation();
+        String seat = currentOrderEntity.getSeatLocation();
 
         DecimalFormat decimalFormat = new DecimalFormat(".00");
-        String totalPriceStr = decimalFormat.format(orderEntity.getTotalPrice());
+        String totalPriceStr = decimalFormat.format(currentOrderEntity.getTotalPrice());
 
         paymentView.onGetMovieTitle().setText(movieTitle);
         paymentView.onGetShowtime().setText(dateStr);
