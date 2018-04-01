@@ -1,6 +1,7 @@
 package com.jm.newvista.ui.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.MovieScheduleDetailModel;
 import com.jm.newvista.mvp.presenter.MovieScheduleDetailPresenter;
 import com.jm.newvista.mvp.view.MovieScheduleDetailView;
+import com.jm.newvista.receiver.FinishActivityReceiver;
 import com.jm.newvista.ui.adapter.MovieScheduleDetailRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.TheaterFragment;
@@ -30,13 +32,25 @@ public class MovieScheduleDetailActivity
     private RecyclerView movieScheduleDetailRecyclerView;
     private MovieScheduleDetailRecyclerViewAdapter movieScheduleDetailRecyclerViewAdapter;
 
+    private FinishActivityReceiver finishActivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_schedule_detail);
+
+        finishActivityReceiver = new FinishActivityReceiver(this);
+        registerReceiver(finishActivityReceiver, new IntentFilter("FinishActivity:PaymentDone"));
+
         initView();
         initFragment();
         getPresenter().getAndDisplayMovieScheduleDetail();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(finishActivityReceiver);
     }
 
     private void initView() {

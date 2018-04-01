@@ -2,6 +2,7 @@ package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +30,7 @@ import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.presenter.MoviePresenter;
 import com.jm.newvista.mvp.view.MovieView;
+import com.jm.newvista.receiver.FinishActivityReceiver;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.fragment.AllDetailsDialogFragment;
 import com.jm.newvista.ui.fragment.DescriptionDialogFragment;
@@ -71,12 +73,24 @@ public class MovieActivity
     private MovieEntity currentMovieEntity;
     private boolean isLoaded = false;
 
+    private FinishActivityReceiver finishActivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        finishActivityReceiver = new FinishActivityReceiver(this);
+        registerReceiver(finishActivityReceiver, new IntentFilter("FinishActivity:PaymentDone"));
+
         initView();
         getPresenter().getAndDisplayMovie();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(finishActivityReceiver);
     }
 
     @Override

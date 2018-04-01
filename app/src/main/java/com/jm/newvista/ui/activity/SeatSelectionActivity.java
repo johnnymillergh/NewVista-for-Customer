@@ -2,6 +2,7 @@ package com.jm.newvista.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.SeatSelectionModel;
 import com.jm.newvista.mvp.presenter.SeatSelectionPresenter;
 import com.jm.newvista.mvp.view.SeatSelectionView;
+import com.jm.newvista.receiver.FinishActivityReceiver;
 import com.jm.newvista.ui.base.BaseActivity;
 import com.jm.newvista.ui.dialog.LoadingAlertDialog;
 
@@ -50,14 +52,26 @@ public class SeatSelectionActivity extends BaseActivity<SeatSelectionModel, Seat
 
     private MovieScheduleEntity currentMovieSchedule;
 
+    private FinishActivityReceiver finishActivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_selection);
+
+        finishActivityReceiver = new FinishActivityReceiver(this);
+        registerReceiver(finishActivityReceiver, new IntentFilter("FinishActivity:PaymentDone"));
+
         initView();
         getPresenter().updateToolBar();
         getPresenter().getAndDisplayMovieSchedule();
         getPresenter().getAndDisplaySeat();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(finishActivityReceiver);
     }
 
     private void initView() {
