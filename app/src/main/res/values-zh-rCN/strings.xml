@@ -154,4 +154,5 @@
     <string name="purchase">购票</string>
     <string name="null_result">Null result</string>
     <string name="choose_an_auditorium">选择影厅</string>
+    <string name="order_datetime">Order Datetime:</string>
 </resources>

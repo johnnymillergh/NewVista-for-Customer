@@ -40,6 +40,7 @@ public class TicketDetailActivity
     private TextView orderId;
     private TextView totalPrice;
     private TextView ticketAmount;
+    private TextView orderDatetime;
     private TextView theaterName2;
     private TextView theaterLocation;
 
@@ -80,6 +81,7 @@ public class TicketDetailActivity
         orderId = findViewById(R.id.orderId);
         totalPrice = findViewById(R.id.totalPrice);
         ticketAmount = findViewById(R.id.ticketAmount);
+        orderDatetime = findViewById(R.id.orderDatetime);
         theaterName2 = findViewById(R.id.theaterName2);
         theaterLocation = findViewById(R.id.theaterLocation);
 
@@ -117,6 +119,11 @@ public class TicketDetailActivity
         totalPrice.setText(totalPriceStr);
 
         ticketAmount.setText(String.valueOf(orderEntity.getTicketAmount()));
+
+        date = orderEntity.getOrderDatetime();
+        dateStr = simpleDateFormat.format(date);
+        orderDatetime.setText(dateStr);
+
         theaterName2.setText(orderEntity.getTheaterName());
         theaterLocation.setText(orderEntity.getTheaterLocation());
 
