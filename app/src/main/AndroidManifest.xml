@@ -80,8 +80,6 @@
         </activity>
         <activity android:name=".ui.activity.RandomPicksActivity">
         </activity>
-        <activity android:name=".ui.activity.OrderDetailActivity">
-        </activity>
         <activity
             android:name=".ui.activity.TicketDetailActivity"
             android:theme="@style/AppTheme.Ticket">
