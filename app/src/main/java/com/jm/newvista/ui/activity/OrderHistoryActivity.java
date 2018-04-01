@@ -4,8 +4,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -22,7 +25,8 @@ import com.jm.newvista.ui.base.BaseActivity;
 
 public class OrderHistoryActivity
         extends BaseActivity<OrderHistoryModel, OrderHistoryView, OrderHistoryPresenter>
-        implements OrderHistoryView {
+        implements OrderHistoryView,
+        PopupMenu.OnMenuItemClickListener {
     private Toolbar toolbar;
     private TextView sortByOrderDatetime;
     private ImageButton sort;
@@ -64,6 +68,26 @@ public class OrderHistoryActivity
     }
 
     public void onClickSort(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.fragment_user_review_sort, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.newestFirst:
+                linearLayoutManager.setReverseLayout(true);
+                linearLayoutManager.setStackFromEnd(true);
+                break;
+            case R.id.oldestFirst:
+                linearLayoutManager.setReverseLayout(false);
+                linearLayoutManager.setStackFromEnd(false);
+                break;
+        }
+        return false;
     }
 
     @Override
