@@ -138,4 +138,22 @@ public class TicketDetailActivity
             });
         }
     }
+
+    @Override
+    public CustomerOrderEntity onGetCurrentOrderEntity() {
+        return currentOrderEntity;
+    }
+
+    @Override
+    public void onUpdateQRCode(String plainText) {
+        if (!currentOrderEntity.getIsUsed()) {
+            try {
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.encodeBitmap(plainText, BarcodeFormat.QR_CODE, 400, 400);
+                qrCode.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

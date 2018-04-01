@@ -13,4 +13,8 @@ public interface TicketDetailView extends BaseView {
     Intent onGetIntent();
 
     void onUpdateView(CustomerOrderEntity orderEntity);
+
+    CustomerOrderEntity onGetCurrentOrderEntity();
+
+    void onUpdateQRCode(String plainText);
 }

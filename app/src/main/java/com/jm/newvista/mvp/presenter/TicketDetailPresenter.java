@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.TicketDetailModel;
@@ -30,5 +31,18 @@ public class TicketDetailPresenter extends BasePresenter<TicketDetailModel, Tick
 
         CustomerOrderEntity orderEntity = new Gson().fromJson(orderEntityStr, CustomerOrderEntity.class);
         ticketDetailView.onUpdateView(orderEntity);
+
+        displayQRCode();
+    }
+
+    private void displayQRCode() {
+        CustomerOrderEntity currentOrderEntity = ticketDetailView.onGetCurrentOrderEntity();
+        CustomerOrderEntity orderEntityToEncode = new CustomerOrderEntity();
+        orderEntityToEncode.setUserId(currentOrderEntity.getUserId());
+        orderEntityToEncode.setOrderDatetime(currentOrderEntity.getOrderDatetime());
+        orderEntityToEncode.setIsUsed(currentOrderEntity.getIsUsed());
+        String json = new GsonBuilder().disableHtmlEscaping().create().toJson(orderEntityToEncode);
+
+        ticketDetailView.onUpdateQRCode(json);
     }
 }
