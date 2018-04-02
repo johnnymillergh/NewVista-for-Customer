@@ -250,4 +250,6 @@
     <string name="null_result">Null result</string>
     <string name="choose_an_auditorium">Chose an Auditorium</string>
     <string name="order_datetime">Order Datetime:</string>
+    <string name="top_selling_movies">Top Selling Movies</string>
+    <string name="top_selling_subtitle">Most popular movies based on sales</string>
 </resources>
