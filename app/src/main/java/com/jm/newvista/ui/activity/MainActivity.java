@@ -240,6 +240,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 // Add now in theaters fragment
                 fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment())
                         .commit();
+                // Add top selling fragment
+                fragmentManager.beginTransaction().replace(R.id.topSellingContainer, new TopSellingFragment()).commit();
                 // Add top rated fragment
                 fragmentManager.beginTransaction().replace(R.id.topRatedContainer, new TopRatedFragment()).commit();
                 // Add random picks fragment
