@@ -48,6 +48,7 @@ import com.jm.newvista.ui.fragment.NowInTheatersFragment;
 import com.jm.newvista.ui.fragment.RandomPicksFragment;
 import com.jm.newvista.ui.fragment.TopMovieFragment;
 import com.jm.newvista.ui.fragment.TopRatedFragment;
+import com.jm.newvista.ui.fragment.TopSellingFragment;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -67,7 +68,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         RandomPicksFragment.RandomPicksFragmentListener,
         NowInTheatersFragment.NowInTheatersFragmentListener,
         FeatureFragment.FeatureFragmentListener,
-        TopRatedFragment.TopRatedFragmentListener {
+        TopRatedFragment.TopRatedFragmentListener,
+        TopSellingFragment.TopSellingFragmentListener {
     public static final int LOGIN_ACTIVITY_CODE = 1;
     private MaterialSearchBar searchBar;
     private DrawerLayout drawerLayout;
@@ -475,6 +477,8 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 .commit();
         // Add now in theaters fragment
         fragmentManager.beginTransaction().replace(R.id.nowInTheatersContainer, new NowInTheatersFragment()).commit();
+        // Add top selling fragment
+        fragmentManager.beginTransaction().replace(R.id.topSellingContainer, new TopSellingFragment()).commit();
         // Add top rated fragment
         fragmentManager.beginTransaction().replace(R.id.topRatedContainer, new TopRatedFragment()).commit();
         // Add random picks fragment
