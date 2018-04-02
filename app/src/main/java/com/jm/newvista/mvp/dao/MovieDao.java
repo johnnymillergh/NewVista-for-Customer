@@ -49,8 +49,14 @@ public class MovieDao implements IDao<MovieEntity> {
     }
 
     public MovieEntity queryMovieByTitle(MovieEntity entity) {
-        List<MovieEntity> result = DataSupport.where("title=?", entity.getTitle()).find(MovieEntity.class);
+        List<MovieEntity> result = DataSupport.where("title=? or titlechs=?", entity.getTitle(), entity.getTitle())
+                .find(MovieEntity.class);
         return result.size() == 1 ? result.get(0) : null;
+    }
+
+    public String findTitleCHSByTitle(String title) {
+        List<MovieEntity> result = DataSupport.where("title=?", title).find(MovieEntity.class);
+        return result.size() == 1 ? result.get(0).getTitleCHS() : null;
     }
 
     @Override

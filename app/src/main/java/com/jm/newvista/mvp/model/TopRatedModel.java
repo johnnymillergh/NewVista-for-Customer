@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.MovieRankingEntity;
 import com.jm.newvista.mvp.base.BaseModel;
+import com.jm.newvista.mvp.dao.MovieDao;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
@@ -34,6 +35,16 @@ public class TopRatedModel extends BaseModel {
         });
     }
 
+    public void convertToChineseTitle(List<MovieRankingEntity> topRated, ConvertListener convertListener) {
+        MovieDao movieDao = new MovieDao();
+        for (int i = 0; i < topRated.size(); i++) {
+            MovieRankingEntity mre = topRated.get(i);
+            String titleCHS = movieDao.findTitleCHSByTitle(mre.getTitle());
+            mre.setTitle(titleCHS);
+        }
+        convertListener.onFinish(topRated);
+    }
+
     @Override
     public void cancel() {
         myOkHttp.cancel(this);
@@ -45,5 +56,9 @@ public class TopRatedModel extends BaseModel {
         void onNullResult();
 
         void onFailure(String errorMessage);
+    }
+
+    public interface ConvertListener {
+        void onFinish(List<MovieRankingEntity> topRated);
     }
 }
