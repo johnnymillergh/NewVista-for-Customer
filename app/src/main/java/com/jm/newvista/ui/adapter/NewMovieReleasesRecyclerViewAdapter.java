@@ -3,6 +3,8 @@ package com.jm.newvista.ui.adapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,8 +38,14 @@ public class NewMovieReleasesRecyclerViewAdapter
     private List<MovieEntity> newMovies;
     private MainActivity mainActivity;
 
+    private boolean isChinese = false;
+
     public NewMovieReleasesRecyclerViewAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mainActivity);
+        String language = prefs.getString("example_list", "1");
+        if (!language.equals("1")) isChinese = true;
     }
 
     @Override
@@ -53,7 +61,8 @@ public class NewMovieReleasesRecyclerViewAdapter
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (newMovies != null) {
             final MovieEntity newMovie = newMovies.get(position);
-            holder.title.setText(newMovie.getTitle());
+            if (isChinese && newMovie.getTitleCHS() != null) holder.title.setText(newMovie.getTitleCHS());
+            else holder.title.setText(newMovie.getTitle());
             holder.genre.setText(newMovie.getGenre());
             final ImageView poster = holder.poster;
             holder.cardView.setOnClickListener(new View.OnClickListener() {

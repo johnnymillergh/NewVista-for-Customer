@@ -131,7 +131,7 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
 
     private void initLanguage() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String language = prefs.getString("example_list", "-1");
+        String language = prefs.getString("example_list", "1");
         if (language.equals("1")) {
             Resources resources = getResources();
             Configuration config = resources.getConfiguration();

@@ -27,23 +27,17 @@ public class NewMovieReleasesPresenter extends BasePresenter<NewMovieReleasesMod
     @SuppressLint("StaticFieldLeak")
     public void getNewMovie() {
         newMovieReleasesView = getView();
-        newMovieReleasesModel.getAndSaveNewMoviePoster(new NewMovieReleasesModel
-                .NewMovieReleasesCallbackListener() {
+        newMovieReleasesModel.getAndSaveNewMoviePoster(() -> new AsyncTask<Void, Void, List>() {
             @Override
-            public void onFinishSavingPoster() {
-                new AsyncTask<Void, Void, List>() {
-                    @Override
-                    protected List doInBackground(Void... voids) {
-                        List<MovieEntity> newMovies = newMovieReleasesModel.getNewMovie();
-                        return newMovies;
-                    }
-
-                    @Override
-                    protected void onPostExecute(List list) {
-                        newMovieReleasesView.onFinishPreparingNewMovie(list);
-                    }
-                }.execute();
+            protected List doInBackground(Void... voids) {
+                List<MovieEntity> newMovies = newMovieReleasesModel.getNewMovie();
+                return newMovies;
             }
-        });
+
+            @Override
+            protected void onPostExecute(List list) {
+                newMovieReleasesView.onFinishPreparingNewMovie(list);
+            }
+        }.execute());
     }
 }
