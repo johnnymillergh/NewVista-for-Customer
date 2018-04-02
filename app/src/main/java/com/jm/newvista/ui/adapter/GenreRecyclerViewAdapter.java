@@ -7,12 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.ui.activity.SearchResultActivity;
 import com.robertlevonyan.views.chip.Chip;
-import com.robertlevonyan.views.chip.OnChipClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +22,12 @@ import java.util.List;
 public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecyclerViewAdapter.MyViewHolder> {
     private List<String> genres = new ArrayList<>();
     private Context context;
+
+    private OnChipClickListener onChipClickListener;
+
+    public GenreRecyclerViewAdapter(OnChipClickListener onChipClickListener) {
+        this.onChipClickListener = onChipClickListener;
+    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,15 +43,8 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         Log.v("onBindViewHolder", "GenreRecyclerViewAdapter: " + position);
         holder.genreChip.setChipText(genres.get(position).toUpperCase());
-        holder.genreChip.setOnChipClickListener(new OnChipClickListener() {
-            @Override
-            public void onChipClick(View v) {
-                Toast.makeText(context, "onChipClick " + genres.get(position), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, SearchResultActivity.class);
-                intent.putExtra("from", "Genre");
-                intent.putExtra("genre", genres.get(position).toString());
-                context.startActivity(intent);
-            }
+        holder.genreChip.setOnChipClickListener((v) -> {
+            onChipClickListener.onChipClick(v, genres.get(position));
         });
     }
 
@@ -72,5 +69,9 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
 
     public List<String> getGenres() {
         return genres;
+    }
+
+    public interface OnChipClickListener {
+        void onChipClick(View v, String chipText);
     }
 }

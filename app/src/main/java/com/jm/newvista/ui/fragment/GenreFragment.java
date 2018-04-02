@@ -16,13 +16,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.mvp.model.GenreModel;
+import com.jm.newvista.mvp.presenter.GenrePresenter;
+import com.jm.newvista.mvp.view.GenreView;
 import com.jm.newvista.ui.adapter.GenreRecyclerViewAdapter;
+import com.jm.newvista.ui.base.BaseFragment;
 
 import java.util.Arrays;
 import java.util.List;
 
 
-public class GenreFragment extends Fragment {
+public class GenreFragment
+        extends BaseFragment<GenreModel, GenreView, GenrePresenter>
+        implements GenreView,
+        GenreRecyclerViewAdapter.OnChipClickListener {
     private GenreFragmentCallbackListener genreFragmentCallbackListener;
 
     public GenreFragment() {
@@ -43,7 +50,7 @@ public class GenreFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_genre, container, false);
 
         RecyclerView genreRecyclerView = view.findViewById(R.id.genreRecyclerView);
-        GenreRecyclerViewAdapter genreRecyclerViewAdapter = new GenreRecyclerViewAdapter();
+        GenreRecyclerViewAdapter genreRecyclerViewAdapter = new GenreRecyclerViewAdapter(this);
 
         List<String> genres = genreRecyclerViewAdapter.getGenres();
         String[] genresArray = getResources().getStringArray(R.array.genres_array);
@@ -55,12 +62,6 @@ public class GenreFragment extends Fragment {
         genreRecyclerView.setLayoutManager(linearLayoutManager);
         genreRecyclerView.setNestedScrollingEnabled(false);
         return view;
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (genreFragmentCallbackListener != null) {
-            genreFragmentCallbackListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -79,8 +80,27 @@ public class GenreFragment extends Fragment {
         genreFragmentCallbackListener = null;
     }
 
+    @Override
+    public GenreView createView() {
+        return this;
+    }
+
+    @Override
+    public GenrePresenter createPresenter() {
+        return new GenrePresenter();
+    }
+
+    @Override
+    public void notifyFinishAttachingView() {
+
+    }
+
+    @Override
+    public void onChipClick(View v, String chipText) {
+        getPresenter().clickChipView(chipText);
+    }
+
     public interface GenreFragmentCallbackListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

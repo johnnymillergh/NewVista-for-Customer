@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">新万视</string>
+    <string name="app_name">NewVista</string>
     <string-array name="genres_array">
-        <item>Action</item>
-        <item>Adventure</item>
-        <item>Animation</item>
-        <item>Biography</item>
-        <item>Comedy</item>
-        <item>Crime</item>
-        <item>Documentary</item>
-        <item>Drama</item>
-        <item>Family</item>
-        <item>Fantasy</item>
-        <item>History</item>
-        <item>Horror</item>
-        <item>Music</item>
-        <item>Musical</item>
-        <item>Mystery</item>
-        <item>Romance</item>
-        <item>Mystery</item>
-        <item>Sci-Fi</item>
-        <item>Short</item>
-        <item>Thriller</item>
-        <item>War</item>
-        <item>Western</item>
+        <item>动作</item>
+        <item>冒险</item>
+        <item>动画</item>
+        <item>传记</item>
+        <item>喜剧</item>
+        <item>犯罪</item>
+        <item>记录</item>
+        <item>戏剧</item>
+        <item>家庭</item>
+        <item>幻想</item>
+        <item>历史</item>
+        <item>恐怖</item>
+        <item>音乐</item>
+        <item>乐剧</item>
+        <item>神秘</item>
+        <item>浪漫</item>
+        <item>科幻</item>
+        <item>短剧</item>
+        <item>惊悚</item>
+        <item>战争</item>
+        <item>西方</item>
     </string-array>
     <string name="username">用户名</string>
     <string name="email">邮箱</string>
@@ -154,5 +153,5 @@
     <string name="purchase">购票</string>
     <string name="null_result">Null result</string>
     <string name="choose_an_auditorium">选择影厅</string>
-    <string name="order_datetime">Order Datetime:</string>
+    <string name="order_datetime">订单日期：</string>
 </resources>
