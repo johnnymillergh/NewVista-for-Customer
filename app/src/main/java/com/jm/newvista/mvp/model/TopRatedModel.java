@@ -2,8 +2,7 @@ package com.jm.newvista.mvp.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jm.newvista.bean.MovieEntity;
-import com.jm.newvista.bean.MovieRatingEntity;
+import com.jm.newvista.bean.MovieRankingEntity;
 import com.jm.newvista.mvp.base.BaseModel;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
@@ -22,8 +21,8 @@ public class TopRatedModel extends BaseModel {
         myOkHttp.get().url(NetworkUtil.GET_TOP_RATED_URL).tag(this).enqueue(new RawResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
-                List<MovieRatingEntity> topRated = new Gson().fromJson(response,
-                        new TypeToken<List<MovieRatingEntity>>() {
+                List<MovieRankingEntity> topRated = new Gson().fromJson(response,
+                        new TypeToken<List<MovieRankingEntity>>() {
                         }.getType());
                 getTopRatedListener.onSuccess(topRated);
             }
@@ -41,7 +40,7 @@ public class TopRatedModel extends BaseModel {
     }
 
     public interface GetTopRatedListener {
-        void onSuccess(List<MovieRatingEntity> topRated);
+        void onSuccess(List<MovieRankingEntity> topRated);
 
         void onNullResult();
 

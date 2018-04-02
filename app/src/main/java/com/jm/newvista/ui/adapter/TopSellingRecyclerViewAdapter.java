@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jm.newvista.R;
-import com.jm.newvista.bean.MovieRatingEntity;
+import com.jm.newvista.bean.MovieRankingEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.NetworkUtil;
 import com.klinker.android.badged_imageview.BadgedImageView;
@@ -37,7 +37,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 public class TopSellingRecyclerViewAdapter
         extends RecyclerView.Adapter<TopSellingRecyclerViewAdapter.MyViewHolder> {
     private Context context;
-    private List<MovieRatingEntity> topSellingMovies;
+    private List<MovieRankingEntity> topSellingMovies;
     private Activity activity;
 
     public TopSellingRecyclerViewAdapter(Activity activity) {
@@ -57,12 +57,12 @@ public class TopSellingRecyclerViewAdapter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (topSellingMovies != null) {
-            final MovieRatingEntity movieEntity = topSellingMovies.get(position);
+            final MovieRankingEntity movieEntity = topSellingMovies.get(position);
             holder.title.setText(movieEntity.getTitle());
             holder.genre.setText(movieEntity.getGenre());
             holder.poster.setTagText("No. " + (position + 1));
             DecimalFormat decimalFormat = new DecimalFormat(".0");
-            String averageScore = decimalFormat.format(movieEntity.getAverage_score());
+            String averageScore = decimalFormat.format(movieEntity.getAverageScore());
             holder.score.setBadge(averageScore);
             final ImageView poster = holder.poster;
             holder.cardView.setOnClickListener(v -> {
@@ -136,11 +136,11 @@ public class TopSellingRecyclerViewAdapter
         }
     }
 
-    public List<MovieRatingEntity> getTopSellingMovies() {
+    public List<MovieRankingEntity> getTopSellingMovies() {
         return topSellingMovies;
     }
 
-    public void setTopSellingMovies(List<MovieRatingEntity> topSellingMovies) {
+    public void setTopSellingMovies(List<MovieRankingEntity> topSellingMovies) {
         this.topSellingMovies = topSellingMovies;
     }
 }

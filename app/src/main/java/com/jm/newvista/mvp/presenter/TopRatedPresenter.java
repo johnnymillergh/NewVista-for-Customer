@@ -1,6 +1,6 @@
 package com.jm.newvista.mvp.presenter;
 
-import com.jm.newvista.bean.MovieRatingEntity;
+import com.jm.newvista.bean.MovieRankingEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.TopRatedModel;
 import com.jm.newvista.mvp.view.TopRatedView;
@@ -25,7 +25,7 @@ public class TopRatedPresenter extends BasePresenter<TopRatedModel, TopRatedView
         topRatedView = getView();
         topRatedModel.getTopRated(new TopRatedModel.GetTopRatedListener() {
             @Override
-            public void onSuccess(List<MovieRatingEntity> topRated) {
+            public void onSuccess(List<MovieRankingEntity> topRated) {
                 TopRatedRecyclerViewAdapter adapter = topRatedView.onGetTopRatedRecyclerViewAdapter();
                 adapter.setTopRatedMovies(topRated);
                 adapter.notifyDataSetChanged();
