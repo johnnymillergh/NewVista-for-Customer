@@ -156,4 +156,5 @@
     <string name="order_datetime">订单日期：</string>
     <string name="top_selling_movies">最佳票房排行榜</string>
     <string name="top_selling_subtitle">基于NewVista的销量</string>
+    <string name="my_comments">My Comments</string>
 </resources>

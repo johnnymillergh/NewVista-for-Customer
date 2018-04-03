@@ -252,4 +252,5 @@
     <string name="order_datetime">Order Datetime:</string>
     <string name="top_selling_movies">Top Selling Movies</string>
     <string name="top_selling_subtitle">Most popular movies based on sales</string>
+    <string name="my_comments">My Comments</string>
 </resources>
