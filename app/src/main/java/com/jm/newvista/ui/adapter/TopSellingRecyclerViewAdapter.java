@@ -42,14 +42,8 @@ public class TopSellingRecyclerViewAdapter
     private List<MovieRankingEntity> topSellingMovies;
     private Activity activity;
 
-    private boolean isChinese = false;
-
     public TopSellingRecyclerViewAdapter(Activity activity) {
         this.activity = activity;
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        String language = prefs.getString("example_list", "1");
-        if (!language.equals("1")) isChinese = true;
     }
 
     @Override
