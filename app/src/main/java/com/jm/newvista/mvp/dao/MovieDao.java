@@ -45,7 +45,8 @@ public class MovieDao implements IDao<MovieEntity> {
     }
 
     public List<MovieEntity> queryMoviesByTitle(MovieEntity entity) {
-        return DataSupport.where("title LIKE ?", "%" + entity.getTitle() + "%").find(MovieEntity.class);
+        return DataSupport.where("title LIKE ? OR titlechs LIKE ?", "%" + entity.getTitle() + "%", "%" + entity
+                .getTitle() + "%").find(MovieEntity.class);
     }
 
     public MovieEntity queryMovieByTitle(MovieEntity entity) {

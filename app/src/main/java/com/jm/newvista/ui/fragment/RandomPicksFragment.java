@@ -53,7 +53,6 @@ public class RandomPicksFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_random_picks, container, false);
         initView(view);
         return view;
@@ -62,12 +61,7 @@ public class RandomPicksFragment
     private void initView(View view) {
         randomPicksRecyclerView = view.findViewById(R.id.randomPicksRecyclerView);
         more = view.findViewById(R.id.more);
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickMore(v);
-            }
-        });
+        more.setOnClickListener(v -> onClickMore(v));
 
         randomPicksRecyclerViewAdapter = new RandomPicksRecyclerViewAdapter(getActivity());
 
@@ -90,7 +84,7 @@ public class RandomPicksFragment
         if (context instanceof RandomPicksFragmentListener) {
             mListener = (RandomPicksFragmentListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement RandomPicksFragmentListener");
         }
     }
 
