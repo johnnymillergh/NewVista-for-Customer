@@ -157,12 +157,6 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-//                Glide.get(ApplicationUtil.getContext()).clearDiskCache();
-            }
-        }).start();
     }
 
     @Override
@@ -200,21 +194,11 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
         });
 
         avatar = navigationView.getHeaderView(0).findViewById(R.id.avatarNavigation);
-        avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickAvatar(v);
-            }
-        });
+        avatar.setOnClickListener(v -> onClickAvatar(v));
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshModules();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> refreshModules());
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -376,20 +360,14 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 .setIcon(R.mipmap.ic_launcher_round)
                 .setTitle(R.string.sign_out_title)
                 .setMessage(getString(R.string.sign_out_message))
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, R.string.sign_out_cancel_message, Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
+                .setNegativeButton(R.string.cancel, (dialog1, which) -> {
+                    Toast.makeText(MainActivity.this, R.string.sign_out_cancel_message, Toast.LENGTH_SHORT).show();
+                    dialog1.dismiss();
                 })
-                .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, R.string.sign_out_confirm_message, Toast.LENGTH_SHORT).show();
-                        getPresenter().signOut();
-                        dialog.dismiss();
-                    }
+                .setPositiveButton(R.string.confirm, (dialog12, which) -> {
+                    Toast.makeText(MainActivity.this, R.string.sign_out_confirm_message, Toast.LENGTH_SHORT).show();
+                    getPresenter().signOut();
+                    dialog12.dismiss();
                 }).create();
         dialog.show();
     }
@@ -437,29 +415,26 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                     e.printStackTrace();
                 }
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
-                        alphaAnimation.setDuration(400);
-                        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
+                runOnUiThread(() -> {
+                    AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+                    alphaAnimation.setDuration(400);
+                    alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
 
-                            }
+                        }
 
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                splashScreen.setVisibility(View.GONE);
-                            }
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            splashScreen.setVisibility(View.GONE);
+                        }
 
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
 
-                            }
-                        });
-                        splashScreen.startAnimation(alphaAnimation);
-                    }
+                        }
+                    });
+                    splashScreen.startAnimation(alphaAnimation);
                 });
             }
         }.start();
@@ -472,7 +447,6 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
     @Override
     public void onNotifyMovieSaved() {
         // TODO: Add module fragment here which is about movie!!!
-        Log.v("onNotifyMovieSaved", "Movie saved");
         FragmentManager fragmentManager = getSupportFragmentManager();
         // Add new movie releases fragment
         fragmentManager.beginTransaction().replace(R.id.newMovieReleasesContainer, new NewMovieReleasesFragment())

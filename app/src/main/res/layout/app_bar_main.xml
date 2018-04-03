@@ -83,7 +83,7 @@
                     android:id="@+id/topSellingContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/newMovieReleasesContainer">
+                    app:layout_constraintTop_toBottomOf="@+id/nowInTheatersContainer">
                 </FrameLayout>
 
                 <FrameLayout

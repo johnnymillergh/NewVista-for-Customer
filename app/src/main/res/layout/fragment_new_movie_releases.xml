@@ -9,8 +9,6 @@
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
-    android:background="?attr/selectableItemBackground"
-    android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="4dp"
     app:cardElevation="2dp"
     tools:context="com.jm.newvista.ui.fragment.NewMovieReleasesFragment">

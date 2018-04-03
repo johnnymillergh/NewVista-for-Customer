@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.TopSellingModel;
@@ -23,7 +24,7 @@ import com.jm.newvista.ui.adapter.TopSellingRecyclerViewAdapter;
 import com.jm.newvista.ui.base.BaseFragment;
 
 public class TopSellingFragment
-        extends BaseFragment<TopSellingModel,TopSellingView,TopSellingPresenter>
+        extends BaseFragment<TopSellingModel, TopSellingView, TopSellingPresenter>
         implements TopSellingView {
     private TopSellingFragmentListener mListener;
 
@@ -71,12 +72,6 @@ public class TopSellingFragment
 
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -105,7 +100,17 @@ public class TopSellingFragment
 
     @Override
     public void notifyFinishAttachingView() {
+        getPresenter().getAndDisplayTopSelling();
+    }
 
+    @Override
+    public TopSellingRecyclerViewAdapter onGetTopSellingRecyclerViewAdapter() {
+        return topSellingRecyclerViewAdapter;
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     public interface TopSellingFragmentListener {

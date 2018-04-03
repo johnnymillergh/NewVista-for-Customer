@@ -30,4 +30,5 @@ public class NetworkUtil {
     public static final String SAT_MANAGEMENT_URL = "http://johnnymiller.site/servlet.customer.SATManagement";
     public static final String GET_TOP_RATED_URL = "http://johnnymiller.site/customer/getTopRated.jsp";
     public static final String GET_MOVIE_SCHEDULE_URL2 = "http://johnnymiller.site/customer/getMovieSchedule.jsp";
+    public static final String GET_TOP_SELLING_URL = "http://johnnymiller.site/customer/getTopSelling.jsp";
 }
