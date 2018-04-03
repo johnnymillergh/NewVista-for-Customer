@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -40,8 +42,14 @@ public class TopSellingRecyclerViewAdapter
     private List<MovieRankingEntity> topSellingMovies;
     private Activity activity;
 
+    private boolean isChinese = false;
+
     public TopSellingRecyclerViewAdapter(Activity activity) {
         this.activity = activity;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        String language = prefs.getString("example_list", "1");
+        if (!language.equals("1")) isChinese = true;
     }
 
     @Override
@@ -49,7 +57,7 @@ public class TopSellingRecyclerViewAdapter
         if (context == null) {
             context = parent.getContext();
         }
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_with_rating_portrait,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_with_gross_portrait,
                 parent, false);
         return new MyViewHolder(view);
     }
@@ -59,11 +67,12 @@ public class TopSellingRecyclerViewAdapter
         if (topSellingMovies != null) {
             final MovieRankingEntity movieEntity = topSellingMovies.get(position);
             holder.title.setText(movieEntity.getTitle());
-            holder.genre.setText(movieEntity.getGenre());
             holder.poster.setTagText("No. " + (position + 1));
+
             DecimalFormat decimalFormat = new DecimalFormat(".0");
-            String averageScore = decimalFormat.format(movieEntity.getAverageScore());
-            holder.score.setBadge(averageScore);
+            String averageScore = decimalFormat.format(movieEntity.getGross());
+            holder.gross.setText(context.getString(R.string.currency) + " " + averageScore);
+
             final ImageView poster = holder.poster;
             holder.cardView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, MovieActivity.class);
@@ -86,7 +95,7 @@ public class TopSellingRecyclerViewAdapter
         }
         if (topSellingMovies.size() > 10) {
             return 10;
-        }else {
+        } else {
             return topSellingMovies.size();
         }
     }
@@ -99,17 +108,15 @@ public class TopSellingRecyclerViewAdapter
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
         CardView cardView;
         SimpleTagImageView poster;
-        BadgedImageView score;
         TextView title;
-        TextView genre;
+        TextView gross;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
             poster = itemView.findViewById(R.id.poster);
-            score = itemView.findViewById(R.id.score);
             title = itemView.findViewById(R.id.title);
-            genre = itemView.findViewById(R.id.genre);
+            gross = itemView.findViewById(R.id.gross);
 
             cardView.setOnTouchListener(this);
         }
