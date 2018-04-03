@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.base.BaseModel;
+import com.jm.newvista.mvp.dao.MovieDao;
 import com.jm.newvista.util.NetworkUtil;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.RawResponseHandler;
@@ -37,6 +38,18 @@ public class NowInTheatersModel extends BaseModel {
         });
     }
 
+
+
+    public void convertToChineseTitle(List<MovieEntity> nowInTheaters, ConvertListener convertListener) {
+        MovieDao movieDao = new MovieDao();
+        for (int i = 0; i < nowInTheaters.size(); i++) {
+            MovieEntity mre = nowInTheaters.get(i);
+            String titleCHS = movieDao.findTitleCHSByTitle(mre.getTitle());
+            mre.setTitle(titleCHS);
+        }
+        convertListener.onFinish(nowInTheaters);
+    }
+
     @Override
     public void cancel() {
         Log.v("cancel", getClass().toString());
@@ -49,5 +62,9 @@ public class NowInTheatersModel extends BaseModel {
         void onNullResult();
 
         void onFailure(String errorMessage);
+    }
+
+    public interface ConvertListener{
+        void onFinish(List<MovieEntity> nowInTheaters);
     }
 }
