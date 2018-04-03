@@ -2,7 +2,7 @@
 
 # New Vista  
 
-**Open-source** Movie ticket booking app, my graduation project. Android client app For Customer, based on MVP architecture (Subsystem of Movie Ticket Management System).
+**Open-source** Movie ticket booking app, my graduation project. Android client app For Customer, based on **MVP** architecture (Subsystem of Movie Ticket Management System).
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Download from Google Play"
