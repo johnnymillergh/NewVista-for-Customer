@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,8 +38,14 @@ public class RandomPicksRecyclerViewAdapter
     private List<MovieEntity> randomPicks;
     private Activity activity;
 
+    private boolean isChinese = false;
+
     public RandomPicksRecyclerViewAdapter(Activity activity) {
         this.activity = activity;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        String language = prefs.getString("example_list", "1");
+        if (!language.equals("1")) isChinese = true;
     }
 
     @Override
@@ -53,20 +61,18 @@ public class RandomPicksRecyclerViewAdapter
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         if (randomPicks != null) {
             final MovieEntity movieEntity = randomPicks.get(position);
-            holder.title.setText(movieEntity.getTitle());
+            if (isChinese && movieEntity.getTitleCHS() != null) holder.title.setText(movieEntity.getTitleCHS());
+            else holder.title.setText(movieEntity.getTitle());
             holder.genre.setText(movieEntity.getGenre());
             final ImageView poster = holder.poster;
-            holder.cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, MovieActivity.class);
-                    intent.putExtra("movieTitle", movieEntity.getTitle());
-                    intent.putExtra("from", "NewMovieReleases");
-                    ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation(activity, poster, context.getString(R.string
-                                    .transition_poster));
-                    context.startActivity(intent, options.toBundle());
-                }
+            holder.cardView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, MovieActivity.class);
+                intent.putExtra("movieTitle", movieEntity.getTitle());
+                intent.putExtra("from", "NewMovieReleases");
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation(activity, poster, context.getString(R.string
+                                .transition_poster));
+                context.startActivity(intent, options.toBundle());
             });
             Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
                     .transition(withCrossFade()).into(holder.poster);
