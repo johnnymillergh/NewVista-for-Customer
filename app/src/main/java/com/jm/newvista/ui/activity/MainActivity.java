@@ -310,15 +310,15 @@ public class MainActivity extends BaseActivity<MainModel, MainView, MainPresente
                 startActivity(intent);
             }).start();
         } else if (id == R.id.commentItem) {
-//            Intent intent = new Intent(MainActivity.this, CommentHistory.class);
-//            new Thread(() -> {
-//                try {
-//                    Thread.sleep(320);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                startActivity(intent);
-//            }).start();
+            Intent intent = new Intent(MainActivity.this, CommentActivity.class);
+            new Thread(() -> {
+                try {
+                    Thread.sleep(320);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+            }).start();
         } else if (id == R.id.watchlistItem) {
             final Intent intent = new Intent(MainActivity.this, WatchlistActivity.class);
             new Thread(() -> {
