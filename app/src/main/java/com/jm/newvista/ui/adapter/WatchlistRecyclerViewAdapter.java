@@ -4,7 +4,13 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.bean.WatchlistEntity;
@@ -42,28 +51,37 @@ public class WatchlistRecyclerViewAdapter
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_lanscape, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_watchlist, parent, false);
         context = parent.getContext();
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final MovieEntity movieEntity = movies.get(position);
+        if (movies != null) {
+            final MovieEntity movieEntity = movies.get(position);
 
-        // Set properties
-        holder.title.setText(movieEntity.getTitle());
-        holder.genre.setText(movieEntity.getGenre());
-        holder.duration.setText(movieEntity.getDuration());
-        holder.description.setText(movieEntity.getDescription());
-        Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
-                .into(holder.poster);
+            // Set properties
+            holder.title.setText(movieEntity.getTitle());
+            holder.genre.setText(movieEntity.getGenre());
+            Glide.with(context).load(NetworkUtil.GET_MOVIE_POSTER_URL + movieEntity.getTitle())
+                    .into(new SimpleTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable>
+                                transition) {
+                            holder.poster.setImageDrawable(resource);
 
-        // Set click listener
-        final ImageView poster = holder.poster;
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                            BitmapDrawable bitmapDrawable = (BitmapDrawable) resource;
+                            Bitmap bitmap = bitmapDrawable.getBitmap();
+                            Palette palette = Palette.from(bitmap).generate();
+                            holder.cardView.setCardBackgroundColor(palette.getDarkVibrantColor(context.getResources()
+                                    .getColor(R.color.colorAccent)));
+                        }
+                    });
+
+            // Set click listener
+            final ImageView poster = holder.poster;
+            holder.cardView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, MovieActivity.class);
                 intent.putExtra("movieId", movieEntity.getId());
                 intent.putExtra("from", "SearchResult");
@@ -71,13 +89,13 @@ public class WatchlistRecyclerViewAdapter
                         makeSceneTransitionAnimation(activity, poster, context.getString(R.string
                                 .transition_poster));
                 context.startActivity(intent, options.toBundle());
-            }
-        });
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return movies == null ? 0 : movies.size();
+        return movies == null ? 5 : movies.size();
     }
 
     public void setMovies(List<MovieEntity> movies) {
@@ -89,8 +107,7 @@ public class WatchlistRecyclerViewAdapter
         ImageView poster;
         TextView title;
         TextView genre;
-        TextView duration;
-        TextView description;
+        Button remove;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -99,8 +116,7 @@ public class WatchlistRecyclerViewAdapter
             poster = itemView.findViewById(R.id.poster);
             title = itemView.findViewById(R.id.title);
             genre = itemView.findViewById(R.id.genre);
-            duration = itemView.findViewById(R.id.duration);
-            description = itemView.findViewById(R.id.description);
+            remove = itemView.findViewById(R.id.remove);
         }
 
         @Override
