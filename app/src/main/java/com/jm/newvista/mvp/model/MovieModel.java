@@ -97,6 +97,28 @@ public class MovieModel extends BaseModel {
         });
     }
 
+    public void removeWatchlistItem(String movieTitle, AddWatchlistItemListener addWatchlistItemListener) {
+        UserDao dao = new UserDao();
+        UserEntity userEntity = dao.getFirst();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("watchlistOperation", "delete");
+        params.put("email", userEntity.getEmail());
+        params.put("movieTitle", movieTitle);
+
+        myOkHttp.post().url(NetworkUtil.WATCHLIST_MANAGEMENT_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                addWatchlistItemListener.onSuccess();
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                addWatchlistItemListener.onFailure(error_msg);
+            }
+        });
+    }
+
     @Override
     public void cancel() {
         myOkHttp.cancel(this);

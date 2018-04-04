@@ -159,6 +159,16 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
     }
 
     public void removeFromWatchlist() {
+        movieModel.removeWatchlistItem(movieEntity.getTitle(), new MovieModel.AddWatchlistItemListener() {
+            @Override
+            public void onSuccess() {
+                movieView.onMakeToast("Removed from watchlist");
+            }
 
+            @Override
+            public void onFailure(String errorMessage) {
+                movieView.onMakeToast(errorMessage);
+            }
+        });
     }
 }

@@ -48,6 +48,7 @@ public class WatchlistActivity
         toolbar.setNavigationOnClickListener(v -> finish());
 
         watchlistRecyclerView = findViewById(R.id.watchlistRecyclerView);
+        watchlistRecyclerViewAdapter = new WatchlistRecyclerViewAdapter(this);
         watchlistRecyclerView.setAdapter(watchlistRecyclerViewAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
