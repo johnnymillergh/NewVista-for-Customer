@@ -143,4 +143,22 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
         supportFragmentManager.beginTransaction().replace(R.id.userReviewContainer, new UserReviewFragment())
                 .commit();
     }
+
+    public void addToWatchlist() {
+        movieModel.addWatchlistItem(movieEntity.getTitle(), new MovieModel.AddWatchlistItemListener() {
+            @Override
+            public void onSuccess() {
+                movieView.onMakeToast("Added to watchlist");
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                movieView.onMakeToast(errorMessage);
+            }
+        });
+    }
+
+    public void removeFromWatchlist() {
+
+    }
 }

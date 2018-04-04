@@ -117,10 +117,13 @@ public class MovieActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO: Watchlist!!!
         switch (item.getItemId()) {
             case R.id.addToWatchlist:
+                getPresenter().addToWatchlist();
                 break;
             case R.id.removeFromWatchlist:
+                getPresenter().removeFromWatchlist();
                 break;
             case R.id.share:
                 break;
@@ -157,12 +160,7 @@ public class MovieActivity
         toolbar.setNavigationOnClickListener(v -> finish());
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshUserReview();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> refreshUserReview());
         nestedScrollView = findViewById(R.id.nestedScrollView);
         poster = findViewById(R.id.poster);
         title = findViewById(R.id.title);
@@ -267,6 +265,11 @@ public class MovieActivity
     public void onDisplayAllDetailsDialog() {
         AllDetailsDialogFragment allDetailsDialogFragment = new AllDetailsDialogFragment();
         allDetailsDialogFragment.show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

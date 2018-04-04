@@ -26,4 +26,6 @@ public interface MovieView extends BaseView {
     void onDisplayDescriptionDialog();
 
     void onDisplayAllDetailsDialog();
+
+    void onMakeToast(String message);
 }
