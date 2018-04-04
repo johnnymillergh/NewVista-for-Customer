@@ -46,12 +46,15 @@
 
 | Main Activity | Movie Detail Activity |
 |:-:|:-:|
-| ![First](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180224-122135.png) | ![Sec](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180221-213954.png) |
+| ![First](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180404-144412.png) | ![Sec](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180404-144433.png) |
 
-| Movie list | Movie Schedule |
+| Movie Schedule | Seat Selection |
 |:-:|:-:|
-| ![Third](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180221-214010.png) | ![Fourth](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180227-191152.png) |
+| ![Third](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180404-144451.png) | ![Fourth](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180404-144510.png) |
 
+| Clear Cache |
+|:-:|
+| ![Fifth](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180404-144605.png) |
 ## New Vista Logo
 
 **New Vista** logo is designed by **Johnny Miller**.  
