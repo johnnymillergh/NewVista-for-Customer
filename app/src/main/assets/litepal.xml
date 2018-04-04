@@ -2,19 +2,10 @@
 <litepal>
     <dbname value="new_vista"></dbname>
 
-    <version value="1"></version>
+    <version value="2"></version>
 
     <list>
-        <mapping class="com.jm.newvista.bean.AuditoriumEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.CustomerOrderEntity"></mapping>
         <mapping class="com.jm.newvista.bean.MovieEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.MovieScheduleEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.OrderEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.PosterEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.SeatEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.TheaterEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.TopMovieEntity"></mapping>
         <mapping class="com.jm.newvista.bean.UserEntity"></mapping>
-        <mapping class="com.jm.newvista.bean.UserReviewEntity"></mapping>
     </list>
 </litepal>
