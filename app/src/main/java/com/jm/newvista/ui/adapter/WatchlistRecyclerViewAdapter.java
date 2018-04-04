@@ -35,7 +35,7 @@ import com.jm.newvista.util.NetworkUtil;
 import java.util.List;
 
 /**
- * Created by Johnny on 2/21/2018.
+ * Created by Johnny on 4/4/2018.
  */
 
 public class WatchlistRecyclerViewAdapter
