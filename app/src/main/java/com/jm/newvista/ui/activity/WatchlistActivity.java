@@ -1,14 +1,24 @@
 package com.jm.newvista.ui.activity;
 
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.jm.newvista.R;
+import com.jm.newvista.mvp.model.WatchlistModel;
+import com.jm.newvista.mvp.presenter.WatchlistPresenter;
+import com.jm.newvista.mvp.view.WatchlistView;
+import com.jm.newvista.ui.adapter.WatchlistRecyclerViewAdapter;
+import com.jm.newvista.ui.base.BaseActivity;
 
-public class WatchlistActivity extends AppCompatActivity {
+public class WatchlistActivity
+        extends BaseActivity<WatchlistModel, WatchlistView, WatchlistPresenter>
+        implements WatchlistView {
     private Toolbar toolbar;
+    private RecyclerView watchlistRecyclerView;
+    private WatchlistRecyclerViewAdapter watchlistRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +26,16 @@ public class WatchlistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_watchlist);
 
         initView();
+    }
+
+    @Override
+    public WatchlistView createView() {
+        return this;
+    }
+
+    @Override
+    public WatchlistPresenter createPresenter() {
+        return new WatchlistPresenter();
     }
 
     private void initView() {
@@ -26,5 +46,11 @@ public class WatchlistActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         toolbar.setNavigationOnClickListener(v -> finish());
+
+        watchlistRecyclerView = findViewById(R.id.watchlistRecyclerView);
+        watchlistRecyclerView.setAdapter(watchlistRecyclerViewAdapter);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        watchlistRecyclerView.setLayoutManager(linearLayoutManager);
     }
 }
