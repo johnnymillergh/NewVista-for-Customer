@@ -26,8 +26,7 @@
             android:scaleType="centerCrop"
             android:transitionName="@string/transition_poster"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/title"
@@ -70,7 +69,5 @@
             android:textColor="@color/md_white_color_code"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
     </android.support.constraint.ConstraintLayout>
-
 </android.support.v7.widget.CardView>

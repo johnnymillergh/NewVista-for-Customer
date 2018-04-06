@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.WatchlistModel;
@@ -26,6 +27,8 @@ public class WatchlistActivity
         setContentView(R.layout.activity_watchlist);
 
         initView();
+
+        getPresenter().getAndDisplayWatchlist();
     }
 
     @Override
@@ -53,5 +56,16 @@ public class WatchlistActivity
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         watchlistRecyclerView.setLayoutManager(linearLayoutManager);
+        watchlistRecyclerView.setNestedScrollingEnabled(false);
+    }
+
+    @Override
+    public WatchlistRecyclerViewAdapter onGetWatchlistRecyclerViewAdapter() {
+        return watchlistRecyclerViewAdapter;
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

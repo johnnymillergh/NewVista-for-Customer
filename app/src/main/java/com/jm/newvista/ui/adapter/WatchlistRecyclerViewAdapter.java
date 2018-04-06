@@ -18,6 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -61,6 +63,9 @@ public class WatchlistRecyclerViewAdapter
         if (movies != null) {
             final MovieEntity movieEntity = movies.get(position);
 
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.anim_recycler_item_show);
+            holder.cardView.startAnimation(animation);
+
             // Set properties
             holder.title.setText(movieEntity.getTitle());
             holder.genre.setText(movieEntity.getGenre());
@@ -95,11 +100,15 @@ public class WatchlistRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return movies == null ? 5 : movies.size();
+        return movies == null ? 0 : movies.size();
     }
 
     public void setMovies(List<MovieEntity> movies) {
         this.movies = movies;
+    }
+
+    public void setWatchlist(List<WatchlistEntity> watchlist) {
+        this.watchlist = watchlist;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
