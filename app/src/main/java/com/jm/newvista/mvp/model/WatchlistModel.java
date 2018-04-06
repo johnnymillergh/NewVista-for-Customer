@@ -61,6 +61,28 @@ public class WatchlistModel extends BaseModel {
         if (movies.size() > 0) convertWatchlistListener.onSuccess(movies);
     }
 
+    public void remove(MovieEntity movieEntity, RemoveListener removeListener) {
+        UserDao userDao = new UserDao();
+        UserEntity userEntity = userDao.getFirst();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("watchlistOperation", "delete");
+        params.put("email", userEntity.getEmail());
+        params.put("movieTitle", movieEntity.getTitle());
+
+        myOkHttp.post().url(NetworkUtil.WATCHLIST_MANAGEMENT_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                removeListener.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                removeListener.onFailure(error_msg);
+            }
+        });
+    }
+
     @Override
     public void cancel() {
         myOkHttp.cancel(this);
@@ -76,5 +98,11 @@ public class WatchlistModel extends BaseModel {
 
     public interface ConvertWatchlistListener {
         void onSuccess(List<MovieEntity> movies);
+    }
+
+    public interface RemoveListener {
+        void onSuccess(String message);
+
+        void onFailure(String errorMessage);
     }
 }

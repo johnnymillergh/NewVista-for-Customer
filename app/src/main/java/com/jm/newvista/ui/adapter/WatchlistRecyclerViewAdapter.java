@@ -32,6 +32,7 @@ import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.bean.WatchlistEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
+import com.jm.newvista.ui.activity.WatchlistActivity;
 import com.jm.newvista.util.NetworkUtil;
 
 import java.util.List;
@@ -44,7 +45,6 @@ public class WatchlistRecyclerViewAdapter
         extends RecyclerView.Adapter<WatchlistRecyclerViewAdapter.MyViewHolder> {
     private Context context;
     private List<MovieEntity> movies;
-    private List<WatchlistEntity> watchlist;
     private Activity activity;
 
     public WatchlistRecyclerViewAdapter(Activity activity) {
@@ -95,6 +95,16 @@ public class WatchlistRecyclerViewAdapter
                                 .transition_poster));
                 context.startActivity(intent, options.toBundle());
             });
+
+            holder.remove.setOnClickListener(v -> {
+                movies.remove(position);
+                notifyItemRemoved(position);
+                if (position != movies.size()) {
+                    notifyItemRangeChanged(position, movies.size() - position);
+                }
+                WatchlistActivity watchlistActivity = (WatchlistActivity) activity;
+                watchlistActivity.onRemoveWatchlistItem(movieEntity);
+            });
         }
     }
 
@@ -105,10 +115,6 @@ public class WatchlistRecyclerViewAdapter
 
     public void setMovies(List<MovieEntity> movies) {
         this.movies = movies;
-    }
-
-    public void setWatchlist(List<WatchlistEntity> watchlist) {
-        this.watchlist = watchlist;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {

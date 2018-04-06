@@ -42,4 +42,18 @@ public class WatchlistPresenter extends BasePresenter<WatchlistModel, WatchlistV
             }
         });
     }
+
+    public void removeWatchlistItem(MovieEntity movieEntity) {
+        watchlistModel.remove(movieEntity, new WatchlistModel.RemoveListener() {
+            @Override
+            public void onSuccess(String message) {
+                watchlistView.onMakeToast(message);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                watchlistView.onMakeToast(errorMessage);
+            }
+        });
+    }
 }

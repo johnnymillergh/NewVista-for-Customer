@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.jm.newvista.R;
+import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.mvp.model.WatchlistModel;
 import com.jm.newvista.mvp.presenter.WatchlistPresenter;
 import com.jm.newvista.mvp.view.WatchlistView;
@@ -16,7 +19,7 @@ import com.jm.newvista.ui.base.BaseActivity;
 
 public class WatchlistActivity
         extends BaseActivity<WatchlistModel, WatchlistView, WatchlistPresenter>
-        implements WatchlistView {
+        implements WatchlistView{
     private Toolbar toolbar;
     private RecyclerView watchlistRecyclerView;
     private WatchlistRecyclerViewAdapter watchlistRecyclerViewAdapter;
@@ -67,5 +70,10 @@ public class WatchlistActivity
     @Override
     public void onMakeToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRemoveWatchlistItem(MovieEntity movieEntity) {
+        getPresenter().removeWatchlistItem(movieEntity);
     }
 }
