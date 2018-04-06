@@ -55,7 +55,6 @@ public class UserReviewModel extends BaseModel {
                 List<UserReviewEntity> userReviews = new Gson().fromJson(response,
                         new TypeToken<List<UserReviewEntity>>() {
                         }.getType());
-                List<UserReviewEntity> userReviewNewestFirst = new ArrayList<>();
                 getUserReviewListener.onSuccess(userReviews);
             }
 
