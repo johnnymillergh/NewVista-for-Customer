@@ -45,6 +45,7 @@ public class GenrePresenter extends BasePresenter<GenreModel, GenreView> {
             Intent intent = new Intent(context, SearchResultActivity.class);
             intent.putExtra("from", "Genre");
             intent.putExtra("genre", rawGenresArray[index]);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
             config.locale = Locale.CHINA;
@@ -54,6 +55,7 @@ public class GenrePresenter extends BasePresenter<GenreModel, GenreView> {
             Intent intent = new Intent(context, SearchResultActivity.class);
             intent.putExtra("from", "Genre");
             intent.putExtra("genre", chipText);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         }
     }
