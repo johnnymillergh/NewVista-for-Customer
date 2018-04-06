@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Other%20Materials/New%20Vista%20Feature%20Graphic.png)
 
-# New Vista  
+# NewVista
 
 **Open-source** Movie ticket booking app, my graduation project. Android client app For Customer, based on **MVP** architecture (Subsystem of Movie Ticket Management System).
 
@@ -21,7 +21,7 @@
   - Add your movie to Watchlist
   - Order ticket, choose seat
 - **Much more...**
-  - *New Vista* is actively developed. More features will come!
+  - *NewVista* is actively developed. More features will come!
 
 ## Specs / Open-source libraries:
 
@@ -55,8 +55,8 @@
 | Clear Cache |
 |:-:|
 | ![Fifth](https://raw.githubusercontent.com/johnnymillergh/NewVista-App-Assets/master/Screenshot/Screenshot_20180404-144605.png) |
-## New Vista Logo
+## NewVista Logo
 
-**New Vista** logo is designed by **Johnny Miller**.  
+**NewVista** logo is designed by **Johnny Miller**.
 [Google+]() | [Twitter]()  
 Designer website [TEMP](https://).  
