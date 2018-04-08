@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jm.newvista.R;
 import com.jm.newvista.mvp.model.CommentModel;
@@ -30,6 +31,8 @@ public class CommentActivity
         setContentView(R.layout.activity_comment);
 
         initView();
+
+        getPresenter().getAndDisplayComment();
     }
 
     @Override
@@ -65,5 +68,20 @@ public class CommentActivity
 
     public void onClickSort(View view) {
 
+    }
+
+    @Override
+    public CommentRecyclerViewAdapter onGetCommentRecyclerViewAdapter() {
+        return commentRecyclerViewAdapter;
+    }
+
+    @Override
+    public RecyclerView onGetCommentRecyclerView() {
+        return commentRecyclerView;
+    }
+
+    @Override
+    public void onMakeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
