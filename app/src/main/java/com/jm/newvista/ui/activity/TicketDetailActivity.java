@@ -3,29 +3,27 @@ package com.jm.newvista.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.GsonBuilder;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
 import com.jm.newvista.R;
 import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.mvp.model.TicketDetailModel;
 import com.jm.newvista.mvp.presenter.TicketDetailPresenter;
 import com.jm.newvista.mvp.view.TicketDetailView;
 import com.jm.newvista.ui.base.BaseActivity;
+import com.jm.newvista.util.SeatLocationUtil;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class TicketDetailActivity
@@ -111,7 +109,9 @@ public class TicketDetailActivity
         String dateStr = simpleDateFormat.format(date);
         showtime.setText(dateStr);
 
-        seatLocation.setText(orderEntity.getSeatLocation());
+        String sl = orderEntity.getSeatLocation();
+        List<SeatLocationUtil.SeatLocation> seatLocation2 = SeatLocationUtil.parse(sl);
+        seatLocation.setText("Row " + seatLocation2.get(0).getRow() + ", Col " + seatLocation2.get(0).getCol());
         orderId.setText(String.valueOf(orderEntity.getId()));
 
         DecimalFormat decimalFormat = new DecimalFormat(".00");
