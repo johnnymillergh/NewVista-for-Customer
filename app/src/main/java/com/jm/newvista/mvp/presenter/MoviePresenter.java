@@ -8,11 +8,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.bean.MovieRankingEntity;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.MovieModel;
 import com.jm.newvista.mvp.view.MovieView;
 import com.jm.newvista.ui.fragment.UserReviewFragment;
+import com.jm.newvista.util.ApplicationUtil;
+import com.jm.newvista.util.NumberUtil;
 
 /**
  * Created by Johnny on 2/11/2018.
@@ -41,12 +44,13 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(String... strings) {
                         movieEntity = movieModel.getMovieFromDB(strings[0]);
-                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
 
                     @Override
                     protected void onPostExecute(MovieEntity movieEntity) {
+                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
+                        displayGrossByMovieTitle(movieEntity.getTitle());
                         movieView.onUpdateMovieInformation(movieEntity);
                     }
                 }.execute(movieTitle);
@@ -57,12 +61,13 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Integer... integers) {
                         movieEntity = movieModel.getMovieFromDB(integers[0]);
-                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
 
                     @Override
                     protected void onPostExecute(MovieEntity movieEntity) {
+                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
+                        displayGrossByMovieTitle(movieEntity.getTitle());
                         movieView.onUpdateMovieInformation(movieEntity);
                     }
                 }.execute(movieId);
@@ -73,12 +78,13 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
                     @Override
                     protected MovieEntity doInBackground(Void... voids) {
                         movieEntity = movieModel.getMovieFromDB(title);
-                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
                         return movieEntity;
                     }
 
                     @Override
                     protected void onPostExecute(MovieEntity movieEntity) {
+                        getAndDisplayPriceByMovieTitle(movieEntity.getTitle());
+                        displayGrossByMovieTitle(movieEntity.getTitle());
                         movieView.onUpdateMovieInformation(movieEntity);
                     }
                 }.execute();
@@ -101,6 +107,23 @@ public class MoviePresenter extends BasePresenter<MovieModel, MovieView> {
 
             @Override
             public void onFailure(String errorMessage) {
+            }
+        });
+    }
+
+    private void displayGrossByMovieTitle(String movieTitle) {
+        movieModel.getGross(movieTitle, new MovieModel.GetGrossListener() {
+            @Override
+            public void onSuccess(MovieRankingEntity movieRankingEntity) {
+                Float gross = movieRankingEntity.getGross();
+                String grossStr = ApplicationUtil.getContext().getString(R.string.currency) + " " + NumberUtil
+                        .coolFormat(gross, 0);
+                movieView.onUpdateGross(grossStr);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                movieView.onMakeToast(errorMessage);
             }
         });
     }

@@ -51,6 +51,7 @@ public class MovieActivity
     private SwipeRefreshLayout swipeRefreshLayout;
     private NestedScrollView nestedScrollView;
     private ImageView poster;
+    private TextView gross;
     private TextView title;
     private TextView releaseDate;
     private TextView duration;
@@ -163,6 +164,7 @@ public class MovieActivity
         swipeRefreshLayout.setOnRefreshListener(() -> refreshUserReview());
         nestedScrollView = findViewById(R.id.nestedScrollView);
         poster = findViewById(R.id.poster);
+        gross = findViewById(R.id.gross);
         title = findViewById(R.id.title);
         releaseDate = findViewById(R.id.releaseDate);
         duration = findViewById(R.id.duration);
@@ -270,6 +272,11 @@ public class MovieActivity
     @Override
     public void onMakeToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUpdateGross(String gross) {
+        this.gross.setText(gross);
     }
 
     @Override

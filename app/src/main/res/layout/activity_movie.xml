@@ -56,6 +56,18 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
+                    android:id="@+id/gross"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gross"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/md_white_color_code"
+                    app:layout_constraintBottom_toBottomOf="@+id/poster"
+                    app:layout_constraintEnd_toEndOf="@+id/poster"
+                    app:layout_constraintStart_toStartOf="@+id/poster"/>
+
+                <TextView
                     android:id="@+id/title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

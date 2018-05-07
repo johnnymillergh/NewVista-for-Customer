@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jm.newvista.bean.MovieEntity;
+import com.jm.newvista.bean.MovieRankingEntity;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BaseModel;
@@ -119,6 +120,24 @@ public class MovieModel extends BaseModel {
         });
     }
 
+    public void getGross(String movieTitle, GetGrossListener getGrossListener) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("movieTitle", movieTitle);
+
+        myOkHttp.post().url(NetworkUtil.GET_GROSS_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, String response) {
+                MovieRankingEntity movieRankingEntity = new Gson().fromJson(response, MovieRankingEntity.class);
+                getGrossListener.onSuccess(movieRankingEntity);
+            }
+
+            @Override
+            public void onFailure(int statusCode, String error_msg) {
+                getGrossListener.onFailure(error_msg);
+            }
+        });
+    }
+
     @Override
     public void cancel() {
         myOkHttp.cancel(this);
@@ -134,6 +153,12 @@ public class MovieModel extends BaseModel {
 
     public interface AddWatchlistItemListener {
         void onSuccess();
+
+        void onFailure(String errorMessage);
+    }
+
+    public interface GetGrossListener {
+        void onSuccess(MovieRankingEntity movieRankingEntity);
 
         void onFailure(String errorMessage);
     }

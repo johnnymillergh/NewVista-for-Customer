@@ -28,4 +28,6 @@ public interface MovieView extends BaseView {
     void onDisplayAllDetailsDialog();
 
     void onMakeToast(String message);
+
+    void onUpdateGross(String gross);
 }

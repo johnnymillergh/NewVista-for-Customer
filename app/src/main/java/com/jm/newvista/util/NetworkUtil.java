@@ -33,4 +33,5 @@ public class NetworkUtil {
     public static final String GET_TOP_SELLING_URL = "http://johnnymiller.site/customer/getTopSelling.jsp";
     public static final String
             WATCHLIST_MANAGEMENT_URL = "http://johnnymiller.site/servlet.customer.WatchlistManagement";
+    public static final String GET_GROSS_URL = "http://johnnymiller.site/customer/getGross.jsp";
 }
