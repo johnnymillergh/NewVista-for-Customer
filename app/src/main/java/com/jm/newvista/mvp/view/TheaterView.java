@@ -9,6 +9,6 @@ import com.jm.newvista.mvp.base.BaseView;
  * Created by Johnny on 3/24/2018.
  */
 
-public interface THeaterView extends BaseView {
+public interface TheaterView extends BaseView {
     void onUpdateView();
 }

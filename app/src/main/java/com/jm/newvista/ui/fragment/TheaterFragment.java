@@ -1,9 +1,7 @@
 package com.jm.newvista.ui.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +14,13 @@ import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieScheduleEntity;
 import com.jm.newvista.mvp.model.TheaterModel;
 import com.jm.newvista.mvp.presenter.TheaterPresenter;
-import com.jm.newvista.mvp.view.THeaterView;
+import com.jm.newvista.mvp.view.TheaterView;
 import com.jm.newvista.ui.base.BaseFragment;
 import com.jm.newvista.util.NetworkUtil;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
-public class TheaterFragment extends BaseFragment<TheaterModel, THeaterView, TheaterPresenter> implements THeaterView {
+public class TheaterFragment extends BaseFragment<TheaterModel, TheaterView, TheaterPresenter> implements TheaterView {
     private TheaterFragmentListener mListener;
     private MovieScheduleEntity currentMovieScheduleEntity;
     private TextView theaterName;
@@ -66,7 +64,7 @@ public class TheaterFragment extends BaseFragment<TheaterModel, THeaterView, The
     }
 
     @Override
-    public THeaterView createView() {
+    public TheaterView createView() {
         return this;
     }
 
