@@ -22,6 +22,7 @@ import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.ui.activity.MovieActivity;
 import com.jm.newvista.util.NetworkUtil;
 
+import java.util.Collections;
 import java.util.List;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -128,5 +129,7 @@ public class NowInTheatersRecyclerViewAdapter
 
     public void setMoviesInTheaters(List<MovieEntity> moviesInTheaters) {
         this.moviesInTheaters = moviesInTheaters;
+        // Newest movie schedule first
+        Collections.reverse(this.moviesInTheaters);
     }
 }

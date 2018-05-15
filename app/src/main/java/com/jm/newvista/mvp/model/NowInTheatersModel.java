@@ -38,8 +38,6 @@ public class NowInTheatersModel extends BaseModel {
         });
     }
 
-
-
     public void convertToChineseTitle(List<MovieEntity> nowInTheaters, ConvertListener convertListener) {
         MovieDao movieDao = new MovieDao();
         for (int i = 0; i < nowInTheaters.size(); i++) {
