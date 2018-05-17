@@ -35,4 +35,5 @@ public class NetworkUtil {
     public static final String
             WATCHLIST_MANAGEMENT_URL = BASE_URL + "servlet.customer.WatchlistManagement";
     public static final String GET_GROSS_URL = BASE_URL + "customer/getGross.jsp";
+    public static final String GET_RECOMMENDATION_URL = BASE_URL + "customer/getRecommendation.jsp";
 }

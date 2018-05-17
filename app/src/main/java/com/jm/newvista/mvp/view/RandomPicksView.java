@@ -10,5 +10,7 @@ import java.util.List;
  */
 
 public interface RandomPicksView extends BaseView {
-    void onFinishPreparedRandomPicks(List<MovieEntity> randomPicks);
+    void onFinishPicks(List<MovieEntity> picks);
+
+    void onNullRecommendations();
 }

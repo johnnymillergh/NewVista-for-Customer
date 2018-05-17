@@ -60,7 +60,7 @@
     <string name="sign_out_success">登出成功</string>
     <string name="sign_out_failure">等出失败</string>
     <string name="app_editor">钟俊</string>
-    <string name="order_ticket">最低订购价：￥</string>
+    <string name="order_ticket">点击最低订购价：￥</string>
     <string name="storyline">故事线</string>
     <string name="read_more">阅读更多</string>
     <string name="cast_amp_credits">演职员表</string>
@@ -79,13 +79,14 @@
     <string name="spoiler">你的评价是否含有剧透？</string>
     <string name="no">不是</string>
     <string name="submit">提交</string>
-    <string name="review_title">简短地写下你的评价标题</string>
+    <string name="review_title">简短地写下您的评价标题</string>
     <string name="yes">是的</string>
     <string name="rate_this_movie">给这个电影打个分</string>
     <string name="login_prompt">请登录后再写下评论</string>
     <string name="loading">加载中…</string>
     <string name="search_bar_hint">按电影名搜索</string>
-    <string name="random_picks_title">为你随机挑选</string>
+    <string name="picks_title">为您智能推荐</string>
+    <string name="random_picks_title">为您随机挑选</string>
     <string name="surprise">惊喜不惊喜？！</string>
     <string name="refreshing_user_review">刷新评论中…</string>
     <string name="pull_down_to_refresh_user_review">提示：下拉刷新评论</string>
@@ -106,8 +107,8 @@
     <string name="user_reviews">用户评论</string>
     <string name="now_in_theaters">正在影院热映</string>
     <string name="explore_trending">探索潮流</string>
-    <string name="newest_first">最新评论优先</string>
-    <string name="oldest_first">最早评论优先</string>
+    <string name="newest_first">最新优先</string>
+    <string name="oldest_first">最早优先</string>
     <string name="movie_schedule_error">未知错误：未能显示排片档期</string>
     <string name="seat_selection">座位选择</string>
     <string name="loading0">加载中</string>

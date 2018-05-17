@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
@@ -30,12 +31,12 @@ import java.util.List;
 public class RandomPicksFragment
         extends BaseFragment<RandomPicksModel, RandomPicksView, RandomPicksPresenter>
         implements RandomPicksView {
-    private List<MovieEntity> randomPicks;
     private RandomPicksFragmentListener mListener;
 
     private RecyclerView randomPicksRecyclerView;
     private RandomPicksRecyclerViewAdapter randomPicksRecyclerViewAdapter;
     private Button more;
+    private TextView title;
 
     public RandomPicksFragment() {
         // Required empty public constructor
@@ -62,6 +63,7 @@ public class RandomPicksFragment
         randomPicksRecyclerView = view.findViewById(R.id.randomPicksRecyclerView);
         more = view.findViewById(R.id.more);
         more.setOnClickListener(v -> onClickMore(v));
+        title = view.findViewById(R.id.txtv);
 
         randomPicksRecyclerViewAdapter = new RandomPicksRecyclerViewAdapter(getActivity());
 
@@ -69,7 +71,8 @@ public class RandomPicksFragment
         layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
         randomPicksRecyclerView.setLayoutManager(layoutManager);
         randomPicksRecyclerView.setAdapter(randomPicksRecyclerViewAdapter);
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.animation_layout_fade_in);
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(getContext(), R.anim
+                .animation_layout_fade_in);
         randomPicksRecyclerView.setLayoutAnimation(animation);
     }
 
@@ -95,10 +98,15 @@ public class RandomPicksFragment
     }
 
     @Override
-    public void onFinishPreparedRandomPicks(List<MovieEntity> randomPicks) {
-        this.randomPicks = randomPicks;
-        randomPicksRecyclerViewAdapter.setRandomPicks(randomPicks);
+    public void onFinishPicks(List<MovieEntity> picks) {
+        randomPicksRecyclerViewAdapter.setRandomPicks(picks);
         randomPicksRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onNullRecommendations() {
+        getPresenter().getAndDisplayRandomPicks();
+        title.setText(getString(R.string.random_picks_title));
     }
 
     @Override
@@ -113,7 +121,7 @@ public class RandomPicksFragment
 
     @Override
     public void notifyFinishAttachingView() {
-        getPresenter().getAndDisplayRandomPicks();
+        getPresenter().getAndDisplayRecommendations();
     }
 
     public interface RandomPicksFragmentListener {

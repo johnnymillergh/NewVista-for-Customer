@@ -99,6 +99,7 @@
     <string name="johnny_miller" translatable="false">Johnny Miller</string>
     <string name="loading">Loading…</string>
     <string name="search_bar_hint">Search by title</string>
+    <string name="picks_title">Smart Picks for You</string>
     <string name="random_picks_title">Random Picks for You</string>
     <string name="surprise">Surprise!</string>
     <string name="refreshing_user_review">Refreshing user review…</string>

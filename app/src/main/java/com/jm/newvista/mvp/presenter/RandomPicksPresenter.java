@@ -34,8 +34,28 @@ public class RandomPicksPresenter extends BasePresenter<RandomPicksModel, Random
 
             @Override
             protected void onPostExecute(List<MovieEntity> entities) {
-                randomPicksView.onFinishPreparedRandomPicks(entities);
+                randomPicksView.onFinishPicks(entities);
             }
         }.execute();
+    }
+
+    public void getAndDisplayRecommendations() {
+        randomPicksView = getView();
+        randomPicksModel.getRecommendation(new RandomPicksModel.GetRecommendationListener() {
+            @Override
+            public void onSuccess(List<MovieEntity> recommendations) {
+                randomPicksView.onFinishPicks(recommendations);
+            }
+
+            @Override
+            public void onNullResult() {
+                randomPicksView.onNullRecommendations();
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+
+            }
+        });
     }
 }
