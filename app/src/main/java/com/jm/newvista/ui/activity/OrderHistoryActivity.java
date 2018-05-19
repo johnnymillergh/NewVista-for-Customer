@@ -60,6 +60,8 @@ public class OrderHistoryActivity
         orderHistoryRecyclerView.setAdapter(orderHistoryRecyclerViewAdapter);
 
         linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
         orderHistoryRecyclerView.setLayoutManager(linearLayoutManager);
 
         LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this, R.anim
