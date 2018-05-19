@@ -53,7 +53,7 @@ public class PaymentModel extends BaseModel {
 
             @Override
             public void onFailure(int statusCode, String error_msg) {
-                postPaymentListener.onFailure(error_msg);
+                postPaymentListener.onFailure(statusCode, error_msg);
             }
         });
     }
@@ -66,6 +66,6 @@ public class PaymentModel extends BaseModel {
     public interface PostPaymentListener {
         void onSuccess(CustomerOrderEntity orderEntity);
 
-        void onFailure(String errorMessage);
+        void onFailure(int statusCode, String errorMessage);
     }
 }

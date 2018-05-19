@@ -152,10 +152,12 @@
     <string name="pref_header_general">通用</string>
     <string name="clear_cache">清空缓存</string>
     <string name="purchase">购票</string>
-    <string name="null_result">Null result</string>
+    <string name="null_result">无结果</string>
     <string name="choose_an_auditorium">选择影厅</string>
     <string name="order_datetime">订单日期：</string>
     <string name="top_selling_movies">最佳票房排行榜</string>
     <string name="top_selling_subtitle">基于NewVista的销量</string>
-    <string name="my_comments">My Comments</string>
+    <string name="my_comments">我的评论</string>
+    <string name="peyment_error_700">支付密码错误</string>
+    <string name="payment_error_701">支付失败</string>
 </resources>

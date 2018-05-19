@@ -1,17 +1,23 @@
 package com.jm.newvista.mvp.presenter;
 
+import android.content.Context;
+
+import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieEntity;
 import com.jm.newvista.bean.WatchlistEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.WatchlistModel;
 import com.jm.newvista.mvp.view.WatchlistView;
 import com.jm.newvista.ui.adapter.WatchlistRecyclerViewAdapter;
+import com.jm.newvista.util.ApplicationUtil;
 
 import java.util.List;
 
 public class WatchlistPresenter extends BasePresenter<WatchlistModel, WatchlistView> {
     private WatchlistModel watchlistModel;
     private WatchlistView watchlistView;
+
+    private Context context = ApplicationUtil.getContext();
 
     public WatchlistPresenter() {
         watchlistModel = new WatchlistModel();
@@ -33,7 +39,7 @@ public class WatchlistPresenter extends BasePresenter<WatchlistModel, WatchlistV
 
             @Override
             public void onNullResult() {
-                watchlistView.onMakeToast("Null Result");
+                watchlistView.onMakeToast(context.getString(R.string.null_result));
             }
 
             @Override

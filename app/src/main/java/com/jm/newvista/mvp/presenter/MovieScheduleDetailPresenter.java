@@ -3,6 +3,7 @@ package com.jm.newvista.mvp.presenter;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.jm.newvista.R;
 import com.jm.newvista.bean.MovieScheduleEntity;
@@ -37,6 +38,8 @@ public class MovieScheduleDetailPresenter extends BasePresenter<MovieScheduleDet
         MovieScheduleEntity entity = new MovieScheduleEntity();
         entity.setAuditoriumTheaterId(auditoriumTheaterId);
         entity.setMovieTitle(movieTitle);
+
+        Log.v("Detail", entity.toString());
         movieScheduleDetailModel.getMovieScheduleDetail(entity, new MovieScheduleDetailModel
                 .GetMovieScheduleDetailListener() {
             @SuppressLint("StaticFieldLeak")

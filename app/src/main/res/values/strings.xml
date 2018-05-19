@@ -254,4 +254,6 @@
     <string name="top_selling_movies">Top Selling Movies</string>
     <string name="top_selling_subtitle">Most popular movies based on sales</string>
     <string name="my_comments">My Comments</string>
+    <string name="peyment_error_700">Payment password error</string>
+    <string name="payment_error_701">Failed to pay</string>
 </resources>

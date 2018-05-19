@@ -29,7 +29,7 @@ public class MovieScheduleModel extends BaseModel {
             getMovieScheduleListener) {
         HashMap<String, String> params = new HashMap<>();
         params.put("movieTitle", movieScheduleEntity.getMovieTitle());
-        myOkHttp.post().url(NetworkUtil.GET_MOVIE_SCHEDULE_URL2).params(params).tag(this).enqueue(new RawResponseHandler() {
+        myOkHttp.post().url(NetworkUtil.GET_MOVIE_SCHEDULE_URL).params(params).tag(this).enqueue(new RawResponseHandler() {
             @Override
             public void onSuccess(int statusCode, String response) {
                 List<MovieScheduleEntity> entities = new Gson().fromJson(response,

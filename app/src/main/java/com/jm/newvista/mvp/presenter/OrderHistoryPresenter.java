@@ -11,12 +11,15 @@ import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.OrderHistoryModel;
 import com.jm.newvista.mvp.view.OrderHistoryView;
 import com.jm.newvista.ui.adapter.OrderHistoryRecyclerViewAdapter;
+import com.jm.newvista.util.ApplicationUtil;
 
 import java.util.List;
 
 public class OrderHistoryPresenter extends BasePresenter<OrderHistoryModel, OrderHistoryView> {
     private OrderHistoryModel orderHistoryModel;
     private OrderHistoryView orderHistoryView;
+
+    private Context context = ApplicationUtil.getContext();
 
     public OrderHistoryPresenter() {
         orderHistoryModel = new OrderHistoryModel();
@@ -45,7 +48,7 @@ public class OrderHistoryPresenter extends BasePresenter<OrderHistoryModel, Orde
 
             @Override
             public void onNullResult() {
-                orderHistoryView.onMakeToast("Null result");
+                orderHistoryView.onMakeToast(context.getString(R.string.null_result));
             }
 
             @Override

@@ -11,12 +11,15 @@ import com.jm.newvista.mvp.base.BasePresenter;
 import com.jm.newvista.mvp.model.CommentModel;
 import com.jm.newvista.mvp.view.CommentView;
 import com.jm.newvista.ui.adapter.CommentRecyclerViewAdapter;
+import com.jm.newvista.util.ApplicationUtil;
 
 import java.util.List;
 
 public class CommentPresenter extends BasePresenter<CommentModel, CommentView> {
     private CommentModel commentModel;
     private CommentView commentView;
+
+    private Context context = ApplicationUtil.getContext();
 
     public CommentPresenter() {
         commentModel = new CommentModel();
@@ -44,7 +47,7 @@ public class CommentPresenter extends BasePresenter<CommentModel, CommentView> {
 
             @Override
             public void onNullResult() {
-                commentView.onMakeToast("Null Result");
+                commentView.onMakeToast(context.getString(R.string.null_result));
             }
 
             @Override

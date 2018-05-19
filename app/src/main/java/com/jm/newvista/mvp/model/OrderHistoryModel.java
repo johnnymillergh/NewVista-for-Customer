@@ -30,7 +30,7 @@ public class OrderHistoryModel extends BaseModel {
                 List<CustomerOrderEntity> entities = new Gson().fromJson(response,
                         new TypeToken<List<CustomerOrderEntity>>() {
                         }.getType());
-                if (entities.size() != 0) getOrderHistoryListener.onSuccess(entities);
+                if (entities != null) getOrderHistoryListener.onSuccess(entities);
                 else getOrderHistoryListener.onNullResult();
             }
 

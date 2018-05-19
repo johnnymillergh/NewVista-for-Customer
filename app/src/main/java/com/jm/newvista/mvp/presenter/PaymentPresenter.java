@@ -1,11 +1,13 @@
 package com.jm.newvista.mvp.presenter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.jm.newvista.R;
 import com.jm.newvista.bean.CustomerOrderEntity;
 import com.jm.newvista.bean.UserEntity;
 import com.jm.newvista.mvp.base.BasePresenter;
@@ -31,6 +33,8 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
     private PaymentView paymentView;
 
     private CustomerOrderEntity currentOrderEntity;
+
+    private Context context = ApplicationUtil.getContext();
 
     public PaymentPresenter() {
         paymentModel = new PaymentModel();
@@ -95,8 +99,18 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
             }
 
             @Override
-            public void onFailure(String errorMessage) {
-                paymentView.onMakeToast(errorMessage);
+            public void onFailure(int statusCode, String errorMessage) {
+                switch (statusCode) {
+                    case 700:
+                        // Payment password error
+                        paymentView.onMakeToast(context.getString(R.string.peyment_error_700));
+                        break;
+                    case 701:
+                        // Fail to pay
+                        paymentView.onMakeToast(context.getString(R.string.payment_error_701));
+                        break;
+                    default:
+                }
             }
         });
     }
