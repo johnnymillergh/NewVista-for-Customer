@@ -80,4 +80,6 @@ dependencies {
     implementation 'com.github.lecho:hellocharts-android:v1.5.8'
     // Port of the ZXing Android application as an Android library project, for embedding in an Android application.
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    // Alipay SDK
+    implementation files('libs/alipaySdk-20180403.jar')
 }
