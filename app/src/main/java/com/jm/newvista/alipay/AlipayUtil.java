@@ -1,5 +1,5 @@
 package com.jm.newvista.alipay;
 
-public class AliPayUtil {
+public class AlipayUtil {
 
 }
