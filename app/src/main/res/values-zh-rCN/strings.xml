@@ -160,4 +160,6 @@
     <string name="my_comments">我的评论</string>
     <string name="peyment_error_700">支付密码错误</string>
     <string name="payment_error_701">支付失败</string>
+    <string name="alipay_success">支付宝支付成功</string>
+    <string name="alipay_failure">支付宝支付失败</string>
 </resources>

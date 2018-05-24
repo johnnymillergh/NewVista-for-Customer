@@ -114,4 +114,9 @@ public class PaymentPresenter extends BasePresenter<PaymentModel, PaymentView> {
             }
         });
     }
+
+    public float getTotalPrice() {
+        if (currentOrderEntity != null) return currentOrderEntity.getTotalPrice();
+        else return 0;
+    }
 }

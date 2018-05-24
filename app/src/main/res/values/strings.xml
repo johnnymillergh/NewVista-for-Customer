@@ -256,4 +256,6 @@
     <string name="my_comments">My Comments</string>
     <string name="peyment_error_700">Payment password error</string>
     <string name="payment_error_701">Failed to pay</string>
+    <string name="alipay_success">Alipay Success</string>
+    <string name="alipay_failure">Alipay Failure</string>
 </resources>
