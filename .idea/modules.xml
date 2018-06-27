@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NewVista.iml" filepath="$PROJECT_DIR$/NewVista.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NewVistaforCustomer.iml" filepath="$PROJECT_DIR$/NewVistaforCustomer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/seat-view/seat-view.iml" filepath="$PROJECT_DIR$/seat-view/seat-view.iml" />
     </modules>
